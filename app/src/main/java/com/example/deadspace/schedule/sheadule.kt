@@ -1,4 +1,4 @@
 package com.example.deadspace.schedule
 
-class sheadule {
+class sheadule { var a = 3
 }
