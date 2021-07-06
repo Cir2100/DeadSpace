@@ -1,11 +1,11 @@
 package com.example.deadspace.view.ui.main
 
-import android.arch.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.deadspace.R
 
 class StartFragment : Fragment() {
