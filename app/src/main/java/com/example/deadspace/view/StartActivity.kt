@@ -3,6 +3,7 @@ package com.example.deadspace.view
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.deadspace.R
+import com.example.deadspace.schedule.sheadule
 import com.example.deadspace.view.ui.main.StartFragment
 
 class StartActivity : AppCompatActivity() {
@@ -15,5 +16,7 @@ class StartActivity : AppCompatActivity() {
                 .replace(R.id.container, StartFragment.newInstance())
                 .commitNow()
         }
+
+        sheadule().parseGroupAndTeacher()
     }
 }
