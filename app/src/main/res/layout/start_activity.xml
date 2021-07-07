@@ -1,11 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-<<<<<<< HEAD
-    tools:context=".StartActivity" />
-=======
-    tools:context="view.StartActivity" />
->>>>>>> origin/design
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <TextView
+        android:id="@+id/some_id"
+        android:layout_width="226dp"
+        android:layout_height="45dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="73dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="17dp"
+        android:text="Навигация"
+        android:textAppearance="@style/some_id"
+        android:gravity="center_horizontal|top"
+        />
+
+    <Info
+        android:layout_width="375dp"
+        android:layout_height="165dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:gravity="center"
+        android:background="white"/>
+
+    <View
+        android:id="@+id/data"
+        android:layout_width="95dp"
+        android:layout_height="132.6dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="9dp"
+        android:background="#00000000"/>
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="148dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal|top"
+        android:text="30"
+        android:textAppearance="@style/some_id" />
+
+
+</LinearLayout>
+
+
+    <!-- Инфо -->
+
