@@ -40,7 +40,7 @@ class SheaduleLoaderInternet {
     }
 
     //find sheadule group or teacher on rasp.guap.ru/?..
-    fun loadShedule(name : String) {
+    fun loadShedule(name : String) :  MutableList<MutableList<MyPair>> {
         Thread(Runnable {
 
             parseGroupAndTeacher()
@@ -62,56 +62,58 @@ class SheaduleLoaderInternet {
                 }
                 return -1
             }
-
-            var id = isCurrentGroup(name.trim())
-            var letterPost : String = ""
-            if (id != -1)
-                letterPost = "?g="
-            else {
-                id = isCurrentTeacher(name.trim())
+            try {
+                var id = isCurrentGroup(name.trim())
+                var letterPost : String = ""
                 if (id != -1)
-                    letterPost = "?p="
-            }
-            if (id == -1){
-                Log.e(ContentValues.TAG, "Incorrect input")
-                // TODO: print error message
-            }
-            else{
-                try {
-
-                    var days : MutableList<MutableList<MyPair>> = mutableListOf(mutableListOf(), mutableListOf(),
-                        mutableListOf(), mutableListOf(), mutableListOf(), mutableListOf(), mutableListOf())
-
-                    val doc  = Jsoup.connect(sheadule_link + letterPost + id.toString()).get()
-                    val result = doc.getElementsByAttributeValue( "class", "result")
-                    var html : String = result.toString().substringAfter("</h2>")
-                    while (html.contains("</h3>")) {
-                        var weekday = html.substringAfter("<h3>").substringBefore("</h3>")
-                        var pairs = html.substringAfter("</h3>").substringBefore("<h3>")
-                        html = "<h3>" + html.substringAfter("</h3>").substringAfter("<h3>")
-                        for (WeekDay in WeekDays.values()){
-                            if(WeekDay.name == weekday)
-                                days[WeekDay.ordinal] = parsePairs(pairs)
-                        }
-                    }
-                    /*for (i in 0..6) {
-                        Log.e(ContentValues.TAG, i.toString() + " " + days[i].size.toString())
-                        for (pair in days[i])
-                        {
-                            Log.e(ContentValues.TAG, pair.time)
-                            Log.e(ContentValues.TAG, pair.week)
-                            Log.e(ContentValues.TAG, pair.type)
-                            Log.e(ContentValues.TAG, pair.name)
-                            Log.e(ContentValues.TAG, pair.teacher)
-                            Log.e(ContentValues.TAG, pair.groups)
-                            Log.e(ContentValues.TAG, pair.address)
-                        }
-                    }*/
-                    // TODO: work for days (days  contains name of week day and list of pairs in this day)
-                } catch (e: IOException) {
-                    Log.e(ContentValues.TAG, e.message.toString())
+                    letterPost = "?g="
+                else {
+                    id = isCurrentTeacher(name.trim())
+                    if (id != -1)
+                        letterPost = "?p="
                 }
+                if (id == -1){
+                    throw error("Incorrect input")
+                    //Log.e(ContentValues.TAG, "Incorrect input")
+                    // TODO: print error message
+                }
+                var days : MutableList<MutableList<MyPair>> = mutableListOf(mutableListOf(), mutableListOf(),
+                    mutableListOf(), mutableListOf(), mutableListOf(), mutableListOf(), mutableListOf())
+
+                val doc  = Jsoup.connect(sheadule_link + letterPost + id.toString()).get()
+                val result = doc.getElementsByAttributeValue( "class", "result")
+                var html : String = result.toString().substringAfter("</h2>")
+                while (html.contains("</h3>")) {
+                    var weekday = html.substringAfter("<h3>").substringBefore("</h3>")
+                    var pairs = html.substringAfter("</h3>").substringBefore("<h3>")
+                    html = "<h3>" + html.substringAfter("</h3>").substringAfter("<h3>")
+                    for (WeekDay in WeekDays.values()){
+                        if(WeekDay.name == weekday)
+                            days[WeekDay.ordinal] = parsePairs(pairs)
+                    }
+                }
+                /*for (i in 0..6) {
+                    Log.e(ContentValues.TAG, i.toString() + " " + days[i].size.toString())
+                    for (pair in days[i])
+                    {
+                        Log.e(ContentValues.TAG, pair.time)
+                        Log.e(ContentValues.TAG, pair.week)
+                        Log.e(ContentValues.TAG, pair.type)
+                        Log.e(ContentValues.TAG, pair.name)
+                        Log.e(ContentValues.TAG, pair.teacher)
+                        Log.e(ContentValues.TAG, pair.groups)
+                        Log.e(ContentValues.TAG, pair.address)
+                    }
+                }*/
+                return@Runnable days
             }
+            catch (e: IOException) {
+                Log.e(ContentValues.TAG, e.message.toString())
+            }
+            catch (err) {
+                Log.e(ContentValues.TAG, e.message.toString())
+            }
+
         }).start()
     }
 

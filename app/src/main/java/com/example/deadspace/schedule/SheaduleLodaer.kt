@@ -11,7 +11,7 @@ class SheaduleLodaer {
     //load sheadule from local data or internet
     fun loadSheadule(name: String = "", isUsers : Boolean) {
         //TODO: checked local data
-        if (isUsers && false) {
+        if (isUsers && localLoader.checkedUsersSheadule(name)) {
             Log.e(ContentValues.TAG, "Load from local data")
             localLoader.loadShedule(name)
         }

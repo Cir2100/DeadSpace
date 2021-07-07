@@ -6,9 +6,4 @@ class SheaduleEditor {
     fun addPair(pair : MyPair, weekDay : Int, groupName : String) {
 
     }
-
-    //save all sheadule
-    fun saveAllSheadule() {
-        
-    }
 }
