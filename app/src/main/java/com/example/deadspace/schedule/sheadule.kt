@@ -2,7 +2,6 @@ package com.example.deadspace.schedule
 
 import android.content.ContentValues
 import android.util.Log
-import com.example.deadspace.R
 import org.jsoup.Jsoup
 import org.jsoup.select.Elements
 import java.io.IOException
@@ -58,24 +57,28 @@ class sheadule {
 
         }).start()
     }
-    //checed name group for valid
-    private fun isCurrentGroup(name : String) : Int{
-        for (group in groups) {
-            if (group.second == name)
-                return group.first
-        }
-        return -1
-    }
-    //checed name teacher for valid
-    private fun isCurrentTeacher(name : String) : Int{
-        for (teacher in teachers) {
-            if (teacher.second == name)
-                return teacher.first
-        }
-        return -1
-    }
+
     //find sheadule group or teacher on rasp.guap.ru/?..
     fun parseShedule(name : String) {
+
+        //checed name group for valid
+        fun isCurrentGroup(name : String) : Int{
+            for (group in groups) {
+                if (group.second == name)
+                    return group.first
+            }
+            return -1
+        }
+
+        //checed name teacher for valid
+        fun isCurrentTeacher(name : String) : Int{
+            for (teacher in teachers) {
+                if (teacher.second == name)
+                    return teacher.first
+            }
+            return -1
+        }
+
         var id = isCurrentGroup(name.trim())
         var letterPost : String = ""
         if (id != -1)
@@ -99,8 +102,20 @@ class sheadule {
                     var weekday = html.substringAfter("<h3>").substringBefore("</h3>")
                     var pairs = html.substringAfter("</h3>").substringBefore("<h3>")
                     html = "<h3>" + html.substringAfter("</h3>").substringAfter("<h3>")
-                    Log.e(ContentValues.TAG,weekday+"::")
                     days.add(Pair(weekday, parsePairs(pairs)))
+                }
+                for (day in days){
+                    Log.e(ContentValues.TAG, day.first)
+                    for (pair in day.second)
+                    {
+                        Log.e(ContentValues.TAG, pair.time)
+                        Log.e(ContentValues.TAG, pair.week)
+                        Log.e(ContentValues.TAG, pair.type)
+                        Log.e(ContentValues.TAG, pair.name)
+                        Log.e(ContentValues.TAG, pair.teacher)
+                        Log.e(ContentValues.TAG, pair.groups)
+                        Log.e(ContentValues.TAG, pair.adress)
+                    }
                 }
                 // TODO: work for days (days  contains name of week day and list of pairs in this day)
             } catch (e: IOException) {
@@ -108,6 +123,7 @@ class sheadule {
             }
         }
     }
+
     //parse sheadule one day for pairs
     fun parsePairs(daysheadulep: String) : MutableList<MyPair>{
 
@@ -145,4 +161,5 @@ class sheadule {
         }
         return pairs
     }
+
 }
