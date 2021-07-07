@@ -16,7 +16,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="17dp"
         android:text="Навигация"
-        android:textAppearance="@style/some_id"
+
         android:gravity="center_horizontal|top"
         />
 
@@ -27,7 +27,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:gravity="center"
-        android:background="white"/>
+        android:background="@color/white"/>
 
     <View
         android:id="@+id/data"
@@ -37,7 +37,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="13dp"
         android:layout_marginTop="9dp"
-        android:background="#00000000"/>
+        android:background="@color/white"/>
 
     <TextView
         android:layout_width="100dp"
@@ -48,11 +48,9 @@
         android:layout_alignParentBottom="true"
         android:gravity="center_horizontal|top"
         android:text="30"
-        android:textAppearance="@style/some_id" />
+        />
 
 
 </LinearLayout>
 
-
-    <!-- Инфо -->
 
