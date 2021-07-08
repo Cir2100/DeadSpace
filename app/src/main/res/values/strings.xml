@@ -9,4 +9,5 @@
         <string name="week">неделя</string> // неделя
         <string name="number">2</string> // номер пары
         <string name="lesson">пара</string> // пара
+        <string name="enterGroupNumber">Группа:</string> // ввод номера группы
 </resources>
