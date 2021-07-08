@@ -3,9 +3,11 @@
         <string name="navigation">Навигация</string>
         <string name="currentDateDay">30</string> // текущий день
         <string name="currentDateMonth">июня</string> // текущий месяц (буквами)
+        <string name="currentDayOfWeek">среда</string> // текущий месяц (буквами)
         <string name="lowerWeek">нижняя</string> // нижняя неделя
         <string name="upperWeek">верхняя</string> // верхняя неделя
         <string name="week">неделя</string> // неделя
         <string name="number">2</string> // номер пары
         <string name="lesson">пара</string> // пара
+        <string name="enterGroupNumber">Группа:</string> // ввод номера группы
 </resources>
