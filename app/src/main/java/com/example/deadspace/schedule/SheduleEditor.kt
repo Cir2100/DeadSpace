@@ -1,8 +1,8 @@
 package com.example.deadspace.schedule
 
-class SheaduleEditor {
+class SheduleEditor {
 
-    //change local sheadule
+    //change local shedule
     fun addPair(pair : MyPair, weekDay : Int, groupName : String) {
 
     }

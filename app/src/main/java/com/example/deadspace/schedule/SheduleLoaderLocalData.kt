@@ -1,13 +1,13 @@
 package com.example.deadspace.schedule
 
-class SheaduleLoaderLocalData {
+class SheduleLoaderLocalData {
 
     //checked this group in local data
-    fun checkedUsersSheadule(name: String) : Boolean {
+    fun checkedUsersShedule(name: String) : Boolean {
         return false
     }
 
-    //load sheadule from local data
+    //load shedule from local data
     fun loadShedule(name: String) {
 
     }

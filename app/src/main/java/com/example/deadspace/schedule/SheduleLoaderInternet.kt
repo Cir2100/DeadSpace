@@ -2,11 +2,12 @@ package com.example.deadspace.schedule
 
 import android.content.ContentValues
 import android.util.Log
+import kotlinx.coroutines.runBlocking
 import org.jsoup.Jsoup
 import org.jsoup.select.Elements
 import java.io.IOException
 
-class SheaduleLoaderInternet {
+class SheduleLoaderInternet {
 
     enum class WeekDays {
         Понедельник, Вторник, Среда, Четверг, Пятница, Суббота, Воскресенье
@@ -15,12 +16,11 @@ class SheaduleLoaderInternet {
     private var groups : MutableList<Pair<Int, String>> = mutableListOf()
     private var teachers : MutableList<Pair<Int, String>> = mutableListOf()
     //TODO: use strings.xml
-    private val sheadule_link : String = "https://rasp.guap.ru/"
+    private val shedule_link : String = "https://rasp.guap.ru/"
 
     //parse from rasp.guap.ru teachers and group
     private fun parseGroupAndTeacher() {
-            try {
-                val doc  = Jsoup.connect(sheadule_link).get()
+                val doc  = Jsoup.connect(shedule_link).get()
                 val selecteds: Elements = doc.select("select")
                 for (i in 0..1){
                     var options = selecteds[i].select("option")
@@ -34,18 +34,15 @@ class SheaduleLoaderInternet {
                         }
                     }
                 }
-            } catch (e: IOException) {
-                Log.e(ContentValues.TAG, e.message.toString())
-            }
+        Log.i(this.javaClass.simpleName, "Load list groups and teachers successful")
     }
 
-    //find sheadule group or teacher on rasp.guap.ru/?..
-    fun loadShedule(name : String) :  MutableList<MutableList<MyPair>> {
+    //find shedule group or teacher on rasp.guap.ru/?..
+    //TODO : coroutine
+    fun loadShedule(name : String) {
         Thread(Runnable {
 
-            parseGroupAndTeacher()
-
-            //checed name group for valid
+            //checked name group for valid
             fun isCurrentGroup(name : String) : Int{
                 for (group in groups) {
                     if (group.second == name)
@@ -54,7 +51,7 @@ class SheaduleLoaderInternet {
                 return -1
             }
 
-            //checed name teacher for valid
+            //checked name teacher for valid
             fun isCurrentTeacher(name : String) : Int{
                 for (teacher in teachers) {
                     if (teacher.second == name)
@@ -62,7 +59,12 @@ class SheaduleLoaderInternet {
                 }
                 return -1
             }
+
+            //load sheadule
             try {
+
+                parseGroupAndTeacher()
+
                 var id = isCurrentGroup(name.trim())
                 var letterPost : String = ""
                 if (id != -1)
@@ -73,20 +75,19 @@ class SheaduleLoaderInternet {
                         letterPost = "?p="
                 }
                 if (id == -1){
-                    throw error("Incorrect input")
-                    //Log.e(ContentValues.TAG, "Incorrect input")
-                    // TODO: print error message
+                    throw Exception("Incorrect input")
                 }
                 var days : MutableList<MutableList<MyPair>> = mutableListOf(mutableListOf(), mutableListOf(),
                     mutableListOf(), mutableListOf(), mutableListOf(), mutableListOf(), mutableListOf())
 
-                val doc  = Jsoup.connect(sheadule_link + letterPost + id.toString()).get()
+                val doc  = Jsoup.connect(shedule_link + letterPost + id.toString()).get()
                 val result = doc.getElementsByAttributeValue( "class", "result")
                 var html : String = result.toString().substringAfter("</h2>")
                 while (html.contains("</h3>")) {
                     var weekday = html.substringAfter("<h3>").substringBefore("</h3>")
                     var pairs = html.substringAfter("</h3>").substringBefore("<h3>")
                     html = "<h3>" + html.substringAfter("</h3>").substringAfter("<h3>")
+
                     for (WeekDay in WeekDays.values()){
                         if(WeekDay.name == weekday)
                             days[WeekDay.ordinal] = parsePairs(pairs)
@@ -105,39 +106,42 @@ class SheaduleLoaderInternet {
                         Log.e(ContentValues.TAG, pair.address)
                     }
                 }*/
-                return@Runnable days
+                Log.i(this.javaClass.simpleName, "Load schedule successful")
+                //return@Runnable days
             }
             catch (e: IOException) {
                 Log.e(ContentValues.TAG, e.message.toString())
+                // TODO: print error message "GUAP disconnect"
             }
-            catch (err) {
+            catch (e: Exception) {
                 Log.e(ContentValues.TAG, e.message.toString())
+                // TODO: print error message "Incorrect input"
             }
 
         }).start()
     }
 
-    //parse sheadule one day for pairs
-    private fun parsePairs(daysheadulep: String) : MutableList<MyPair>{
+    //parse shedule one day for pairs
+    private fun parsePairs(daySheduleI: String) : MutableList<MyPair>{
 
         //parse group and teachers in pair
         fun parseGroupOrTeacher(input : String) : String {
             var tmp = ""
-            var daySheaduleTeachersOrGroups = input
-            while (daySheaduleTeachersOrGroups != ""){
-                tmp += daySheaduleTeachersOrGroups.substringAfter("\">").substringBefore("</a>") + ", "
-                daySheaduleTeachersOrGroups = daySheaduleTeachersOrGroups.substringAfter("</a>")
+            var daySheduleTeachersOrGroups = input
+            while (daySheduleTeachersOrGroups != ""){
+                tmp += daySheduleTeachersOrGroups.substringAfter("\">").substringBefore("</a>") + ", "
+                daySheduleTeachersOrGroups = daySheduleTeachersOrGroups.substringAfter("</a>")
             }
             tmp = tmp.substringBeforeLast(", ")
             return tmp
         }
 
-        var daysheadule = daysheadulep.substringBeforeLast("</div>")
+        var dayShedule = daySheduleI.substringBeforeLast("</div>")
         var pairs : MutableList<MyPair> = mutableListOf()
-        while (daysheadule.length > 10) {
-            var time = daysheadule.substringAfter("<h4>").substringBefore("</h4>").trim()
-            var pairInTime = daysheadule.substringAfter("</h4>").substringBefore("<h4>")
-            daysheadule = daysheadule.substringAfter(pairInTime)
+        while (dayShedule.length > 10) {
+            var time = dayShedule.substringAfter("<h4>").substringBefore("</h4>").trim()
+            var pairInTime = dayShedule.substringAfter("</h4>").substringBefore("<h4>")
+            dayShedule = dayShedule.substringAfter(pairInTime)
             while (pairInTime.length > 10) {
                 var week = ""
                 if (pairInTime.contains("class=\"up\"") || pairInTime.contains("class=\"dn\"")){
