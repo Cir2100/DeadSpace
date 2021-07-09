@@ -38,7 +38,7 @@
             android:layout_width="150dp"
             android:layout_height="130dp"
             android:scaleType="fitStart"
-            app:srcCompat="@drawable/ellipse1" />
+            app:srcCompat="@drawable/Фон_элипс" />
 
         <TextView
             android:id="@+id/CurrentDateDay"
@@ -99,6 +99,17 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="11:10 - 12:40"
+            android:textColor="@color/suai_purple"
+            android:textSize="10sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="110dp"/>
+
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="180dp"
@@ -106,7 +117,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="-23dp"
             android:scaleType="fitStart"
-            app:srcCompat="@drawable/blue2" />
+            app:srcCompat="@drawable/Фон_синий_треугольник" />
 
         <TextView
             android:id="@+id/LowerWeek"
@@ -149,6 +160,18 @@
             android:text="@string/enterGroupNumber"
             android:layout_alignParentLeft="true"/>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="85dp"
+            android:layout_marginTop="-20dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Введите номер группы" />
+        </com.google.android.material.textfield.TextInputLayout>
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -165,7 +188,7 @@
             android:layout_centerHorizontal="true"
             android:scaleType="fitCenter"
             android:background="@color/white"
-            app:srcCompat="@drawable/resource__" />
+            app:srcCompat="@drawable/Фон_список_делайнов" />
 
         <TextView
             android:id="@+id/textView"
@@ -201,7 +224,7 @@
             android:layout_width="300dp"
             android:layout_height="match_parent"
             android:scaleType="fitStart"
-            app:srcCompat="@drawable/rectangle_4" />
+            app:srcCompat="@drawable/Фон_расписания" />
 
         <TextView
             android:id="@+id/textView5"
@@ -212,14 +235,70 @@
             android:textSize="18sp"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:text="Расписание" />
-
+            android:text="@string/schedule" />
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/relativeLayout_5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/relativeLayout_4"
+        android:layout_marginTop="15dp">
 
+        <ImageButton
+            android:id="@+id/imageButton3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/Фон_занятий"
+            android:layout_marginLeft="50dp"/>
 
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/Картинка_занятий"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="75dp"/>
 
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Занятия"
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="72dp"
+            />
+
+        <ImageButton
+            android:id="@+id/imageButton4"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/Фон_занятий"
+            android:layout_marginLeft="260dp"/>
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/Картинка_зачетов"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="285dp"/>
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Зачеты"
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="287dp"
+            />
+
+    </RelativeLayout>
 
 </LinearLayout>
 
