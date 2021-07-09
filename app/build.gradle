@@ -1,6 +1,13 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+
+    /*//kapt
+    id 'kotlin-kapt'
+
+    //hilt
+    id 'dagger.hilt.android.plugin'
+*/
 }
 
 android {
@@ -20,6 +27,10 @@ android {
     dataBinding {
         enabled true
     }
+
+   /* kapt {
+        correctErrorTypes = true
+    }*/
 
     buildTypes {
         release {
@@ -68,4 +79,15 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    /*//hilt
+    implementation 'com.google.dagger:hilt-android:2.37'
+    kapt 'com.google.dagger:hilt-compiler:2.37'
+
+    //kapt
+    kapt 'groupId:artifactId:version'
+    //kapt project(":compiler")
+    implementation("se.ansman.kotshi:api:1.0.4")
+    kapt ("se.ansman.kotshi:compiler:1.0.4")*/
+
 }

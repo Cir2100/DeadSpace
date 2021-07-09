@@ -2,12 +2,13 @@ package com.example.deadspace.schedule
 
 import android.content.ContentValues
 import android.util.Log
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.jsoup.Jsoup
 import org.jsoup.select.Elements
 import java.io.IOException
 
-class SheduleLoaderInternet {
+class ScheduleLoaderInternet {
 
     enum class WeekDays {
         Понедельник, Вторник, Среда, Четверг, Пятница, Суббота, Воскресенье
@@ -16,11 +17,11 @@ class SheduleLoaderInternet {
     private var groups : MutableList<Pair<Int, String>> = mutableListOf()
     private var teachers : MutableList<Pair<Int, String>> = mutableListOf()
     //TODO: use strings.xml
-    private val shedule_link : String = "https://rasp.guap.ru/"
+    private val schedule_link : String = "https://rasp.guap.ru/"
 
     //parse from rasp.guap.ru teachers and group
-    private fun parseGroupAndTeacher() {
-                val doc  = Jsoup.connect(shedule_link).get()
+    suspend private fun parseGroupAndTeacher() {
+                val doc  = Jsoup.connect(schedule_link).get()
                 val selecteds: Elements = doc.select("select")
                 for (i in 0..1){
                     var options = selecteds[i].select("option")
@@ -37,13 +38,17 @@ class SheduleLoaderInternet {
         Log.i(this.javaClass.simpleName, "Load list groups and teachers successful")
     }
 
-    //find shedule group or teacher on rasp.guap.ru/?..
-    //TODO : coroutine
-    fun loadShedule(name : String) {
-        Thread(Runnable {
+    //find schedule group or teacher on rasp.guap.ru/?..
+    suspend fun loadSchedule(name : String) : List<List<MyPair>> {
+
+        var days: MutableList<MutableList<MyPair>> = mutableListOf(
+            mutableListOf(), mutableListOf(),
+            mutableListOf(), mutableListOf(), mutableListOf(), mutableListOf(), mutableListOf())
+
+        withContext(Dispatchers.IO) {
 
             //checked name group for valid
-            fun isCurrentGroup(name : String) : Int{
+            suspend fun isCurrentGroup(name: String): Int {
                 for (group in groups) {
                     if (group.second == name)
                         return group.first
@@ -52,7 +57,7 @@ class SheduleLoaderInternet {
             }
 
             //checked name teacher for valid
-            fun isCurrentTeacher(name : String) : Int{
+            suspend fun isCurrentTeacher(name: String): Int {
                 for (teacher in teachers) {
                     if (teacher.second == name)
                         return teacher.first
@@ -60,13 +65,13 @@ class SheduleLoaderInternet {
                 return -1
             }
 
-            //load sheadule
+            //load schedule
             try {
 
                 parseGroupAndTeacher()
 
                 var id = isCurrentGroup(name.trim())
-                var letterPost : String = ""
+                var letterPost: String = ""
                 if (id != -1)
                     letterPost = "?g="
                 else {
@@ -74,22 +79,20 @@ class SheduleLoaderInternet {
                     if (id != -1)
                         letterPost = "?p="
                 }
-                if (id == -1){
+                if (id == -1) {
                     throw Exception("Incorrect input")
                 }
-                var days : MutableList<MutableList<MyPair>> = mutableListOf(mutableListOf(), mutableListOf(),
-                    mutableListOf(), mutableListOf(), mutableListOf(), mutableListOf(), mutableListOf())
 
-                val doc  = Jsoup.connect(shedule_link + letterPost + id.toString()).get()
-                val result = doc.getElementsByAttributeValue( "class", "result")
-                var html : String = result.toString().substringAfter("</h2>")
+                val doc = Jsoup.connect(schedule_link + letterPost + id.toString()).get()
+                val result = doc.getElementsByAttributeValue("class", "result")
+                var html: String = result.toString().substringAfter("</h2>")
                 while (html.contains("</h3>")) {
                     var weekday = html.substringAfter("<h3>").substringBefore("</h3>")
                     var pairs = html.substringAfter("</h3>").substringBefore("<h3>")
                     html = "<h3>" + html.substringAfter("</h3>").substringAfter("<h3>")
 
-                    for (WeekDay in WeekDays.values()){
-                        if(WeekDay.name == weekday)
+                    for (WeekDay in WeekDays.values()) {
+                        if (WeekDay.name == weekday)
                             days[WeekDay.ordinal] = parsePairs(pairs)
                     }
                 }
@@ -107,49 +110,51 @@ class SheduleLoaderInternet {
                     }
                 }*/
                 Log.i(this.javaClass.simpleName, "Load schedule successful")
-                //return@Runnable days
-            }
-            catch (e: IOException) {
+            } catch (e: IOException) {
                 Log.e(ContentValues.TAG, e.message.toString())
                 // TODO: print error message "GUAP disconnect"
-            }
-            catch (e: Exception) {
+            } catch (e: Exception) {
                 Log.e(ContentValues.TAG, e.message.toString())
                 // TODO: print error message "Incorrect input"
             }
-
-        }).start()
+        }
+        return days
     }
 
-    //parse shedule one day for pairs
-    private fun parsePairs(daySheduleI: String) : MutableList<MyPair>{
+    //parse schedule one day for pairs
+     suspend private fun parsePairs(daySheduleI: String) : MutableList<MyPair>{
 
         //parse group and teachers in pair
         fun parseGroupOrTeacher(input : String) : String {
             var tmp = ""
-            var daySheduleTeachersOrGroups = input
-            while (daySheduleTeachersOrGroups != ""){
-                tmp += daySheduleTeachersOrGroups.substringAfter("\">").substringBefore("</a>") + ", "
-                daySheduleTeachersOrGroups = daySheduleTeachersOrGroups.substringAfter("</a>")
+            var dayScheduleTeachersOrGroups = input
+            while (dayScheduleTeachersOrGroups != ""){
+                tmp += dayScheduleTeachersOrGroups.substringAfter("\">").substringBefore("</a>") + ", "
+                dayScheduleTeachersOrGroups = dayScheduleTeachersOrGroups.substringAfter("</a>")
             }
             tmp = tmp.substringBeforeLast(", ")
             return tmp
         }
 
-        var dayShedule = daySheduleI.substringBeforeLast("</div>")
+        var daySchedule = daySheduleI.substringBeforeLast("</div>")
         var pairs : MutableList<MyPair> = mutableListOf()
-        while (dayShedule.length > 10) {
-            var time = dayShedule.substringAfter("<h4>").substringBefore("</h4>").trim()
-            var pairInTime = dayShedule.substringAfter("</h4>").substringBefore("<h4>")
-            dayShedule = dayShedule.substringAfter(pairInTime)
+        while (daySchedule.length > 10) {
+            var time = daySchedule.substringAfter("<h4>").substringBefore("</h4>").trim()
+            var pairInTime = daySchedule.substringAfter("</h4>").substringBefore("<h4>")
+            daySchedule = daySchedule.substringAfter(pairInTime)
             while (pairInTime.length > 10) {
-                var week = ""
+                var weekSting = ""
+                var week = 0
                 if (pairInTime.contains("class=\"up\"") || pairInTime.contains("class=\"dn\"")){
-                    week = pairInTime.substringAfter("title=\"").substringBefore("\"").trim()
+                    weekSting = pairInTime.substringAfter("title=\"").substringBefore("\"").trim()
                     pairInTime = pairInTime.substringAfter("</b>")
+                    if (weekSting == "нижняя (четная)")
+                        week = 0
+                    else
+                        week = 1
                 }
                 else {
-                    week = "bofs"
+                    week = 2
                 }
                 var type = pairInTime.substringAfter("<b>").substringBefore("</b>").trim()
                 var name = pairInTime.substringAfter("–").substringBefore("<em>").trim()
