@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.deadspace.R
 import com.example.deadspace.databinding.StartActivityBinding
+import com.example.deadspace.schedule.getDatabase
 
 class StartActivity : AppCompatActivity() {
 
@@ -13,9 +14,10 @@ class StartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val database = getDatabase(this)
         viewModel = ViewModelProvider(
             this,
-            ViewModelProvider.NewInstanceFactory()
+            StartViewModel.FACTORY(database.myPairDao)
         ).get(StartViewModel::class.java)
 
         val binding : StartActivityBinding = DataBindingUtil.setContentView(this, R.layout.start_activity)

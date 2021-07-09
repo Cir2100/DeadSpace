@@ -1,14 +1,21 @@
 package com.example.deadspace.view.ui.main
 
-import android.content.ContentValues
-import android.util.Log
 import androidx.lifecycle.*
+import com.example.deadspace.schedule.MyPairDao
 import com.example.deadspace.schedule.ScheduleLoader
 import kotlinx.coroutines.launch
 
+//TODO: use Hilt
 //@HiltViewModel
-class StartViewModel //@Inject constructor
-    : ViewModel() {
+class StartViewModel(private val myPairDao: MyPairDao) : ViewModel() {
+
+    companion object {
+        val FACTORY = singleArgViewModelFactory(::StartViewModel)
+    }
+
+    //TODO: this in constructor
+    private val scheduleLoader = ScheduleLoader()
+
 
     private val _data = MutableLiveData<String>()
     val data : LiveData<String> = _data
@@ -23,8 +30,9 @@ class StartViewModel //@Inject constructor
         viewModelScope.launch {
 
             //_data.value = ScheduleLoader().loadSchedule("1942", true)
-            val result = ScheduleLoader().loadSchedule(name = name, isUsers = isUsers)
+            val result = scheduleLoader.loadSchedule(name = name, isUsers = isUsers)
 
+            //myPairDao.insertAll(result)
             //TODO : use interface
             /*for (pair in result[weekDay]) {
                 if (pair.week == 2 || pair.week == typeOfWeek) {
