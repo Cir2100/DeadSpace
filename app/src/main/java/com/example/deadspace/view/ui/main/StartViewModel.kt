@@ -31,14 +31,12 @@ class StartViewModel(private val myPairDao: MyPairDao) : ViewModel() {
         // TODO: users input
         val weekDay = 0
         val typeOfWeek = 1
-        val name = "1942"
+        val name = "1932"
         val isUsers = true
 
         viewModelScope.launch {
-
-            val i = try {
-                //_data.value = ScheduleLoader().loadSchedule("1942", true)
-                val result = scheduleLoader.loadSchedule(name = name, isUsers = isUsers)
+            try {
+                scheduleLoader.loadSchedule(name = name, isUsers = isUsers)
                 /*for (pair in result[weekDay]) {
                     if (pair.week == 2 || pair.week == typeOfWeek) {
                         myPairDao.insertAll(MyPairData(pair.time, pair.week,
@@ -54,22 +52,6 @@ class StartViewModel(private val myPairDao: MyPairDao) : ViewModel() {
             }*/
         } catch (e: IOException) {
                 Log.e(this.javaClass.simpleName, e.message.toString())
-                /*val result = mutableListOf(
-                    MyPair("1 пара", 0, "Л", "name", "teachers", "groups", "adress"),
-                    MyPair("1 пара", 1, "ПР", "name", "teachers", "groups", "adress")
-                )
-                Log.i(this.javaClass.simpleName, "Start load to database")
-                for (pair in result) {
-                   // if (pair.week == 2 || pair.week == typeOfWeek) {
-                        Log.e(ContentValues.TAG, pair.time)
-                        Log.e(ContentValues.TAG, pair.week.toString())
-                        Log.e(ContentValues.TAG, pair.type)
-                        Log.e(ContentValues.TAG, pair.name)
-                        Log.e(ContentValues.TAG, pair.teachers)
-                        Log.e(ContentValues.TAG, pair.groups)
-                        Log.e(ContentValues.TAG, pair.address)
-                //   }
-                }*/
                 //TODO: print err message in activity
                 //_data.value = e.message
             } catch (e: Exception) {

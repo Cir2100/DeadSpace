@@ -11,7 +11,7 @@ import java.io.IOException
 class ScheduleLoaderInternet(private val myPairDao: MyPairDao) {
 
     enum class WeekDays {
-        Понедельник, Вторник, Среда, Четверг, Пятница, Суббота, Воскресенье
+        Понедельник, Вторник, Среда, Четверг, Пятница, Суббота, Вне
     }
 
     private var groups : MutableList<Pair<Int, String>> = mutableListOf()
@@ -38,12 +38,15 @@ class ScheduleLoaderInternet(private val myPairDao: MyPairDao) {
         Log.i(this.javaClass.simpleName, "Load list groups and teachers successful")
     }
 
+    //TODO : normal parse and refactor
     //find schedule group or teacher on rasp.guap.ru/?..
-    suspend fun loadSchedule(name : String) : List<List<MyPair>> {
+    suspend fun loadSchedule(name : String) {
 
         var days: MutableList<MutableList<MyPair>> = mutableListOf(
             mutableListOf(), mutableListOf(),
             mutableListOf(), mutableListOf(), mutableListOf(), mutableListOf(), mutableListOf())
+
+        var daysData: MutableList<MyPairData> = mutableListOf()
 
         withContext(Dispatchers.IO) {
 
@@ -88,18 +91,28 @@ class ScheduleLoaderInternet(private val myPairDao: MyPairDao) {
                 var html: String = result.toString().substringAfter("</h2>")
                 while (html.contains("</h3>")) {
                     var weekday = html.substringAfter("<h3>").substringBefore("</h3>")
+                    if (weekday == "Вне сетки расписания")
+                        weekday = "Вне"
                     var pairs = html.substringAfter("</h3>").substringBefore("<h3>")
                     html = "<h3>" + html.substringAfter("</h3>").substringAfter("<h3>")
 
                     for (WeekDay in WeekDays.values()) {
                         if (WeekDay.name == weekday) {
-                            days[WeekDay.ordinal] = parsePairs(pairs)
+                            days[WeekDay.ordinal] = parsePairs(pairs, WeekDay.ordinal)
                             for (pair in days[WeekDay.ordinal])
-                                myPairDao.insertAll(MyPairData(pair.time, pair.week,
-                                    pair.type, pair.name, pair.teachers, pair.groups, pair.address, true))
+                            {
+                                daysData.add(
+                                    MyPairData(name ,WeekDay.ordinal, pair.time, pair.week,
+                                        pair.type, pair.name, pair.teachers, pair.groups, pair.address, true
+                                ))
+                            }
+                               /* myPairDao.insertAll(MyPairData(WeekDay.ordinal, pair.time, pair.week,
+                                    pair.type, pair.name, pair.teachers, pair.groups, pair.address, true))*/
                         }
                     }
                 }
+                myPairDao.deleteCash()
+                myPairDao.insertAll(daysData)
                 Log.i(this.javaClass.simpleName, "Load schedule successful")
             } catch (e: IOException) {
                 //TODO : delete
@@ -110,12 +123,10 @@ class ScheduleLoaderInternet(private val myPairDao: MyPairDao) {
             }
             //TODO: norm throw?
         }
-        return days
     }
 
     //parse schedule one day for pairs
-     suspend private fun parsePairs(daySheduleI: String) : MutableList<MyPair>{
-
+     suspend private fun parsePairs(daySheduleI: String, day : Int) : MutableList<MyPair>{
         //parse group and teachers in pair
         fun parseGroupOrTeacher(input : String) : String {
             var tmp = ""
@@ -130,33 +141,52 @@ class ScheduleLoaderInternet(private val myPairDao: MyPairDao) {
 
         var daySchedule = daySheduleI.substringBeforeLast("</div>")
         var pairs : MutableList<MyPair> = mutableListOf()
-        while (daySchedule.length > 10) {
+        Log.e(ContentValues.TAG, day.toString())
+        if (day == 6){
             var time = daySchedule.substringAfter("<h4>").substringBefore("</h4>").trim()
             var pairInTime = daySchedule.substringAfter("</h4>").substringBefore("<h4>")
             daySchedule = daySchedule.substringAfter(pairInTime)
             while (pairInTime.length > 10) {
-                var weekSting = ""
-                var week = 0
-                if (pairInTime.contains("class=\"up\"") || pairInTime.contains("class=\"dn\"")){
-                    weekSting = pairInTime.substringAfter("title=\"").substringBefore("\"").trim()
-                    pairInTime = pairInTime.substringAfter("</b>")
-                    if (weekSting == "нижняя (четная)")
-                        week = 0
-                    else
-                        week = 1
-                }
-                else {
-                    week = 2
-                }
                 var type = pairInTime.substringAfter("<b>").substringBefore("</b>").trim()
                 var name = pairInTime.substringAfter("–").substringBefore("<em>").trim()
                 pairInTime = pairInTime.substringAfter("<em>")
-                var adress = pairInTime.substringAfter("–").substringBefore("</em>").trim()
-                var teachers = parseGroupOrTeacher(pairInTime.substringAfter("<a href").substringBefore("</span>")).trim()
-                pairInTime = pairInTime.substringAfter("</a></span>")
+                var address = pairInTime.substringAfter("–").substringBefore("</em>").trim()
+                var teachers = "parseGroupOrTeacher(pairInTime.substringAfter(<a href).substringBefore(</span>)).trim()"
                 var groups  = parseGroupOrTeacher(pairInTime.substringAfter("<a href").substringBefore("</span>")).trim()
                 pairInTime = pairInTime.substringAfter("</a></span>").substringAfter("</div>")
-                pairs.add(MyPair(time, week, type, name, teachers, groups, adress))
+                pairs.add(MyPair(time, 2, type, name, teachers, groups, address))
+            }
+
+
+        } else {
+            while (daySchedule.length > 10) {
+                var time = daySchedule.substringAfter("<h4>").substringBefore("</h4>").trim()
+                var pairInTime = daySchedule.substringAfter("</h4>").substringBefore("<h4>")
+                daySchedule = daySchedule.substringAfter(pairInTime)
+                while (pairInTime.length > 10) {
+                    var weekSting = ""
+                    var week = 0
+                    if (pairInTime.contains("class=\"up\"") || pairInTime.contains("class=\"dn\"")){
+                        weekSting = pairInTime.substringAfter("title=\"").substringBefore("\"").trim()
+                        pairInTime = pairInTime.substringAfter("</b>")
+                        if (weekSting == "нижняя (четная)")
+                            week = 0
+                        else
+                            week = 1
+                    }
+                    else {
+                        week = 2
+                    }
+                    var type = pairInTime.substringAfter("<b>").substringBefore("</b>").trim()
+                    var name = pairInTime.substringAfter("–").substringBefore("<em>").trim()
+                    pairInTime = pairInTime.substringAfter("<em>")
+                    var address = pairInTime.substringAfter("–").substringBefore("</em>").trim()
+                    var teachers = parseGroupOrTeacher(pairInTime.substringAfter("<a href").substringBefore("</span>")).trim()
+                    pairInTime = pairInTime.substringAfter("</a></span>")
+                    var groups  = parseGroupOrTeacher(pairInTime.substringAfter("<a href").substringBefore("</span>")).trim()
+                    pairInTime = pairInTime.substringAfter("</a></span>").substringAfter("</div>")
+                    pairs.add(MyPair(time, week, type, name, teachers, groups, address))
+                }
             }
         }
         return pairs

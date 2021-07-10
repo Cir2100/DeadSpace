@@ -7,6 +7,8 @@ import androidx.room.*
 @Fts4
 @Entity
 data class MyPairData constructor(
+    val group: String,
+    val day : Int,
     val time : String,
     val week : Int,
     val type : String,
@@ -19,24 +21,27 @@ data class MyPairData constructor(
 
 @Dao
 interface MyPairDao {
-    @Insert
-    suspend fun insertAll(vararg myPairData: MyPairData)
 
-    @Delete
-    suspend fun delete(myPairData: MyPairData)
-
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(myPairData: List<MyPairData>)
 
     @Query("SELECT * FROM MyPairData")
     suspend fun getAll(): List<MyPairData>
 
+    //delete old cash
+    @Query("DELETE FROM MyPairData WHERE isCash = 1")
+    suspend fun deleteCash()
+
+
     /*@Query("SELECT * FROM MyPairData where isCash = 1")
     suspend fun getIsCash(): List<MyPairData>*/
 
-    @get:Query("select * from MyPairData where isCash = 1")
+    //load current cash
+    @get:Query("SELECT * FROM MyPairData WHERE isCash = 1")
     val cashLiveData: LiveData<MyPairData>
 }
 
-@Database(entities = [MyPairData::class], version = 1)
+@Database(entities = [MyPairData::class], version = 3)
 abstract class MyPairDatabase : RoomDatabase() {
     //abstract fun myPairDao(): MyPairDao
     abstract val myPairDao : MyPairDao

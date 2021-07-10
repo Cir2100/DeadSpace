@@ -27,7 +27,7 @@ class StartActivity : AppCompatActivity() {
 
         viewModel.data.observe(this) { value ->
             value?.let {
-                binding.message.text = it.name
+                binding.message.text = it.name + it.time
             }
         }
 

@@ -25,8 +25,7 @@ class ScheduleLoader(private val myPairDao: MyPairDao) {
         }
     }*/
 
-    suspend fun loadSchedule(name: String, isUsers : Boolean) : List<List<MyPair>> {
-        var ans : List<List<MyPair>> = listOf()
+    suspend fun loadSchedule(name: String, isUsers : Boolean) {
         //TODO: checked local data
         if (isUsers && localLoader.checkedUsersSchedule(name)) {
             Log.i(this.javaClass.simpleName, "Load from local data")
@@ -34,9 +33,7 @@ class ScheduleLoader(private val myPairDao: MyPairDao) {
         }
         else {
             Log.i(this.javaClass.simpleName, "Load from internet")
-            ans =  internetLoader.loadSchedule(name)
-
+            internetLoader.loadSchedule(name)
         }
-        return ans
     }
 }
