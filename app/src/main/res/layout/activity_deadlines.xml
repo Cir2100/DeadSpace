@@ -26,7 +26,7 @@
             android:id="@+id/Right_arrow"
             android:layout_width="50dp"
             android:layout_height="45dp"
-            app:srcCompat="@drawable/Стрелка_вправо"
+            app:srcCompat="@drawable/right_arrow"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
             android:background="@color/white"/>
@@ -35,7 +35,7 @@
             android:id="@+id/Plus"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            app:srcCompat="@drawable/Плюсик"
+            app:srcCompat="@drawable/plus"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="350dp"
             android:background="@color/white"/>
@@ -61,7 +61,7 @@
             android:id="@+id/imageView"
             android:layout_width="120dp"
             android:layout_height="50dp"
-            app:srcCompat="@drawable/Фон_для_даты_в_календаре"
+            app:srcCompat="@drawable/background_kalendar"
             android:layout_marginTop="290dp"
             android:layout_centerHorizontal="true"/>
 
@@ -90,20 +90,20 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/Deadline"
+        android:id="@+id/Deadline11"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
 
         <ImageButton
-            android:id="@+id/imageButton8"
+            android:id="@+id/imageButton67"
             android:layout_width="380dp"
             android:layout_height="100dp"
-            app:srcCompat="@drawable/Фон_для_дедлайна"
+            app:srcCompat="@drawable/background_deadline"
             android:layout_marginLeft="15dp"/>
 
         <TextView
-            android:id="@+id/NameDedline"
+            android:id="@+id/NameDedline123"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
@@ -113,7 +113,7 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/NameSubjectDedline"
+            android:id="@+id/NameSubjectDedline3456"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -123,7 +123,7 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/DataDedline"
+            android:id="@+id/DataDedline454"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="65dp"
@@ -133,10 +133,10 @@
             android:textSize="18sp" />
 
         <ImageView
-            android:id="@+id/RedSquare"
+            android:id="@+id/RedSquare234"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            app:srcCompat="@drawable/Красный_квадрат"
+            app:srcCompat="@drawable/red_quadrate"
             android:layout_marginTop="65dp"
             android:layout_marginLeft="25dp"/>
 
@@ -152,7 +152,7 @@
             android:id="@+id/imageButton8"
             android:layout_width="380dp"
             android:layout_height="100dp"
-            app:srcCompat="@drawable/Фон_для_дедлайна"
+            app:srcCompat="@drawable/background_deadline"
             android:layout_marginLeft="15dp"/>
 
         <TextView
@@ -189,7 +189,7 @@
             android:id="@+id/RedSquare"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            app:srcCompat="@drawable/Красный_квадрат"
+            app:srcCompat="@drawable/red_quadrate"
             android:layout_marginTop="65dp"
             android:layout_marginLeft="25dp"/>
 
