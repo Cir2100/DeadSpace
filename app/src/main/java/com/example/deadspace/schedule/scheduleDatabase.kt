@@ -16,7 +16,7 @@ data class MyPairData constructor(
     val teachers : String,
     val groups : String,
     val address : String,
-    val isCash : Boolean
+    var isCash : Boolean //TODO: ??? val
 )
 
 @Dao
@@ -35,6 +35,10 @@ interface MyPairDao {
 
     /*@Query("SELECT * FROM MyPairData where isCash = 1")
     suspend fun getIsCash(): List<MyPairData>*/
+
+    //load current cash
+    @Query("SELECT * FROM MyPairData WHERE isCash = 1")
+    suspend fun getCash(): MutableList<MyPairData>
 
     //load current cash
     @get:Query("SELECT * FROM MyPairData WHERE isCash = 1")

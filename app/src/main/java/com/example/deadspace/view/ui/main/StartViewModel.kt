@@ -3,10 +3,7 @@ package com.example.deadspace.view.ui.main
 import android.content.ContentValues
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.deadspace.schedule.MyPair
-import com.example.deadspace.schedule.MyPairDao
-import com.example.deadspace.schedule.MyPairData
-import com.example.deadspace.schedule.ScheduleLoader
+import com.example.deadspace.schedule.*
 import kotlinx.coroutines.launch
 import java.io.IOException
 
@@ -20,6 +17,7 @@ class StartViewModel(private val myPairDao: MyPairDao) : ViewModel() {
 
     //TODO: this in constructor
     private val scheduleLoader = ScheduleLoader(myPairDao)
+    private val scheduleEditor = ScheduleEditor(myPairDao)
 
 
     /*private val _data = MutableLiveData<String>()
@@ -31,7 +29,7 @@ class StartViewModel(private val myPairDao: MyPairDao) : ViewModel() {
         // TODO: users input
         val weekDay = 0
         val typeOfWeek = 1
-        val name = "1932"
+        val name = "1942"
         val isUsers = true
 
         viewModelScope.launch {
@@ -74,6 +72,24 @@ class StartViewModel(private val myPairDao: MyPairDao) : ViewModel() {
                     Log.e(ContentValues.TAG, pair.address)
                 }
             }*/
+        }
+    }
+
+    fun addPair() {
+        // TODO: users input
+        val weekDay = 0
+        val typeOfWeek = 1
+        val name = "1932"
+        val namePair = "Технология программирования"
+        val type = "Л"
+        val time = "11:30"
+        val teachers = "Преподы"
+        val groups = "Группы"
+        val address = "Адресс"
+
+        viewModelScope.launch {
+            scheduleEditor.addPair(name, weekDay, time, typeOfWeek, type, namePair, teachers, groups,
+                address)
         }
     }
 

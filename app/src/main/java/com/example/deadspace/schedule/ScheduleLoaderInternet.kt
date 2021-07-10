@@ -10,6 +10,8 @@ import java.io.IOException
 
 class ScheduleLoaderInternet(private val myPairDao: MyPairDao) {
 
+    private val scheduleSaver = ScheduleSaver(myPairDao)
+
     enum class WeekDays {
         Понедельник, Вторник, Среда, Четверг, Пятница, Суббота, Вне
     }
@@ -106,13 +108,10 @@ class ScheduleLoaderInternet(private val myPairDao: MyPairDao) {
                                         pair.type, pair.name, pair.teachers, pair.groups, pair.address, true
                                 ))
                             }
-                               /* myPairDao.insertAll(MyPairData(WeekDay.ordinal, pair.time, pair.week,
-                                    pair.type, pair.name, pair.teachers, pair.groups, pair.address, true))*/
                         }
                     }
                 }
-                myPairDao.deleteCash()
-                myPairDao.insertAll(daysData)
+                scheduleSaver.saveCash(daysData)
                 Log.i(this.javaClass.simpleName, "Load schedule successful")
             } catch (e: IOException) {
                 //TODO : delete
@@ -141,7 +140,6 @@ class ScheduleLoaderInternet(private val myPairDao: MyPairDao) {
 
         var daySchedule = daySheduleI.substringBeforeLast("</div>")
         var pairs : MutableList<MyPair> = mutableListOf()
-        Log.e(ContentValues.TAG, day.toString())
         if (day == 6){
             var time = daySchedule.substringAfter("<h4>").substringBefore("</h4>").trim()
             var pairInTime = daySchedule.substringAfter("</h4>").substringBefore("<h4>")

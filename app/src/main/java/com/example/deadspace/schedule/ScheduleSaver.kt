@@ -1,14 +1,16 @@
 package com.example.deadspace.schedule
 
-class ScheduleSaver {
+class ScheduleSaver(private val myPairDao: MyPairDao) {
 
-    //save all schedule
-    fun save() {
 
+    suspend fun saveCash(saveData : List<MyPairData>) {
+        myPairDao.deleteCash()
+        myPairDao.insertAll(saveData)
     }
 
-    //save schedule from internet to local data
-    fun saveScheduleFirstTime(name: String) {
-
+    suspend fun saveUserSchedule(saveData : List<MyPairData>) {
+        myPairDao.insertAll(saveData)
     }
+
+
 }
