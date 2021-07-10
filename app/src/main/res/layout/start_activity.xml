@@ -38,7 +38,7 @@
             android:layout_width="150dp"
             android:layout_height="130dp"
             android:scaleType="fitStart"
-            app:srcCompat="@drawable/Фон_элипс" />
+            app:srcCompat="@drawable/fon_ellips" />
 
         <TextView
             android:id="@+id/CurrentDateDay"
@@ -116,7 +116,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="-23dp"
             android:scaleType="fitStart"
-            app:srcCompat="@drawable/Фон_синий_треугольник" />
+            app:srcCompat="@drawable/back_siny_triangle" />
 
         <TextView
             android:id="@+id/LowerWeek"
@@ -181,13 +181,15 @@
         android:layout_marginTop="30dp">
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/ListDeadlines"
             android:layout_width="300dp"
             android:layout_height="100dp"
             android:layout_centerHorizontal="true"
             android:scaleType="fitCenter"
             android:background="@color/white"
-            app:srcCompat="@drawable/Фон_список_делайнов" />
+            app:srcCompat="@drawable/background_list_dedlines"
+            android:onClick="onMyButtonClick"
+            />
 
         <TextView
             android:id="@+id/textView"
@@ -223,7 +225,7 @@
             android:layout_width="300dp"
             android:layout_height="match_parent"
             android:scaleType="fitStart"
-            app:srcCompat="@drawable/Фон_расписания" />
+            app:srcCompat="@drawable/background_spelling" />
 
         <TextView
             android:id="@+id/textView5"
@@ -249,14 +251,15 @@
             android:id="@+id/imageButton3"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:srcCompat="@drawable/Фон_занятий"
-            android:layout_marginLeft="50dp"/>
+            app:srcCompat="@drawable/background_occupations"
+            android:layout_marginLeft="50dp"
+            />
 
         <ImageView
             android:id="@+id/imageView6"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            app:srcCompat="@drawable/Картинка_занятий"
+            app:srcCompat="@drawable/picture_occupations"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="75dp"/>
 
@@ -275,14 +278,14 @@
             android:id="@+id/imageButton4"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:srcCompat="@drawable/Фон_занятий"
+            app:srcCompat="@drawable/background_occupations"
             android:layout_marginLeft="260dp"/>
 
         <ImageView
             android:id="@+id/imageView7"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            app:srcCompat="@drawable/Картинка_зачетов"
+            app:srcCompat="@drawable/image_references"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="285dp"/>
 
