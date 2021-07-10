@@ -6,16 +6,16 @@ import androidx.room.*
 @Fts4
 @Entity
 data class MyPairData constructor(
-    val myPair: MyPair
+    val name: String
 )
 
 @Dao
 interface MyPairDao {
     @Insert
-    fun insertAll(vararg MyPairData: MyPair)
+    fun insertAll(vararg myPairData: MyPairData)
 
     @Delete
-    fun delete(MyPairData: MyPair)
+    fun delete(myPairData: MyPairData)
 
     @Query("SELECT * FROM MyPairData")
     fun getAll(): List<MyPairData>
