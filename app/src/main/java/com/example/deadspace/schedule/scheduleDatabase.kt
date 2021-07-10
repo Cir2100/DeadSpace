@@ -1,24 +1,39 @@
 package com.example.deadspace.schedule
 
 import android.content.Context
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Fts4
 @Entity
 data class MyPairData constructor(
-    val name: String
+    val time : String,
+    val week : Int,
+    val type : String,
+    val name : String,
+    val teachers : String,
+    val groups : String,
+    val address : String,
+    val isCash : Boolean
 )
 
 @Dao
 interface MyPairDao {
     @Insert
-    fun insertAll(vararg myPairData: MyPairData)
+    suspend fun insertAll(vararg myPairData: MyPairData)
 
     @Delete
-    fun delete(myPairData: MyPairData)
+    suspend fun delete(myPairData: MyPairData)
+
 
     @Query("SELECT * FROM MyPairData")
-    fun getAll(): List<MyPairData>
+    suspend fun getAll(): List<MyPairData>
+
+    /*@Query("SELECT * FROM MyPairData where isCash = 1")
+    suspend fun getIsCash(): List<MyPairData>*/
+
+    @get:Query("select * from MyPairData where isCash = 1")
+    val cashLiveData: LiveData<MyPairData>
 }
 
 @Database(entities = [MyPairData::class], version = 1)

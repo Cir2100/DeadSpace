@@ -18,7 +18,7 @@ class MyPair(
     val week : Int,
     val type : String,
     val name : String,
-    val teacher : String,
+    val teachers : String,
     val groups : String,
     val address : String
 )

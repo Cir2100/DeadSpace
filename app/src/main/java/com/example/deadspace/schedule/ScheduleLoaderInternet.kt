@@ -8,7 +8,7 @@ import org.jsoup.Jsoup
 import org.jsoup.select.Elements
 import java.io.IOException
 
-class ScheduleLoaderInternet {
+class ScheduleLoaderInternet(private val myPairDao: MyPairDao) {
 
     enum class WeekDays {
         Понедельник, Вторник, Среда, Четверг, Пятница, Суббота, Воскресенье
@@ -92,31 +92,23 @@ class ScheduleLoaderInternet {
                     html = "<h3>" + html.substringAfter("</h3>").substringAfter("<h3>")
 
                     for (WeekDay in WeekDays.values()) {
-                        if (WeekDay.name == weekday)
+                        if (WeekDay.name == weekday) {
                             days[WeekDay.ordinal] = parsePairs(pairs)
+                            for (pair in days[WeekDay.ordinal])
+                                myPairDao.insertAll(MyPairData(pair.time, pair.week,
+                                    pair.type, pair.name, pair.teachers, pair.groups, pair.address, true))
+                        }
                     }
                 }
-                /*for (i in 0..6) {
-                    Log.e(ContentValues.TAG, i.toString() + " " + days[i].size.toString())
-                    for (pair in days[i])
-                    {
-                        Log.e(ContentValues.TAG, pair.time)
-                        Log.e(ContentValues.TAG, pair.week)
-                        Log.e(ContentValues.TAG, pair.type)
-                        Log.e(ContentValues.TAG, pair.name)
-                        Log.e(ContentValues.TAG, pair.teacher)
-                        Log.e(ContentValues.TAG, pair.groups)
-                        Log.e(ContentValues.TAG, pair.address)
-                    }
-                }*/
                 Log.i(this.javaClass.simpleName, "Load schedule successful")
             } catch (e: IOException) {
-                Log.e(ContentValues.TAG, e.message.toString())
-                // TODO: print error message "GUAP disconnect"
+                //TODO : delete
+                throw e
             } catch (e: Exception) {
-                Log.e(ContentValues.TAG, e.message.toString())
-                // TODO: print error message "Incorrect input"
+                //Log.e(ContentValues.TAG, e.message.toString())
+                throw e
             }
+            //TODO: norm throw?
         }
         return days
     }

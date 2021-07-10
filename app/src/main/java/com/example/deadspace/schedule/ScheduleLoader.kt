@@ -1,13 +1,16 @@
 package com.example.deadspace.schedule
 
-import android.content.ContentValues
 import android.util.Log
+import androidx.lifecycle.LiveData
 
 //@Singleton
-class ScheduleLoader {
+class ScheduleLoader(private val myPairDao: MyPairDao) {
 
-    private val localLoader = ScheduleLoaderLocalData()
-    private val internetLoader = ScheduleLoaderInternet()
+    private val localLoader = ScheduleLoaderLocalData(myPairDao)
+    private val internetLoader = ScheduleLoaderInternet(myPairDao)
+
+    val pairs: LiveData<MyPairData> = myPairDao.cashLiveData
+
     //TODO: logic loader
     //load scheadule from local data or internet
     /*fun loadSchedule(name: String = "", isUsers : Boolean) {

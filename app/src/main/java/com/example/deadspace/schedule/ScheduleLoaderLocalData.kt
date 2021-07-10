@@ -1,6 +1,6 @@
 package com.example.deadspace.schedule
 
-class ScheduleLoaderLocalData {
+class ScheduleLoaderLocalData(private val myPairDao: MyPairDao) {
 
     //checked this group in local data
     fun checkedUsersSchedule(name: String) : Boolean {
