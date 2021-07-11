@@ -9,7 +9,7 @@ class ScheduleLoader(private val myPairDao: MyPairDao) {
     private val localLoader = ScheduleLoaderLocalData(myPairDao)
     private val internetLoader = ScheduleLoaderInternet(myPairDao)
 
-    val pairs: LiveData<MyPairData> = myPairDao.cashLiveData
+    val pairs: LiveData<List<MyPairData>> = myPairDao.cashLiveData
 
     //TODO: logic loader
     //load scheadule from local data or internet

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.deadspace.R
 import com.example.deadspace.databinding.StartActivityBinding
 import com.example.deadspace.schedule.getDatabase
@@ -24,10 +25,14 @@ class StartActivity : AppCompatActivity() {
         binding.startViewModel = viewModel
         binding.lifecycleOwner = this
 
+        //List
+        val adapter = PairListAdapter(viewModel)
+        binding.pairList.adapter = adapter
+        binding.pairList.layoutManager = LinearLayoutManager(this)
 
-        viewModel.data.observe(this) { value ->
+        viewModel.myPairList.observe(this) { value ->
             value?.let {
-                binding.message.text = it.name + it.time
+                adapter.updateItems(value)
             }
         }
 

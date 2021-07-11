@@ -42,7 +42,7 @@ interface MyPairDao {
 
     //load current cash
     @get:Query("SELECT * FROM MyPairData WHERE isCash = 1")
-    val cashLiveData: LiveData<MyPairData>
+    val cashLiveData: LiveData<List<MyPairData>>
 }
 
 @Database(entities = [MyPairData::class], version = 3)

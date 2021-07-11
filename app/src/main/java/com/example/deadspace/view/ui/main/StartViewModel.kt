@@ -23,7 +23,9 @@ class StartViewModel(private val myPairDao: MyPairDao) : ViewModel() {
     /*private val _data = MutableLiveData<String>()
     val data : LiveData<String> = _data*/
 
-    val data = scheduleLoader.pairs
+    //val data = scheduleLoader.pairs
+
+    val myPairList :  LiveData<List<MyPairData>> = scheduleLoader.pairs
 
     fun onSearch() {
         // TODO: users input
