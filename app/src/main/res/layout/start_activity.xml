@@ -10,7 +10,8 @@
     <RelativeLayout
         android:id="@+id/relativeLayout_0"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="0dp"
+        android:layout_weight="2">
 
         <TextView
             android:id="@+id/Navigation"
@@ -29,9 +30,10 @@
     <RelativeLayout
         android:id="@+id/relativeLayout_1"
         android:layout_width="match_parent"
-        android:layout_height="130dp"
+        android:layout_height="0dp"
+        android:layout_weight="5">
         android:layout_below="@+id/relativeLayout_0"
-        android:layout_marginTop="0dp">
+        >
 
         <ImageView
             android:id="@+id/imageView3"
@@ -71,7 +73,6 @@
             android:layout_marginLeft="10dp"
             android:text="@string/currentDayOfWeek"
             android:textColor="@color/white"
-
             android:textSize="18sp" />
 
         <TextView
@@ -146,7 +147,8 @@
     <RelativeLayout
         android:id="@+id/relativeLayout_2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="2">
         android:layout_marginTop="30dp">
 
         <TextView
@@ -176,7 +178,8 @@
     <RelativeLayout
         android:id="@+id/relativeLayout_3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="4">
         android:layout_below="@+id/relativeLayout_2"
         android:layout_marginTop="30dp">
 
@@ -216,7 +219,8 @@
     <RelativeLayout
         android:id="@+id/relativeLayout_4"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="0dp"
+        android:layout_weight="2">
         android:layout_below="@+id/relativeLayout_2"
         android:layout_marginTop="30dp">
 
@@ -243,7 +247,8 @@
     <RelativeLayout
         android:id="@+id/relativeLayout_5"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4">
         android:layout_below="@+id/relativeLayout_4"
         android:layout_marginTop="20dp">
 

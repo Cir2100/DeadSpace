@@ -115,112 +115,111 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
-
-        <RelativeLayout
-            android:id="@+id/Deadline"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginTop="10dp">
-
-            <ImageButton
-                android:id="@+id/imageButton845"
-                android:layout_width="380dp"
+            <RelativeLayout
+                android:id="@+id/Deadline"
+                android:layout_width="match_parent"
                 android:layout_height="100dp"
-                app:srcCompat="@drawable/background_deadline"
-                android:layout_marginLeft="15dp"/>
+                android:layout_marginTop="10dp">
 
-            <TextView
-                android:id="@+id/NameDedline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:layout_marginLeft="25dp"
-                android:text="Лабораторная работа №1"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                <ImageButton
+                    android:id="@+id/imageButton845"
+                    android:layout_width="380dp"
+                    android:layout_height="100dp"
+                    app:srcCompat="@drawable/background_deadline"
+                    android:layout_marginLeft="15dp"/>
 
-            <TextView
-                android:id="@+id/NameSubjectDedline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="25dp"
-                android:text="Электроника"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/NameDedline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginLeft="25dp"
+                    android:text="Лабораторная работа №1"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/DataDedline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="65dp"
-                android:layout_marginLeft="290dp"
-                android:text="1 сентября"
-                android:textColor="@color/suai_red"
-                android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/NameSubjectDedline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="25dp"
+                    android:text="Электроника"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
 
-            <ImageView
-                android:id="@+id/RedSquare456"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                app:srcCompat="@drawable/red_quadrate"
-                android:layout_marginTop="65dp"
-                android:layout_marginLeft="25dp"/>
+                <TextView
+                    android:id="@+id/DataDedline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="65dp"
+                    android:layout_marginLeft="290dp"
+                    android:text="1 сентября"
+                    android:textColor="@color/suai_red"
+                    android:textSize="18sp" />
 
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/RedSquare456"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:srcCompat="@drawable/red_quadrate"
+                    android:layout_marginTop="65dp"
+                    android:layout_marginLeft="25dp"/>
 
-        <RelativeLayout
-            android:id="@+id/Deadline345"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginTop="10dp">
+            </RelativeLayout>
 
-            <ImageButton
-                android:id="@+id/imageButton8456"
-                android:layout_width="380dp"
+            <RelativeLayout
+                android:id="@+id/Deadline345"
+                android:layout_width="match_parent"
                 android:layout_height="100dp"
-                app:srcCompat="@drawable/background_deadline"
-                android:layout_marginLeft="15dp"/>
+                android:layout_marginTop="10dp">
 
-            <TextView
-                android:id="@+id/NameDedline345"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:layout_marginLeft="25dp"
-                android:text="Лабораторная работа №2"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                <ImageButton
+                    android:id="@+id/imageButton8456"
+                    android:layout_width="380dp"
+                    android:layout_height="100dp"
+                    app:srcCompat="@drawable/background_deadline"
+                    android:layout_marginLeft="15dp"/>
 
-            <TextView
-                android:id="@+id/NameSubjectDedline234"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="25dp"
-                android:text="Электроника"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/NameDedline345"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginLeft="25dp"
+                    android:text="Лабораторная работа №2"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/DataDedline34"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="65dp"
-                android:layout_marginLeft="290dp"
-                android:text="1 октября"
-                android:textColor="@color/suai_red"
-                android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/NameSubjectDedline234"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="25dp"
+                    android:text="Электроника"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
 
-            <ImageView
-                android:id="@+id/RedSquare"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                app:srcCompat="@drawable/red_quadrate"
-                android:layout_marginTop="65dp"
-                android:layout_marginLeft="25dp"/>
+                <TextView
+                    android:id="@+id/DataDedline34"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="65dp"
+                    android:layout_marginLeft="290dp"
+                    android:text="1 октября"
+                    android:textColor="@color/suai_red"
+                    android:textSize="18sp" />
 
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/RedSquare"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:srcCompat="@drawable/red_quadrate"
+                    android:layout_marginTop="65dp"
+                    android:layout_marginLeft="25dp"/>
+
+            </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/Deadline3456"
@@ -275,9 +274,114 @@
 
             </RelativeLayout>
 
+            <RelativeLayout
+                android:id="@+id/Deadline34"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp">
+
+                <ImageButton
+                    android:id="@+id/imageButton9"
+                    android:layout_width="380dp"
+                    android:layout_height="100dp"
+                    app:srcCompat="@drawable/background_deadline"
+                    android:layout_marginLeft="15dp"/>
+
+                <TextView
+                    android:id="@+id/NameDedline56"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginLeft="25dp"
+                    android:text="Лабораторная работа №4"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/NameSubjectDedline453"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="25dp"
+                    android:text="Электроника"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/DataDedline567"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="65dp"
+                    android:layout_marginLeft="290dp"
+                    android:text="1 декабря"
+                    android:textColor="@color/suai_red"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/RedSquare78"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:srcCompat="@drawable/red_quadrate"
+                    android:layout_marginTop="65dp"
+                    android:layout_marginLeft="25dp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/Deadline340"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp">
+
+                <ImageButton
+                    android:id="@+id/imageButton10"
+                    android:layout_width="380dp"
+                    android:layout_height="100dp"
+                    app:srcCompat="@drawable/background_deadline"
+                    android:layout_marginLeft="15dp"/>
+
+                <TextView
+                    android:id="@+id/NameDedline554"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginLeft="25dp"
+                    android:text="Лабораторная работа №5"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/NameSubjectDedline45"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="25dp"
+                    android:text="Электроника"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/DataDedline56"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="65dp"
+                    android:layout_marginLeft="290dp"
+                    android:text="30 декабря"
+                    android:textColor="@color/suai_red"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/RedSquare786"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:srcCompat="@drawable/red_quadrate"
+                    android:layout_marginTop="65dp"
+                    android:layout_marginLeft="25dp"/>
+
+            </RelativeLayout>
+
         </LinearLayout>
 
     </ScrollView>
-
 
 </LinearLayout>
