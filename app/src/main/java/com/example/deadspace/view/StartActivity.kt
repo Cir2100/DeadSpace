@@ -18,10 +18,14 @@ class StartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.start_activity)
     }
-    fun onMyButtonClick(view:View)
+    fun ClickListDeadlines(view:View)
     {
         val DeadlinesActivityIntent = Intent(this, DeadlinesActivity::class.java)
         startActivity(DeadlinesActivityIntent)
-
+    }
+    fun ClickTest(view:View)
+    {
+        val TestIntent = Intent(this, TestActivity::class.java)
+        startActivity(TestIntent)
     }
 }

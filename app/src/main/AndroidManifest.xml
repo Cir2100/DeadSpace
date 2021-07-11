@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DeadSpace">
         <activity
-            android:name=".view.TestActivityActivity"
+            android:name=".view.TestActivity"
             android:label="@string/title_activity_test"
             android:theme="@style/Theme.DeadSpace.NoActionBar"></activity>
         <activity

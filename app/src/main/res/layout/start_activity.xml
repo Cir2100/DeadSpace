@@ -191,8 +191,7 @@
             android:scaleType="fitCenter"
             android:background="@color/white"
             app:srcCompat="@drawable/background_list_dedlines"
-            android:onClick="onMyButtonClick"
-            />
+            android:onClick="ClickListDeadlines"/>
 
         <TextView
             android:id="@+id/textView"
@@ -280,14 +279,13 @@
             />
 
         <ImageButton
-            android:id="@+id/imageButton4"
             android:layout_width="100dp"
             android:layout_height="100dp"
             app:srcCompat="@drawable/background_occupations"
-            android:layout_marginLeft="260dp"/>
+            android:layout_marginLeft="260dp"
+            android:onClick="ClickTest"/>
 
         <ImageView
-            android:id="@+id/imageView7"
             android:layout_width="50dp"
             android:layout_height="50dp"
             app:srcCompat="@drawable/image_references"
