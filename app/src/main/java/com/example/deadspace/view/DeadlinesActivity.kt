@@ -22,4 +22,10 @@ class DeadlinesActivity : AppCompatActivity() {
         val AddDeadlineAddDeadlineIntent = Intent(this, AddDeadlineActivity::class.java)
         startActivity(AddDeadlineAddDeadlineIntent)
     }
+
+    fun ClickBackListDeadlines(view:View)
+    {
+        val BackListDeadlinesIntent = Intent(this, StartActivity::class.java)
+        startActivity(BackListDeadlinesIntent)
+    }
 }

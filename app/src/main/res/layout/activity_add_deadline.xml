@@ -30,12 +30,13 @@
             android:layout_height="13dp"
             app:srcCompat="@drawable/cross"
             android:layout_marginTop="0dp"
-            android:layout_marginEnd="15dp"
+            android:layout_marginEnd="25dp"
             android:background="@color/white"
             android:layout_alignParentEnd="true"
             android:scaleType="fitStart"
             android:layout_centerVertical="true"
-            android:contentDescription="Close add of deadline" />
+            android:contentDescription="Close add of deadline"
+            android:onClick="ClickBackAddDeadlines"/>
 
     </RelativeLayout>
 

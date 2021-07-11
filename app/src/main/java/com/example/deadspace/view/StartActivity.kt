@@ -4,10 +4,6 @@ import com.example.deadspace.R
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.view.inputmethod.EditorInfo
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.TextView.OnEditorActionListener
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -25,7 +21,7 @@ class StartActivity : AppCompatActivity() {
     }
     fun ClickTest(view:View)
     {
-        val TestIntent = Intent(this, TestActivity::class.java)
+        val TestIntent = Intent(this, ExamActivity::class.java)
         startActivity(TestIntent)
     }
 }

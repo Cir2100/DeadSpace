@@ -18,7 +18,7 @@
             android:name=".view.AddDeadlineActivity"
             android:theme="@style/Theme.DeadSpace.NoActionBar"></activity>
         <activity
-            android:name=".view.TestActivity"
+            android:name=".view.ExamActivity"
             android:label="@string/title_activity_test"
             android:theme="@style/Theme.DeadSpace.NoActionBar" />
         <activity
