@@ -29,7 +29,6 @@
             android:layout_width="13dp"
             android:layout_height="13dp"
             app:srcCompat="@drawable/cross"
-            android:layout_marginTop="0dp"
             android:layout_marginEnd="25dp"
             android:background="@color/white"
             android:layout_alignParentEnd="true"

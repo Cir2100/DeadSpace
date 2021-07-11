@@ -34,7 +34,8 @@
             android:layout_marginLeft="15dp"
             android:scaleType="fitStart"
             android:layout_centerVertical="true"
-            android:background="@color/white"/>
+            android:background="@color/white"
+            android:onClick="ClickBackExam"/>
 
     </RelativeLayout>
 
