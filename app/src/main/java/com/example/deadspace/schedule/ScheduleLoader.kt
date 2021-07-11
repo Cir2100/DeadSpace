@@ -9,7 +9,7 @@ class ScheduleLoader(private val myPairDao: MyPairDao) {
     private val localLoader = ScheduleLoaderLocalData(myPairDao)
     private val internetLoader = ScheduleLoaderInternet(myPairDao)
 
-    val pairs: LiveData<List<MyPairData>> = myPairDao.cashLiveData
+    var pairs: LiveData<List<MyPairData>> = myPairDao.cashLiveData
 
     //TODO: logic loader
     //load scheadule from local data or internet
@@ -27,7 +27,7 @@ class ScheduleLoader(private val myPairDao: MyPairDao) {
 
     suspend fun loadSchedule(name: String, isUsers : Boolean) {
         //TODO: checked local data
-        if (isUsers && localLoader.checkedUsersSchedule(name)) {
+        if (isUsers) {
             Log.i(this.javaClass.simpleName, "Load from local data")
             localLoader.loadSchedule(name)
         }

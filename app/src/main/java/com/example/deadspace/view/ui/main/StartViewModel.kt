@@ -1,6 +1,5 @@
 package com.example.deadspace.view.ui.main
 
-import android.content.ContentValues
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.deadspace.schedule.*
@@ -8,6 +7,7 @@ import kotlinx.coroutines.launch
 import java.io.IOException
 
 //TODO: use Hilt
+//TODO : use FLOW?
 //@HiltViewModel
 class StartViewModel(private val myPairDao: MyPairDao) : ViewModel() {
 
@@ -27,19 +27,17 @@ class StartViewModel(private val myPairDao: MyPairDao) : ViewModel() {
 
     val myPairList = scheduleLoader.pairs
 
-    var nameGroup : String = ""
-
+    var nameGroupListener : String = ""
+    var isUsersListener = MutableLiveData<Boolean>(false)
 
     fun onSearch() {
         // TODO: users input
         val weekDay = 0
         val typeOfWeek = 1
-        val name = nameGroup
-        val isUsers = true
 
         viewModelScope.launch {
             try {
-                scheduleLoader.loadSchedule(name = name, isUsers = isUsers)
+                scheduleLoader.loadSchedule(name = nameGroupListener, isUsers = isUsersListener.value!!)
                 /*for (pair in result[weekDay]) {
                     if (pair.week == 2 || pair.week == typeOfWeek) {
                         myPairDao.insertAll(MyPairData(pair.time, pair.week,

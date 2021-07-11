@@ -112,7 +112,7 @@ class ScheduleLoaderInternet(private val myPairDao: MyPairDao) {
                     }
                 }
                 scheduleSaver.saveCash(daysData)
-                Log.i(this.javaClass.simpleName, "Load schedule successful")
+                Log.i(this.javaClass.simpleName, "Load schedule from internet successful")
             } catch (e: IOException) {
                 //TODO : delete
                 throw e
