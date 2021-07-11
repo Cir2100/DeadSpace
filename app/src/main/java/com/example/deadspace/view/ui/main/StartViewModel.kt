@@ -27,11 +27,14 @@ class StartViewModel(private val myPairDao: MyPairDao) : ViewModel() {
 
     val myPairList = scheduleLoader.pairs
 
+    var nameGroup : String = ""
+
+
     fun onSearch() {
         // TODO: users input
         val weekDay = 0
         val typeOfWeek = 1
-        val name = "1942"
+        val name = nameGroup
         val isUsers = true
 
         viewModelScope.launch {

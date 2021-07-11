@@ -1,6 +1,7 @@
 package com.example.deadspace.view.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -37,4 +38,6 @@ class StartActivity : AppCompatActivity() {
         }
 
     }
+
+    //TODO : use onSavedInstanceState or savedStateHandle
 }

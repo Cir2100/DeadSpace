@@ -13,15 +13,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/message"
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/group_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Пары"
+            android:hint="Введите номер группы"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="30px"/>
+            android:layout_marginTop="30px"
+            android:text="@={startViewModel.nameGroup}"/>
 
         <Button
             android:id="@+id/button_search"
@@ -31,7 +34,7 @@
             android:layout_marginTop="25dp"
             android:layout_marginLeft="20dp"
             android:text="button_search"
-            app:layout_constraintTop_toBottomOf="@+id/message"
+            app:layout_constraintTop_toBottomOf="@+id/group_input"
             tools:layout_editor_absoluteX="161dp"
             android:onClick="@{() -> startViewModel.onSearch()}"/>
 
@@ -43,7 +46,7 @@
             android:layout_marginTop="25dp"
             android:layout_marginRight="20dp"
             android:text="button_add"
-            app:layout_constraintTop_toBottomOf="@+id/message"
+            app:layout_constraintTop_toBottomOf="@+id/group_input"
             tools:layout_editor_absoluteX="161dp"
             android:onClick="@{() -> startViewModel.addPair()}"/>
 

@@ -4,11 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.deadspace.R
 import com.example.deadspace.schedule.MyPairData
 
-
+//TODO : use paging
 class PairListAdapter(val viewModel: StartViewModel) :
     RecyclerView.Adapter<PairListAdapter.MyViewHolder>() {
 
