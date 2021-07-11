@@ -33,8 +33,9 @@ interface MyPairDao {
     suspend fun deleteCash()
 
 
-    /*@Query("SELECT * FROM MyPairData where isCash = 1")
-    suspend fun getIsCash(): List<MyPairData>*/
+    //load users input
+    @Query("SELECT * FROM MyPairData WHERE isCash = 0 AND `group` LIKE :name")
+    suspend fun getUserData(name: String): MutableList<MyPairData>
 
     //load current cash
     @Query("SELECT * FROM MyPairData WHERE isCash = 1")

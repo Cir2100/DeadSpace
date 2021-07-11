@@ -24,17 +24,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="30px"
-            android:text="@={startViewModel.nameGroup}"/>
+            android:text="@={startViewModel.nameGroupListener}"/>
 
-        <Button
-            android:id="@+id/button_search"
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/is_users_switcher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="25dp"
             android:layout_marginLeft="20dp"
-            android:text="button_search"
             app:layout_constraintTop_toBottomOf="@+id/group_input"
+            android:text="Ваше расписание"
+            android:checked="@={startViewModel.isUsersListener}"/>
+
+        <Button
+            android:id="@+id/button_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="button_search"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/is_users_switcher"
             tools:layout_editor_absoluteX="161dp"
             android:onClick="@{() -> startViewModel.onSearch()}"/>
 
@@ -46,7 +57,7 @@
             android:layout_marginTop="25dp"
             android:layout_marginRight="20dp"
             android:text="button_add"
-            app:layout_constraintTop_toBottomOf="@+id/group_input"
+            app:layout_constraintTop_toBottomOf="@+id/is_users_switcher"
             tools:layout_editor_absoluteX="161dp"
             android:onClick="@{() -> startViewModel.addPair()}"/>
 

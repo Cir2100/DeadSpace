@@ -7,6 +7,7 @@ class ScheduleEditor(private val myPairDao: MyPairDao) {
 
     private val scheduleSaver = ScheduleSaver(myPairDao)
 
+    //TODO: refactor?
     //change local schedule
     suspend fun addPair(group : String, day : Int, time : String,
                         week : Int, type : String, name : String,
