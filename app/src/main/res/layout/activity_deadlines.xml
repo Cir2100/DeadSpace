@@ -9,7 +9,8 @@
     <RelativeLayout
         android:id="@+id/relativeLayout_0"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="0dp"
+        android:layout_weight="2">
 
         <TextView
             android:id="@+id/Navigation"
@@ -52,8 +53,8 @@
     <RelativeLayout
         android:id="@+id/Calendar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="0dp"
+        android:layout_weight="10">
 
         <CalendarView
             android:id="@+id/calendarView"
@@ -64,52 +65,61 @@
             android:minDate="01/01/2020"
             android:selectedWeekBackgroundColor="@color/white" />
 
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/dfghjk"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="120dp"
             android:layout_height="50dp"
             app:srcCompat="@drawable/background_kalendar"
-            android:layout_marginTop="290dp"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
 
         <TextView
             android:id="@+id/CurrentDateDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="300dp"
             android:layout_marginLeft="165dp"
             android:text="@string/currentDateDay"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:layout_centerVertical="true"/>
 
         <TextView
             android:id="@+id/CurrentDateMonth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="@+id/CurrentDateDay"
-            android:layout_marginTop="300dp"
             android:layout_marginLeft="195dp"
             android:text="@string/currentDateMonth"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:layout_centerVertical="true"/>
 
         <ImageButton
             android:id="@+id/imageButton"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_marginTop="300dp"
             android:layout_marginRight="15dp"
             android:background="@color/white"
             android:scaleType="fitStart"
             android:layout_alignParentRight="true"
-            app:srcCompat="@drawable/roll_up" />
-
+            app:srcCompat="@drawable/roll_up"
+            android:layout_centerVertical="true"/>
 
     </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:layout_marginTop="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -328,7 +338,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/Deadline340"
+                android:id="@+id/Deadline343"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginTop="10dp">
@@ -341,7 +351,7 @@
                     android:layout_marginLeft="15dp"/>
 
                 <TextView
-                    android:id="@+id/NameDedline554"
+                    android:id="@+id/NameDedline506"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"

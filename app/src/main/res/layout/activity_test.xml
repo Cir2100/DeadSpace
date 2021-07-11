@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_0"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/Navigation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Расписание зачетов"
+            android:textColor="@color/suai_dark_blue"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_marginTop="0dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+
+        <ImageButton
+            android:id="@+id/Right_arrow"
+            android:layout_width="12dp"
+            android:layout_height="24dp"
+            app:srcCompat="@drawable/right_arrow"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="15dp"
+            android:scaleType="fitStart"
+            android:layout_centerVertical="true"
+            android:background="@color/white"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/EnterGroupNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:text="@string/enterGroupNumber"
+            android:layout_alignParentLeft="true"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="85dp"
+            android:layout_marginTop="-20dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="..." />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/dfghjk"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="5dp">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/background_kalendar"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:id="@+id/CurrentDateDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="165dp"
+                android:text="@string/currentDateDay"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:id="@+id/CurrentDateMonth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="@+id/CurrentDateDay"
+                android:layout_marginLeft="195dp"
+                android:text="@string/currentDateMonth"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="15"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp">
+
+            <RelativeLayout
+                android:id="@+id/Test1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/TestBackground1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="110dp"
+                    app:srcCompat="@drawable/background_deadline" />
+
+                <TextView
+                    android:id="@+id/DateChangeTest1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:text="9 июня, первая смена (10:00)"
+                    android:textColor="@color/suai_dark_blue"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/NameSubject1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="25dp"
+                    android:text="Компьютерная графика"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/Auditorium1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="55dp"
+                    android:layout_marginLeft="25dp"
+                    android:text="Аудитория:"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/NumberAuditorium1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="55dp"
+                    android:layout_marginLeft="170dp"
+                    android:text="Гаст. 33-05"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/Teacher1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="75dp"
+                    android:layout_marginLeft="25dp"
+                    android:text="Преподаватель:"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/NameTeacher1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="75dp"
+                    android:layout_marginLeft="170dp"
+                    android:text="Шахомиров А.В."
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/Test2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/TestBackground2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="110dp"
+                    app:srcCompat="@drawable/background_deadline" />
+
+                <TextView
+                    android:id="@+id/DateChangeTest2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:text="15 июня, вторая смена (14:00)"
+                    android:textColor="@color/suai_dark_blue"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/NameSubject2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="25dp"
+                    android:text="Электроника"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/Auditorium2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="55dp"
+                    android:layout_marginLeft="25dp"
+                    android:text="Аудитория:"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/NumberAuditorium2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="55dp"
+                    android:layout_marginLeft="170dp"
+                    android:text="Гаст. 33-05"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/Teacher2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="75dp"
+                    android:layout_marginLeft="25dp"
+                    android:text="Преподаватель:"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/NameTeacher2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="75dp"
+                    android:layout_marginLeft="170dp"
+                    android:text="Яблоков Е.Н."
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/Test3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/TestBackground3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="110dp"
+                    app:srcCompat="@drawable/background_deadline" />
+
+                <TextView
+                    android:id="@+id/DateChangeTest3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:text="19 июня, вторая смена (14:00)"
+                    android:textColor="@color/suai_dark_blue"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/NameSubject3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="25dp"
+                    android:text="Теория информации"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/Auditorium3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="55dp"
+                    android:layout_marginLeft="25dp"
+                    android:text="Аудитория:"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/NumberAuditorium3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="55dp"
+                    android:layout_marginLeft="170dp"
+                    android:text="Гаст. 33-05"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/Teacher3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="75dp"
+                    android:layout_marginLeft="25dp"
+                    android:text="Преподаватель:"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/NameTeacher3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="75dp"
+                    android:layout_marginLeft="170dp"
+                    android:text="Шехунова Н.А."
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/Test4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/TestBackground4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="110dp"
+                    app:srcCompat="@drawable/background_deadline" />
+
+                <TextView
+                    android:id="@+id/DateChangeTest4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:text="23 июня, вторая смена (14:00)"
+                    android:textColor="@color/suai_dark_blue"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/NameSubject4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="25dp"
+                    android:text="Иностранный язык"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/Auditorium4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="55dp"
+                    android:layout_marginLeft="25dp"
+                    android:text="Аудитория:"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/NumberAuditorium4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="55dp"
+                    android:layout_marginLeft="170dp"
+                    android:text="Гаст. 33-06"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/Teacher4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="75dp"
+                    android:layout_marginLeft="25dp"
+                    android:text="Преподаватель:"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/NameTeacher4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="75dp"
+                    android:layout_marginLeft="170dp"
+                    android:text="Куликова Е.В."
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -15,12 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DeadSpace">
         <activity
+            android:name=".view.TestActivityActivity"
+            android:label="@string/title_activity_test"
+            android:theme="@style/Theme.DeadSpace.NoActionBar"></activity>
+        <activity
             android:name=".view.DeadlinesActivity"
             android:label="@string/title_activity_deadlines"
+            android:theme="@style/Theme.DeadSpace.NoActionBar"></activity>
+        <activity
+            android:name=".view.StartActivity"
             android:theme="@style/Theme.DeadSpace.NoActionBar">
-        </activity>
-
-        <activity android:name=".view.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
