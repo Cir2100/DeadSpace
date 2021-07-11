@@ -31,7 +31,7 @@
             android:layout_height="24dp"
             app:srcCompat="@drawable/right_arrow"
             android:layout_marginTop="0dp"
-            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
             android:scaleType="fitStart"
             android:layout_centerVertical="true"
             android:background="@color/white"/>
@@ -48,7 +48,7 @@
             android:id="@+id/EnterGroupNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:text="@string/enterGroupNumber"
@@ -57,7 +57,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="85dp"
+            android:layout_marginStart="85dp"
             android:layout_marginTop="-20dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -87,7 +87,7 @@
                 android:id="@+id/CurrentDateDay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="165dp"
+                android:layout_marginStart="165dp"
                 android:text="@string/currentDateDay"
                 android:textColor="@color/white"
                 android:textSize="20sp"
@@ -98,7 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="@+id/CurrentDateDay"
-                android:layout_marginLeft="195dp"
+                android:layout_marginStart="195dp"
                 android:text="@string/currentDateMonth"
                 android:textColor="@color/white"
                 android:textSize="20sp"
@@ -134,7 +134,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:text="9 июня, первая смена (10:00)"
                     android:textColor="@color/suai_dark_blue"
                     android:textSize="15sp" />
@@ -144,7 +144,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:text="Компьютерная графика"
                     android:textColor="@color/black"
                     android:textSize="18sp"
@@ -155,7 +155,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="55dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:text="Аудитория:"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
@@ -165,7 +165,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="55dp"
-                    android:layout_marginLeft="170dp"
+                    android:layout_marginStart="170dp"
                     android:text="Гаст. 33-05"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
@@ -175,7 +175,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="75dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:text="Преподаватель:"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
@@ -185,7 +185,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="75dp"
-                    android:layout_marginLeft="170dp"
+                    android:layout_marginStart="170dp"
                     android:text="Шахомиров А.В."
                     android:textColor="@color/black"
                     android:textSize="15sp" />
@@ -209,7 +209,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:text="15 июня, вторая смена (14:00)"
                     android:textColor="@color/suai_dark_blue"
                     android:textSize="15sp" />
@@ -219,7 +219,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:text="Электроника"
                     android:textColor="@color/black"
                     android:textSize="18sp"
@@ -230,7 +230,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="55dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:text="Аудитория:"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
@@ -240,7 +240,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="55dp"
-                    android:layout_marginLeft="170dp"
+                    android:layout_marginStart="170dp"
                     android:text="Гаст. 33-05"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
@@ -250,7 +250,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="75dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:text="Преподаватель:"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
@@ -260,7 +260,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="75dp"
-                    android:layout_marginLeft="170dp"
+                    android:layout_marginStart="170dp"
                     android:text="Яблоков Е.Н."
                     android:textColor="@color/black"
                     android:textSize="15sp" />
@@ -284,7 +284,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:text="19 июня, вторая смена (14:00)"
                     android:textColor="@color/suai_dark_blue"
                     android:textSize="15sp" />
@@ -294,7 +294,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:text="Теория информации"
                     android:textColor="@color/black"
                     android:textSize="18sp"
@@ -305,7 +305,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="55dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:text="Аудитория:"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
@@ -315,7 +315,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="55dp"
-                    android:layout_marginLeft="170dp"
+                    android:layout_marginStart="170dp"
                     android:text="Гаст. 33-05"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
@@ -325,7 +325,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="75dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:text="Преподаватель:"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
@@ -335,7 +335,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="75dp"
-                    android:layout_marginLeft="170dp"
+                    android:layout_marginStart="170dp"
                     android:text="Шехунова Н.А."
                     android:textColor="@color/black"
                     android:textSize="15sp" />
@@ -359,7 +359,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:text="23 июня, вторая смена (14:00)"
                     android:textColor="@color/suai_dark_blue"
                     android:textSize="15sp" />
@@ -369,7 +369,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:text="Иностранный язык"
                     android:textColor="@color/black"
                     android:textSize="18sp"
@@ -380,7 +380,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="55dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:text="Аудитория:"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
@@ -390,7 +390,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="55dp"
-                    android:layout_marginLeft="170dp"
+                    android:layout_marginStart="170dp"
                     android:text="Гаст. 33-06"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
@@ -400,7 +400,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="75dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:text="Преподаватель:"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
@@ -410,7 +410,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="75dp"
-                    android:layout_marginLeft="170dp"
+                    android:layout_marginStart="170dp"
                     android:text="Куликова Е.В."
                     android:textColor="@color/black"
                     android:textSize="15sp" />

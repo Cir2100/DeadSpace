@@ -30,7 +30,7 @@
             android:layout_height="24dp"
             app:srcCompat="@drawable/right_arrow"
             android:layout_marginTop="0dp"
-            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
             android:scaleType="fitStart"
             android:layout_centerVertical="true"
             android:background="@color/white"/>
@@ -41,9 +41,9 @@
             android:layout_height="24dp"
             app:srcCompat="@drawable/plus"
             android:layout_marginTop="0dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginEnd="15dp"
             android:background="@color/white"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:scaleType="fitStart"
             android:layout_centerVertical="true"
             android:onClick="ClickAddDeadline"
@@ -86,7 +86,7 @@
             android:id="@+id/CurrentDateDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="165dp"
+            android:layout_marginStart="165dp"
             android:text="@string/currentDateDay"
             android:textColor="@color/white"
             android:textSize="20sp"
@@ -97,7 +97,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="@+id/CurrentDateDay"
-            android:layout_marginLeft="195dp"
+            android:layout_marginStart="195dp"
             android:text="@string/currentDateMonth"
             android:textColor="@color/white"
             android:textSize="20sp"
@@ -107,10 +107,10 @@
             android:id="@+id/imageButton"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginEnd="15dp"
             android:background="@color/white"
             android:scaleType="fitStart"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             app:srcCompat="@drawable/roll_up"
             android:layout_centerVertical="true"/>
 
@@ -137,14 +137,14 @@
                     android:layout_width="380dp"
                     android:layout_height="100dp"
                     app:srcCompat="@drawable/background_deadline"
-                    android:layout_marginLeft="15dp"/>
+                    android:layout_marginStart="15dp"/>
 
                 <TextView
                     android:id="@+id/NameDedline"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:text="Лабораторная работа №1"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
@@ -154,7 +154,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:text="Электроника"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
@@ -164,7 +164,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="65dp"
-                    android:layout_marginLeft="290dp"
+                    android:layout_marginStart="290dp"
                     android:text="1 сентября"
                     android:textColor="@color/suai_red"
                     android:textSize="18sp" />
@@ -175,7 +175,7 @@
                     android:layout_height="20dp"
                     app:srcCompat="@drawable/red_quadrate"
                     android:layout_marginTop="65dp"
-                    android:layout_marginLeft="25dp"/>
+                    android:layout_marginStart="25dp"/>
 
             </RelativeLayout>
 
@@ -190,14 +190,14 @@
                     android:layout_width="380dp"
                     android:layout_height="100dp"
                     app:srcCompat="@drawable/background_deadline"
-                    android:layout_marginLeft="15dp"/>
+                    android:layout_marginStart="15dp"/>
 
                 <TextView
                     android:id="@+id/NameDedline345"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:text="Лабораторная работа №2"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
@@ -207,7 +207,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:text="Электроника"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
@@ -217,7 +217,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="65dp"
-                    android:layout_marginLeft="290dp"
+                    android:layout_marginStart="290dp"
                     android:text="1 октября"
                     android:textColor="@color/suai_red"
                     android:textSize="18sp" />
@@ -228,7 +228,7 @@
                     android:layout_height="20dp"
                     app:srcCompat="@drawable/red_quadrate"
                     android:layout_marginTop="65dp"
-                    android:layout_marginLeft="25dp"/>
+                    android:layout_marginStart="25dp"/>
 
             </RelativeLayout>
 
@@ -243,14 +243,14 @@
                     android:layout_width="380dp"
                     android:layout_height="100dp"
                     app:srcCompat="@drawable/background_deadline"
-                    android:layout_marginLeft="15dp"/>
+                    android:layout_marginStart="15dp"/>
 
                 <TextView
                     android:id="@+id/NameDedline567"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:text="Лабораторная работа №3"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
@@ -260,7 +260,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:text="Электроника"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
@@ -270,7 +270,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="65dp"
-                    android:layout_marginLeft="290dp"
+                    android:layout_marginStart="290dp"
                     android:text="1 ноября"
                     android:textColor="@color/suai_red"
                     android:textSize="18sp" />
@@ -281,7 +281,7 @@
                     android:layout_height="20dp"
                     app:srcCompat="@drawable/red_quadrate"
                     android:layout_marginTop="65dp"
-                    android:layout_marginLeft="25dp"/>
+                    android:layout_marginStart="25dp"/>
 
             </RelativeLayout>
 
@@ -296,14 +296,14 @@
                     android:layout_width="380dp"
                     android:layout_height="100dp"
                     app:srcCompat="@drawable/background_deadline"
-                    android:layout_marginLeft="15dp"/>
+                    android:layout_marginStart="15dp"/>
 
                 <TextView
                     android:id="@+id/NameDedline56"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:text="Лабораторная работа №4"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
@@ -313,7 +313,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:text="Электроника"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
@@ -323,7 +323,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="65dp"
-                    android:layout_marginLeft="290dp"
+                    android:layout_marginStart="290dp"
                     android:text="1 декабря"
                     android:textColor="@color/suai_red"
                     android:textSize="18sp" />
@@ -334,7 +334,7 @@
                     android:layout_height="20dp"
                     app:srcCompat="@drawable/red_quadrate"
                     android:layout_marginTop="65dp"
-                    android:layout_marginLeft="25dp"/>
+                    android:layout_marginStart="25dp"/>
 
             </RelativeLayout>
 
@@ -349,14 +349,14 @@
                     android:layout_width="380dp"
                     android:layout_height="100dp"
                     app:srcCompat="@drawable/background_deadline"
-                    android:layout_marginLeft="15dp"/>
+                    android:layout_marginStart="15dp"/>
 
                 <TextView
                     android:id="@+id/NameDedline506"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:text="Лабораторная работа №5"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
@@ -366,7 +366,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:text="Электроника"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
@@ -376,7 +376,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="65dp"
-                    android:layout_marginLeft="290dp"
+                    android:layout_marginStart="290dp"
                     android:text="30 декабря"
                     android:textColor="@color/suai_red"
                     android:textSize="18sp" />
@@ -387,7 +387,7 @@
                     android:layout_height="20dp"
                     app:srcCompat="@drawable/red_quadrate"
                     android:layout_marginTop="65dp"
-                    android:layout_marginLeft="25dp"/>
+                    android:layout_marginStart="25dp"/>
 
             </RelativeLayout>
 

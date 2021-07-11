@@ -32,8 +32,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5">
-        android:layout_below="@+id/relativeLayout_0"
-        >
 
         <ImageView
             android:id="@+id/imageView3"
@@ -46,7 +44,7 @@
             android:id="@+id/CurrentDateDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:text="@string/currentDateDay"
             android:textColor="@color/white"
             android:textSize="60sp"
@@ -58,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="@+id/CurrentDateDay"
             android:layout_marginTop="60dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:text="@string/currentDateMonth"
             android:textColor="@color/white"
             android:textSize="26sp"
@@ -70,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="@+id/CurrentDateDay"
             android:layout_marginVertical="85dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:text="@string/currentDayOfWeek"
             android:textColor="@color/white"
             android:textSize="18sp" />
@@ -114,8 +112,8 @@
             android:id="@+id/imageView4"
             android:layout_width="180dp"
             android:layout_height="130dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="-23dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="-23dp"
             android:scaleType="fitStart"
             app:srcCompat="@drawable/back_siny_triangle" />
 
@@ -123,9 +121,9 @@
             android:id="@+id/LowerWeek"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginVertical="30dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:text="@string/lowerWeek"
             android:textColor="@color/white"
             android:textSize="20sp" />
@@ -134,9 +132,9 @@
             android:id="@+id/Week"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginTop="60dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:text="@string/week"
             android:textColor="@color/white"
             android:textSize="20sp" />
@@ -149,22 +147,21 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2">
-        android:layout_marginTop="30dp">
 
         <TextView
             android:id="@+id/EnterGroupNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:text="@string/enterGroupNumber"
-            android:layout_alignParentLeft="true"/>
+            android:layout_alignParentStart="true"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="85dp"
+            android:layout_marginStart="85dp"
             android:layout_marginTop="-20dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -180,8 +177,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="4">
-        android:layout_below="@+id/relativeLayout_2"
-        android:layout_marginTop="30dp">
 
         <ImageButton
             android:id="@+id/ListDeadlines"
@@ -197,7 +192,7 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="200dp"
+            android:layout_marginStart="200dp"
             android:layout_marginTop="20dp"
             android:textSize="18sp"
             android:textColor="@color/black"
@@ -207,7 +202,7 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="200dp"
+            android:layout_marginStart="200dp"
             android:layout_marginTop="50dp"
             android:textSize="18sp"
             android:textColor="@color/black"
@@ -220,8 +215,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2">
-        android:layout_below="@+id/relativeLayout_2"
-        android:layout_marginTop="30dp">
 
         <ImageView
             android:id="@+id/imageView5"
@@ -234,7 +227,7 @@
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:textSize="18sp"
             android:textColor="@color/white"
@@ -248,15 +241,13 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="4">
-        android:layout_below="@+id/relativeLayout_4"
-        android:layout_marginTop="20dp">
 
         <ImageButton
             android:id="@+id/imageButton3"
             android:layout_width="100dp"
             android:layout_height="100dp"
             app:srcCompat="@drawable/background_occupations"
-            android:layout_marginLeft="50dp"
+            android:layout_marginStart="50dp"
             />
 
         <ImageView
@@ -265,24 +256,24 @@
             android:layout_height="50dp"
             app:srcCompat="@drawable/picture_occupations"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="75dp"/>
+            android:layout_marginStart="75dp"/>
 
         <TextView
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Занятия"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textColor="@color/black"
             android:layout_marginTop="70dp"
-            android:layout_marginLeft="72dp"
+            android:layout_marginStart="72dp"
             />
 
         <ImageButton
             android:layout_width="100dp"
             android:layout_height="100dp"
             app:srcCompat="@drawable/background_occupations"
-            android:layout_marginLeft="260dp"
+            android:layout_marginStart="260dp"
             android:onClick="ClickTest"/>
 
         <ImageView
@@ -290,17 +281,17 @@
             android:layout_height="50dp"
             app:srcCompat="@drawable/image_references"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="285dp"/>
+            android:layout_marginStart="285dp"/>
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Зачеты"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textColor="@color/black"
             android:layout_marginTop="70dp"
-            android:layout_marginLeft="287dp"
+            android:layout_marginStart="287dp"
             />
 
     </RelativeLayout>
