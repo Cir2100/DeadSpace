@@ -2,8 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
     package="com.example.deadspace">
+
     <uses-permission android:name="android.permission.INTERNET"/>
+
     <dist:module dist:instant="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +14,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DeadSpace">
-        <activity android:name=".view.ui.main.StartActivity">
+        <activity
+            android:name=".view.AddRaspActivity"
+            android:theme="@style/Theme.DeadSpace.NoActionBar"></activity>
+        <activity
+            android:name=".view.RaspActivity"
+            android:theme="@style/Theme.DeadSpace.NoActionBar" />
+        <activity
+            android:name=".view.AddDeadlineActivity"
+            android:theme="@style/Theme.DeadSpace.NoActionBar" />
+        <activity
+            android:name=".view.ExamActivity"
+            android:label="@string/title_activity_test"
+            android:theme="@style/Theme.DeadSpace.NoActionBar" />
+        <activity
+            android:name=".view.DeadlinesActivity"
+            android:label="@string/title_activity_deadlines"
+            android:theme="@style/Theme.DeadSpace.NoActionBar" />
+        <activity
+            android:name=".view.StartActivity"
+            android:theme="@style/Theme.DeadSpace.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

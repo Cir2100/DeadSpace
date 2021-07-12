@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout android:id="@+id/Deadline"
+    android:layout_width="400dp"
+    android:layout_height="100dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="5dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageButton
+        android:id="@+id/imageButton845"
+        android:layout_width="400dp"
+        android:layout_height="100dp"
+        android:background="@color/suai_light_blue" />
+
+    <TextView
+        android:id="@+id/NameDedline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginStart="25dp"
+        android:text="Лабораторная работа №1"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/NameSubjectDedline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="25dp"
+        android:text="Электроника"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/DataDedline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="65dp"
+        android:layout_marginStart="290dp"
+        android:text="1 сентября"
+        android:textColor="@color/suai_red"
+        android:textSize="18sp" />
+
+    <ImageView
+        android:id="@+id/RedSquare456"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:srcCompat="@drawable/red_quadrate"
+        android:layout_marginTop="65dp"
+        android:layout_marginStart="25dp"/>
+
+</RelativeLayout>

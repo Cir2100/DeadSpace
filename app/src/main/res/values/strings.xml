@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">DeadSpace</string>
+    <string name="navigation">Навигация</string>
+    <string name="currentDateDay">30</string>
+    // текущий день
+    <string name="currentDateMonth">июня</string>
+    // текущий месяц (буквами)
+    <string name="currentDayOfWeek">среда</string>
+    // текущий месяц (буквами)
+    <string name="lowerWeek">нижняя</string>
+    // нижняя неделя
+    <string name="upperWeek">верхняя</string>
+    // верхняя неделя
+    <string name="week">неделя</string>
+    // неделя
+    <string name="number">2</string>
+    // номер пары
+    <string name="lesson">пара</string>
+    // пара
+    <string name="enterGroupNumber">Группа:</string>
+    // ввод номера группы
+    <string name="schedule">Расписание</string>
+    <string name="title_activity_deadlines">DeadlinesActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_test">TestActivity</string>
+    // вкладка расписание
 
 
     <string name="schedule_link">https://rasp.guap.ru</string>
