@@ -250,6 +250,7 @@
             android:layout_height="100dp"
             app:srcCompat="@drawable/background_occupations"
             android:layout_marginStart="50dp"
+            android:onClick="ClickPairs"
             />
 
         <ImageView
@@ -289,7 +290,7 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Зачеты"
+            android:text="Сессия"
             android:textSize="15sp"
             android:textColor="@color/black"
             android:layout_marginTop="70dp"

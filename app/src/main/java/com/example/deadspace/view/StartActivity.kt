@@ -24,4 +24,9 @@ class StartActivity : AppCompatActivity() {
         val TestIntent = Intent(this, ExamActivity::class.java)
         startActivity(TestIntent)
     }
+    fun ClickPairs(view: View)
+    {
+        val PairsIntent = Intent(this, RaspActivity::class.java)
+        startActivity(PairsIntent)
+    }
 }
