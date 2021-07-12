@@ -1,4 +1,4 @@
-package com.example.deadspace.view.ui.main
+package com.example.deadspace.ui.main
 
 import android.view.LayoutInflater
 import android.view.View

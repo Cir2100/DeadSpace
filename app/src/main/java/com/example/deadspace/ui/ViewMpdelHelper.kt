@@ -1,4 +1,4 @@
-package com.example.deadspace.view.ui.main
+package com.example.deadspace.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

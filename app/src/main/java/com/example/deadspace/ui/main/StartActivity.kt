@@ -1,4 +1,4 @@
-package com.example.deadspace.view.ui.main
+package com.example.deadspace.ui.main
 
 import android.content.Intent
 import android.os.Bundle

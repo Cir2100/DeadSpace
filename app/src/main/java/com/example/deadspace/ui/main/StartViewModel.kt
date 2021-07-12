@@ -1,11 +1,11 @@
-package com.example.deadspace.view.ui.main
+package com.example.deadspace.ui.main
 
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.deadspace.data.schedule.MyPairDao
 import com.example.deadspace.data.schedule.ScheduleEditor
 import com.example.deadspace.data.schedule.ScheduleLoader
-import com.example.deadspace.schedule.*
+import com.example.deadspace.ui.singleArgViewModelFactory
 import kotlinx.coroutines.launch
 import java.io.IOException
 
