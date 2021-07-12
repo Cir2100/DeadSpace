@@ -14,7 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DeadSpace">
-        <activity android:name=".view.AddPairActivity"></activity>
+        <activity
+            android:name=".view.AddRaspActivity"
+            android:theme="@style/Theme.DeadSpace.NoActionBar"></activity>
         <activity
             android:name=".view.RaspActivity"
             android:theme="@style/Theme.DeadSpace.NoActionBar" />
