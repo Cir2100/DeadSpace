@@ -30,6 +30,13 @@ class StartViewModel(private val myPairDao: MyPairDao) : ViewModel() {
     var nameGroupListener : String = ""
     var isUsersListener = MutableLiveData<Boolean>(false)
 
+    //TODO : use anti
+    fun onChangeIsUser(isCecked : Boolean) {
+        //Log.e(this.javaClass.simpleName, isUsersListener.value!!.toString())
+        //onSearch()
+    }
+
+    //TODO: if empty users check
     fun onSearch() {
         // TODO: users input
         val weekDay = 0
@@ -38,19 +45,6 @@ class StartViewModel(private val myPairDao: MyPairDao) : ViewModel() {
         viewModelScope.launch {
             try {
                 scheduleLoader.loadSchedule(name = nameGroupListener, isUsers = isUsersListener.value!!)
-                /*for (pair in result[weekDay]) {
-                    if (pair.week == 2 || pair.week == typeOfWeek) {
-                        myPairDao.insertAll(MyPairData(pair.time, pair.week,
-                            pair.type, pair.name, pair.teachers, pair.groups, pair.address, true))
-                        Log.e(ContentValues.TAG, pair.time)
-                        Log.e(ContentValues.TAG, pair.week.toString())
-                        Log.e(ContentValues.TAG, pair.type)
-                        Log.e(ContentValues.TAG, pair.name)
-                        Log.e(ContentValues.TAG, pair.teachers)
-                        Log.e(ContentValues.TAG, pair.groups)
-                        Log.e(ContentValues.TAG, pair.address)
-                    }
-            }*/
         } catch (e: IOException) {
                 Log.e(this.javaClass.simpleName, e.message.toString())
                 //TODO: print err message in activity
@@ -64,17 +58,6 @@ class StartViewModel(private val myPairDao: MyPairDao) : ViewModel() {
             }
             //myPairDao.insertAll(result)
             //TODO : use interface
-            /*for (pair in result[weekDay]) {
-                if (pair.week == 2 || pair.week == typeOfWeek) {
-                    Log.e(ContentValues.TAG, pair.time)
-                    Log.e(ContentValues.TAG, pair.week.toString())
-                    Log.e(ContentValues.TAG, pair.type)
-                    Log.e(ContentValues.TAG, pair.name)
-                    Log.e(ContentValues.TAG, pair.teacher)
-                    Log.e(ContentValues.TAG, pair.groups)
-                    Log.e(ContentValues.TAG, pair.address)
-                }
-            }*/
         }
     }
 
@@ -82,7 +65,6 @@ class StartViewModel(private val myPairDao: MyPairDao) : ViewModel() {
         // TODO: users input
         val weekDay = 0
         val typeOfWeek = 1
-        val name = "1932"
         val namePair = "Технология программирования"
         val type = "Л"
         val time = "11:30"
@@ -91,7 +73,7 @@ class StartViewModel(private val myPairDao: MyPairDao) : ViewModel() {
         val address = "Адресс"
 
         viewModelScope.launch {
-            scheduleEditor.addPair(name, weekDay, time, typeOfWeek, type, namePair, teachers, groups,
+            scheduleEditor.addPair(nameGroupListener, weekDay, time, typeOfWeek, type, namePair, teachers, groups,
                 address)
         }
     }

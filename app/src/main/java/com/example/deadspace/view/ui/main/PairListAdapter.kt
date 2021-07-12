@@ -30,7 +30,7 @@ class PairListAdapter(val viewModel: StartViewModel) :
         holder.pairWeekTextView?.text = item.week.toString()
         holder.pairGroupsTextView?.text = item.groups
         holder.pairTeachersTextView?.text = item.teachers
-        holder.pairAdressTextView?.text = item.address
+        holder.pairAddressTextView?.text = item.address
     }
 
     fun updateItems(items: List<MyPairData>) {
@@ -46,7 +46,7 @@ class PairListAdapter(val viewModel: StartViewModel) :
         var pairWeekTextView: TextView? = null
         var pairGroupsTextView: TextView? = null
         var pairTeachersTextView: TextView? = null
-        var pairAdressTextView: TextView? = null
+        var pairAddressTextView: TextView? = null
 
         init {
             pairNameTextView = itemView.findViewById(R.id.pair_item_name)
@@ -55,7 +55,7 @@ class PairListAdapter(val viewModel: StartViewModel) :
             pairWeekTextView = itemView.findViewById(R.id.pair_item_week)
             pairGroupsTextView = itemView.findViewById(R.id.pair_item_groups)
             pairTeachersTextView = itemView.findViewById(R.id.pair_item_teachers)
-            pairAdressTextView = itemView.findViewById(R.id.pair_item_address)
+            pairAddressTextView = itemView.findViewById(R.id.pair_item_address)
         }
     }
 
