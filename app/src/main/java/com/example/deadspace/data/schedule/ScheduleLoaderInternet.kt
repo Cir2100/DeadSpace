@@ -1,4 +1,4 @@
-package com.example.deadspace.schedule
+package com.example.deadspace.data.schedule
 
 import android.content.ContentValues
 import android.util.Log
@@ -106,7 +106,8 @@ class ScheduleLoaderInternet(private val myPairDao: MyPairDao) {
                                 daysData.add(
                                     MyPairData(name ,WeekDay.ordinal, pair.time, pair.week,
                                         pair.type, pair.name, pair.teachers, pair.groups, pair.address, true
-                                ))
+                                )
+                                )
                             }
                         }
                     }

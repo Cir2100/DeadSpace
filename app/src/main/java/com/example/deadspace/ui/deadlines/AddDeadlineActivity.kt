@@ -1,4 +1,4 @@
-package com.example.deadspace.view
+package com.example.deadspace.ui.deadlines
 
 import com.example.deadspace.R
 import androidx.appcompat.app.AppCompatActivity

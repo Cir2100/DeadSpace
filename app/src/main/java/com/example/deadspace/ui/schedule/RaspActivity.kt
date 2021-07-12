@@ -1,11 +1,11 @@
-package com.example.deadspace.view
+package com.example.deadspace.ui.schedule
 
 import android.content.Intent
 import com.example.deadspace.R
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.example.deadspace.view.ui.main.StartActivity
+import com.example.deadspace.ui.main.StartActivity
 
 class RaspActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

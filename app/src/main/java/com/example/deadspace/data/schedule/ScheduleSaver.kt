@@ -1,4 +1,4 @@
-package com.example.deadspace.schedule
+package com.example.deadspace.data.schedule
 
 class ScheduleSaver(private val myPairDao: MyPairDao) {
 

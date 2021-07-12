@@ -10,10 +10,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.deadspace.R
 import com.example.deadspace.databinding.StartActivityBinding
-import com.example.deadspace.schedule.getDatabase
-import com.example.deadspace.view.DeadlinesActivity
-import com.example.deadspace.view.ExamActivity
-import com.example.deadspace.view.RaspActivity
+import com.example.deadspace.data.schedule.getDatabase
+import com.example.deadspace.ui.deadlines.DeadlinesActivity
+import com.example.deadspace.ui.exams.ExamActivity
+import com.example.deadspace.ui.schedule.RaspActivity
 
 class StartActivity : AppCompatActivity() {
 

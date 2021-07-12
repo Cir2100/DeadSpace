@@ -1,4 +1,4 @@
-package com.example.deadspace.schedule
+package com.example.deadspace.data.schedule
 
 import android.util.Log
 
@@ -13,8 +13,10 @@ class ScheduleEditor(private val myPairDao: MyPairDao) {
                         week : Int, type : String, name : String,
                         teachers : String, groups : String, address : String) {
         val schedule = myPairDao.getCash()
-        schedule.add(MyPairData(group, day, time, week, type, name, teachers, groups,
-            address, true))
+        schedule.add(
+            MyPairData(group, day, time, week, type, name, teachers, groups,
+            address, true)
+        )
         scheduleSaver.saveCash(schedule)
         for (pair in schedule) {
             pair.isCash = false

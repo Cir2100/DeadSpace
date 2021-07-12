@@ -1,4 +1,4 @@
-package com.example.deadspace.view
+package com.example.deadspace.ui.schedule
 
 import com.example.deadspace.R
 import androidx.appcompat.app.AppCompatActivity

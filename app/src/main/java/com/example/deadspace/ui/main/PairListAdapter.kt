@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.deadspace.R
-import com.example.deadspace.schedule.MyPairData
+import com.example.deadspace.data.schedule.MyPairData
 
 //TODO : use paging
 class PairListAdapter(val viewModel: StartViewModel) :

@@ -4,7 +4,7 @@
 
     <data>
         <variable name="startViewModel"
-        type="com.example.deadspace.view.ui.main.StartViewModel"/>
+        type="com.example.deadspace.ui.main.StartViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

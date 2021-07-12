@@ -1,4 +1,4 @@
-package com.example.deadspace.schedule
+package com.example.deadspace.data.schedule
 
 import android.content.Context
 import androidx.lifecycle.LiveData

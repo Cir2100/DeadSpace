@@ -1,4 +1,4 @@
-package com.example.deadspace.view
+package com.example.deadspace.ui.deadlines
 
 import com.example.deadspace.R
 import android.content.Intent
@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 
 import androidx.appcompat.app.AppCompatActivity
-import com.example.deadspace.view.ui.main.StartActivity
+import com.example.deadspace.ui.main.StartActivity
 
 
 class DeadlinesActivity : AppCompatActivity() {
