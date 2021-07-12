@@ -14,7 +14,7 @@ class ScheduleEditor(private val myPairDao: MyPairDao) {
                         teachers : String, groups : String, address : String) {
         val schedule = myPairDao.getCash()
         schedule.add(MyPairData(group, day, time, week, type, name, teachers, groups,
-            address, false))
+            address, true))
         scheduleSaver.saveCash(schedule)
         for (pair in schedule) {
             pair.isCash = false

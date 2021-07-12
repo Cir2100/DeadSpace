@@ -27,13 +27,22 @@ class StartViewModel(private val myPairDao: MyPairDao) : ViewModel() {
 
     val myPairList = scheduleLoader.pairs
 
+
+    private val _isVisibleList = MutableLiveData<Boolean>()
+    val isVisibleList : LiveData<Boolean> = _isVisibleList
+//android:visibility="@{startViewModel.myPairList.size != 0}"
+
     var nameGroupListener : String = ""
-    var isUsersListener = MutableLiveData<Boolean>(false)
+    private var isUsers = false
 
     //TODO : use anti
-    fun onChangeIsUser(isCecked : Boolean) {
-        //Log.e(this.javaClass.simpleName, isUsersListener.value!!.toString())
-        //onSearch()
+    fun onChangeIsUser() {
+        isUsers = !isUsers
+        onSearch()
+    }
+
+    fun onDelete() {
+
     }
 
     //TODO: if empty users check
@@ -44,10 +53,13 @@ class StartViewModel(private val myPairDao: MyPairDao) : ViewModel() {
 
         viewModelScope.launch {
             try {
-                scheduleLoader.loadSchedule(name = nameGroupListener, isUsers = isUsersListener.value!!)
+                scheduleLoader.loadSchedule(name = nameGroupListener, isUsers = isUsers)
+                _isVisibleList.postValue(true)
         } catch (e: IOException) {
                 Log.e(this.javaClass.simpleName, e.message.toString())
                 //TODO: print err message in activity
+                _isVisibleList.postValue(false)
+                Log.e(this.javaClass.simpleName, _isVisibleList.toString())
                 //_data.value = e.message
             } catch (e: Exception) {
                 Log.e(this.javaClass.simpleName, e.message.toString())
