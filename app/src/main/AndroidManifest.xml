@@ -32,7 +32,7 @@
             android:label="@string/title_activity_deadlines"
             android:theme="@style/Theme.DeadSpace.NoActionBar" />
         <activity
-            android:name=".view.StartActivity"
+            android:name=".view.ui.main.StartActivity"
             android:theme="@style/Theme.DeadSpace.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

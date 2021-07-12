@@ -5,6 +5,7 @@ import com.example.deadspace.R
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.deadspace.view.ui.main.StartActivity
 
 class RaspActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

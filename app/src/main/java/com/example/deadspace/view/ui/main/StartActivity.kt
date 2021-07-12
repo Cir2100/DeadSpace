@@ -1,7 +1,9 @@
 package com.example.deadspace.view.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -9,12 +11,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.deadspace.R
 import com.example.deadspace.databinding.StartActivityBinding
 import com.example.deadspace.schedule.getDatabase
+import com.example.deadspace.view.DeadlinesActivity
+import com.example.deadspace.view.ExamActivity
+import com.example.deadspace.view.RaspActivity
 
 class StartActivity : AppCompatActivity() {
+
+    //TODO : use view binding or data binding
 
     private lateinit var viewModel  : StartViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val binding = StartActivityBinding.inflate(layoutInflater)
+
+        setContentView(binding.root)
+
 
         val database = getDatabase(this)
         viewModel = ViewModelProvider(
@@ -22,11 +34,8 @@ class StartActivity : AppCompatActivity() {
             StartViewModel.FACTORY(database.myPairDao)
         ).get(StartViewModel::class.java)
 
-        val binding : StartActivityBinding = DataBindingUtil.setContentView(this, R.layout.start_activity)
-        binding.startViewModel = viewModel
-        binding.lifecycleOwner = this
 
-        //List
+        /*//List
         val adapter = PairListAdapter(viewModel)
         binding.pairList.adapter = adapter
         binding.pairList.layoutManager = LinearLayoutManager(this)
@@ -35,8 +44,24 @@ class StartActivity : AppCompatActivity() {
             value?.let {
                 adapter.updateItems(value)
             }
-        }
+        }*/
 
+    }
+
+    fun ClickListDeadlines(view: View)
+    {
+        val DeadlinesActivityIntent = Intent(this, DeadlinesActivity::class.java)
+        startActivity(DeadlinesActivityIntent)
+    }
+    fun ClickTest(view: View)
+    {
+        val TestIntent = Intent(this, ExamActivity::class.java)
+        startActivity(TestIntent)
+    }
+    fun ClickPairs(view: View)
+    {
+        val PairsIntent = Intent(this, RaspActivity::class.java)
+        startActivity(PairsIntent)
     }
 
     //TODO : use onSavedInstanceState or savedStateHandle
