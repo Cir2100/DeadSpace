@@ -16,4 +16,10 @@ class RaspActivity : AppCompatActivity() {
         val BackListRaspIntent = Intent(this, StartActivity::class.java)
         startActivity(BackListRaspIntent)
     }
+    fun ClickAddRasp(view: View)
+    {
+        val AddRaspIntent = Intent(this, AddRaspActivity::class.java)
+        startActivity(AddRaspIntent)
+    }
+
 }
