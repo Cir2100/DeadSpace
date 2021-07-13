@@ -35,7 +35,7 @@ class StartViewModel(private val myPairDao: MyPairDao) : ViewModel() {
     val isVisibleList : LiveData<Boolean> = _isVisibleList
 //android:visibility="@{startViewModel.myPairList.size != 0}"
 
-    var nameGroupListener : String = ""
+    var nameGroupListener : String = "1942"
     private var isUsers = false
 
     //TODO : use anti
@@ -48,21 +48,5 @@ class StartViewModel(private val myPairDao: MyPairDao) : ViewModel() {
     }
 
 
-    fun addPair() {
-        // TODO: users input
-        val weekDay = 0
-        val typeOfWeek = 1
-        val namePair = "Технология программирования"
-        val type = "Л"
-        val time = "11:30"
-        val teachers = "Преподы"
-        val groups = "Группы"
-        val address = "Адресс"
-
-        viewModelScope.launch {
-            scheduleEditor.addPair(nameGroupListener, weekDay, time, typeOfWeek, type, namePair, teachers, groups,
-                address)
-        }
-    }
 
 }

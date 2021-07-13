@@ -1,5 +1,7 @@
 package com.example.deadspace.ui.schedule.main
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -21,7 +23,6 @@ class ScheduleViewModel(private val myPairDao: MyPairDao) : ViewModel() {
 
     //TODO: this in constructor
     private val scheduleLoader = ScheduleLoader(myPairDao)
-    private val scheduleEditor = ScheduleEditor(myPairDao)
 
     val myPairList = scheduleLoader.pairs
 
@@ -38,15 +39,15 @@ class ScheduleViewModel(private val myPairDao: MyPairDao) : ViewModel() {
     private val _weekText = MutableLiveData<String>("верхняя")
     val weekText : LiveData<String> = _weekText
 
-    //TODO : interface
+    //TODO : interface and cash
     private val _colors = MutableLiveData<List<Int>>(listOf(Color.RED, Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE))
     var colors : LiveData<List<Int>> = _colors
-
-    private var isUsers = false
+//TODO : is false
+    var isUsers = true
 
     private var weekDay = 0
-
-    private var currentGroup : String = ""
+//TODO : cash
+    var currentGroup : String = "1942"
 
     //TODO : this?
     private fun Boolean.toInt() = if (this) 1 else 0
@@ -95,7 +96,6 @@ class ScheduleViewModel(private val myPairDao: MyPairDao) : ViewModel() {
 
     fun onSearch(groupName : String) {
         // TODO: users input
-
         viewModelScope.launch {
             try {
                 currentGroup = groupName

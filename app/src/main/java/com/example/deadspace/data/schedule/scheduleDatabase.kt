@@ -4,11 +4,9 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.*
 
-@Fts4
-@Entity(indices = [Index(value = ["group", "day", "time", "week"],
-    unique = true)]
-)
+@Entity
 data class MyPairData constructor(
+    @PrimaryKey @ColumnInfo(name = "rowid") val id: Int,
     val group: String,
     val day : Int,
     val time : String,
@@ -56,7 +54,7 @@ interface MyPairDao {
     suspend fun getDayCash(weekType : Int, weekDay : Int) : List<MyPairData>
 }
 
-@Database(entities = [MyPairData::class], version = 3)
+@Database(entities = [MyPairData::class], version = 5)
 abstract class MyPairDatabase : RoomDatabase() {
     //abstract fun myPairDao(): MyPairDao
     abstract val myPairDao : MyPairDao

@@ -19,8 +19,6 @@ class StartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //val binding = StartActivityBinding.inflate(layoutInflater)
-
         setContentView(R.layout.start_activity)
 
 
@@ -29,18 +27,6 @@ class StartActivity : AppCompatActivity() {
             this,
             StartViewModel.FACTORY(database.myPairDao)
         ).get(StartViewModel::class.java)
-
-
-        /*//List
-        val adapter = PairListAdapter(viewModel)
-        binding.pairList.adapter = adapter
-        binding.pairList.layoutManager = LinearLayoutManager(this)
-
-        viewModel.myPairList.observe(this) { value ->
-            value?.let {
-                adapter.updateItems(value)
-            }
-        }*/
 
     }
 

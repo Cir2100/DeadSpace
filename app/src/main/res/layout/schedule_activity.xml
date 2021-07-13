@@ -82,6 +82,7 @@
             app:layout_constraintTop_toBottomOf="@+id/name_group_input"
             android:layout_gravity="center"
             android:text="Ваше расписание"
+            android:checked="@{viewModel.isUsers}"
             android:onCheckedChanged="@{ (button, bool) ->  viewModel.onChangeIsUser()}"/>
 
         <RelativeLayout

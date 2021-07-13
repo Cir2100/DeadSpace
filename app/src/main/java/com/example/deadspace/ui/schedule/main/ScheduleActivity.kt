@@ -1,9 +1,12 @@
 package com.example.deadspace.ui.schedule.main
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import com.example.deadspace.R
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.SearchView
 import androidx.databinding.DataBindingUtil
@@ -12,22 +15,29 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.deadspace.data.schedule.getDatabase
 import com.example.deadspace.databinding.ScheduleActivityBinding
 import com.example.deadspace.ui.main.StartActivity
-import com.example.deadspace.ui.schedule.add.AddRaspActivity
+import com.example.deadspace.ui.schedule.add.AddScheduleActivity
 import java.text.SimpleDateFormat
 import java.util.*
 
 class ScheduleActivity : AppCompatActivity() {
+
+    //TODO : use this normal viewModel or not?
+    private lateinit var prefs: SharedPreferences
 
     private lateinit var viewModel: ScheduleViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        prefs =
+            getSharedPreferences("settings", Context.MODE_PRIVATE)
+
         val database = getDatabase(this)
         viewModel = ViewModelProvider(
             this,
             ScheduleViewModel.FACTORY(database.myPairDao)
         ).get(ScheduleViewModel::class.java)
+        loadPreferences()
 
         val binding : ScheduleActivityBinding = DataBindingUtil.setContentView(this, R.layout.schedule_activity)
         binding.viewModel = viewModel
@@ -56,18 +66,6 @@ class ScheduleActivity : AppCompatActivity() {
             }
 
         })
-        /*binding.nameGroupInput.setOnKeyListener { v, keyCode, event ->
-            if (keyCode == KeyEvent.KEYCODE_ENTER){
-                viewModel.onSearch()
-                return@setOnKeyListener true
-            }
-            return@setOnKeyListener false
-        }
-*/
-        /*binding.nameGroupInput.setOnEditorActionListener { v, actionId, event ->
-
-        }*/
-
 
         viewModel.myPairList.observe(this) { value ->
             value?.let {
@@ -77,6 +75,31 @@ class ScheduleActivity : AppCompatActivity() {
 
     }
 
+    override fun onPause() {
+        super.onPause()
+
+        // Запоминаем данные
+        val editor = prefs.edit()
+        editor.putString("APP_PREFERENCES_GROUP", viewModel.currentGroup)
+        editor.putBoolean("APP_PREFERENCES_IS_USER", viewModel.isUsers)
+        editor.apply()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadPreferences()
+    }
+
+    private fun loadPreferences() {
+        if(prefs.contains("APP_PREFERENCES_ISUSER")){
+            viewModel.currentGroup = prefs.getString("APP_PREFERENCES_GROUP", "").toString()
+        }
+        if(prefs.contains("APP_PREFERENCES_IS_USER")){
+            viewModel.isUsers = prefs.getBoolean("APP_PREFERENCES_IS_USER", false)
+        }
+    }
+
+
     fun onClickBackListRasp(view: View)
     {
         val backListRaspIntent = Intent(this, StartActivity::class.java)
@@ -85,7 +108,7 @@ class ScheduleActivity : AppCompatActivity() {
 
     fun onClickAddRasp(view: View)
     {
-        val addRaspIntent = Intent(this, AddRaspActivity::class.java)
+        val addRaspIntent = Intent(this, AddScheduleActivity::class.java)
         startActivity(addRaspIntent)
     }
 

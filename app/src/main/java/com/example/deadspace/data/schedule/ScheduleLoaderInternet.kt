@@ -104,7 +104,8 @@ class ScheduleLoaderInternet(private val myPairDao: MyPairDao) {
                             for (pair in days[WeekDay.ordinal])
                             {
                                 daysData.add(
-                                    MyPairData(name ,WeekDay.ordinal, pair.time, pair.week,
+                                    MyPairData(name.toInt() * 10000 + pair.week * 1000 + WeekDay.ordinal * 100 + pair.time.toInt() * 10 + 1,
+                                        name ,WeekDay.ordinal, pair.time, pair.week,
                                         pair.type, pair.name, pair.teachers, pair.groups, pair.address, true
                                 )
                                 )
