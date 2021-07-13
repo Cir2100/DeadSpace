@@ -29,6 +29,7 @@ class ScheduleLoader(private val myPairDao: MyPairDao) {
     }
 
     private suspend fun loadPairs(weekType : Int, weekDay : Int) {
+        Log.i(this.javaClass.simpleName, "Load from cash")
         _pair.postValue(myPairDao.getDayCash(weekType , weekDay))
     }
 

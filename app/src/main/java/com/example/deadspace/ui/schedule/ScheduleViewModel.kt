@@ -1,5 +1,6 @@
 package com.example.deadspace.ui.schedule
 
+import android.graphics.Color
 import android.text.Editable
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -34,12 +35,18 @@ class ScheduleViewModel(private val myPairDao: MyPairDao) : ViewModel() {
     //todo: class
     var nameGroupListener : String = "1942"
 
-    var weekType : Boolean = true
+    private var weekType : Boolean = true
 
     private val _weekText = MutableLiveData<String>("верхняя")
     val weekText : LiveData<String> = _weekText
 
+    //TODO : interface
+    private val _colors = MutableLiveData<List<Int>>(listOf(Color.RED, Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE))
+    var colors : LiveData<List<Int>> = _colors
+
     private var isUsers = false
+
+    private var weekDay = 0
 
     //TODO : this?
     private fun Boolean.toInt() = if (this) 1 else 0
@@ -59,6 +66,20 @@ class ScheduleViewModel(private val myPairDao: MyPairDao) : ViewModel() {
         onSearch()
     }
 
+    fun onClickWeekDay(id : Int) {
+        weekDay = id
+        var colors : MutableList<Int> = mutableListOf()
+        for (i in 0..6) {
+            if (i == id)
+                colors.add(i, Color.RED)
+            else
+                colors.add(i, Color.WHITE)
+
+        }
+        _colors.postValue(colors)
+        onSearch()
+    }
+
     //TODO: init user cash
 
     init {
@@ -67,7 +88,6 @@ class ScheduleViewModel(private val myPairDao: MyPairDao) : ViewModel() {
 
     fun onSearch() {
         // TODO: users input
-        val weekDay = 0
 
         viewModelScope.launch {
             try {
@@ -75,7 +95,7 @@ class ScheduleViewModel(private val myPairDao: MyPairDao) : ViewModel() {
                     name = nameGroupListener,
                     isUsers = isUsers,
                     weekType = weekType.toInt(),
-                    weekDay
+                    weekDay = weekDay
                 )
                 _isVisibleList.postValue(true)
             } catch (e: IOException) {

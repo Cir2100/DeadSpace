@@ -140,11 +140,11 @@ class ScheduleLoaderInternet(private val myPairDao: MyPairDao) {
             tmp = tmp.substringBeforeLast(", ")
             return tmp
         }
-
+        Log.e(ContentValues.TAG, daySheduleI)
         var daySchedule = daySheduleI.substringBeforeLast("</div>")
         var pairs : MutableList<MyPair> = mutableListOf()
         if (day == 6){
-            var time = daySchedule.substringAfter("<h4>").substringBefore("</h4>").trim()
+            var time = "-"
             var pairInTime = daySchedule.substringAfter("</h4>").substringBefore("<h4>")
             daySchedule = daySchedule.substringAfter(pairInTime)
             while (pairInTime.length > 10) {
@@ -161,7 +161,7 @@ class ScheduleLoaderInternet(private val myPairDao: MyPairDao) {
 
         } else {
             while (daySchedule.length > 10) {
-                var time = daySchedule.substringAfter("<h4>").substringBefore("</h4>").trim()
+                var time = daySchedule.substringAfter("<h4>").substringBefore("</h4>").substringBefore(" ")
                 var pairInTime = daySchedule.substringAfter("</h4>").substringBefore("<h4>")
                 daySchedule = daySchedule.substringAfter(pairInTime)
                 while (pairInTime.length > 10) {
