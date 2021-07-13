@@ -35,7 +35,7 @@
             android:scaleType="fitStart"
             android:layout_centerVertical="true"
             android:contentDescription="Close add of deadline"
-            android:onClick="ClickBackAddDeadlines"/>
+            android:onClick="onClickBackAddDeadlines"/>
 
     </RelativeLayout>
 

@@ -35,7 +35,7 @@
             android:scaleType="fitStart"
             android:layout_centerVertical="true"
             android:contentDescription="Close add of pair"
-            android:onClick="ClickBackAddRasp"/>
+            android:onClick="onClickBackAddRasp"/>
 
     </RelativeLayout>
 

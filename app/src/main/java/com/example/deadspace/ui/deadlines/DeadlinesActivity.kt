@@ -13,18 +13,18 @@ class DeadlinesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_deadlines)
+        setContentView(R.layout.deadlines_activity)
     }
 
-    fun ClickAddDeadline(view: View)
+    fun onClickAddDeadline(view: View)
     {
-        val AddDeadlineAddDeadlineIntent = Intent(this, AddDeadlineActivity::class.java)
-        startActivity(AddDeadlineAddDeadlineIntent)
+        val addDeadlineAddDeadlineIntent = Intent(this, AddDeadlineActivity::class.java)
+        startActivity(addDeadlineAddDeadlineIntent)
     }
 
-    fun ClickBackListDeadlines(view:View)
+    fun onClickBackListDeadlines(view:View)
     {
-        val BackListDeadlinesIntent = Intent(this, StartActivity::class.java)
-        startActivity(BackListDeadlinesIntent)
+        val backListDeadlinesIntent = Intent(this, StartActivity::class.java)
+        startActivity(backListDeadlinesIntent)
     }
 }

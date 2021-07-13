@@ -9,12 +9,12 @@ import android.content.Intent
 class AddDeadlineActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_deadline)
+        setContentView(R.layout.add_deadline_activity)
     }
 
-    fun ClickBackAddDeadlines(view:View)
+    fun onClickBackAddDeadlines(view:View)
     {
-        val BackAddDeadlinesIntent = Intent(this, DeadlinesActivity::class.java)
-        startActivity(BackAddDeadlinesIntent)
+        val backAddDeadlinesIntent = Intent(this, DeadlinesActivity::class.java)
+        startActivity(backAddDeadlinesIntent)
     }
 }

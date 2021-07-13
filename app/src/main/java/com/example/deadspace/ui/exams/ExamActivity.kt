@@ -8,19 +8,16 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.deadspace.ui.main.StartActivity
 
-
-
-
 class ExamActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_exam)
+        setContentView(R.layout.exam_activity)
     }
 
-    fun ClickBackExam(view:View)
+    fun onClickBackExam(view:View)
     {
-        val BackTestIntent = Intent(this, StartActivity::class.java)
-        startActivity(BackTestIntent)
+        val backTestIntent = Intent(this, StartActivity::class.java)
+        startActivity(backTestIntent)
     }
 }

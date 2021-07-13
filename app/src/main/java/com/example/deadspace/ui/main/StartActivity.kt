@@ -2,24 +2,20 @@ package com.example.deadspace.ui.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.deadspace.R
 import com.example.deadspace.databinding.StartActivityBinding
 import com.example.deadspace.data.schedule.getDatabase
 import com.example.deadspace.ui.deadlines.DeadlinesActivity
 import com.example.deadspace.ui.exams.ExamActivity
-import com.example.deadspace.ui.schedule.RaspActivity
+import com.example.deadspace.ui.schedule.ScheduleActivity
 
 class StartActivity : AppCompatActivity() {
 
     //TODO : use view binding or data binding
 
-    private lateinit var viewModel  : StartViewModel
+    private lateinit var viewModel: StartViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -48,20 +44,19 @@ class StartActivity : AppCompatActivity() {
 
     }
 
-    fun ClickListDeadlines(view: View)
-    {
-        val DeadlinesActivityIntent = Intent(this, DeadlinesActivity::class.java)
-        startActivity(DeadlinesActivityIntent)
+    fun onClickListDeadlines(view: View) {
+        val deadlinesActivityIntent = Intent(this, DeadlinesActivity::class.java)
+        startActivity(deadlinesActivityIntent)
     }
-    fun ClickTest(view: View)
-    {
-        val TestIntent = Intent(this, ExamActivity::class.java)
-        startActivity(TestIntent)
+
+    fun onClickTest(view: View) {
+        val testIntent = Intent(this, ExamActivity::class.java)
+        startActivity(testIntent)
     }
-    fun ClickPairs(view: View)
-    {
-        val PairsIntent = Intent(this, RaspActivity::class.java)
-        startActivity(PairsIntent)
+
+    fun onClickPairs(view: View) {
+        val pairsIntent = Intent(this, ScheduleActivity::class.java)
+        startActivity(pairsIntent)
     }
 
     //TODO : use onSavedInstanceState or savedStateHandle

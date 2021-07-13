@@ -3,6 +3,8 @@ package com.example.deadspace.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
+//TODO : learn
+
 
 fun <T : ViewModel, A> singleArgViewModelFactory(constructor: (A) -> T):
             (A) -> ViewModelProvider.NewInstanceFactory {

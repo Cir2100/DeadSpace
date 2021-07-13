@@ -9,12 +9,12 @@ import android.content.Intent
 class AddRaspActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_rasp)
+        setContentView(R.layout.add_rasp_activity)
     }
 
-    fun ClickBackAddRasp(view:View)
+    fun onClickBackAddRasp(view:View)
     {
-        val BackAddRaspIntent = Intent(this, RaspActivity::class.java)
-        startActivity(BackAddRaspIntent)
+        val backAddRaspIntent = Intent(this, ScheduleActivity::class.java)
+        startActivity(backAddRaspIntent)
     }
 }
