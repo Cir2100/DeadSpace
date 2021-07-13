@@ -41,40 +41,12 @@ class StartViewModel(private val myPairDao: MyPairDao) : ViewModel() {
     //TODO : use anti
     fun onChangeIsUser() {
         isUsers = !isUsers
-        onSearch()
     }
 
     fun onDelete() {
 
     }
 
-    //TODO: if empty users check
-    fun onSearch() {
-        // TODO: users input
-        val weekDay = 0
-        val typeOfWeek = 1
-
-        viewModelScope.launch {
-            try {
-                scheduleLoader.loadSchedule(name = nameGroupListener, isUsers = isUsers)
-                _isVisibleList.postValue(true)
-        } catch (e: IOException) {
-                Log.e(this.javaClass.simpleName, e.message.toString())
-                //TODO: print err message in activity
-                _isVisibleList.postValue(false)
-                Log.e(this.javaClass.simpleName, _isVisibleList.toString())
-                //_data.value = e.message
-            } catch (e: Exception) {
-                Log.e(this.javaClass.simpleName, e.message.toString())
-                //TODO: print err message in activity
-                //_data.value = e.message
-            } finally {
-                //TODO:
-            }
-            //myPairDao.insertAll(result)
-            //TODO : use interface
-        }
-    }
 
     fun addPair() {
         // TODO: users input

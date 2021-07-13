@@ -38,6 +38,9 @@ class ScheduleListAdapter(val viewModel: ScheduleViewModel) :
 
     //TODO : use binding
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        //binding =
+
         var scheduleNameTextView: TextView? = null
         var scheduleTypeTextView: TextView? = null
         var scheduleNumberTextView: TextView? = null
@@ -45,6 +48,7 @@ class ScheduleListAdapter(val viewModel: ScheduleViewModel) :
         var scheduleAuditoriumTextView: TextView? = null
 
         init {
+
             scheduleNameTextView = itemView.findViewById(R.id.schedule_item_name)
             scheduleNumberTextView = itemView.findViewById(R.id.schedule_item_number)
             scheduleTypeTextView = itemView.findViewById(R.id.schedule_item_type)

@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.example.deadspace.databinding.StartActivityBinding
+import com.example.deadspace.R
 import com.example.deadspace.data.schedule.getDatabase
 import com.example.deadspace.ui.deadlines.DeadlinesActivity
 import com.example.deadspace.ui.exams.ExamActivity
@@ -19,9 +19,9 @@ class StartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding = StartActivityBinding.inflate(layoutInflater)
+        //val binding = StartActivityBinding.inflate(layoutInflater)
 
-        setContentView(binding.root)
+        setContentView(R.layout.start_activity)
 
 
         val database = getDatabase(this)

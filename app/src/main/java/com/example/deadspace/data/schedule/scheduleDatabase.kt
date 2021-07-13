@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Fts4
-@Entity
+@Entity//(indices = {@Index(value = {"group", "day", "time", "week", "type"}, unique = true)})
 data class MyPairData constructor(
     val group: String,
     val day : Int,
@@ -43,7 +43,15 @@ interface MyPairDao {
 
     //load current cash
     @get:Query("SELECT * FROM MyPairData WHERE isCash = 1")
-    val cashLiveData: LiveData<List<MyPairData>>
+    val allCash: LiveData<List<MyPairData>>
+
+    /*//load current day cash
+    @get:Query("SELECT * FROM MyPairData WHERE isCash = 1 AND (week = :weekType OR week = 2) AND day = :weekDay")
+    val dayCash: LiveData<List<MyPairData>>*/
+
+    //load current day cash
+    @Query("SELECT * FROM MyPairData WHERE isCash = 1 AND (week = :weekType OR week = 2) AND day = :weekDay")
+    suspend fun getDayCash(weekType : Int, weekDay : Int) : List<MyPairData>
 }
 
 @Database(entities = [MyPairData::class], version = 3)
