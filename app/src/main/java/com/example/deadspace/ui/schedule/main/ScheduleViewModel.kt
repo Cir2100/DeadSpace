@@ -1,7 +1,6 @@
-package com.example.deadspace.ui.schedule
+package com.example.deadspace.ui.schedule.main
 
 import android.graphics.Color
-import android.text.Editable
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -13,8 +12,6 @@ import com.example.deadspace.data.schedule.ScheduleLoader
 import com.example.deadspace.ui.singleArgViewModelFactory
 import kotlinx.coroutines.launch
 import java.io.IOException
-import java.text.SimpleDateFormat
-import java.util.*
 
 class ScheduleViewModel(private val myPairDao: MyPairDao) : ViewModel() {
 
@@ -49,6 +46,8 @@ class ScheduleViewModel(private val myPairDao: MyPairDao) : ViewModel() {
 
     private var weekDay = 0
 
+    private var currentGroup : String = ""
+
     //TODO : this?
     private fun Boolean.toInt() = if (this) 1 else 0
 
@@ -64,6 +63,7 @@ class ScheduleViewModel(private val myPairDao: MyPairDao) : ViewModel() {
     //TODO : use anti
     fun onChangeIsUser() {
         isUsers = !isUsers
+        onSearch(currentGroup)
         loadDaySchedule()
     }
 
@@ -98,6 +98,7 @@ class ScheduleViewModel(private val myPairDao: MyPairDao) : ViewModel() {
 
         viewModelScope.launch {
             try {
+                currentGroup = groupName
                 scheduleLoader.loadSchedule(
                     name = groupName,
                     isUsers = isUsers

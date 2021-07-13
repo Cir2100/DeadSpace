@@ -9,7 +9,7 @@ import com.example.deadspace.R
 import com.example.deadspace.data.schedule.getDatabase
 import com.example.deadspace.ui.deadlines.DeadlinesActivity
 import com.example.deadspace.ui.exams.ExamActivity
-import com.example.deadspace.ui.schedule.ScheduleActivity
+import com.example.deadspace.ui.schedule.main.ScheduleActivity
 
 class StartActivity : AppCompatActivity() {
 

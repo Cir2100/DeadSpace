@@ -1,4 +1,4 @@
-package com.example.deadspace.ui.schedule
+package com.example.deadspace.ui.schedule.main
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +7,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.deadspace.R
 import com.example.deadspace.data.schedule.MyPairData
-import com.example.deadspace.ui.main.StartViewModel
 
 //TODO : use paging
 class ScheduleListAdapter(val viewModel: ScheduleViewModel) :

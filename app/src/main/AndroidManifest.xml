@@ -15,10 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DeadSpace">
         <activity
-            android:name=".ui.schedule.AddRaspActivity"
+            android:name=".ui.schedule.add.AddRaspActivity"
             android:theme="@style/Theme.DeadSpace.NoActionBar"></activity>
         <activity
-            android:name=".ui.schedule.ScheduleActivity"
+            android:name=".ui.schedule.main.ScheduleActivity"
             android:theme="@style/Theme.DeadSpace.NoActionBar" />
         <activity
             android:name=".ui.deadlines.AddDeadlineActivity"

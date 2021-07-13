@@ -1,13 +1,10 @@
-package com.example.deadspace.ui.schedule
+package com.example.deadspace.ui.schedule.main
 
 import android.content.Intent
 import com.example.deadspace.R
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.KeyEvent
 import android.view.View
-import android.view.inputmethod.EditorInfo
 import android.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -15,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.deadspace.data.schedule.getDatabase
 import com.example.deadspace.databinding.ScheduleActivityBinding
 import com.example.deadspace.ui.main.StartActivity
-import com.example.deadspace.ui.main.StartViewModel
+import com.example.deadspace.ui.schedule.add.AddRaspActivity
 import java.text.SimpleDateFormat
 import java.util.*
 
