@@ -140,7 +140,6 @@ class ScheduleLoaderInternet(private val myPairDao: MyPairDao) {
             tmp = tmp.substringBeforeLast(", ")
             return tmp
         }
-        Log.e(ContentValues.TAG, daySheduleI)
         var daySchedule = daySheduleI.substringBeforeLast("</div>")
         var pairs : MutableList<MyPair> = mutableListOf()
         if (day == 6){

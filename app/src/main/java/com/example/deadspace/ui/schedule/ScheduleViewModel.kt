@@ -13,6 +13,8 @@ import com.example.deadspace.data.schedule.ScheduleLoader
 import com.example.deadspace.ui.singleArgViewModelFactory
 import kotlinx.coroutines.launch
 import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ScheduleViewModel(private val myPairDao: MyPairDao) : ViewModel() {
 
@@ -33,7 +35,6 @@ class ScheduleViewModel(private val myPairDao: MyPairDao) : ViewModel() {
 
     //user input
     //todo: class
-    var nameGroupListener : String = "1942"
 
     private var weekType : Boolean = true
 
@@ -57,13 +58,13 @@ class ScheduleViewModel(private val myPairDao: MyPairDao) : ViewModel() {
             _weekText.postValue("верхняя")
         else
             _weekText.postValue("нижняя")
-        onSearch()
+        loadDaySchedule()
     }
 
     //TODO : use anti
     fun onChangeIsUser() {
         isUsers = !isUsers
-        onSearch()
+        loadDaySchedule()
     }
 
     fun onClickWeekDay(id : Int) {
@@ -77,26 +78,31 @@ class ScheduleViewModel(private val myPairDao: MyPairDao) : ViewModel() {
 
         }
         _colors.postValue(colors)
-        onSearch()
+        loadDaySchedule()
     }
 
     //TODO: init user cash
 
     init {
-        onSearch()
+        loadDaySchedule()
     }
 
-    fun onSearch() {
+    private fun loadDaySchedule() {
+        viewModelScope.launch {
+            scheduleLoader.loadDay(weekType.toInt(), weekDay)
+        }
+    }
+
+    fun onSearch(groupName : String) {
         // TODO: users input
 
         viewModelScope.launch {
             try {
                 scheduleLoader.loadSchedule(
-                    name = nameGroupListener,
-                    isUsers = isUsers,
-                    weekType = weekType.toInt(),
-                    weekDay = weekDay
+                    name = groupName,
+                    isUsers = isUsers
                 )
+                loadDaySchedule()
                 _isVisibleList.postValue(true)
             } catch (e: IOException) {
                 Log.e(this.javaClass.simpleName, e.message.toString())
