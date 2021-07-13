@@ -6,7 +6,7 @@ import androidx.room.*
 
 @Entity
 data class MyPairData constructor(
-    @PrimaryKey @ColumnInfo(name = "rowid") val id: Int,
+    @PrimaryKey @ColumnInfo(name = "rowid") var id: Int,
     val group: String,
     val day : Int,
     val time : String,

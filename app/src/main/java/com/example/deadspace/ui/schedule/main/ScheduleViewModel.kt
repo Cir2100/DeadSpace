@@ -31,6 +31,15 @@ class ScheduleViewModel(private val myPairDao: MyPairDao) : ViewModel() {
     val isVisibleList : LiveData<Boolean> = _isVisibleList
 
 
+
+    private val _spinner = MutableLiveData<Boolean>(false)
+
+    /**
+     * Show a loading spinner if true
+     */
+    val spinner: LiveData<Boolean>
+        get() = _spinner
+
     //user input
     //todo: class
 
@@ -47,7 +56,8 @@ class ScheduleViewModel(private val myPairDao: MyPairDao) : ViewModel() {
 
     private var weekDay = 0
 //TODO : cash
-    var currentGroup : String = "1942"
+    val currentGroupLive = MutableLiveData<String>() //TODO: delete this
+    var currentGroup : String = ""
 
     //TODO : this?
     private fun Boolean.toInt() = if (this) 1 else 0
@@ -64,6 +74,7 @@ class ScheduleViewModel(private val myPairDao: MyPairDao) : ViewModel() {
     //TODO : use anti
     fun onChangeIsUser() {
         isUsers = !isUsers
+        Log.e(this.javaClass.simpleName, "THIS") //TODO : repair reload schedule
         onSearch(currentGroup)
         loadDaySchedule()
     }
@@ -90,7 +101,13 @@ class ScheduleViewModel(private val myPairDao: MyPairDao) : ViewModel() {
 
     private fun loadDaySchedule() {
         viewModelScope.launch {
-            scheduleLoader.loadDay(weekType.toInt(), weekDay)
+            try{
+                _spinner.value = true
+                scheduleLoader.loadDay(weekType.toInt(), weekDay)
+            } finally {
+                _spinner.value = false
+            }
+
         }
     }
 
@@ -98,7 +115,9 @@ class ScheduleViewModel(private val myPairDao: MyPairDao) : ViewModel() {
         // TODO: users input
         viewModelScope.launch {
             try {
+                _spinner.value = true
                 currentGroup = groupName
+                currentGroupLive.postValue(currentGroup)
                 scheduleLoader.loadSchedule(
                     name = groupName,
                     isUsers = isUsers
@@ -106,16 +125,19 @@ class ScheduleViewModel(private val myPairDao: MyPairDao) : ViewModel() {
                 loadDaySchedule()
                 _isVisibleList.postValue(true)
             } catch (e: IOException) {
+                _spinner.value = false
                 Log.e(this.javaClass.simpleName, e.message.toString())
                 //TODO: print err message in activity
                 _isVisibleList.postValue(false)
                 Log.e(this.javaClass.simpleName, _isVisibleList.toString())
                 //_data.value = e.message
             } catch (e: Exception) {
+                _spinner.value = false
                 Log.e(this.javaClass.simpleName, e.message.toString())
                 //TODO: print err message in activity
                 //_data.value = e.message
             } finally {
+                _spinner.value = false
                 //TODO:
             }
             //myPairDao.insertAll(result)

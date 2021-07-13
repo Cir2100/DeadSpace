@@ -22,19 +22,27 @@ class AddScheduleViewModel(private val myPairDao: MyPairDao) : ViewModel()  {
 
     fun addPair() {
         // TODO: users input
-        val weekDay = 0
+        val weekDay = 1
         val typeOfWeek = 1
-        val namePair = "Технология программирования"
+        val namePair = "TP"
         val type = "Л"
-        val time = "11:30"
+        val time = "1"
         val teachers = "Преподы"
         val groups = "Группы"
         val address = "Адресс"
 
         viewModelScope.launch {
             Log.i(this.javaClass.simpleName, "Start add")
-            scheduleEditor.addPair(nameGroupListener, weekDay, time, typeOfWeek, type, namePair, teachers, groups,
-                address)
+            scheduleEditor.addPair(
+                group = nameGroupListener,
+                day =  weekDay,
+                time = time,
+                week = typeOfWeek,
+                type = type,
+                name = namePair,
+                teachers = teachers,
+                groups = groups,
+                address = address)
         }
     }
 }

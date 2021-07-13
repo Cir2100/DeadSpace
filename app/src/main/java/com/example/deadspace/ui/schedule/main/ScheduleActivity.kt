@@ -73,6 +73,22 @@ class ScheduleActivity : AppCompatActivity() {
             }
         }
 
+        // show the spinner when [MainViewModel.spinner] is true
+        viewModel.spinner.observe(this) { value ->
+            value.let { show ->
+                binding.loadSpinner.visibility = if (show) View.VISIBLE else View.GONE
+            }
+        }
+
+        // show the spinner when [MainViewModel.spinner] is true
+        viewModel.currentGroupLive.observe(this) { value ->
+            value.let { show ->
+                binding.costil.text = value
+            }
+        }
+
+        //TODO : delete this
+
     }
 
     override fun onPause() {
@@ -91,14 +107,14 @@ class ScheduleActivity : AppCompatActivity() {
     }
 
     private fun loadPreferences() {
-        if(prefs.contains("APP_PREFERENCES_ISUSER")){
+        if(prefs.contains("APP_PREFERENCES_GROUP")){
             viewModel.currentGroup = prefs.getString("APP_PREFERENCES_GROUP", "").toString()
+            viewModel.currentGroupLive.postValue(viewModel.currentGroup)
         }
         if(prefs.contains("APP_PREFERENCES_IS_USER")){
             viewModel.isUsers = prefs.getBoolean("APP_PREFERENCES_IS_USER", false)
         }
     }
-
 
     fun onClickBackListRasp(view: View)
     {

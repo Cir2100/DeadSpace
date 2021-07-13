@@ -116,11 +116,11 @@ class ScheduleLoaderInternet(private val myPairDao: MyPairDao) {
                 scheduleSaver.saveCash(daysData)
                 Log.i(this.javaClass.simpleName, "Load schedule from internet successful")
             } catch (e: IOException) {
-                scheduleSaver.deleteCash()
+               /// scheduleSaver.deleteCash()
                 //TODO : delete
                 throw e
             } catch (e: Exception) {
-                scheduleSaver.deleteCash()
+               // scheduleSaver.deleteCash()
                 //Log.e(ContentValues.TAG, e.message.toString())
                 throw e
             }
