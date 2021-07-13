@@ -10,31 +10,32 @@ class ScheduleLoader(private val myPairDao: MyPairDao) {
     private val localLoader = ScheduleLoaderLocalData(myPairDao)
     private val internetLoader = ScheduleLoaderInternet(myPairDao)
 
-    var pairs: LiveData<List<MyPairData>> = myPairDao.cashLiveData
+    private val _pair = MutableLiveData<List<MyPairData>>()
+    var pairs: LiveData<List<MyPairData>> = _pair
 
-    //TODO: logic loader
-    //load scheadule from local data or internet
-    /*fun loadSchedule(name: String = "", isUsers : Boolean) {
-        //TODO: checked local data
-        if (isUsers && localLoader.checkedUsersShedule(name)) {
-            Log.e(ContentValues.TAG, "Load from local data")
-            localLoader.loadShedule(name)
+    suspend fun loadSchedule(name: String, isUsers : Boolean, weekType : Int, weekDay : Int) {
+        //TODO : checked cash normal
+        if (!checkCash(name)) {
+            if (isUsers) {
+                Log.i(this.javaClass.simpleName, "Load from local data")
+                localLoader.loadSchedule(name)
+            }
+            else {
+                Log.i(this.javaClass.simpleName, "Load from internet")
+                internetLoader.loadSchedule(name)
+            }
         }
-        else {
-            Log.e(ContentValues.TAG,"Load from internet")
-            internetLoader.loadShedule(name)
-        }
-    }*/
+        loadPairs(weekType, weekDay)
+    }
 
-    suspend fun loadSchedule(name: String, isUsers : Boolean) {
-        //TODO: checked local data
-        if (isUsers) {
-            Log.i(this.javaClass.simpleName, "Load from local data")
-            localLoader.loadSchedule(name)
-        }
-        else {
-            Log.i(this.javaClass.simpleName, "Load from internet")
-            internetLoader.loadSchedule(name)
-        }
+    private suspend fun loadPairs(weekType : Int, weekDay : Int) {
+        _pair.postValue(myPairDao.getDayCash(weekType , weekDay))
+    }
+
+    private suspend fun checkCash(name: String) : Boolean {
+
+        val cash = myPairDao.getCash()
+        //TODO : add throw
+        return cash[0].group == name
     }
 }

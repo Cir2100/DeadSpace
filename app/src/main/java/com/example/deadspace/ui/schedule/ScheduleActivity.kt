@@ -35,6 +35,7 @@ class ScheduleActivity : AppCompatActivity() {
         binding.pairList.adapter = adapter
         binding.pairList.layoutManager = LinearLayoutManager(this)
 
+
         viewModel.myPairList.observe(this) { value ->
             value?.let {
                 adapter.updateItems(value)
