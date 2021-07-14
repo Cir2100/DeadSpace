@@ -10,7 +10,6 @@ class ScheduleEditor(private val myPairDao: MyPairDao) {
     private suspend fun loadSchedule(group : String) : MutableList<MyPairData> {
         Log.i(this.javaClass.simpleName, "Load user's schedule")
         var schedule = myPairDao.getUserData(group)
-        Log.e(this.javaClass.simpleName, schedule.size.toString())
         if (schedule.size == 0) {
             Log.i(this.javaClass.simpleName, "User schedule not in database")
             schedule = myPairDao.getCash()
@@ -18,6 +17,27 @@ class ScheduleEditor(private val myPairDao: MyPairDao) {
         //if (schedule.size == 0)
             //TODO : throw ты дурачок
         return schedule
+    }
+
+    suspend fun deletePair(time : String, week : Int, weekDay : Int, group : String) {
+        var schedule = myPairDao.getUserData(group)
+        if (schedule.size == 0) {
+            schedule = myPairDao.getCash()
+            Log.i(this.javaClass.simpleName, "User schedule not in database")
+            for (pair in schedule) {
+                pair.isCash = false
+                pair.id = pair.group.toInt() * 10000 + pair.week * 1000 + pair.day * 100 + pair.time.toInt() * 10 + 0
+            }
+            scheduleSaver.saveUserSchedule(schedule)
+        }
+        myPairDao.deleteUserPair(group, week, weekDay, time)
+        schedule = myPairDao.getUserData(group)
+        for (pair in schedule) {
+            pair.isCash = true
+            pair.id = pair.group.toInt() * 10000 + pair.week * 1000 + pair.day * 100 + pair.time.toInt() * 10 + 1
+        }
+        scheduleSaver.saveCash(schedule)
+        Log.i(this.javaClass.simpleName, "Delete pair successful")
     }
 
     //TODO: refactor?
@@ -29,8 +49,9 @@ class ScheduleEditor(private val myPairDao: MyPairDao) {
         var isEntry = false
         for (pair in schedule)
         {
-            if (pair.group == group && pair.time == time && pair.week == week && pair.day == day)
+            if (pair.time == time && (pair.week == week || pair.week == 2) && pair.day == day)
                 isEntry = true
+
         }
         if (!isEntry) {
             Log.i(this.javaClass.simpleName, "Start add pair")

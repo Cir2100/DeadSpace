@@ -32,6 +32,11 @@ interface MyPairDao {
     @Query("DELETE FROM MyPairData WHERE isCash = 1")
     suspend fun deleteCash()
 
+    //delete user schedule
+    @Query("DELETE FROM MyPairData WHERE isCash = 0 AND `group` LIKE :group" +
+    " AND (week = :weekType OR week = 2) AND day = :weekDay AND time LIKE :time")
+    suspend fun deleteUserPair(group: String, weekType : Int, weekDay : Int, time : String)
+
 
     //load users input
     @Query("SELECT * FROM MyPairData WHERE isCash = 0 AND `group` LIKE :name")

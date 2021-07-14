@@ -23,6 +23,7 @@ class ScheduleViewModel(private val myPairDao: MyPairDao) : ViewModel() {
 
     //TODO: this in constructor
     private val scheduleLoader = ScheduleLoader(myPairDao)
+    private val scheduleEditor = ScheduleEditor(myPairDao)
 
     val myPairList = scheduleLoader.pairs
 
@@ -51,8 +52,8 @@ class ScheduleViewModel(private val myPairDao: MyPairDao) : ViewModel() {
     //TODO : interface and cash
     private val _colors = MutableLiveData<List<Int>>(listOf(Color.RED, Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE))
     var colors : LiveData<List<Int>> = _colors
-//TODO : is false
-    var isUsers = true
+//TODO : is false constructor
+    var isUsers = false
 
     private var weekDay = 0
 //TODO : cash
@@ -72,8 +73,8 @@ class ScheduleViewModel(private val myPairDao: MyPairDao) : ViewModel() {
     }
 
     //TODO : use anti
-    fun onChangeIsUser() {
-        isUsers = !isUsers
+    fun onChangeIsUser(isChange : Boolean) {
+        isUsers = !isChange
         Log.e(this.javaClass.simpleName, "THIS") //TODO : repair reload schedule
         onSearch(currentGroup)
         loadDaySchedule()
@@ -142,6 +143,14 @@ class ScheduleViewModel(private val myPairDao: MyPairDao) : ViewModel() {
             }
             //myPairDao.insertAll(result)
             //TODO : use interface
+        }
+    }
+
+    fun onDeletePair(time : String) {
+        viewModelScope.launch {
+            scheduleEditor.deletePair(time, weekType.toInt(), weekDay, currentGroup)
+            loadDaySchedule()
+            isUsers = false //TODO: change switch
         }
     }
 

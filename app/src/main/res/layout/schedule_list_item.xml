@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout android:id="@+id/pair_1"
-    android:layout_width="400dp"
+    android:layout_width="match_parent"
     android:layout_height="100dp"
     android:layout_marginTop="10dp"
     android:layout_marginStart="5dp"
@@ -19,7 +19,6 @@
         android:layout_marginEnd="5dp"
         android:layout_marginTop="5dp"
         android:background="@android:color/transparent"
-
         />
 
     <TextView

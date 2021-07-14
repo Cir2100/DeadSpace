@@ -93,7 +93,7 @@
             android:layout_gravity="center"
             android:text="Ваше расписание"
             android:checked="@{viewModel.isUsers}"
-            android:onCheckedChanged="@{ (button, bool) ->  viewModel.onChangeIsUser()}"/>
+            android:onCheckedChanged="@{ (button, bool) ->  viewModel.onChangeIsUser(bool)}"/>
 
         <RelativeLayout
             android:id="@+id/dfghjk"
