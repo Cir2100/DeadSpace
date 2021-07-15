@@ -143,6 +143,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
+            android:id="@+id/add_deadline_button"
             android:layout_width="85dp"
             android:layout_height="25dp"
             android:background="@drawable/oval_button"

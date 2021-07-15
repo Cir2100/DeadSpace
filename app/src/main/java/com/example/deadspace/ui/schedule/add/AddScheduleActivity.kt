@@ -28,7 +28,7 @@ class AddScheduleActivity : AppCompatActivity() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        binding.addButton.setOnClickListener {
+        binding.addPairButton.setOnClickListener {
             viewModel.addPair()
             onClickBackAddRasp(binding.closeButton)
         }
