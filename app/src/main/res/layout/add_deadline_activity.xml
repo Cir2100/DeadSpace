@@ -6,197 +6,154 @@
 
     </data>
 
-    <LinearLayout
-        android:orientation="vertical"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/all_padding">
 
-        <RelativeLayout
-            android:id="@+id/relativeLayout_0"
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
+        <TextView
+            android:id="@+id/DeadlineAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Добавление"
+            android:textColor="@color/suai_dark_blue"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/DeadlineAdd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Добавление"
-                android:textColor="@color/suai_dark_blue"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                android:layout_marginTop="0dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true" />
+        <ImageButton
+            android:id="@+id/close_button"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:layout_alignParentEnd="true"
+            android:background="@color/white"
+            android:onClick="onClickBackAddDeadlines"
+            android:scaleType="centerInside"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/cross" />
 
 
-            <ImageButton
-                android:id="@+id/close_button"
-                android:layout_width="13dp"
-                android:layout_height="13dp"
-                app:srcCompat="@drawable/cross"
-                android:layout_marginEnd="25dp"
-                android:background="@color/white"
-                android:layout_alignParentEnd="true"
-                android:scaleType="fitStart"
-                android:layout_centerVertical="true"
-                android:contentDescription="Close add of deadline"
-                android:onClick="onClickBackAddDeadlines" />
+        <TextView
+            android:id="@+id/EnterDeadlineName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="05dp"
+            android:text="Название:"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/DeadlineAdd" />
 
-        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/suai_red"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@id/EnterDeadlineName"
+            app:layout_constraintTop_toTopOf="@id/EnterDeadlineName" />
 
-        <LinearLayout
-            android:id="@+id/relativeLayout_2"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/deadline_tittle_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:layout_marginTop="0dp"
-            android:orientation="vertical"
-            android:gravity="top">
+            app:layout_constraintStart_toStartOf="@id/EnterDeadlineName"
+            app:layout_constraintTop_toBottomOf="@id/EnterDeadlineName">
 
-            <RelativeLayout
-                android:id="@+id/relativeLayout_3"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/deadline_tittle_input"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_marginTop="10dp">
+                android:layout_height="wrap_content"
+                android:hint="..."
+                android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                    android:id="@+id/EnterDeadlineName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="05dp"
-                    android:layout_marginStart="0dp"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:text="Название:"
-                    android:layout_alignParentStart="true" />
+        <TextView
+            android:id="@+id/EnterDeadlineProgram"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Дисциплина:"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/deadline_tittle_input_layout"
+            app:layout_constraintTop_toBottomOf="@id/deadline_tittle_input_layout" />
 
-                <TextView
-                    android:id="@+id/Definitely_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="00dp"
-                    android:layout_marginStart="100dp"
-                    android:textColor="@color/suai_red"
-                    android:textSize="20sp"
-                    android:text="*"
-                    android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/suai_red"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@id/EnterDeadlineProgram"
+            app:layout_constraintTop_toTopOf="@id/EnterDeadlineProgram" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginTop="20dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/deadline_tittle_input"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:singleLine="true"
-                        android:hint="..." />
-                </com.google.android.material.textfield.TextInputLayout>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/relativeLayout_4"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_marginTop="10dp">
-
-                <TextView
-                    android:id="@+id/EnterDeadlineProgram"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="05dp"
-                    android:layout_marginStart="00dp"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:text="Дисциплина:"
-                    android:layout_alignParentStart="true" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginTop="20dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/deadline_discipline_input"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:singleLine="true"
-                        android:hint="..." />
-                </com.google.android.material.textfield.TextInputLayout>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/relativeLayout_5"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_marginTop="10dp">
-
-                <TextView
-                    android:id="@+id/EnterDeadlineData"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="05dp"
-                    android:layout_marginStart="0dp"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:text="Крайний срок:"
-                    android:layout_alignParentStart="true" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginTop="20dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/deadline_date_input"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:singleLine="true"
-                        android:hint="..." />
-                </com.google.android.material.textfield.TextInputLayout>
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <RelativeLayout
-            android:id="@+id/relativeLayout_7"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/deadline_discipline_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
+            app:layout_constraintStart_toStartOf="@id/EnterDeadlineProgram"
+            app:layout_constraintTop_toBottomOf="@id/EnterDeadlineProgram">
 
-            <ImageButton
-                android:id="@+id/add_deadline_button"
-                android:layout_width="81dp"
-                android:layout_height="27dp"
-                android:scaleType="fitStart"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:background="@color/white"
-                app:srcCompat="@drawable/done" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/deadline_discipline_input"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:hint="..."
+                android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:textSize="18sp"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:text="Готово" />
+        <TextView
+            android:id="@+id/EnterDeadlineData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="Крайний срок:"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/deadline_discipline_input_layout"
+            app:layout_constraintTop_toBottomOf="@id/deadline_discipline_input_layout" />
 
-        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/suai_red"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@id/EnterDeadlineData"
+            app:layout_constraintTop_toTopOf="@id/EnterDeadlineData" />
 
-    </LinearLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/deadline_date_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/EnterDeadlineData"
+            app:layout_constraintTop_toBottomOf="@id/EnterDeadlineData">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/deadline_date_input"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:hint="..."
+                android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/add_deadline_button"
+            android:layout_width="85dp"
+            android:layout_height="25dp"
+            android:background="@drawable/oval_button"
+            android:text="Готово"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/deadline_date_input_layout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 

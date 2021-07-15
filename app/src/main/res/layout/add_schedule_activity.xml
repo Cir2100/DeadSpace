@@ -8,223 +8,209 @@
             type="com.example.deadspace.ui.schedule.add.AddScheduleViewModel" />
     </data>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/relativeLayout_01"
-                android:padding="@dimen/all_padding"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/relativeLayout_01"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/all_padding">
+
+        <TextView
+            android:id="@+id/RaspAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Добавление"
+            android:textColor="@color/suai_dark_blue"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/close_button"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@color/white"
+            android:onClick="onClickBackAddRasp"
+            android:scaleType="fitStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/cross" />
+
+        <TextView
+            android:id="@+id/EnterNumberPair"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Номер занятия:"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/RaspAdd" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="*"
+            android:textColor="@color/suai_red"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@id/EnterNumberPair"
+            app:layout_constraintTop_toBottomOf="@id/RaspAdd" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/EnterNumberPair">
+
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="40dp"
+                android:hint="..." />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                    android:id="@+id/RaspAdd"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:text="Добавление"
-                    android:textColor="@color/suai_dark_blue"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
+        <TextView
+            android:id="@+id/EnterPairType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Тип занятия:"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_1" />
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/EnterPairType">
 
-                <ImageButton
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    app:srcCompat="@drawable/cross"
-                    android:background="@color/white"
-                    android:scaleType="fitStart"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:onClick="onClickBackAddRasp" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:hint="..." />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                    android:id="@+id/EnterNumberPair"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/RaspAdd"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:text="Номер занятия:"/>
+        <TextView
+            android:id="@+id/EnterPairName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="Название занятия:"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_2" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintTop_toBottomOf="@id/RaspAdd"
-                    app:layout_constraintStart_toEndOf="@id/EnterNumberPair"
-                    android:textColor="@color/suai_red"
-                    android:textSize="20sp"
-                    android:text="*" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="*"
+            android:textColor="@color/suai_red"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@id/EnterPairName"
+            app:layout_constraintTop_toBottomOf="@id/input_2" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/input_1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/EnterNumberPair"
-                    app:layout_constraintStart_toStartOf="parent">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/EnterPairName">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:hint="..." />
-                </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:hint="..." />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                    android:id="@+id/EnterPairType"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/input_1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:text="Тип занятия:" />
+        <TextView
+            android:id="@+id/EnterAdress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="Корпус:"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_3" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/input_2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/EnterPairType"
-                    app:layout_constraintStart_toStartOf="parent">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/EnterAdress">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:hint="..." />
-                </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:hint="..." />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                android:id="@+id/EnterPairName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/input_2"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:text="Название занятия:"
-                android:layout_alignParentStart="true" />
+        <TextView
+            android:id="@+id/EnterClass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="Аудитория:"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_4" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/input_2"
-                    app:layout_constraintStart_toEndOf="@id/EnterPairName"
-                    android:textColor="@color/suai_red"
-                    android:textSize="20sp"
-                    android:text="*"
-                    android:layout_alignParentStart="true" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/EnterClass">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/input_3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/EnterPairName"
-                    app:layout_constraintStart_toStartOf="parent">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:hint="..." />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:hint="..." />
-                </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/EnterTeacher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Преподаватель:"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_5" />
 
-                <TextView
-                    android:id="@+id/EnterAdress"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/input_3"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:text="Корпус:"
-                    android:layout_alignParentStart="true" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/EnterTeacher">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/input_4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/EnterAdress"
-                    app:layout_constraintStart_toStartOf="parent">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:hint="..." />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:hint="..." />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <TextView
-                    android:id="@+id/EnterClass"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/input_4"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:text="Аудитория:"
-                    android:layout_alignParentStart="true" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/input_5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/EnterClass"
-                    app:layout_constraintStart_toStartOf="parent">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:hint="..." />
-                </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:id="@+id/add_pair_button"
+            android:layout_width="85dp"
+            android:layout_height="25dp"
+            android:background="@drawable/oval_button"
+            android:text="Готово"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_6" />
 
 
-                <TextView
-                    android:id="@+id/EnterTeacher"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/input_5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:text="Преподаватель:" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/input_6"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/EnterTeacher"
-                    app:layout_constraintStart_toStartOf="parent">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:hint="..." />
-                </com.google.android.material.textfield.TextInputLayout>
-
-            <ImageButton
-                android:id="@+id/add_button"
-                android:layout_width="81dp"
-                android:layout_height="27dp"
-                android:scaleType="fitStart"
-                android:layout_marginTop="5dp"
-                app:layout_constraintTop_toBottomOf="@id/input_6"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:background="@color/white"
-                app:srcCompat="@drawable/done" />
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                app:layout_constraintTop_toBottomOf="@id/input_6"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:textSize="18sp"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:text="Готово" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
-
