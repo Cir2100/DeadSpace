@@ -50,22 +50,7 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/Calendar"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10">
 
-        <CalendarView
-            android:id="@+id/calendarView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:firstDayOfWeek="2"
-            android:maxDate="01/01/2023"
-            android:minDate="01/01/2020"
-            android:selectedWeekBackgroundColor="@color/white" />
-
-    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/dfghjk"
@@ -100,17 +85,6 @@
             android:text="@string/currentDateMonth"
             android:textColor="@color/white"
             android:textSize="20sp"
-            android:layout_centerVertical="true"/>
-
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginRight="15dp"
-            android:background="@color/white"
-            android:scaleType="fitStart"
-            android:layout_alignParentRight="true"
-            app:srcCompat="@drawable/roll_up"
             android:layout_centerVertical="true"/>
 
     </RelativeLayout>

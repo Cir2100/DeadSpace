@@ -27,8 +27,8 @@ class ScheduleListAdapter(val viewModel: ScheduleViewModel) :
         holder.scheduleNameTextView?.text = item.name
         holder.scheduleTypeTextView?.text = item.type
         holder.scheduleNumberTextView?.text = item.time
-        holder.scheduleTeachersTextView?.text = item.teachers
-        holder.scheduleAuditoriumTextView?.text = item.address
+        holder.scheduleBuildingTextView?.text = item.address.substringBefore(",")
+        holder.scheduleAuditoriumTextView?.text = item.address.substringAfter(",").trim()
 
         holder.deleteButton?.setOnClickListener {
             viewModel.onDeletePair(holder.scheduleNumberTextView?.text.toString())
@@ -48,7 +48,7 @@ class ScheduleListAdapter(val viewModel: ScheduleViewModel) :
         var scheduleNameTextView: TextView? = null
         var scheduleTypeTextView: TextView? = null
         var scheduleNumberTextView: TextView? = null
-        var scheduleTeachersTextView: TextView? = null
+        var scheduleBuildingTextView: TextView? = null
         var scheduleAuditoriumTextView: TextView? = null
 
         var deleteButton: ImageButton? = null
@@ -58,7 +58,7 @@ class ScheduleListAdapter(val viewModel: ScheduleViewModel) :
             scheduleNameTextView = itemView.findViewById(R.id.schedule_item_name)
             scheduleNumberTextView = itemView.findViewById(R.id.schedule_item_number)
             scheduleTypeTextView = itemView.findViewById(R.id.schedule_item_type)
-            scheduleTeachersTextView = itemView.findViewById(R.id.schedule_item_teachers)
+            scheduleBuildingTextView = itemView.findViewById(R.id.schedule_item_building)
             scheduleAuditoriumTextView = itemView.findViewById(R.id.schedule_item_auditorium)
 
             deleteButton = itemView.findViewById(R.id.schedule_item_delete_button)
