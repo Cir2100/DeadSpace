@@ -27,6 +27,7 @@ data class MyPairData constructor(
 data class MyDeadlinesData constructor(
     val title : String,
     val discipline : String,
-    val lastDate : String
+    val lastDate : String,
+    var isDone : Boolean
     //TODO : add push-notification
 )

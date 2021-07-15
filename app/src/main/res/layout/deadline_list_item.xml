@@ -11,13 +11,13 @@
 
     <ImageButton
         android:id="@+id/deadline_item_delete_button"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:background="@android:color/transparent"
         android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cross" />
+        app:srcCompat="@drawable/close" />
 
     <TextView
         android:id="@+id/deadline_item_title"
@@ -49,13 +49,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <ImageView
-        android:id="@+id/RedSquare456"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+    <ImageButton
+        android:id="@+id/done_deadline_button"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:scaleType="centerInside"
+        android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/red_quadrate" />
+        app:srcCompat="@drawable/undone_deadline" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

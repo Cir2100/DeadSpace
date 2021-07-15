@@ -60,7 +60,6 @@ class ScheduleActivity : AppCompatActivity() {
         }
 
         binding.nameGroupInput.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-
             override fun onQueryTextChange(newText: String): Boolean {
                 return false
             }
@@ -117,14 +116,17 @@ class ScheduleActivity : AppCompatActivity() {
 
     fun onClickBackListRasp(view: View)
     {
-        val backListRaspIntent = Intent(this, StartActivity::class.java)
-        startActivity(backListRaspIntent)
+        val backListScheduleIntent = Intent(this, StartActivity::class.java)
+        startActivity(backListScheduleIntent)
     }
 
     fun onClickAddRasp(view: View)
     {
-        val addRaspIntent = Intent(this, AddScheduleActivity::class.java)
-        startActivity(addRaspIntent)
+        val addScheduleIntent = Intent(this, AddScheduleActivity::class.java)
+        addScheduleIntent.putExtra("group", viewModel.currentGroup)
+        addScheduleIntent.putExtra("weekDay", viewModel.weekDay)
+        addScheduleIntent.putExtra("weekType", viewModel.weekType)
+        startActivity(addScheduleIntent)
     }
 
 }

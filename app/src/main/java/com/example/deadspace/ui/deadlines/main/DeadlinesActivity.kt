@@ -6,14 +6,19 @@ import android.os.Bundle
 import android.view.View
 
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.deadspace.data.database.getDatabase
+import com.example.deadspace.databinding.DeadlinesActivityBinding
+import com.example.deadspace.databinding.ScheduleActivityBinding
 import com.example.deadspace.ui.deadlines.add.AddDeadlineActivity
 import com.example.deadspace.ui.schedule.main.ScheduleListAdapter
 import com.example.deadspace.ui.schedule.main.ScheduleViewModel
 import com.example.deadspace.ui.start.StartActivity
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class DeadlinesActivity : AppCompatActivity() {
@@ -22,8 +27,6 @@ class DeadlinesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.deadlines_activity)
-
 
         val database = getDatabase(this)
         viewModel = ViewModelProvider(
@@ -31,18 +34,32 @@ class DeadlinesActivity : AppCompatActivity() {
             DeadlineViewModel.FACTORY(database.myDeadlinesDAO)
         ).get(DeadlineViewModel::class.java)
 
-        val deadlineList : RecyclerView = findViewById(R.id.deadline_list)
+        val binding : DeadlinesActivityBinding = DataBindingUtil.setContentView(this, R.layout.deadlines_activity)
+        binding.lifecycleOwner = this
 
         //List
         val adapter = DeadlinesListAdapter(viewModel)
-        deadlineList.adapter = adapter
-        deadlineList.layoutManager = LinearLayoutManager(this)
+        binding.deadlineList.adapter = adapter
+        binding.deadlineList.layoutManager = LinearLayoutManager(this)
 
         viewModel.myDeadlineList.observe(this) { value ->
             value?.let {
                 adapter.updateItems(value)
             }
         }
+
+        // show the spinner when [MainViewModel.spinner] is true
+        viewModel.sizeDeadlineList.observe(this) { value ->
+            value.let { size ->
+                binding.isNothingTextview.visibility = if (size == 0) View.VISIBLE else View.GONE
+            }
+        }
+
+        //Current date
+        val date = Calendar.getInstance().time
+        val formatter = SimpleDateFormat("dd MMMM")
+        val formatedDate = formatter.format(date)
+        binding.currentDateTextview.text = "Сегодня $formatedDate"
 
     }
 

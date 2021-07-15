@@ -12,6 +12,7 @@ import com.example.deadspace.data.schedule.ScheduleLoader
 import com.example.deadspace.ui.singleArgViewModelFactory
 import kotlinx.coroutines.launch
 import java.io.IOException
+import java.lang.Math.abs
 
 class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
 
@@ -42,7 +43,7 @@ class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
     //user input
     //todo: class
 
-    private var weekType : Boolean = true
+    var weekType : Int = 1
 
     private val _weekText = MutableLiveData<String>("верхняя")
     val weekText : LiveData<String> = _weekText
@@ -53,17 +54,14 @@ class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
 //TODO : is false constructor
     var isUsers = false
 
-    private var weekDay = 0
+    var weekDay = 0
 //TODO : cash
     val currentGroupLive = MutableLiveData<String>() //TODO: delete this
     var currentGroup : String = ""
 
-    //TODO : this?
-    private fun Boolean.toInt() = if (this) 1 else 0
-
     fun onChangeWeekType(){
-        weekType = !weekType
-        if (weekType)
+        weekType = kotlin.math.abs(weekType - 1)
+        if (weekType == 1)
             _weekText.postValue("верхняя")
         else
             _weekText.postValue("нижняя")
@@ -104,11 +102,10 @@ class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
         viewModelScope.launch {
             try{
                 _spinner.value = true
-                scheduleLoader.loadDay(weekType.toInt(), weekDay)
+                scheduleLoader.loadDay(weekType, weekDay)
             } finally {
                 _spinner.value = false
             }
-
         }
     }
 
@@ -148,9 +145,9 @@ class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
 
     fun onDeletePair(time : String) {
         viewModelScope.launch {
-            scheduleEditor.deletePair(time, weekType.toInt(), weekDay, currentGroup)
+            scheduleEditor.deletePair(time, weekType, weekDay, currentGroup)
+            isUsers = true
             loadDaySchedule()
-            isUsers = false //TODO: change switch
         }
     }
 

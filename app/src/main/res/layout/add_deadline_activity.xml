@@ -34,7 +34,7 @@
             android:scaleType="centerInside"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/cross" />
+            app:srcCompat="@drawable/close" />
 
 
         <TextView

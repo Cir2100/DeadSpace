@@ -56,7 +56,6 @@ class ScheduleEditor(private val myPairDAO: MyPairDAO) {
 
         }
         if (!isEntry) {
-            Log.i(this.javaClass.simpleName, "Start add pair")
             schedule.add(MyPairData(
                 id = group.toInt() * 10000 + week * 1000 + day * 100 + time.toInt() * 10 + 1,
                 group = group,

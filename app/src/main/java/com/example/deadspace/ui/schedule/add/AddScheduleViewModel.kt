@@ -18,31 +18,30 @@ class AddScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel()  {
     //TODO: this in constructor
     private val scheduleEditor = ScheduleEditor(myPairDAO)
 
-    private val nameGroupListener = "1942"
-
-    fun addPair() {
-        // TODO: users input
-        val weekDay = 1
-        val typeOfWeek = 1
-        val namePair = "TP"
-        val type = "Л"
-        val time = "1"
-        val teachers = "Преподы"
-        val groups = "Группы"
-        val address = "Адресс"
+    fun addPair(
+        group : String,
+        weekDay : Int,
+        typeOfWeek : Int,
+        title : String,
+        type : String,
+        number : String,
+        teachers : String,
+        building : String,
+        auditorium : String,
+    ) {
 
         viewModelScope.launch {
-            Log.i(this.javaClass.simpleName, "Start add")
             scheduleEditor.addPair(
-                group = nameGroupListener,
+                group = group,
                 day =  weekDay,
-                time = time,
+                time = number,
                 week = typeOfWeek,
-                type = type,
-                name = namePair,
-                teachers = teachers,
-                groups = groups,
-                address = address)
+                type = (if (type.isNotEmpty()) type else "-"),
+                name = title,
+                teachers = (if (teachers.isNotEmpty()) teachers else "-"),
+                groups = "-",
+                address = (if (building.isNotEmpty()) building else "-") + (if (auditorium.isNotEmpty()) auditorium else "-")
+            )
         }
     }
 }
