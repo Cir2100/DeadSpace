@@ -74,8 +74,8 @@ class ScheduleViewModel(private val myPairDao: MyPairDao) : ViewModel() {
 
     //TODO : use anti
     fun onChangeIsUser(isChange : Boolean) {
-        isUsers = !isChange
-        Log.e(this.javaClass.simpleName, "THIS") //TODO : repair reload schedule
+        isUsers = isChange
+        //TODO : repair reload schedule
         onSearch(currentGroup)
         loadDaySchedule()
     }
@@ -99,6 +99,8 @@ class ScheduleViewModel(private val myPairDao: MyPairDao) : ViewModel() {
     init {
         loadDaySchedule()
     }
+
+    //TODO : load day after add and date
 
     private fun loadDaySchedule() {
         viewModelScope.launch {
