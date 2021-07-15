@@ -69,6 +69,17 @@
         android:text="33-05"
         android:textColor="@color/black"
         android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@id/schedule_item_building"
+        app:layout_constraintTop_toTopOf="@id/schedule_item_building"
+        android:layout_marginLeft="5dp"/>
+
+    <TextView
+        android:id="@+id/schedule_item_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10:30-12:00"
+        android:textColor="@color/black"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@id/schedule_item_building"
         app:layout_constraintTop_toBottomOf="@id/schedule_item_building" />
 
