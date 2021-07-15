@@ -8,87 +8,119 @@
             type="com.example.deadspace.ui.schedule.add.AddScheduleViewModel" />
     </data>
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/relativeLayout_01"
+                android:padding="@dimen/all_padding"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:id="@+id/relativeLayout_0"
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
+                <TextView
+                    android:id="@+id/RaspAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="Добавление"
+                    android:textColor="@color/suai_dark_blue"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/RaspAdd"
+
+                <ImageButton
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:srcCompat="@drawable/cross"
+                    android:background="@color/white"
+                    android:scaleType="fitStart"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:onClick="onClickBackAddRasp" />
+
+                <TextView
+                    android:id="@+id/EnterNumberPair"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/RaspAdd"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:text="Номер занятия:"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/RaspAdd"
+                    app:layout_constraintStart_toEndOf="@id/EnterNumberPair"
+                    android:textColor="@color/suai_red"
+                    android:textSize="20sp"
+                    android:text="*" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/EnterNumberPair"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:hint="..." />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/EnterPairType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/input_1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:text="Тип занятия:" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/EnterPairType"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:hint="..." />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                android:id="@+id/EnterPairName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Добавление"
-                android:textColor="@color/suai_dark_blue"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                android:layout_marginTop="0dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true" />
-
-
-            <ImageButton
-                android:id="@+id/close_button"
-                android:layout_width="13dp"
-                android:layout_height="13dp"
-                app:srcCompat="@drawable/cross"
-                android:layout_marginEnd="25dp"
-                android:background="@color/white"
-                android:layout_alignParentEnd="true"
-                android:scaleType="fitStart"
-                android:layout_centerVertical="true"
-                android:contentDescription="Close add of pair"
-                android:onClick="onClickBackAddRasp" />
-
-        </RelativeLayout>
-
-        <LinearLayout
-            android:id="@+id/relativeLayout_2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:layout_marginTop="0dp"
-            android:orientation="vertical"
-            android:gravity="top">
-
-            <RelativeLayout
-                android:id="@+id/relativeLayout_3"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_marginTop="10dp">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_2"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:text="Название занятия:"
+                android:layout_alignParentStart="true" />
 
                 <TextView
-                    android:id="@+id/EnterDeadlineName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="05dp"
-                    android:layout_marginStart="0dp"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:text="Тип занятия:"
-                    android:layout_alignParentStart="true" />
-
-                <TextView
-                    android:id="@+id/Definitely_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="00dp"
-                    android:layout_marginStart="120dp"
+                    app:layout_constraintTop_toBottomOf="@id/input_2"
+                    app:layout_constraintStart_toEndOf="@id/EnterPairName"
                     android:textColor="@color/suai_red"
                     android:textSize="20sp"
                     android:text="*"
                     android:layout_alignParentStart="true" />
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginTop="20dp">
+                    app:layout_constraintTop_toBottomOf="@id/EnterPairName"
+                    app:layout_constraintStart_toStartOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
@@ -96,41 +128,23 @@
                         android:hint="..." />
                 </com.google.android.material.textfield.TextInputLayout>
 
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/relativeLayout_4"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_marginTop="10dp">
-
                 <TextView
-                    android:id="@+id/EnterDeadlineProgram"
+                    android:id="@+id/EnterAdress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="05dp"
-                    android:layout_marginStart="00dp"
+                    app:layout_constraintTop_toBottomOf="@id/input_3"
+                    app:layout_constraintStart_toStartOf="parent"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:text="Дисциплина:"
-                    android:layout_alignParentStart="true" />
-
-                <TextView
-                    android:id="@+id/Definitely_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="00dp"
-                    android:layout_marginStart="123dp"
-                    android:textColor="@color/suai_red"
-                    android:textSize="20sp"
-                    android:text="*"
+                    android:text="Корпус:"
                     android:layout_alignParentStart="true" />
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginTop="20dp">
+                    app:layout_constraintTop_toBottomOf="@id/EnterAdress"
+                    app:layout_constraintStart_toStartOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
@@ -138,30 +152,23 @@
                         android:hint="..." />
                 </com.google.android.material.textfield.TextInputLayout>
 
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/relativeLayout_5"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_marginTop="10dp">
-
                 <TextView
-                    android:id="@+id/EnterDeadlineData"
+                    android:id="@+id/EnterClass"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="05dp"
-                    android:layout_marginStart="0dp"
+                    app:layout_constraintTop_toBottomOf="@id/input_4"
+                    app:layout_constraintStart_toStartOf="parent"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:text="Аудитория:"
                     android:layout_alignParentStart="true" />
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginTop="20dp">
+                    app:layout_constraintTop_toBottomOf="@id/EnterClass"
+                    app:layout_constraintStart_toStartOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
@@ -169,54 +176,39 @@
                         android:hint="..." />
                 </com.google.android.material.textfield.TextInputLayout>
 
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/relativeLayout_6"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_marginTop="10dp">
 
                 <TextView
                     android:id="@+id/EnterTeacher"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="05dp"
-                    android:layout_marginStart="0dp"
+                    app:layout_constraintTop_toBottomOf="@id/input_5"
+                    app:layout_constraintStart_toStartOf="parent"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:text="Преподаватель:"
-                    android:layout_alignParentStart="true" />
+                    android:text="Преподаватель:" />
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginTop="20dp">
+                    app:layout_constraintTop_toBottomOf="@id/EnterTeacher"
+                    app:layout_constraintStart_toStartOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:hint="..." />
                 </com.google.android.material.textfield.TextInputLayout>
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <RelativeLayout
-            android:id="@+id/relativeLayout_8"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
 
             <ImageButton
                 android:id="@+id/add_button"
                 android:layout_width="81dp"
                 android:layout_height="27dp"
                 android:scaleType="fitStart"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
+                android:layout_marginTop="5dp"
+                app:layout_constraintTop_toBottomOf="@id/input_6"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 android:background="@color/white"
                 app:srcCompat="@drawable/done" />
 
@@ -224,17 +216,15 @@
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
+                app:layout_constraintTop_toBottomOf="@id/input_6"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 android:textSize="18sp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:text="Готово" />
 
-        </RelativeLayout>
-
-    </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 
