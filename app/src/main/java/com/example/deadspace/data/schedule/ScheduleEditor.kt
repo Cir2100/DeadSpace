@@ -1,18 +1,20 @@
 package com.example.deadspace.data.schedule
 
 import android.util.Log
+import com.example.deadspace.data.database.MyPairDAO
+import com.example.deadspace.data.database.MyPairData
 
 //TODO: scheduleSaver @singleton and don't use this constructor
-class ScheduleEditor(private val myPairDao: MyPairDao) {
+class ScheduleEditor(private val myPairDAO: MyPairDAO) {
 
-    private val scheduleSaver = ScheduleSaver(myPairDao)
+    private val scheduleSaver = ScheduleSaver(myPairDAO)
 
     private suspend fun loadSchedule(group : String) : MutableList<MyPairData> {
         Log.i(this.javaClass.simpleName, "Load user's schedule")
-        var schedule = myPairDao.getUserData(group)
+        var schedule = myPairDAO.getUserData(group)
         if (schedule.size == 0) {
             Log.i(this.javaClass.simpleName, "User schedule not in database")
-            schedule = myPairDao.getCash()
+            schedule = myPairDAO.getCash()
         }
         //if (schedule.size == 0)
             //TODO : throw ты дурачок
@@ -20,9 +22,9 @@ class ScheduleEditor(private val myPairDao: MyPairDao) {
     }
 
     suspend fun deletePair(time : String, week : Int, weekDay : Int, group : String) {
-        var schedule = myPairDao.getUserData(group)
+        var schedule = myPairDAO.getUserData(group)
         if (schedule.size == 0) {
-            schedule = myPairDao.getCash()
+            schedule = myPairDAO.getCash()
             Log.i(this.javaClass.simpleName, "User schedule not in database")
             for (pair in schedule) {
                 pair.isCash = false
@@ -30,8 +32,8 @@ class ScheduleEditor(private val myPairDao: MyPairDao) {
             }
             scheduleSaver.saveUserSchedule(schedule)
         }
-        myPairDao.deleteUserPair(group, week, weekDay, time)
-        schedule = myPairDao.getUserData(group)
+        myPairDAO.deleteUserPair(group, week, weekDay, time)
+        schedule = myPairDAO.getUserData(group)
         for (pair in schedule) {
             pair.isCash = true
             pair.id = pair.group.toInt() * 10000 + pair.week * 1000 + pair.day * 100 + pair.time.toInt() * 10 + 1
@@ -40,7 +42,7 @@ class ScheduleEditor(private val myPairDao: MyPairDao) {
         Log.i(this.javaClass.simpleName, "Delete pair successful")
     }
 
-    //TODO: refactor?
+    //TODO: do add how delete
     //change local schedule
     suspend fun addPair(group : String, day : Int, time : String,
                         week : Int, type : String, name : String,

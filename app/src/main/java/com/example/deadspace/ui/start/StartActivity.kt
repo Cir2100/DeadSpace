@@ -1,4 +1,4 @@
-package com.example.deadspace.ui.main
+package com.example.deadspace.ui.start
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,8 +6,8 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.deadspace.R
-import com.example.deadspace.data.schedule.getDatabase
-import com.example.deadspace.ui.deadlines.DeadlinesActivity
+import com.example.deadspace.data.database.getDatabase
+import com.example.deadspace.ui.deadlines.main.DeadlinesActivity
 import com.example.deadspace.ui.exams.ExamActivity
 import com.example.deadspace.ui.schedule.main.ScheduleActivity
 
@@ -25,7 +25,7 @@ class StartActivity : AppCompatActivity() {
         val database = getDatabase(this)
         viewModel = ViewModelProvider(
             this,
-            StartViewModel.FACTORY(database.myPairDao)
+            StartViewModel.FACTORY(database.myPairDAO)
         ).get(StartViewModel::class.java)
 
     }

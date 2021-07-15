@@ -1,11 +1,11 @@
 package com.example.deadspace.data.schedule
 
 import android.util.Log
-import androidx.lifecycle.LiveData
+import com.example.deadspace.data.database.MyPairDAO
 
-class ScheduleLoaderLocalData(private val myPairDao: MyPairDao) {
+class ScheduleLoaderLocalData(private val myPairDAO: MyPairDAO) {
 
-    private val scheduleSaver = ScheduleSaver(myPairDao)
+    private val scheduleSaver = ScheduleSaver(myPairDAO)
 
     //checked this group in local data
     fun checkedUsersSchedule(name: String) : Boolean {
@@ -14,7 +14,7 @@ class ScheduleLoaderLocalData(private val myPairDao: MyPairDao) {
 
     //load schedule from local data
     suspend fun loadSchedule(name: String) {
-        val schedule = myPairDao.getUserData(name)
+        val schedule = myPairDAO.getUserData(name)
         for (pair in schedule) {
             pair.isCash = true
             pair.id = pair.group.toInt() * 10000 + pair.week * 1000 + pair.day * 100 + pair.time.toInt() * 10 + 1

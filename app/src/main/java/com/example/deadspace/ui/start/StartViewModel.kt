@@ -1,26 +1,23 @@
-package com.example.deadspace.ui.main
+package com.example.deadspace.ui.start
 
-import android.util.Log
 import androidx.lifecycle.*
-import com.example.deadspace.data.schedule.MyPairDao
+import com.example.deadspace.data.database.MyPairDAO
 import com.example.deadspace.data.schedule.ScheduleEditor
 import com.example.deadspace.data.schedule.ScheduleLoader
 import com.example.deadspace.ui.singleArgViewModelFactory
-import kotlinx.coroutines.launch
-import java.io.IOException
 
 //TODO: use Hilt
 //TODO : use FLOW?
 //@HiltViewModel
-class StartViewModel(private val myPairDao: MyPairDao) : ViewModel() {
+class StartViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
 
     companion object {
         val FACTORY = singleArgViewModelFactory(::StartViewModel)
     }
 
     //TODO: this in constructor
-    private val scheduleLoader = ScheduleLoader(myPairDao)
-    private val scheduleEditor = ScheduleEditor(myPairDao)
+    private val scheduleLoader = ScheduleLoader(myPairDAO)
+    private val scheduleEditor = ScheduleEditor(myPairDAO)
 
 
     /*private val _data = MutableLiveData<String>()

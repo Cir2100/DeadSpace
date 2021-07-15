@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 
 import androidx.appcompat.app.AppCompatActivity
-import com.example.deadspace.ui.main.StartActivity
+import com.example.deadspace.ui.start.StartActivity
 
 class ExamActivity : AppCompatActivity() {
 

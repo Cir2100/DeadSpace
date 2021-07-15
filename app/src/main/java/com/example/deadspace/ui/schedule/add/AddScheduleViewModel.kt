@@ -3,12 +3,12 @@ package com.example.deadspace.ui.schedule.add
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.deadspace.data.schedule.MyPairDao
+import com.example.deadspace.data.database.MyPairDAO
 import com.example.deadspace.data.schedule.ScheduleEditor
 import com.example.deadspace.ui.singleArgViewModelFactory
 import kotlinx.coroutines.launch
 
-class AddScheduleViewModel(private val myPairDao: MyPairDao) : ViewModel()  {
+class AddScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel()  {
 
 
     companion object {
@@ -16,7 +16,7 @@ class AddScheduleViewModel(private val myPairDao: MyPairDao) : ViewModel()  {
     }
 
     //TODO: this in constructor
-    private val scheduleEditor = ScheduleEditor(myPairDao)
+    private val scheduleEditor = ScheduleEditor(myPairDAO)
 
     private val nameGroupListener = "1942"
 

@@ -7,11 +7,9 @@ import android.view.View
 import android.content.Intent
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import com.example.deadspace.data.schedule.getDatabase
+import com.example.deadspace.data.database.getDatabase
 import com.example.deadspace.databinding.AddScheduleActivityBinding
-import com.example.deadspace.databinding.ScheduleActivityBinding
 import com.example.deadspace.ui.schedule.main.ScheduleActivity
-import com.example.deadspace.ui.schedule.main.ScheduleViewModel
 
 class AddScheduleActivity : AppCompatActivity() {
 
@@ -23,7 +21,7 @@ class AddScheduleActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(
             this,
-            AddScheduleViewModel.FACTORY(database.myPairDao)
+            AddScheduleViewModel.FACTORY(database.myPairDAO)
         ).get(AddScheduleViewModel::class.java)
 
         val binding : AddScheduleActivityBinding = DataBindingUtil.setContentView(this, R.layout.add_schedule_activity)

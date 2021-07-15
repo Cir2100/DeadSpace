@@ -1,19 +1,22 @@
 package com.example.deadspace.data.schedule
 
-class ScheduleSaver(private val myPairDao: MyPairDao) {
+import com.example.deadspace.data.database.MyPairDAO
+import com.example.deadspace.data.database.MyPairData
+
+class ScheduleSaver(private val myPairDAO: MyPairDAO) {
 
 
     suspend fun saveCash(saveData : List<MyPairData>) {
         deleteCash()
-        myPairDao.insertAll(saveData)
+        myPairDAO.insertAll(saveData)
     }
 
     suspend fun saveUserSchedule(saveData : List<MyPairData>) {
-        myPairDao.insertAll(saveData)
+        myPairDAO.insertAll(saveData)
     }
 
     suspend fun deleteCash() {
-        myPairDao.deleteCash()
+        myPairDAO.deleteCash()
     }
 
 

@@ -6,15 +6,14 @@ import android.content.SharedPreferences
 import com.example.deadspace.R
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.deadspace.data.schedule.getDatabase
+import com.example.deadspace.data.database.getDatabase
 import com.example.deadspace.databinding.ScheduleActivityBinding
-import com.example.deadspace.ui.main.StartActivity
+import com.example.deadspace.ui.start.StartActivity
 import com.example.deadspace.ui.schedule.add.AddScheduleActivity
 import java.text.SimpleDateFormat
 import java.util.*
@@ -35,7 +34,7 @@ class ScheduleActivity : AppCompatActivity() {
         val database = getDatabase(this)
         viewModel = ViewModelProvider(
             this,
-            ScheduleViewModel.FACTORY(database.myPairDao)
+            ScheduleViewModel.FACTORY(database.myPairDAO)
         ).get(ScheduleViewModel::class.java)
         loadPreferences()
 
@@ -54,6 +53,12 @@ class ScheduleActivity : AppCompatActivity() {
         binding.pairList.adapter = adapter
         binding.pairList.layoutManager = LinearLayoutManager(this)
 
+        viewModel.myPairList.observe(this) { value ->
+            value?.let {
+                adapter.updateItems(value)
+            }
+        }
+
         binding.nameGroupInput.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextChange(newText: String): Boolean {
@@ -66,12 +71,6 @@ class ScheduleActivity : AppCompatActivity() {
             }
 
         })
-
-        viewModel.myPairList.observe(this) { value ->
-            value?.let {
-                adapter.updateItems(value)
-            }
-        }
 
         // show the spinner when [MainViewModel.spinner] is true
         viewModel.spinner.observe(this) { value ->

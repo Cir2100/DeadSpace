@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout android:id="@+id/Deadline"
-    android:layout_width="400dp"
+    android:layout_width="match_parent"
     android:layout_height="100dp"
     android:layout_marginTop="10dp"
     android:layout_marginStart="5dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
 
     <ImageButton
         android:id="@+id/imageButton845"
@@ -14,8 +15,20 @@
         android:layout_height="100dp"
         android:background="@color/suai_light_blue" />
 
+    <ImageButton
+        android:id="@+id/deadline_item_delete_button"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:srcCompat="@drawable/cross"
+        android:scaleType="fitStart"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/transparent"
+        />
+
     <TextView
-        android:id="@+id/NameDedline"
+        android:id="@+id/deadline_item_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
@@ -25,7 +38,7 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/NameSubjectDedline"
+        android:id="@+id/deadline_item_discipline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -35,7 +48,7 @@
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/DataDedline"
+        android:id="@+id/deadline_item_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="65dp"

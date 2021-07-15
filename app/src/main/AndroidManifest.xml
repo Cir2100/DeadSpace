@@ -21,18 +21,18 @@
             android:name=".ui.schedule.main.ScheduleActivity"
             android:theme="@style/Theme.DeadSpace.NoActionBar" />
         <activity
-            android:name=".ui.deadlines.AddDeadlineActivity"
+            android:name=".ui.deadlines.add.AddDeadlineActivity"
             android:theme="@style/Theme.DeadSpace.NoActionBar" />
         <activity
             android:name=".ui.exams.ExamActivity"
             android:label="@string/title_activity_test"
             android:theme="@style/Theme.DeadSpace.NoActionBar" />
         <activity
-            android:name=".ui.deadlines.DeadlinesActivity"
+            android:name=".ui.deadlines.main.DeadlinesActivity"
             android:label="@string/title_activity_deadlines"
             android:theme="@style/Theme.DeadSpace.NoActionBar" />
         <activity
-            android:name=".ui.main.StartActivity"
+            android:name=".ui.start.StartActivity"
             android:theme="@style/Theme.DeadSpace.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

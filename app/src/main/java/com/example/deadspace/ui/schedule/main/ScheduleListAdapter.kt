@@ -7,7 +7,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.deadspace.R
-import com.example.deadspace.data.schedule.MyPairData
+import com.example.deadspace.data.database.MyPairData
 
 //TODO : use paging
 class ScheduleListAdapter(val viewModel: ScheduleViewModel) :

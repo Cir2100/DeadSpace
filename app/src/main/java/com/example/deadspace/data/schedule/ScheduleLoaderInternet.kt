@@ -1,16 +1,17 @@
 package com.example.deadspace.data.schedule
 
-import android.content.ContentValues
 import android.util.Log
+import com.example.deadspace.data.database.MyPairDAO
+import com.example.deadspace.data.database.MyPairData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.jsoup.Jsoup
 import org.jsoup.select.Elements
 import java.io.IOException
 
-class ScheduleLoaderInternet(private val myPairDao: MyPairDao) {
+class ScheduleLoaderInternet(private val myPairDAO: MyPairDAO) {
 
-    private val scheduleSaver = ScheduleSaver(myPairDao)
+    private val scheduleSaver = ScheduleSaver(myPairDAO)
 
     enum class WeekDays {
         Понедельник, Вторник, Среда, Четверг, Пятница, Суббота, Вне
