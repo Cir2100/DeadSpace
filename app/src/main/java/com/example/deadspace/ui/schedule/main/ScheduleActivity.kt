@@ -28,6 +28,12 @@ class ScheduleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        setContentView(R.layout.add_schedule_activity)
+        val actionbar = supportActionBar
+        actionbar!!.title = "Расписание занятий"
+        actionbar.setDisplayHomeAsUpEnabled(true)
+        actionbar.setDisplayHomeAsUpEnabled(true)
+
         prefs =
             getSharedPreferences("settings", Context.MODE_PRIVATE)
 
@@ -115,16 +121,15 @@ class ScheduleActivity : AppCompatActivity() {
         }
     }
 
-    fun onClickBackListRasp(view: View)
-    {
-        val backListRaspIntent = Intent(this, StartActivity::class.java)
-        startActivity(backListRaspIntent)
-    }
-
     fun onClickAddRasp(view: View)
     {
         val addRaspIntent = Intent(this, AddScheduleActivity::class.java)
         startActivity(addRaspIntent)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
 }
