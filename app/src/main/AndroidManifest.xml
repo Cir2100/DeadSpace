@@ -16,7 +16,7 @@
         android:theme="@style/Theme.DeadSpace">
         <activity
             android:name=".ui.schedule.add.AddScheduleActivity"
-            android:theme="@style/Theme.DeadSpace.NoActionBar"></activity>
+            android:theme="@style/Theme.DeadSpace.NoActionBar"/>
         <activity
             android:name=".ui.schedule.main.ScheduleActivity"
             android:theme="@style/Theme.DeadSpace.NoActionBar" />

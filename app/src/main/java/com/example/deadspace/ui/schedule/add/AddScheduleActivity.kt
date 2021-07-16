@@ -17,6 +17,7 @@ class AddScheduleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         val database = getDatabase(this)
 
         viewModel = ViewModelProvider(
