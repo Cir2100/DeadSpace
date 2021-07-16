@@ -1,10 +1,7 @@
 package com.example.deadspace.data.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import java.time.LocalDate
 
 @Dao
@@ -50,7 +47,7 @@ interface MyPairDAO {
 @Dao
 interface MyDeadlinesDAO {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertOne(myDeadlinesData: MyDeadlinesData)
 
     @Query("DELETE FROM MyDeadlinesData WHERE title LIKE :title AND discipline LIKE :discipline AND lastDate = :lastDate")
@@ -64,4 +61,16 @@ interface MyDeadlinesDAO {
 
     @Query("SELECT * FROM MyDeadlinesData")
     suspend fun getAllDeadlines(): List<MyDeadlinesData>
+
+    @Query("SELECT * FROM MyDeadlinesData WHERE title LIKE :title AND discipline LIKE :discipline AND lastDate = :lastDate")
+    suspend fun getOne(title : String, discipline : String, lastDate : String) : MyDeadlinesData
+
+    @Update
+    suspend fun updateOne(myDeadlinesData: MyDeadlinesData)
+
+    //clear database
+    @Query("DELETE FROM MyDeadlinesData")
+    suspend fun deleteAll()
+
+
 }

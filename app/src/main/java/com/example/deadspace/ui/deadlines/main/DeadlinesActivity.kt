@@ -43,7 +43,8 @@ class DeadlinesActivity : AppCompatActivity() {
         binding.deadlineList.layoutManager = LinearLayoutManager(this)
 
         viewModel.myDeadlineList.observe(this) { value ->
-            value?.let {
+           // adapter.updateItems(value.sortedBy { it.lastDate })
+        value?.let {
                 adapter.updateItems(value)
             }
         }
