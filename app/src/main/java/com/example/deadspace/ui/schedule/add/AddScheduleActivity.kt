@@ -18,6 +18,12 @@ class AddScheduleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        setContentView(R.layout.add_schedule_activity)
+        val actionbar = supportActionBar
+        actionbar!!.title = "Добавление занятия"
+        actionbar.setDisplayHomeAsUpEnabled(true)
+        actionbar.setDisplayHomeAsUpEnabled(true)
+
         val database = getDatabase(this)
 
         viewModel = ViewModelProvider(
@@ -29,18 +35,11 @@ class AddScheduleActivity : AppCompatActivity() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        binding.addPairButton.setOnClickListener {
-            viewModel.addPair()
-            onClickBackAddRasp(binding.closeButton)
-        }
-
     }
 
-    fun onClickBackAddRasp(view:View)
-    {
-        val backAddRaspIntent = Intent(this, ScheduleActivity::class.java)
-        startActivity(backAddRaspIntent)
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
-
     //TODO : use onSavedInstanceState or savedStateHandle
 }

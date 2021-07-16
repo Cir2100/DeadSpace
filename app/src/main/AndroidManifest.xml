@@ -15,14 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DeadSpace">
         <activity
-            android:name=".ui.schedule.add.AddScheduleActivity"
-            android:theme="@style/Theme.DeadSpace.NoActionBar"/>
+            android:name=".ui.schedule.add.AddScheduleActivity"/>
         <activity
             android:name=".ui.schedule.main.ScheduleActivity"
             android:theme="@style/Theme.DeadSpace.NoActionBar" />
         <activity
-            android:name=".ui.deadlines.add.AddDeadlineActivity"
-            android:theme="@style/Theme.DeadSpace.NoActionBar" />
+            android:name=".ui.deadlines.add.AddDeadlineActivity" />
         <activity
             android:name=".ui.exams.ExamActivity"
             android:label="@string/title_activity_test"

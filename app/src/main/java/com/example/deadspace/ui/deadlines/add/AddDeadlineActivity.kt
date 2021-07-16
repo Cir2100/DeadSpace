@@ -20,27 +20,22 @@ class AddDeadlineActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        setContentView(R.layout.add_deadline_activity)
+        val actionbar = supportActionBar
+        actionbar!!.title = "Добавление дедлайна"
+        actionbar.setDisplayHomeAsUpEnabled(true)
+        actionbar.setDisplayHomeAsUpEnabled(true)
+
         val database = getDatabase(this)
         viewModel = ViewModelProvider(
             this,
             AddDeadlineViewModel.FACTORY(database.myDeadlinesDAO)
         ).get(AddDeadlineViewModel::class.java)
 
-        val binding : AddDeadlineActivityBinding = DataBindingUtil.setContentView(this, R.layout.add_deadline_activity)
-
-        binding.addDeadlineButton.setOnClickListener {
-            viewModel.onAddDeadline(
-                binding.deadlineTittleInput.text.toString(),
-                binding.deadlineDisciplineInput.text.toString(),
-                binding.deadlineDateInput.text.toString()
-            )
-            onClickBackAddDeadlines(binding.closeButton)
-        }
     }
 
-    fun onClickBackAddDeadlines(view:View)
-    {
-        val backAddDeadlinesIntent = Intent(this, DeadlinesActivity::class.java)
-        startActivity(backAddDeadlinesIntent)
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }
