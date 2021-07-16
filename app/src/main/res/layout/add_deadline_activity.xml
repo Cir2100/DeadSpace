@@ -62,6 +62,8 @@
             android:id="@+id/deadline_tittle_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
             app:layout_constraintStart_toStartOf="@id/EnterDeadlineName"
             app:layout_constraintTop_toBottomOf="@id/EnterDeadlineName">
 
@@ -96,6 +98,7 @@
             android:id="@+id/deadline_discipline_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:errorEnabled="true"
             app:layout_constraintStart_toStartOf="@id/EnterDeadlineProgram"
             app:layout_constraintTop_toBottomOf="@id/EnterDeadlineProgram">
 
@@ -131,6 +134,7 @@
             android:id="@+id/deadline_date_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:errorEnabled="true"
             app:layout_constraintStart_toStartOf="@id/EnterDeadlineData"
             app:layout_constraintTop_toBottomOf="@id/EnterDeadlineData">
 
@@ -138,8 +142,9 @@
                 android:id="@+id/deadline_date_input"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:hint="..."
-                android:singleLine="true" />
+                android:hint="dd/mm"
+                android:singleLine="true"
+                android:inputType="date"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button

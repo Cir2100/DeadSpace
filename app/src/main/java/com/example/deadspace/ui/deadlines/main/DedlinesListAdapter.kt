@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.deadspace.DeadSpace
 import com.example.deadspace.R
 import com.example.deadspace.data.database.MyDeadlinesData
+import java.text.SimpleDateFormat
+import java.util.*
 
 //TODO : use paging
 class DeadlinesListAdapter(val viewModel: DeadlineViewModel) :
@@ -32,7 +34,14 @@ class DeadlinesListAdapter(val viewModel: DeadlineViewModel) :
         val item = items[position]
         holder.deadlineTitleTextView?.text = item.title
         holder.deadlineDisciplineTextView?.text = item.discipline
-        holder.deadlineDateTextView?.text = item.lastDate
+
+        //Current date
+        val date = Calendar.getInstance()
+        val formatter = SimpleDateFormat("dd MMMM")
+        date.set(Calendar.MONTH, item.lastDate.substring(3,5).toInt() - 1)
+        date.set(Calendar.DATE, item.lastDate.substring(0,2).toInt())
+
+        holder.deadlineDateTextView?.text = formatter.format(date.time)
 
         if (item.isDone)
             holder.doneButton?.setImageDrawable(resources.getDrawable(R.drawable.done_deadline, context.theme))
@@ -40,18 +49,19 @@ class DeadlinesListAdapter(val viewModel: DeadlineViewModel) :
             holder.doneButton?.setImageDrawable(resources.getDrawable(R.drawable.undone_deadline, context.theme))
 
         holder.deleteButton?.setOnClickListener {
+           Log.e("dsf", item.title)
             viewModel.onDeleteDeadline(
-                holder.deadlineTitleTextView?.text.toString(),
-                holder.deadlineDisciplineTextView?.text.toString(),
-                holder.deadlineDateTextView?.text.toString()
+                item.title,
+                item.discipline,
+                item.lastDate
             )
         }
 
         holder.doneButton?.setOnClickListener {
             viewModel.onDoneChange(
-                holder.deadlineTitleTextView?.text.toString(),
-                holder.deadlineDisciplineTextView?.text.toString(),
-                holder.deadlineDateTextView?.text.toString(),
+                item.title,
+                item.discipline,
+                item.lastDate,
                 !item.isDone
             )
         }

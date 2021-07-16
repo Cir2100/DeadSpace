@@ -23,7 +23,7 @@ class AddDeadlineViewModel(private val myDeadlinesDAO: MyDeadlinesDAO) : ViewMod
 
     fun onAddDeadline(title : String, discipline : String, lastDate : String) {
         viewModelScope.launch {
-            deadlineEditor.addDeadline(title, discipline, lastDate)
+            deadlineEditor.addDeadline(title, discipline, lastDate.substring(0, 2) + "." + lastDate.substring(3, 5))
         }
     }
 }
