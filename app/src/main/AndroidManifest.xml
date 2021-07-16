@@ -21,8 +21,7 @@
         <activity
             android:name=".ui.deadlines.add.AddDeadlineActivity" />
         <activity
-            android:name=".ui.exams.ExamActivity"
-            android:theme="@style/Theme.DeadSpace.NoActionBar" />
+            android:name=".ui.exams.ExamActivity" />
         <activity
             android:name=".ui.deadlines.main.DeadlinesActivity" />
         <activity

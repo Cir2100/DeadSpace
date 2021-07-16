@@ -24,7 +24,6 @@ class DeadlinesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.deadlines_activity)
 
-        setContentView(R.layout.deadlines_activity)
         val actionbar = supportActionBar
         actionbar!!.title = "Дедлайны"
         actionbar.setDisplayHomeAsUpEnabled(true)

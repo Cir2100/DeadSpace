@@ -13,11 +13,15 @@ class ExamActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.exam_activity)
+
+        val actionbar = supportActionBar
+        actionbar!!.title = "Расписание сессии"
+        actionbar.setDisplayHomeAsUpEnabled(true)
+        actionbar.setDisplayHomeAsUpEnabled(true)
     }
 
-    fun onClickBackExam(view:View)
-    {
-        val backTestIntent = Intent(this, StartActivity::class.java)
-        startActivity(backTestIntent)
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }
