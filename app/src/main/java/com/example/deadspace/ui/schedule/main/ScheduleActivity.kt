@@ -11,6 +11,7 @@ import android.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.deadspace.DeadSpace
 import com.example.deadspace.data.database.getDatabase
 import com.example.deadspace.databinding.ScheduleActivityBinding
 import com.example.deadspace.ui.start.StartActivity
@@ -78,6 +79,14 @@ class ScheduleActivity : AppCompatActivity() {
             }
         }
 
+        viewModel.weekType.observe(this) { value ->
+            value.let { type ->
+                binding.typeOfWeek.text = if (type == 1) "верхняя" else "нижняя"
+                binding.typeOfWeek.background = if (type == 1) resources.getDrawable(R.drawable.oval_button_red, theme)
+                else resources.getDrawable(R.drawable.oval_button_blue, theme)
+            }
+        }
+
         // show the spinner when [MainViewModel.spinner] is true
         viewModel.currentGroupLive.observe(this) { value ->
             value.let { show ->
@@ -125,7 +134,7 @@ class ScheduleActivity : AppCompatActivity() {
         val addScheduleIntent = Intent(this, AddScheduleActivity::class.java)
         addScheduleIntent.putExtra("group", viewModel.currentGroup)
         addScheduleIntent.putExtra("weekDay", viewModel.weekDay)
-        addScheduleIntent.putExtra("weekType", viewModel.weekType)
+        addScheduleIntent.putExtra("weekType", viewModel.weekType.value!!)
         startActivity(addScheduleIntent)
     }
 

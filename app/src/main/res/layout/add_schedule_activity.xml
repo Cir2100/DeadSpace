@@ -209,7 +209,7 @@
             android:id="@+id/add_pair_button"
             android:layout_width="85dp"
             android:layout_height="25dp"
-            android:background="@drawable/oval_button"
+            android:background="@drawable/oval_button_blue"
             android:text="Готово"
             android:textAlignment="center"
             android:textColor="@color/white"

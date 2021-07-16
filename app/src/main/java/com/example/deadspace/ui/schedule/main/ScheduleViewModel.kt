@@ -43,7 +43,9 @@ class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
     //user input
     //todo: class
 
-    var weekType : Int = 1
+
+    private val _weekType = MutableLiveData<Int>(1)
+    val weekType : LiveData<Int> = _weekType
 
     private val _weekText = MutableLiveData<String>("верхняя")
     val weekText : LiveData<String> = _weekText
@@ -60,11 +62,7 @@ class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
     var currentGroup : String = ""
 
     fun onChangeWeekType(){
-        weekType = kotlin.math.abs(weekType - 1)
-        if (weekType == 1)
-            _weekText.postValue("верхняя")
-        else
-            _weekText.postValue("нижняя")
+        _weekType.postValue(kotlin.math.abs(_weekType.value!! - 1))
         loadDaySchedule()
     }
 
@@ -102,7 +100,7 @@ class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
         viewModelScope.launch {
             try{
                 _spinner.value = true
-                scheduleLoader.loadDay(weekType, weekDay)
+                scheduleLoader.loadDay(weekType.value!!, weekDay)
             } finally {
                 _spinner.value = false
             }
@@ -145,7 +143,7 @@ class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
 
     fun onDeletePair(time : String) {
         viewModelScope.launch {
-            scheduleEditor.deletePair(time, weekType, weekDay, currentGroup)
+            scheduleEditor.deletePair(time, weekType.value!!, weekDay, currentGroup)
             isUsers = true
             loadDaySchedule()
         }
