@@ -20,6 +20,8 @@ import com.example.deadspace.ui.deadlines.main.DeadlinesActivity
 import java.text.SimpleDateFormat
 import java.util.*
 
+//TODO : use strings in errors
+
 class AddDeadlineActivity : AppCompatActivity() {
 
     private lateinit var viewModel: AddDeadlineViewModel
@@ -136,7 +138,7 @@ class AddDeadlineActivity : AppCompatActivity() {
 
             val date = Calendar.getInstance()
             date.set(Calendar.MONTH, month - 1)
-            date.set(Calendar.YEAR, 2021) //TODO : use current year
+
             if (day < 1 || day > date.getActualMaximum(Calendar.DATE)) {
                 binding.deadlineDateInputLayout.error = "Косяк в дне"
                 return false
