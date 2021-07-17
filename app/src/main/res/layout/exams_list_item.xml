@@ -1,73 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout android:id="@+id/Test1"
-    android:layout_width="400dp"
-    android:layout_height="100dp"
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/suai_light_blue"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/exam"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
-    android:layout_marginStart="5dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@color/suai_light_blue"
+    android:padding="@dimen/all_padding">
 
     <TextView
-        android:id="@+id/DateChangeTest1"
+        android:id="@+id/DateChangeExam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="25dp"
-        android:text="9 июня, первая смена (10:00)"
+        android:text="9 июня, "
         android:textColor="@color/suai_dark_blue"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/NameSubject1"
+        android:id="@+id/ChangeExam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="25dp"
+        android:text="первая смена (10:00)"
+        android:textColor="@color/suai_dark_blue"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@id/DateChangeExam"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/NameSubject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Компьютерная графика"
         android:textColor="@color/black"
         android:textSize="18sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/DateChangeExam"/>
+
 
     <TextView
-        android:id="@+id/Auditorium1"
+        android:id="@+id/exam_item_building"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
-        android:layout_marginLeft="25dp"
-        android:text="Аудитория:"
+        android:text="Гаст."
         android:textColor="@color/black"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/NameSubject" />
 
     <TextView
-        android:id="@+id/NumberAuditorium1"
+        android:id="@+id/schedule_item_auditorium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
-        android:layout_marginLeft="170dp"
-        android:text="Гаст. 33-05"
+        android:text="33-05"
         android:textColor="@color/black"
-        android:textSize="15sp" />
-
-    <TextView
-        android:id="@+id/Teacher1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="75dp"
-        android:layout_marginLeft="25dp"
-        android:text="Преподаватель:"
-        android:textColor="@color/black"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@id/exam_item_building"
+        app:layout_constraintTop_toTopOf="@id/exam_item_building"
+        android:layout_marginLeft="5dp"/>
 
     <TextView
         android:id="@+id/NameTeacher1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="75dp"
-        android:layout_marginLeft="170dp"
         android:text="Шахомиров А.В."
         android:textColor="@color/black"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/exam_item_building" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

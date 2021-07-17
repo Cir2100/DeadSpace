@@ -29,6 +29,11 @@ class ScheduleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val actionbar = supportActionBar
+        actionbar!!.title = "Расписание занятий"
+        actionbar.setDisplayHomeAsUpEnabled(true)
+        actionbar.setDisplayHomeAsUpEnabled(true)
+
         prefs =
             getSharedPreferences("settings", Context.MODE_PRIVATE)
 
@@ -61,6 +66,7 @@ class ScheduleActivity : AppCompatActivity() {
         }
 
         binding.nameGroupInput.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
             override fun onQueryTextChange(newText: String): Boolean {
                 return false
             }
@@ -123,12 +129,6 @@ class ScheduleActivity : AppCompatActivity() {
         }
     }
 
-    fun onClickBackListRasp(view: View)
-    {
-        val backListScheduleIntent = Intent(this, StartActivity::class.java)
-        startActivity(backListScheduleIntent)
-    }
-
     fun onClickAddRasp(view: View)
     {
         val addScheduleIntent = Intent(this, AddScheduleActivity::class.java)
@@ -136,6 +136,11 @@ class ScheduleActivity : AppCompatActivity() {
         addScheduleIntent.putExtra("weekDay", viewModel.weekDay)
         addScheduleIntent.putExtra("weekType", viewModel.weekType.value!!)
         startActivity(addScheduleIntent)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
 }

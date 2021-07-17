@@ -16,25 +16,17 @@
         android:theme="@style/Theme.DeadSpace"
         android:name=".DeadSpace">
         <activity
-            android:name=".ui.schedule.add.AddScheduleActivity"
-            android:theme="@style/Theme.DeadSpace.NoActionBar"></activity>
+            android:name=".ui.schedule.add.AddScheduleActivity"/>
         <activity
-            android:name=".ui.schedule.main.ScheduleActivity"
-            android:theme="@style/Theme.DeadSpace.NoActionBar" />
+            android:name=".ui.schedule.main.ScheduleActivity" />
         <activity
-            android:name=".ui.deadlines.add.AddDeadlineActivity"
-            android:theme="@style/Theme.DeadSpace.NoActionBar" />
+            android:name=".ui.deadlines.add.AddDeadlineActivity" />
         <activity
-            android:name=".ui.exams.ExamActivity"
-            android:label="@string/title_activity_test"
-            android:theme="@style/Theme.DeadSpace.NoActionBar" />
+            android:name=".ui.exams.ExamActivity" />
         <activity
-            android:name=".ui.deadlines.main.DeadlinesActivity"
-            android:label="@string/title_activity_deadlines"
-            android:theme="@style/Theme.DeadSpace.NoActionBar" />
+            android:name=".ui.deadlines.main.DeadlinesActivity" />
         <activity
-            android:name=".ui.start.StartActivity"
-            android:theme="@style/Theme.DeadSpace.NoActionBar">
+            android:name=".ui.start.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

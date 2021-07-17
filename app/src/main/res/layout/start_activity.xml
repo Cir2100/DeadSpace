@@ -7,27 +7,14 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-        <TextView
-            android:id="@+id/Navigation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/navigation"
-            android:textColor="@color/suai_dark_blue"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="150dp"
             android:layout_height="130dp"
-            app:layout_constraintTop_toBottomOf="@id/Navigation"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:scaleType="fitStart"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/fon_ellips" />
 
         <TextView
@@ -89,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="100dp"
             android:textAlignment="center"
-            app:layout_constraintTop_toBottomOf="@id/Navigation"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:text="@string/number"
@@ -125,7 +112,7 @@
         android:id="@+id/ListDeadlines"
         android:layout_width="300dp"
         android:layout_height="100dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="100dp"
         app:layout_constraintTop_toBottomOf="@id/time_pair_textview"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

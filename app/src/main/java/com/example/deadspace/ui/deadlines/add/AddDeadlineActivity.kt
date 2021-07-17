@@ -30,6 +30,11 @@ class AddDeadlineActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val actionbar = supportActionBar
+        actionbar!!.title = "Добавление дедлайна"
+        actionbar.setDisplayHomeAsUpEnabled(true)
+        actionbar.setDisplayHomeAsUpEnabled(true)
+
         val database = getDatabase(this)
         viewModel = ViewModelProvider(
             this,
@@ -47,10 +52,14 @@ class AddDeadlineActivity : AppCompatActivity() {
                 binding.deadlineDisciplineInput.text.toString(),
                 binding.deadlineDateInput.text.toString()
             )
-            onClickBackAddDeadlines(binding.closeButton)
-            }
+            onBackPressed()
         }
 
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
         binding.deadlineDateInput.setOnKeyListener(object : View.OnKeyListener {
             override fun onKey(v: View?, keyCode: Int, event: KeyEvent): Boolean {
                 // if the event is a key down event on the enter button

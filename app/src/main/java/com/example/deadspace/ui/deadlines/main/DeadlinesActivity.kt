@@ -28,6 +28,11 @@ class DeadlinesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val actionbar = supportActionBar
+        actionbar!!.title = "Дедлайны"
+        actionbar.setDisplayHomeAsUpEnabled(true)
+        actionbar.setDisplayHomeAsUpEnabled(true)
+
         val database = getDatabase(this)
         viewModel = ViewModelProvider(
             this,
@@ -43,7 +48,6 @@ class DeadlinesActivity : AppCompatActivity() {
         binding.deadlineList.layoutManager = LinearLayoutManager(this)
 
         viewModel.myDeadlineList.observe(this) { value ->
-           // adapter.updateItems(value.sortedBy { it.lastDate })
         value?.let {
                 adapter.updateItems(value)
             }
@@ -70,9 +74,8 @@ class DeadlinesActivity : AppCompatActivity() {
         startActivity(addDeadlineAddDeadlineIntent)
     }
 
-    fun onClickBackListDeadlines(view:View)
-    {
-        val backListDeadlinesIntent = Intent(this, StartActivity::class.java)
-        startActivity(backListDeadlinesIntent)
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

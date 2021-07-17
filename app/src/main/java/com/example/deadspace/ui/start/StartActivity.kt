@@ -18,8 +18,10 @@ class StartActivity : AppCompatActivity() {
     private lateinit var viewModel: StartViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.start_activity)
+
+        val actionbar = supportActionBar
+        actionbar!!.title = "Навигация"
 
 
         val database = getDatabase(this)
