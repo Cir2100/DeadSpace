@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:iconifiedByDefault="false"
             android:queryHint="Введите группу"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -48,6 +49,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:checked="@{viewModel.isUsers}"
+            android:fontFamily="@font/exo_2"
             android:onCheckedChanged="@{ (button, bool) ->  viewModel.onChangeIsUser(bool)}"
             android:text="Ваше расписание"
             app:layout_constraintEnd_toEndOf="parent"
@@ -59,6 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
+            android:fontFamily="@font/exo_2"
             android:text="30 июня"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -73,6 +76,7 @@
             android:background="@drawable/oval_button_blue"
             android:onClick="@{() -> viewModel.onChangeWeekType()}"
             android:text="@{viewModel.weekText}"
+            android:fontFamily="@font/exo_2_bold"
             android:textColor="@color/white"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -85,6 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="5dp"
+            android:fontFamily="@font/exo_2"
             android:text="неделя"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -108,78 +113,85 @@
                 android:id="@+id/monday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="true"
+                android:fontFamily="@font/exo_2"
+                android:onClick="@{() -> viewModel.onClickWeekDay(0)}"
                 android:paddingHorizontal="10dp"
                 android:text="Пн"
                 android:textColor="@{viewModel.colors[0]}"
-                android:textSize="20sp"
-                android:clickable="true"
-                android:onClick="@{() -> viewModel.onClickWeekDay(0)}"/>
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/tuesday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="true"
+                android:fontFamily="@font/exo_2"
+                android:onClick="@{() -> viewModel.onClickWeekDay(1)}"
                 android:paddingHorizontal="10dp"
                 android:text="Вт"
                 android:textColor="@{viewModel.colors[1]}"
-                android:textSize="20sp"
-                android:clickable="true"
-                android:onClick="@{() -> viewModel.onClickWeekDay(1)}"/>
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/wednesday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="true"
+                android:fontFamily="@font/exo_2"
+                android:onClick="@{() -> viewModel.onClickWeekDay(2)}"
                 android:paddingHorizontal="10dp"
                 android:text="Ср"
                 android:textColor="@{viewModel.colors[2]}"
-                android:textSize="20sp"
-                android:clickable="true"
-                android:onClick="@{() -> viewModel.onClickWeekDay(2)}"/>
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/thursday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="true"
+                android:fontFamily="@font/exo_2"
+                android:onClick="@{() -> viewModel.onClickWeekDay(3)}"
                 android:paddingHorizontal="10dp"
                 android:text="Чт"
                 android:textColor="@{viewModel.colors[3]}"
-                android:textSize="20sp"
-                android:clickable="true"
-                android:onClick="@{() -> viewModel.onClickWeekDay(3)}"/>
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/friday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="true"
+                android:fontFamily="@font/exo_2"
+                android:onClick="@{() -> viewModel.onClickWeekDay(4)}"
                 android:paddingHorizontal="10dp"
                 android:text="Пт"
                 android:textColor="@{viewModel.colors[4]}"
-                android:textSize="20sp"
-                android:clickable="true"
-                android:onClick="@{() -> viewModel.onClickWeekDay(4)}"/>
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/saturday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="true"
+                android:fontFamily="@font/exo_2"
+                android:onClick="@{() -> viewModel.onClickWeekDay(5)}"
                 android:paddingHorizontal="10dp"
                 android:text="Сб"
                 android:textColor="@{viewModel.colors[5]}"
-                android:textSize="20sp"
-                android:clickable="true"
-                android:onClick="@{() -> viewModel.onClickWeekDay(5)}"/>
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/all_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="true"
+                android:fontFamily="@font/exo_2"
+                android:onClick="@{() -> viewModel.onClickWeekDay(6)}"
                 android:paddingHorizontal="10dp"
                 android:text="..."
                 android:textColor="@{viewModel.colors[6]}"
-                android:textSize="20sp"
-                android:clickable="true"
-                android:onClick="@{() -> viewModel.onClickWeekDay(6)}"/>
+                android:textSize="20sp" />
 
         </LinearLayout>
 
