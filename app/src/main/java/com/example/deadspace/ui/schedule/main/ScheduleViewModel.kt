@@ -43,12 +43,17 @@ class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
     //user input
     //todo: class
 
+    private fun Boolean.toInt() = if (this) 1 else 0
+
+
+    private var _weekTypeBool : Boolean = true //TODO : costil
 
     private val _weekType = MutableLiveData<Int>(1)
     val weekType : LiveData<Int> = _weekType
 
-    private val _weekText = MutableLiveData<String>("верхняя")
+    private val _weekText = MutableLiveData<String>()
     val weekText : LiveData<String> = _weekText
+
 
     //TODO : interface and cash
     private val _colors = MutableLiveData<List<Int>>(listOf(Color.RED, Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE))
@@ -62,6 +67,7 @@ class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
     var currentGroup : String = ""
 
     fun onChangeWeekType(){
+        _weekTypeBool = !_weekTypeBool
         _weekType.postValue(kotlin.math.abs(_weekType.value!! - 1))
         loadDaySchedule()
     }
@@ -91,6 +97,7 @@ class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
     //TODO: init user cash
 
     init {
+        Log.e("dsf", _weekType.value.toString())
         loadDaySchedule()
     }
 
@@ -100,7 +107,7 @@ class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
         viewModelScope.launch {
             try{
                 _spinner.value = true
-                scheduleLoader.loadDay(weekType.value!!, weekDay)
+                scheduleLoader.loadDay(_weekTypeBool.toInt(), weekDay)
             } finally {
                 _spinner.value = false
             }
