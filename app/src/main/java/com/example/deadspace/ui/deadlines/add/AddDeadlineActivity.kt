@@ -20,7 +20,7 @@ import com.example.deadspace.ui.deadlines.main.DeadlinesActivity
 import java.text.SimpleDateFormat
 import java.util.*
 
-//TODO : use strings in errors
+//TODO : use strings in errors and check errors normal 1 and 2
 
 class AddDeadlineActivity : AppCompatActivity() {
 
@@ -47,43 +47,39 @@ class AddDeadlineActivity : AppCompatActivity() {
 
         binding.addDeadlineButton.setOnClickListener {
             if (isValidate()) {
-            viewModel.onAddDeadline(
-                binding.deadlineTittleInput.text.toString(),
-                binding.deadlineDisciplineInput.text.toString(),
-                binding.deadlineDateInput.text.toString()
-            )
-            onBackPressed()
-        }
+                viewModel.onAddDeadline(
+                    binding.deadlineTittleInput.text.toString(),
+                    binding.deadlineDisciplineInput.text.toString(),
+                    binding.deadlineDateInput.text.toString()
+                )
+                onBackPressed()
+            }
 
+            binding.deadlineDateInput.setOnKeyListener(object : View.OnKeyListener {
+                override fun onKey(v: View?, keyCode: Int, event: KeyEvent): Boolean {
+                    // if the event is a key down event on the enter button
+                    if (event.action == KeyEvent.ACTION_DOWN &&
+                        keyCode == KeyEvent.KEYCODE_ENTER
+                    ) {
+                        //скрываем клавиатуру
+                        var imm: InputMethodManager =
+                            getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                        if (v != null) {
+                            imm.hideSoftInputFromWindow(v.windowToken, 0)
+                        }
+                        binding.deadlineDateInput.isCursorVisible = false
+
+                        return true
+                    }
+                    return false
+                }
+            })
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
-        binding.deadlineDateInput.setOnKeyListener(object : View.OnKeyListener {
-            override fun onKey(v: View?, keyCode: Int, event: KeyEvent): Boolean {
-                // if the event is a key down event on the enter button
-                if (event.action == KeyEvent.ACTION_DOWN &&
-                    keyCode == KeyEvent.KEYCODE_ENTER
-                ) {
-                    //скрываем клавиатуру
-                    var imm : InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                    if (v != null) {
-                        imm.hideSoftInputFromWindow(v.windowToken, 0)
-                    }
-                    binding.deadlineDateInput.isCursorVisible = false
-
-                    return true
-                }
-                return false
-            }
-        })
-    }
-
-    fun onClickBackAddDeadlines(view:View)
-    {
-        val backAddDeadlinesIntent = Intent(this, DeadlinesActivity::class.java)
-        startActivity(backAddDeadlinesIntent)
     }
 
     private fun setupListeners() {

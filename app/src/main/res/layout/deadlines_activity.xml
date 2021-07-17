@@ -3,10 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
@@ -24,7 +20,7 @@
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/deadline_list"
@@ -48,6 +44,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/current_date_textview" />
+
+        <ImageButton
+            android:id="@+id/imageView5"
+            android:layout_width="182dp"
+            android:layout_height="30dp"
+            android:scaleType="fitStart"
+            android:background="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:srcCompat="@drawable/background_add_click_button"
+            android:onClick="onClickAddDeadline" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
