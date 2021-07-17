@@ -22,7 +22,6 @@ class DeadlinesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.deadlines_activity)
 
         val actionbar = supportActionBar
         actionbar!!.title = "Дедлайны"

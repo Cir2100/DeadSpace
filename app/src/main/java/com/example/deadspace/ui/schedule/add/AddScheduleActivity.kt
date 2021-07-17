@@ -18,7 +18,6 @@ class AddScheduleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.add_schedule_activity)
         val actionbar = supportActionBar
         actionbar!!.title = "Добавление занятия"
         actionbar.setDisplayHomeAsUpEnabled(true)
@@ -34,6 +33,11 @@ class AddScheduleActivity : AppCompatActivity() {
         val binding : AddScheduleActivityBinding = DataBindingUtil.setContentView(this, R.layout.add_schedule_activity)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+
+        binding.addPairButton.setOnClickListener {
+            //viewModel.addPair()
+            onBackPressed()
+        }
 
     }
 

@@ -28,7 +28,6 @@ class ScheduleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.add_schedule_activity)
         val actionbar = supportActionBar
         actionbar!!.title = "Расписание занятий"
         actionbar.setDisplayHomeAsUpEnabled(true)
