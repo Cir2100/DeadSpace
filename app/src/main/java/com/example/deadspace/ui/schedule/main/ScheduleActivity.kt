@@ -3,22 +3,21 @@ package com.example.deadspace.ui.schedule.main
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import com.example.deadspace.R
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.view.Gravity
 import android.view.View
 import android.widget.SearchView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.deadspace.DeadSpace
+import com.example.deadspace.R
 import com.example.deadspace.data.database.getDatabase
 import com.example.deadspace.databinding.ScheduleActivityBinding
-import com.example.deadspace.ui.start.StartActivity
 import com.example.deadspace.ui.schedule.add.AddScheduleActivity
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class ScheduleActivity : AppCompatActivity() {
 
@@ -26,6 +25,7 @@ class ScheduleActivity : AppCompatActivity() {
     private lateinit var prefs: SharedPreferences
 
     private lateinit var viewModel: ScheduleViewModel
+    private lateinit var binding : ScheduleActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +33,7 @@ class ScheduleActivity : AppCompatActivity() {
         val actionbar = supportActionBar
         actionbar!!.title = "Расписание занятий"
         actionbar.setDisplayHomeAsUpEnabled(true)
-        actionbar.setDisplayHomeAsUpEnabled(true)
+
 
         prefs =
             getSharedPreferences("settings", Context.MODE_PRIVATE)
@@ -45,15 +45,19 @@ class ScheduleActivity : AppCompatActivity() {
         ).get(ScheduleViewModel::class.java)
         loadPreferences()
 
-        val binding : ScheduleActivityBinding = DataBindingUtil.setContentView(this, R.layout.schedule_activity)
+        binding = DataBindingUtil.setContentView(this, R.layout.schedule_activity)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+
+        //current group
+        binding.nameGroupInput.setQuery(viewModel.currentGroup, true)
+        binding.nameGroupInput.gravity = Gravity.RIGHT
 
         //Current date
         val date = Calendar.getInstance().time
         val formatter = SimpleDateFormat("dd MMMM")
-        val formatedDate = formatter.format(date)
-        binding.currentDateTextview.text = formatedDate
+        val formattedDate = formatter.format(date)
+        binding.currentDateTextview.text = formattedDate
 
         //List
         val adapter = ScheduleListAdapter(viewModel)
@@ -65,6 +69,7 @@ class ScheduleActivity : AppCompatActivity() {
                 adapter.updateItems(value)
             }
         }
+
 
         binding.nameGroupInput.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
@@ -93,15 +98,6 @@ class ScheduleActivity : AppCompatActivity() {
                 else resources.getDrawable(R.drawable.oval_button_blue, theme)
             }
         }
-
-        // show the spinner when [MainViewModel.spinner] is true
-        viewModel.currentGroupLive.observe(this) { value ->
-            value.let { show ->
-                binding.costil.text = value
-            }
-        }
-
-        //TODO : delete this
 
     }
 

@@ -33,7 +33,6 @@ class AddDeadlineActivity : AppCompatActivity() {
         val actionbar = supportActionBar
         actionbar!!.title = "Добавление дедлайна"
         actionbar.setDisplayHomeAsUpEnabled(true)
-        actionbar.setDisplayHomeAsUpEnabled(true)
 
         val database = getDatabase(this)
         viewModel = ViewModelProvider(

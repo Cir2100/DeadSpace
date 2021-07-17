@@ -31,7 +31,6 @@ class DeadlinesActivity : AppCompatActivity() {
         val actionbar = supportActionBar
         actionbar!!.title = "Дедлайны"
         actionbar.setDisplayHomeAsUpEnabled(true)
-        actionbar.setDisplayHomeAsUpEnabled(true)
 
         val database = getDatabase(this)
         viewModel = ViewModelProvider(

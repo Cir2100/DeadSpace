@@ -29,7 +29,6 @@ class AddScheduleActivity : AppCompatActivity() {
         val actionbar = supportActionBar
         actionbar!!.title = "Добавление занятия"
         actionbar.setDisplayHomeAsUpEnabled(true)
-        actionbar.setDisplayHomeAsUpEnabled(true)
 
         val database = getDatabase(this)
 

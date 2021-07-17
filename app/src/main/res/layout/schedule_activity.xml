@@ -10,6 +10,7 @@
             type="com.example.deadspace.ui.schedule.main.ScheduleViewModel" />
     </data>
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/relativeLayout_01"
         android:layout_width="match_parent"
@@ -17,36 +18,26 @@
         android:padding="@dimen/all_padding">
 
         <TextView
-            android:id="@+id/costil"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
-            android:text="T"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <TextView
             android:id="@+id/EnterGroupNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_marginTop="10dp"
             android:text="@string/enterGroupNumber"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/costil" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <SearchView
             android:id="@+id/name_group_input"
-            android:layout_width="300dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:iconifiedByDefault="false"
-            app:layout_constraintBottom_toBottomOf="@id/EnterGroupNumber"
-            app:layout_constraintStart_toEndOf="@id/EnterGroupNumber" />
-
+            android:queryHint="Введите группу"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/is_users_switcher"
@@ -101,10 +92,11 @@
 
         <LinearLayout
             android:id="@+id/background"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@color/suai_dark_blue"
+            android:gravity="center"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -208,29 +200,20 @@
             app:layout_constraintStart_toStartOf="@id/pair_list"
             app:layout_constraintTop_toTopOf="@id/pair_list" />
 
-        <ImageButton
-            android:id="@+id/imageView5"
-            android:layout_width="182dp"
-            android:layout_height="30dp"
-            android:scaleType="fitStart"
-            android:background="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:srcCompat="@drawable/background_add_click_button"
-            android:onClick="onClickAddRasp" />
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/imageView5"
-            app:layout_constraintEnd_toEndOf="@id/imageView5"
-            app:layout_constraintTop_toTopOf="@id/imageView5"
-            android:textSize="18sp"
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/circle_button"
+            android:onClick="onClickAddRasp"
+            android:text="+"
+            android:textAlignment="center"
             android:textColor="@color/white"
+            android:textSize="30sp"
             android:textStyle="bold"
-            android:text="Добавить занятие" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
