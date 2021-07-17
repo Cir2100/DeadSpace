@@ -12,7 +12,9 @@
         android:id="@+id/relativeLayout_01"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/all_padding">
+        android:padding="@dimen/all_padding"
+        android:background="@drawable/main_background_grad_and_vector">
+
 
         <TextView
             android:id="@+id/EnterNumberPair"

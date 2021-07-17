@@ -10,7 +10,8 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
-        android:padding="@dimen/all_padding">
+        android:padding="@dimen/all_padding"
+        android:background="@drawable/main_background_grad_and_vector">
 
         <TextView
             android:id="@+id/EnterDeadlineName"
