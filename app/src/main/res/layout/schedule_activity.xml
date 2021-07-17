@@ -15,7 +15,9 @@
         android:id="@+id/relativeLayout_01"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/all_padding">
+        android:padding="@dimen/all_padding"
+        android:background="@drawable/main_background_grad_and_vector">
+
 
         <TextView
             android:id="@+id/EnterGroupNumber"
@@ -200,20 +202,20 @@
             app:layout_constraintStart_toStartOf="@id/pair_list"
             app:layout_constraintTop_toTopOf="@id/pair_list" />
 
-        <Button
+        <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/circle_button"
             android:onClick="onClickAddRasp"
-            android:text="+"
-            android:textAlignment="center"
-            android:textColor="@color/white"
+            android:src="@drawable/small_white_plus_bold"
+            android:scaleType="fitCenter"
             android:textSize="30sp"
-            android:textStyle="bold"
+
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

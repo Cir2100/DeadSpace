@@ -59,6 +59,12 @@ class DeadlinesActivity : AppCompatActivity() {
             }
         }
 
+        viewModel.sizeDeadlineList.observe(this) { value ->
+            value.let { size ->
+                binding.isNothingImageview.visibility = if (size == 0) View.VISIBLE else View.GONE
+            }
+        }
+
         //Current date
         val date = Calendar.getInstance().time
         val formatter = SimpleDateFormat("dd MMMM")
