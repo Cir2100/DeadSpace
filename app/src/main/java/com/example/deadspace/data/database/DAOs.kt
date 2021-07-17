@@ -10,6 +10,9 @@ interface MyPairDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(myPairData: List<MyPairData>)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertOne(myPairData: MyPairData)
+
     @Query("SELECT * FROM MyPairData")
     suspend fun getAll(): List<MyPairData>
 

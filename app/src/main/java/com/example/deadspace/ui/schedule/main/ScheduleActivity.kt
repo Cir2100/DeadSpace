@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import com.example.deadspace.R
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.SearchView
 import androidx.databinding.DataBindingUtil
@@ -117,6 +118,7 @@ class ScheduleActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         loadPreferences()
+        viewModel.loadDaySchedule()  //TODO don't use this
     }
 
     private fun loadPreferences() {

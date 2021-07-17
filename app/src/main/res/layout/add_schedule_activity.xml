@@ -36,9 +36,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_1"
+            android:id="@+id/schedule_number_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/EnterNumberPair">
 
@@ -46,7 +48,9 @@
                 android:id="@+id/schedule_number_input"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:hint="..." />
+                android:hint="..."
+                android:singleLine="true"
+                android:inputType="numberDecimal"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -57,12 +61,13 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_1" />
+            app:layout_constraintTop_toBottomOf="@id/schedule_number_input_layout" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:endIconMode="clear_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/EnterPairType">
 
@@ -70,7 +75,8 @@
                 android:id="@+id/schedule_type_input"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:hint="..." />
+                android:hint="..."
+                android:singleLine="true"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -95,9 +101,11 @@
             app:layout_constraintTop_toBottomOf="@id/input_2" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_3"
+            android:id="@+id/schedule_title_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/EnterPairName">
 
@@ -105,7 +113,8 @@
                 android:id="@+id/schedule_title_input"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:hint="..." />
+                android:hint="..."
+                android:singleLine="true"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -117,12 +126,13 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_3" />
+            app:layout_constraintTop_toBottomOf="@id/schedule_title_input_layout" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:endIconMode="clear_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/EnterAdress">
 
@@ -130,7 +140,8 @@
                 android:id="@+id/schedule_building_input"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:hint="..." />
+                android:hint="..."
+                android:singleLine="true"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -148,6 +159,7 @@
             android:id="@+id/input_5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:endIconMode="clear_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/EnterClass">
 
@@ -155,7 +167,8 @@
                 android:id="@+id/schedule_auditorium_input"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:hint="..." />
+                android:hint="..."
+                android:singleLine="true"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -172,6 +185,7 @@
             android:id="@+id/input_6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:endIconMode="clear_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/EnterTeacher">
 
@@ -179,7 +193,8 @@
                 android:id="@+id/schedule_teacher_input"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:hint="..." />
+                android:hint="..."
+                android:singleLine="true"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button

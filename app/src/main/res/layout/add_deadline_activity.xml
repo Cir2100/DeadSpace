@@ -34,7 +34,7 @@
             app:layout_constraintTop_toTopOf="@id/EnterDeadlineName" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/deadline_tittle_input_layout"
+            android:id="@+id/deadline_title_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:endIconMode="clear_text"
@@ -43,7 +43,7 @@
             app:layout_constraintTop_toBottomOf="@id/EnterDeadlineName">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/deadline_tittle_input"
+                android:id="@+id/deadline_title_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="..."
@@ -57,8 +57,8 @@
             android:text="Дисциплина:"
             android:textColor="@color/black"
             android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="@id/deadline_tittle_input_layout"
-            app:layout_constraintTop_toBottomOf="@id/deadline_tittle_input_layout" />
+            app:layout_constraintStart_toStartOf="@id/deadline_title_input_layout"
+            app:layout_constraintTop_toBottomOf="@id/deadline_title_input_layout" />
 
         <TextView
             android:layout_width="wrap_content"

@@ -48,33 +48,34 @@ class AddDeadlineActivity : AppCompatActivity() {
         binding.addDeadlineButton.setOnClickListener {
             if (isValidate()) {
                 viewModel.onAddDeadline(
-                    binding.deadlineTittleInput.text.toString(),
+                    binding.deadlineTitleInput.text.toString(),
                     binding.deadlineDisciplineInput.text.toString(),
                     binding.deadlineDateInput.text.toString()
                 )
                 onBackPressed()
             }
-
-            binding.deadlineDateInput.setOnKeyListener(object : View.OnKeyListener {
-                override fun onKey(v: View?, keyCode: Int, event: KeyEvent): Boolean {
-                    // if the event is a key down event on the enter button
-                    if (event.action == KeyEvent.ACTION_DOWN &&
-                        keyCode == KeyEvent.KEYCODE_ENTER
-                    ) {
-                        //скрываем клавиатуру
-                        var imm: InputMethodManager =
-                            getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                        if (v != null) {
-                            imm.hideSoftInputFromWindow(v.windowToken, 0)
-                        }
-                        binding.deadlineDateInput.isCursorVisible = false
-
-                        return true
-                    }
-                    return false
-                }
-            })
         }
+
+        binding.deadlineDateInput.setOnKeyListener(object : View.OnKeyListener {
+            override fun onKey(v: View?, keyCode: Int, event: KeyEvent): Boolean {
+                // if the event is a key down event on the enter button
+                if (event.action == KeyEvent.ACTION_DOWN &&
+                    keyCode == KeyEvent.KEYCODE_ENTER
+                ) {
+                    //скрываем клавиатуру
+                    var imm: InputMethodManager =
+                        getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    if (v != null) {
+                        imm.hideSoftInputFromWindow(v.windowToken, 0)
+                    }
+                    binding.deadlineDateInput.isCursorVisible = false
+                    //TODO : auto click addButton
+                    return true
+                }
+                return false
+            }
+        })
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -83,7 +84,7 @@ class AddDeadlineActivity : AppCompatActivity() {
     }
 
     private fun setupListeners() {
-        binding.deadlineTittleInput.addTextChangedListener(TextFieldValidation(binding.deadlineTittleInput))
+        binding.deadlineTitleInput.addTextChangedListener(TextFieldValidation(binding.deadlineTitleInput))
         binding.deadlineDisciplineInput.addTextChangedListener(TextFieldValidation(binding.deadlineDisciplineInput))
         binding.deadlineDateInput.addTextChangedListener(TextFieldValidation(binding.deadlineDateInput))
     }
@@ -92,12 +93,12 @@ class AddDeadlineActivity : AppCompatActivity() {
         validateTitle() && validateDiscipline() && validateLastDate()
 
     private fun validateTitle() : Boolean {
-        if (binding.deadlineTittleInput.text.toString().trim().isEmpty()) {
-            binding.deadlineTittleInputLayout.error = "Название не должно быть пустым"
-            binding.deadlineTittleInput.requestFocus()
+        if (binding.deadlineTitleInput.text.toString().trim().isEmpty()) {
+            binding.deadlineTitleInputLayout.error = "Название не должно быть пустым"
+            binding.deadlineTitleInput.requestFocus()
             return false
         } else {
-            binding.deadlineTittleInputLayout.isErrorEnabled = false
+            binding.deadlineTitleInputLayout.isErrorEnabled = false
         }
         return true
     }
@@ -165,7 +166,7 @@ class AddDeadlineActivity : AppCompatActivity() {
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             // checking ids of each text field and applying functions accordingly.
             when (view.id) {
-                R.id.deadline_tittle_input -> {
+                R.id.deadline_title_input -> {
                     validateTitle()
                 }
                 R.id.deadline_discipline_input -> {
@@ -175,9 +176,7 @@ class AddDeadlineActivity : AppCompatActivity() {
                     validateLastDate()
                 }
             }
-
         }
-
     }
 
 }

@@ -12,8 +12,8 @@
 
     <ImageButton
         android:id="@+id/schedule_item_delete_button"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:background="@android:color/transparent"
         android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"

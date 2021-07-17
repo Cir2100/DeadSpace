@@ -13,6 +13,7 @@ import com.example.deadspace.ui.singleArgViewModelFactory
 import kotlinx.coroutines.launch
 import java.io.IOException
 import java.lang.Math.abs
+import java.util.*
 
 class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
 
@@ -33,10 +34,6 @@ class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
 
 
     private val _spinner = MutableLiveData<Boolean>(false)
-
-    /**
-     * Show a loading spinner if true
-     */
     val spinner: LiveData<Boolean>
         get() = _spinner
 
@@ -97,20 +94,17 @@ class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
     //TODO: init user cash
 
     init {
-        Log.e("dsf", _weekType.value.toString())
+        val date = Calendar.getInstance()
+        val day = if (date.get(Calendar.DAY_OF_WEEK) - 2 >= 0) date.get(Calendar.DAY_OF_WEEK) - 2 else 6
+        onClickWeekDay(day) // TODO : refact this
         loadDaySchedule()
     }
 
     //TODO : load day after add and date
 
-    private fun loadDaySchedule() {
+    fun loadDaySchedule() {
         viewModelScope.launch {
-            try{
-                _spinner.value = true
-                scheduleLoader.loadDay(_weekTypeBool.toInt(), weekDay)
-            } finally {
-                _spinner.value = false
-            }
+            scheduleLoader.loadDay(_weekTypeBool.toInt(), weekDay)
         }
     }
 
@@ -151,7 +145,7 @@ class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
     fun onDeletePair(time : String) {
         viewModelScope.launch {
             scheduleEditor.deletePair(time, weekType.value!!, weekDay, currentGroup)
-            isUsers = true
+            isUsers = true //TODO it's don't working
             loadDaySchedule()
         }
     }

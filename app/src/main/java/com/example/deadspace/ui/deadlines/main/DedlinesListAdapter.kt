@@ -49,7 +49,6 @@ class DeadlinesListAdapter(val viewModel: DeadlineViewModel) :
             holder.doneButton?.setImageDrawable(resources.getDrawable(R.drawable.undone_deadline, context.theme))
 
         holder.deleteButton?.setOnClickListener {
-           Log.e("dsf", item.title)
             viewModel.onDeleteDeadline(
                 item.title,
                 item.discipline,
