@@ -40,7 +40,7 @@ class AddScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel()  {
                 name = title,
                 teachers = (if (teachers.isNotEmpty()) teachers else "-"),
                 groups = "-",
-                address = (if (building.isNotEmpty()) building else "-") + (if (auditorium.isNotEmpty()) auditorium else "-")
+                address = (if (building.isNotEmpty()) building else "-") + "," + (if (auditorium.isNotEmpty()) auditorium else "-")
             )
         }
     }
