@@ -5,9 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/main_background_grad_and_vector"
     android:orientation="vertical"
-    android:padding="@dimen/all_padding"
-    android:background="@drawable/main_background_grad_and_vector">
+    android:padding="@dimen/all_padding">
 
 
     <TextView

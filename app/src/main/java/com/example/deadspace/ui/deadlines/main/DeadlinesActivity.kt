@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.deadspace.data.database.getDatabase
 import com.example.deadspace.databinding.DeadlinesActivityBinding
+import com.example.deadspace.databinding.StartActivityBinding
 import com.example.deadspace.ui.deadlines.add.AddDeadlineActivity
 import java.text.SimpleDateFormat
 import java.util.*
@@ -33,8 +34,9 @@ class DeadlinesActivity : AppCompatActivity() {
             DeadlineViewModel.FACTORY(database.myDeadlinesDAO)
         ).get(DeadlineViewModel::class.java)
 
-        val binding : DeadlinesActivityBinding = DataBindingUtil.setContentView(this, R.layout.deadlines_activity)
-        binding.lifecycleOwner = this
+        val binding = DeadlinesActivityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        //binding.lifecycleOwner = this
 
         //List
         val adapter = DeadlinesListAdapter(viewModel)

@@ -108,6 +108,12 @@ class ScheduleActivity : AppCompatActivity() {
             }
         }
 
+        binding.isUsersSwitcher.setOnCheckedChangeListener { _, isChecked ->
+            viewModel.onChangeIsUser(isChecked)
+        }
+
+        binding.isUsersSwitcher.isChecked = viewModel.isUsers
+
     }
 
     override fun onPause() {

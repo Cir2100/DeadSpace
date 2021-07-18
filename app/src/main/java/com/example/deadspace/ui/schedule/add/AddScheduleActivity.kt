@@ -16,6 +16,7 @@ import com.example.deadspace.R
 import com.example.deadspace.data.database.getDatabase
 import com.example.deadspace.databinding.AddDeadlineActivityBinding
 import com.example.deadspace.databinding.AddScheduleActivityBinding
+import com.example.deadspace.databinding.StartActivityBinding
 import com.example.deadspace.ui.schedule.main.ScheduleActivity
 
 class AddScheduleActivity : AppCompatActivity() {
@@ -37,8 +38,8 @@ class AddScheduleActivity : AppCompatActivity() {
             AddScheduleViewModel.FACTORY(database.myPairDAO)
         ).get(AddScheduleViewModel::class.java)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.add_schedule_activity)
-        binding.lifecycleOwner = this
+        binding = AddScheduleActivityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         setupListeners()
 

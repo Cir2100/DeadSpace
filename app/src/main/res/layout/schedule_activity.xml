@@ -15,8 +15,8 @@
         android:id="@+id/relativeLayout_01"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/all_padding"
-        android:background="@drawable/main_background_grad_and_vector">
+        android:background="@drawable/main_background_grad_and_vector"
+        android:padding="@dimen/all_padding">
 
 
         <TextView
@@ -48,9 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:checked="@{viewModel.isUsers}"
             android:fontFamily="@font/exo_2"
-            android:onCheckedChanged="@{ (button, bool) ->  viewModel.onChangeIsUser(bool)}"
             android:text="Ваше расписание"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

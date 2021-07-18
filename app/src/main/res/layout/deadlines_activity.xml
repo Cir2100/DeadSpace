@@ -1,80 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="@dimen/all_padding"
-        android:background="@drawable/main_background_grad_and_vector">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background_grad_and_vector"
+    android:orientation="vertical"
+    android:padding="@dimen/all_padding">
 
 
-        <TextView
-            android:id="@+id/current_date_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Сегодня 30 июня"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/current_date_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Сегодня 30 июня"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/deadline_list"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/current_date_textview"
-            tools:listitem="@layout/deadline_list_item" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/deadline_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/current_date_textview"
+        tools:listitem="@layout/deadline_list_item" />
 
-        <ImageView
-            android:id="@+id/is_nothing_imageview"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:scaleType="centerInside"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/current_date_textview"
-            app:srcCompat="@drawable/main_background_none" />
+    <ImageView
+        android:id="@+id/is_nothing_imageview"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/current_date_textview"
+        app:srcCompat="@drawable/main_background_none" />
 
 
-        <TextView
-            android:id="@+id/is_nothing_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Всё сдано"
-            android:textColor="@color/suai_dark_blue"
-            android:textSize="25sp"
-            android:textStyle="bold|italic"
-            app:layout_constraintBottom_toBottomOf="@id/is_nothing_imageview"
-            app:layout_constraintLeft_toLeftOf="@id/is_nothing_imageview"
-            app:layout_constraintRight_toRightOf="@id/is_nothing_imageview"
-            app:layout_constraintTop_toTopOf="@id/is_nothing_imageview" />
+    <TextView
+        android:id="@+id/is_nothing_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Всё сдано"
+        android:textColor="@color/suai_dark_blue"
+        android:textSize="25sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="@id/is_nothing_imageview"
+        app:layout_constraintLeft_toLeftOf="@id/is_nothing_imageview"
+        app:layout_constraintRight_toRightOf="@id/is_nothing_imageview"
+        app:layout_constraintTop_toTopOf="@id/is_nothing_imageview" />
 
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/circle_button"
-            android:onClick="onClickAddDeadline"
-            android:src="@drawable/small_white_plus_bold"
-            android:scaleType="fitCenter"
-            android:textSize="30sp"
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/circle_button"
+        android:onClick="onClickAddDeadline"
+        android:src="@drawable/small_white_plus_bold"
+        android:scaleType="fitCenter"
+        android:textSize="30sp"
 
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+</androidx.constraintlayout.widget.ConstraintLayout>
