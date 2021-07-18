@@ -6,7 +6,7 @@
     android:id="@+id/pair_1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
     android:background="@color/suai_light_blue"
     android:padding="@dimen/all_padding">
 

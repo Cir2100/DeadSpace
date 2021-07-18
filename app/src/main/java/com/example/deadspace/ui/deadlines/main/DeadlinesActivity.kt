@@ -9,14 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.deadspace.data.database.getDatabase
 import com.example.deadspace.databinding.DeadlinesActivityBinding
-import com.example.deadspace.databinding.ScheduleActivityBinding
 import com.example.deadspace.ui.deadlines.add.AddDeadlineActivity
-import com.example.deadspace.ui.schedule.main.ScheduleListAdapter
-import com.example.deadspace.ui.schedule.main.ScheduleViewModel
-import com.example.deadspace.ui.start.StartActivity
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -56,20 +51,16 @@ class DeadlinesActivity : AppCompatActivity() {
         viewModel.sizeDeadlineList.observe(this) { value ->
             value.let { size ->
                 binding.isNothingTextview.visibility = if (size == 0) View.VISIBLE else View.GONE
-            }
-        }
-
-        viewModel.sizeDeadlineList.observe(this) { value ->
-            value.let { size ->
                 binding.isNothingImageview.visibility = if (size == 0) View.VISIBLE else View.GONE
+                binding.deadlineList.visibility = if (size != 0) View.VISIBLE else View.GONE
             }
         }
 
         //Current date
         val date = Calendar.getInstance().time
         val formatter = SimpleDateFormat("dd MMMM")
-        val formatedDate = formatter.format(date)
-        binding.currentDateTextview.text = "Сегодня $formatedDate"
+        val formattedDate = formatter.format(date)
+        binding.currentDateTextview.text = "Сегодня $formattedDate"
 
     }
 

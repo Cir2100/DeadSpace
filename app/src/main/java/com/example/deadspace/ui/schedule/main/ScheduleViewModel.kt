@@ -27,9 +27,7 @@ class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
 
     val myPairList = scheduleLoader.pairs
 
-    private val _isVisibleList = MutableLiveData<Boolean>()
-    //todo no pair use this
-    val isVisibleList : LiveData<Boolean> = _isVisibleList
+    val pairsCount = scheduleLoader.pairsCount
 
 
 
@@ -120,13 +118,10 @@ class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
                     isUsers = isUsers
                 )
                 loadDaySchedule()
-                _isVisibleList.postValue(true)
             } catch (e: IOException) {
                 _spinner.value = false
                 Log.e(this.javaClass.simpleName, e.message.toString())
                 //TODO: print err message in activity
-                _isVisibleList.postValue(false)
-                Log.e(this.javaClass.simpleName, _isVisibleList.toString())
                 //_data.value = e.message
             } catch (e: Exception) {
                 _spinner.value = false

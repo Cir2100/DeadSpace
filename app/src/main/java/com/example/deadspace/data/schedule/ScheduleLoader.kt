@@ -3,7 +3,6 @@ package com.example.deadspace.data.schedule
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import com.example.deadspace.data.database.MyPairDAO
 import com.example.deadspace.data.database.MyPairData
 
@@ -16,8 +15,12 @@ class ScheduleLoader(private val myPairDAO: MyPairDAO) {
     //private var _weekType = 1
     //private var _weekDay = 0
 
-    private val _pair = MutableLiveData<List<MyPairData>>()
-    var pairs: LiveData<List<MyPairData>> = _pair
+    private val _pairs = MutableLiveData<List<MyPairData>>()
+    var pairs: LiveData<List<MyPairData>> = _pairs
+
+    private val _pairsCount = MutableLiveData<Int>()
+    var pairsCount: LiveData<Int> = _pairsCount
+
     //var pairs: LiveData<List<MyPairData>> = Transformations.map(myPairDAO.allCash, ::loadDay2)
 
     /*private fun loadDay2(schedule :  List<MyPairData>) : List<MyPairData> {
@@ -49,7 +52,9 @@ class ScheduleLoader(private val myPairDAO: MyPairDAO) {
         //_weekDay = weekDay
         //_weekType = weekType
         Log.i(this.javaClass.simpleName, "Load from cash")
-        _pair.postValue(myPairDAO.getDayCash(weekType , weekDay).sortedBy { it.time })
+        val daySchedule = myPairDAO.getDayCash(weekType , weekDay).sortedBy { it.time }
+        _pairs.postValue(daySchedule)
+        _pairsCount.postValue(daySchedule.size)
     }
 
     private suspend fun checkCash(name: String) : Boolean {

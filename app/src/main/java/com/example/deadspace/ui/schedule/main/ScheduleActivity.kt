@@ -91,6 +91,15 @@ class ScheduleActivity : AppCompatActivity() {
             }
         }
 
+        viewModel.pairsCount.observe(this) {
+                value ->
+            value.let { size ->
+                binding.isNothingTextview.visibility = if (size == 0) View.VISIBLE else View.GONE
+                binding.isNothingImageview.visibility = if (size == 0) View.VISIBLE else View.GONE
+                binding.pairList.visibility = if (size != 0) View.VISIBLE else View.GONE
+            }
+        }
+
         viewModel.weekType.observe(this) { value ->
             value.let { type ->
                 binding.typeOfWeek.text = if (type == 1) "верхняя" else "нижняя"
