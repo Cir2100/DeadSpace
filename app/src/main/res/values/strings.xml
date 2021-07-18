@@ -34,5 +34,8 @@
     // вкладка расписание
 
 
+
     <string name="schedule_link">https://rasp.guap.ru</string>
+    //сообщение об ошибке добавления дедлайна
+    <string name="deadline_add_error">Такой дедлайн уже есть</string>
 </resources>

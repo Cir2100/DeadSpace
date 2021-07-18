@@ -14,6 +14,7 @@ import com.example.deadspace.databinding.DeadlinesActivityBinding
 import com.example.deadspace.databinding.StartActivityBinding
 import com.example.deadspace.ui.deadlines.add.AddDeadlineActivity
 import com.example.deadspace.ui.deadlines.add.AddDeadlineViewModel
+import com.google.android.material.snackbar.Snackbar
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -51,6 +52,14 @@ class DeadlinesActivity : AppCompatActivity() {
                 binding.isNothingTextview.visibility = if (size == 0) View.VISIBLE else View.GONE
                 binding.isNothingImageview.visibility = if (size == 0) View.VISIBLE else View.GONE
                 binding.deadlineList.visibility = if (size != 0) View.VISIBLE else View.GONE
+            }
+        }
+
+        // Show a snackbar whenever the [ViewModel.snackbar] is updated a non-null value
+        viewModel.snackBar.observe(this) { text ->
+            text?.let {
+                Snackbar.make(binding.deadlineRootLayout, text, Snackbar.LENGTH_SHORT).show()
+                viewModel.onSnackBarShown()
             }
         }
 

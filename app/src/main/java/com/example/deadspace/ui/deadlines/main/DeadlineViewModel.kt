@@ -1,5 +1,7 @@
 package com.example.deadspace.ui.deadlines.main
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.deadspace.data.database.MyDeadlinesDAO
@@ -15,6 +17,14 @@ class DeadlineViewModel : ViewModel() {
     val myDeadlineList = deadlineEditor.deadlines
 
     val sizeDeadlineList = deadlineEditor.countDeadlines
+
+    private val _snackBar : MutableLiveData<String?> = deadlineEditor.error
+    val snackBar: LiveData<String?>
+        get() = _snackBar
+
+    fun onSnackBarShown() {
+        _snackBar.value = null
+    }
 
 
     fun onDeleteDeadline(id : Int) {

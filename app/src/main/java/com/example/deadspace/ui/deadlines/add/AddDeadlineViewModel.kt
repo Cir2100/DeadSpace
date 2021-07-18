@@ -9,6 +9,7 @@ import com.example.deadspace.data.deadline.DeadlineEditor
 import com.example.deadspace.data.deadline.getDeadlineEditor
 import com.example.deadspace.ui.singleArgViewModelFactory
 import kotlinx.coroutines.launch
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -19,7 +20,11 @@ class AddDeadlineViewModel : ViewModel() {
 
     fun onAddDeadline(title : String, discipline : String, lastDate : String) {
         viewModelScope.launch {
-            deadlineEditor.addDeadline(title, discipline, lastDate.substring(0, 2) + "." + lastDate.substring(3, 5))
+            deadlineEditor.addDeadline(
+                title,
+                discipline,
+                lastDate.substring(0, 2) + "." + lastDate.substring(3, 5)
+            )
         }
     }
 }

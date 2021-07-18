@@ -53,8 +53,8 @@ class ScheduleLoader(private val myPairDAO: MyPairDAO) {
         //_weekType = weekType
         Log.i(this.javaClass.simpleName, "Load from cash")
         val daySchedule = myPairDAO.getDayCash(weekType , weekDay).sortedBy { it.time }
-        _pairs.postValue(daySchedule)
-        _pairsCount.postValue(daySchedule.size)
+        _pairs.value = daySchedule
+        _pairsCount.value = daySchedule.size
     }
 
     private suspend fun checkCash(name: String) : Boolean {
