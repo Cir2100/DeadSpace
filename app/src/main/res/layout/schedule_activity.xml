@@ -233,10 +233,10 @@
             android:id="@+id/load_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/pair_list"
-            app:layout_constraintEnd_toEndOf="@id/pair_list"
-            app:layout_constraintStart_toStartOf="@id/pair_list"
-            app:layout_constraintTop_toTopOf="@id/pair_list" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/week_days_list" />
 
         <ImageButton
             android:layout_width="50dp"

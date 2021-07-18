@@ -104,7 +104,8 @@ class ScheduleActivity : AppCompatActivity() {
 
         viewModel.weekType.observe(this) { value ->
             value.let { type ->
-                binding.typeOfWeek.text = if (type == 1) "верхняя" else "нижняя"
+                binding.typeOfWeek.text = if (type == 1) resources.getString(R.string.upperWeek)
+                else resources.getString(R.string.lowerWeek)
                 binding.typeOfWeek.background = if (type == 1) resources.getDrawable(R.drawable.oval_button_red, theme)
                 else resources.getDrawable(R.drawable.oval_button_blue, theme)
             }
