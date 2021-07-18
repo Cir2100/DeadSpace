@@ -3,10 +3,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/main_background_grad_and_vector">
+    android:background="@drawable/main_background_grad_and_vector"
+    android:orientation="vertical">
 
         <ImageView
             android:id="@+id/imageView3"
@@ -20,7 +20,7 @@
             app:srcCompat="@drawable/fon_ellips" />
 
     <TextView
-        android:id="@+id/CurrentDateDay"
+        android:id="@+id/current_date_day"
         android:layout_width="wrap_content"
         android:layout_height="65dp"
         android:layout_marginStart="10dp"
@@ -33,7 +33,7 @@
         app:layout_constraintTop_toTopOf="@id/imageView3" />
 
     <TextView
-        android:id="@+id/CurrentDateMonth"
+        android:id="@+id/current_date_month"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/exo_2_black"
@@ -41,22 +41,22 @@
         android:textColor="@color/white"
         android:textSize="26sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/CurrentDateDay"
-        app:layout_constraintTop_toBottomOf="@id/CurrentDateDay" />
+        app:layout_constraintStart_toStartOf="@id/current_date_day"
+        app:layout_constraintTop_toBottomOf="@id/current_date_day" />
 
     <TextView
-        android:id="@+id/CurrentDayOfWeek"
+        android:id="@+id/current_weekday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/exo_2_light"
         android:text="@string/currentDayOfWeek"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@id/CurrentDateMonth"
-        app:layout_constraintTop_toBottomOf="@id/CurrentDateMonth" />
+        app:layout_constraintStart_toStartOf="@id/current_date_month"
+        app:layout_constraintTop_toBottomOf="@id/current_date_month" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/week_image"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="centerInside"
@@ -76,9 +76,9 @@
         android:textAlignment="textEnd"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@id/imageView4"
-        app:layout_constraintEnd_toEndOf="@id/imageView4"
-        app:layout_constraintTop_toTopOf="@id/imageView4" />
+        app:layout_constraintBottom_toBottomOf="@id/week_image"
+        app:layout_constraintEnd_toEndOf="@id/week_image"
+        app:layout_constraintTop_toTopOf="@id/week_image" />
 
     <TextView
         android:id="@+id/Number"

@@ -4,31 +4,41 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import com.example.deadspace.DeadSpace
 import com.example.deadspace.R
-import com.example.deadspace.data.database.getDatabase
+import com.example.deadspace.databinding.StartActivityBinding
 import com.example.deadspace.ui.deadlines.main.DeadlinesActivity
 import com.example.deadspace.ui.exams.ExamActivity
 import com.example.deadspace.ui.schedule.main.ScheduleActivity
+import java.util.*
 
 class StartActivity : AppCompatActivity() {
 
-    //TODO : use view binding or data binding
+    //private lateinit var viewModel: StartViewModel
 
-    private lateinit var viewModel: StartViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.start_activity)
+
+        val binding = StartActivityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val actionbar = supportActionBar
         actionbar!!.title = "Навигация"
 
+        val date = Calendar.getInstance()
+        binding.currentDateDay.text = date.get(Calendar.DATE).toString()
+        binding.currentDateMonth.text = date.getDisplayName(Calendar.MONTH, Calendar.LONG_FORMAT, Locale.getDefault())
+        binding.currentWeekday.text = date.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG_FORMAT, Locale.getDefault())
 
-        val database = getDatabase(this)
+
+        /*val database = getDatabase(this)
         viewModel = ViewModelProvider(
             this,
             StartViewModel.FACTORY(database.myPairDAO)
-        ).get(StartViewModel::class.java)
+        ).get(StartViewModel::class.java)*/
+
 
     }
 

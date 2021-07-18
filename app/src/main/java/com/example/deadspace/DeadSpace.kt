@@ -11,7 +11,7 @@ class DeadSpace : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        DeadSpace.appContext = applicationContext
+        appContext = applicationContext
     }
 
     companion object {

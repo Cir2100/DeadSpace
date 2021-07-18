@@ -38,7 +38,6 @@ class AddScheduleActivity : AppCompatActivity() {
         ).get(AddScheduleViewModel::class.java)
 
         binding = DataBindingUtil.setContentView(this, R.layout.add_schedule_activity)
-        binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
         setupListeners()
