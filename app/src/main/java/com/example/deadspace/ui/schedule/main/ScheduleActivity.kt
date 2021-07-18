@@ -21,6 +21,8 @@ import java.util.*
 
 class ScheduleActivity : AppCompatActivity() {
 
+    //TODO : maybe use savedStateHandle
+
     //TODO : use this normal viewModel or not?
     private lateinit var prefs: SharedPreferences
 

@@ -13,6 +13,7 @@ import com.example.deadspace.data.database.getDatabase
 import com.example.deadspace.databinding.DeadlinesActivityBinding
 import com.example.deadspace.databinding.StartActivityBinding
 import com.example.deadspace.ui.deadlines.add.AddDeadlineActivity
+import com.example.deadspace.ui.deadlines.add.AddDeadlineViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -28,11 +29,7 @@ class DeadlinesActivity : AppCompatActivity() {
         actionbar!!.title = "Дедлайны"
         actionbar.setDisplayHomeAsUpEnabled(true)
 
-        val database = getDatabase(this)
-        viewModel = ViewModelProvider(
-            this,
-            DeadlineViewModel.FACTORY(database.myDeadlinesDAO)
-        ).get(DeadlineViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(DeadlineViewModel::class.java)
 
         val binding = DeadlinesActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)

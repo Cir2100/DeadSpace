@@ -56,6 +56,4 @@ class StartActivity : AppCompatActivity() {
         val pairsIntent = Intent(this, ScheduleActivity::class.java)
         startActivity(pairsIntent)
     }
-
-    //TODO : use onSavedInstanceState or savedStateHandle
 }

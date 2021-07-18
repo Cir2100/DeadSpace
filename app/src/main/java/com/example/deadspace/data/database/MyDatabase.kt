@@ -11,10 +11,6 @@ abstract class MyPairDatabase : RoomDatabase() {
 
 private lateinit var INSTANCE: MyPairDatabase
 
-/**
- * Instantiate a database from a context.
- */
-//TODO : learn and using
 fun getDatabase(context: Context): MyPairDatabase {
     synchronized(MyPairDatabase::class) {
         if (!::INSTANCE.isInitialized) {

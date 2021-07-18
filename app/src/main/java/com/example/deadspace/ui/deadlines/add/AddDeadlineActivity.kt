@@ -35,11 +35,7 @@ class AddDeadlineActivity : AppCompatActivity() {
         actionbar!!.title = "Добавление дедлайна"
         actionbar.setDisplayHomeAsUpEnabled(true)
 
-        val database = getDatabase(this)
-        viewModel = ViewModelProvider(
-            this,
-            AddDeadlineViewModel.FACTORY(database.myDeadlinesDAO)
-        ).get(AddDeadlineViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(AddDeadlineViewModel::class.java)
 
         binding = AddDeadlineActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
