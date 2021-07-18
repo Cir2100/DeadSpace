@@ -53,8 +53,8 @@ interface MyDeadlinesDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertOne(myDeadlinesData: MyDeadlinesData)
 
-    @Query("DELETE FROM MyDeadlinesData WHERE title LIKE :title AND discipline LIKE :discipline AND lastDate = :lastDate")
-    suspend fun deleteOne(title : String, discipline : String, lastDate : String)
+    @Query("DELETE FROM MyDeadlinesData WHERE id = :id")
+    suspend fun deleteOne(id : Int)
 
     @get:Query("SELECT * FROM MyDeadlinesData")
     val allDeadlines: LiveData<List<MyDeadlinesData>>
@@ -65,13 +65,13 @@ interface MyDeadlinesDAO {
     @Query("SELECT * FROM MyDeadlinesData")
     suspend fun getAllDeadlines(): List<MyDeadlinesData>
 
-    @Query("SELECT * FROM MyDeadlinesData WHERE title LIKE :title AND discipline LIKE :discipline AND lastDate = :lastDate")
-    suspend fun getOne(title : String, discipline : String, lastDate : String) : MyDeadlinesData
+    @Query("SELECT * FROM MyDeadlinesData WHERE id = :id")
+    suspend fun getOne(id : Int) : MyDeadlinesData
 
     @Update
     suspend fun updateOne(myDeadlinesData: MyDeadlinesData)
 
-    //clear database
+    //use this for clear database
     @Query("DELETE FROM MyDeadlinesData")
     suspend fun deleteAll()
 

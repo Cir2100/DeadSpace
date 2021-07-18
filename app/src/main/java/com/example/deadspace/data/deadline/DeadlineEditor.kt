@@ -10,7 +10,6 @@ import com.example.deadspace.data.database.getDatabase
 
 class DeadlineEditor(private val myDeadlinesDAO: MyDeadlinesDAO) {
 
-
     private var _deadlines : LiveData<List<MyDeadlinesData>> = myDeadlinesDAO.allDeadlines //TODO: in loader
     var deadlines : LiveData<List<MyDeadlinesData>> = Transformations.map(_deadlines) { list -> list.sortedBy { it.lastDate } }
 
@@ -25,7 +24,7 @@ class DeadlineEditor(private val myDeadlinesDAO: MyDeadlinesDAO) {
                 isEntry = true
         }
         if (!isEntry) {
-            myDeadlinesDAO.insertOne(MyDeadlinesData(title, discipline, lastDate, false))
+            myDeadlinesDAO.insertOne(MyDeadlinesData(countDeadlines.value!!, title, discipline, lastDate, false))
             Log.i(this.javaClass.simpleName, "Add deadline successful")
         }
         else {
@@ -35,14 +34,15 @@ class DeadlineEditor(private val myDeadlinesDAO: MyDeadlinesDAO) {
 
     }
 
-    suspend fun deleteDeadline(title : String, discipline : String, lastDate : String) {
-        myDeadlinesDAO.deleteOne(title, discipline, lastDate)
+    suspend fun deleteDeadline(id : Int) {
+        myDeadlinesDAO.deleteOne(id)
         Log.i(this.javaClass.simpleName, "Delete deadline successful")
     }
-//TODO : use update id = countDeadlines
-    suspend fun changeDeadline(title : String, discipline : String, lastDate : String, isDone : Boolean) {
-        myDeadlinesDAO.deleteOne(title, discipline, lastDate)
-        myDeadlinesDAO.insertOne(MyDeadlinesData(title, discipline, lastDate, isDone))
+
+    suspend fun changeDeadline(id : Int) {
+        val deadline = myDeadlinesDAO.getOne(id)
+        deadline.isDone = !deadline.isDone
+        myDeadlinesDAO.updateOne(deadline)
         Log.i(this.javaClass.simpleName, "Change deadline successful")
     }
 }

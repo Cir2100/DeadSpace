@@ -33,7 +33,6 @@ class DeadlinesActivity : AppCompatActivity() {
 
         val binding = DeadlinesActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //binding.lifecycleOwner = this
 
         //List
         val adapter = DeadlinesListAdapter(viewModel)

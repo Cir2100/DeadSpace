@@ -22,9 +22,9 @@ data class MyPairData constructor(
     var isCash : Boolean //TODO: ??? val
 )
 
-@Fts4
 @Entity
 data class MyDeadlinesData constructor(
+    @PrimaryKey val id: Int,
     val title : String,
     val discipline : String,
     val lastDate : String,

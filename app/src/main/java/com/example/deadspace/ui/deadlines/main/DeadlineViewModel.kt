@@ -17,15 +17,15 @@ class DeadlineViewModel : ViewModel() {
     val sizeDeadlineList = deadlineEditor.countDeadlines
 
 
-    fun onDeleteDeadline(title : String, discipline : String, lastDate : String) {
+    fun onDeleteDeadline(id : Int) {
         viewModelScope.launch {
-            deadlineEditor.deleteDeadline(title, discipline, lastDate)
+            deadlineEditor.deleteDeadline(id)
         }
     }
 
-    fun onDoneChange (title : String, discipline : String, lastDate : String, isDone : Boolean) {
+    fun onDoneChange (id : Int) {
         viewModelScope.launch {
-            deadlineEditor.changeDeadline(title, discipline, lastDate, isDone)
+            deadlineEditor.changeDeadline(id)
         }
     }
 }
