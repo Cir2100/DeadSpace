@@ -12,8 +12,8 @@
         android:id="@+id/EnterDeadlineName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
         android:layout_marginTop="05dp"
+        android:fontFamily="@font/exo_2_medium"
         android:text="Название:"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -27,7 +27,7 @@
         android:textColor="@color/suai_red"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@id/EnterDeadlineName"
-        app:layout_constraintTop_toTopOf="@id/EnterDeadlineName" />
+        app:layout_constraintBottom_toBottomOf="@id/EnterDeadlineName" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/deadline_title_input_layout"
@@ -50,6 +50,7 @@
         android:id="@+id/EnterDeadlineProgram"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/exo_2_medium"
         android:text="Дисциплина:"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -63,7 +64,7 @@
         android:textColor="@color/suai_red"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@id/EnterDeadlineProgram"
-        app:layout_constraintTop_toTopOf="@id/EnterDeadlineProgram" />
+        app:layout_constraintBottom_toBottomOf="@id/EnterDeadlineProgram" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/deadline_discipline_input_layout"
@@ -87,6 +88,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
+        android:fontFamily="@font/exo_2_medium"
         android:text="Крайний срок:"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -100,7 +102,7 @@
         android:textColor="@color/suai_red"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@id/EnterDeadlineData"
-        app:layout_constraintTop_toTopOf="@id/EnterDeadlineData" />
+        app:layout_constraintBottom_toBottomOf="@id/EnterDeadlineData" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/deadline_date_input_layout"
@@ -125,6 +127,7 @@
         android:layout_width="85dp"
         android:layout_height="25dp"
         android:background="@drawable/oval_button_blue"
+        android:fontFamily="@font/exo_2_bold"
         android:text="Готово"
         android:textColor="@color/white"
         android:textStyle="bold"

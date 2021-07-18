@@ -13,6 +13,7 @@
         android:id="@+id/DateChangeExam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/exo_2"
         android:text="9 июня, "
         android:textColor="@color/suai_dark_blue"
         android:textSize="15sp"
@@ -23,6 +24,7 @@
         android:id="@+id/ChangeExam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/exo_2"
         android:text="первая смена (10:00)"
         android:textColor="@color/suai_dark_blue"
         android:textSize="15sp"
@@ -33,18 +35,19 @@
         android:id="@+id/NameSubject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/exo_2_bold"
         android:text="Компьютерная графика"
         android:textColor="@color/black"
         android:textSize="18sp"
-        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/DateChangeExam"/>
+        app:layout_constraintTop_toBottomOf="@id/DateChangeExam" />
 
 
     <TextView
         android:id="@+id/exam_item_building"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/exo_2"
         android:text="Гаст."
         android:textColor="@color/black"
         android:textSize="15sp"
@@ -55,17 +58,19 @@
         android:id="@+id/schedule_item_auditorium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:fontFamily="@font/exo_2"
         android:text="33-05"
         android:textColor="@color/black"
         android:textSize="15sp"
         app:layout_constraintStart_toEndOf="@id/exam_item_building"
-        app:layout_constraintTop_toTopOf="@id/exam_item_building"
-        android:layout_marginLeft="5dp"/>
+        app:layout_constraintTop_toTopOf="@id/exam_item_building" />
 
     <TextView
         android:id="@+id/NameTeacher1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/exo_2"
         android:text="Шахомиров А.В."
         android:textColor="@color/black"
         android:textSize="15sp"
