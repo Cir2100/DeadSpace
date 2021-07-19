@@ -2,220 +2,248 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/relativeLayout_01"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_background_grad_and_vector"
     android:padding="@dimen/all_padding">
 
-
-    <TextView
-        android:id="@+id/EnterNumberPair"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/exo_2_medium"
-        android:text="Номер занятия:"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="*"
-        android:textColor="@color/suai_red"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@id/EnterNumberPair"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/schedule_number_input_layout"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:endIconMode="clear_text"
-        app:errorEnabled="true"
+        android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/EnterNumberPair">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/schedule_number_input"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="..."
-            android:singleLine="true"
-            android:inputType="numberDecimal"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/EnterPairType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/exo_2_medium"
-        android:text="Тип занятия:"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/schedule_number_input_layout" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:endIconMode="clear_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/EnterPairType">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/schedule_type_input"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="..."
-            android:singleLine="true"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/EnterPairName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:fontFamily="@font/exo_2_medium"
-        android:text="Название занятия:"
-        android:paddingTop="15dp"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/input_2" />
+            <TextView
+                android:id="@+id/EnterNumberPair"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/exo_2_medium"
+                android:text="Номер занятия:"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:paddingTop="10dp"
-        android:text="*"
-        android:textColor="@color/suai_red"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@id/EnterPairName"
-        app:layout_constraintTop_toBottomOf="@id/input_2" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="*"
+                android:textColor="@color/suai_red"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@id/EnterNumberPair"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/schedule_title_input_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:endIconMode="clear_text"
-        app:errorEnabled="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/EnterPairName">
+        </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/schedule_title_input"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/schedule_number_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/EnterNumberPair">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/schedule_number_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:hint="..."
+                    android:singleLine="true"
+                    android:inputType="numberDecimal"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/EnterPairType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/exo_2_medium"
+                android:text="Тип занятия:"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/schedule_number_input_layout" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endIconMode="clear_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/EnterPairType">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/schedule_type_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:hint="..."
+                    android:singleLine="true"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="..."
-            android:singleLine="true"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/EnterAdress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:fontFamily="@font/exo_2_medium"
-        android:text="Корпус:"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/schedule_title_input_layout" />
+            <TextView
+                android:id="@+id/EnterPairName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:fontFamily="@font/exo_2_medium"
+                android:text="Название занятия:"
+                android:paddingTop="15dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_2" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:endIconMode="clear_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/EnterAdress">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:paddingTop="10dp"
+                android:text="*"
+                android:textColor="@color/suai_red"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@id/EnterPairName"
+                app:layout_constraintTop_toBottomOf="@id/input_2" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/schedule_building_input"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="..."
-            android:singleLine="true"/>
-    </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/EnterClass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:fontFamily="@font/exo_2_medium"
-        android:text="Аудитория:"
-        android:paddingTop="15dp"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/input_4" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/schedule_title_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/EnterPairName">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:endIconMode="clear_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/EnterClass">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/schedule_title_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:hint="..."
+                    android:singleLine="true"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/schedule_auditorium_input"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="..."
-            android:singleLine="true"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/EnterAdress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:fontFamily="@font/exo_2_medium"
+                android:text="Корпус:"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/schedule_title_input_layout" />
 
-    <TextView
-        android:id="@+id/EnterTeacher"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/exo_2_medium"
-        android:text="Преподаватель:"
-        android:paddingTop="15dp"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/input_5" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endIconMode="clear_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/EnterAdress">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:endIconMode="clear_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/EnterTeacher">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/schedule_building_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:hint="..."
+                    android:singleLine="true"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/schedule_teacher_input"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="..."
-            android:singleLine="true"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/EnterClass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:fontFamily="@font/exo_2_medium"
+                android:text="Аудитория:"
+                android:paddingTop="15dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_4" />
 
-    <Button
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endIconMode="clear_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/EnterClass">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/schedule_auditorium_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:hint="..."
+                    android:singleLine="true"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/EnterTeacher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/exo_2_medium"
+                android:text="Преподаватель:"
+                android:paddingTop="15dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_5" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endIconMode="clear_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/EnterTeacher">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/schedule_teacher_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:hint="..."
+                    android:singleLine="true"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageButton
         android:id="@+id/add_pair_button"
-        android:layout_width="85dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/oval_button_blue"
-        android:fontFamily="@font/exo_2_bold"
-        android:text="Готово"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/input_6" />
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/circle_button"
+        android:onClick="onClickAddRasp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/white_check_bold"
 
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
