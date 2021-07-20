@@ -9,6 +9,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.deadspace.data.database.MyPairDAO
 import com.example.deadspace.data.schedule.ScheduleEditor
 import com.example.deadspace.data.schedule.ScheduleLoader
+import com.example.deadspace.data.suai.Loader
+import com.example.deadspace.data.suai.Result
+import com.example.deadspace.data.suai.SemInfo
 import com.example.deadspace.ui.singleArgViewModelFactory
 import kotlinx.coroutines.launch
 import java.io.IOException
@@ -92,6 +95,12 @@ class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
     //TODO: init user cash
 
     init {
+
+        viewModelScope.launch {
+            _weekType.value = if (Loader.getSemInfo().IsWeekUp) 1 else 0
+        }
+
+
         val date = Calendar.getInstance()
         val day = if (date.get(Calendar.DAY_OF_WEEK) - 2 >= 0) date.get(Calendar.DAY_OF_WEEK) - 2 else 6
         onClickWeekDay(day) // TODO : refact this

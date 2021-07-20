@@ -33,9 +33,15 @@ class StartActivity : AppCompatActivity() {
         binding.currentDateMonth.text = date.getDisplayName(Calendar.MONTH, Calendar.LONG_FORMAT, Locale.getDefault())
         binding.currentWeekday.text = date.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG_FORMAT, Locale.getDefault())
 
-
         val viewModel = ViewModelProvider(this).get(StartViewModel::class.java)
-        viewModel.getHTTP()
+
+        viewModel.weekType.observe(this) { weekType ->
+            weekType?.let {
+                binding.weekTypeTextview.text = if (weekType) "верхняя\nнеделя" else "нижняя\nнеделя"
+                binding.weekImage.setImageDrawable(if (weekType) resources.getDrawable(R.drawable.backround_red_week, theme)
+                else resources.getDrawable(R.drawable.backround_blue_week, theme))
+            }
+        }
 
     }
 

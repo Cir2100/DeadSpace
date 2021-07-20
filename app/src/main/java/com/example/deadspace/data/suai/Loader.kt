@@ -27,7 +27,7 @@ object Loader {
         }
     }
 
-    suspend fun getTeachers() : List<Teacher> {
+    suspend fun getTeachers() : List<Teacher> { //TODO : result?
         return if (::teachers.isInitialized) {
             teachers
         } else {
@@ -43,7 +43,21 @@ object Loader {
         }
     }
 
-    suspend fun getSemInfo(): Result<SemInfo> = getObject(getSemInfoUrl)
+    suspend fun getSemInfo() : SemInfo {
+        return if (::semInfo.isInitialized) {
+            semInfo
+        } else {
+            semInfo = when(val result = loadSemInfo()) {
+                is Result.Success<SemInfo> -> result.data
+                is Result.Error -> {
+                    Log.e(errorTag, "SemInfo don't load")
+                    Log.e(errorTag, result.exception.message!!)
+                    throw result.exception //TODO this?
+                }
+            }
+            semInfo
+        }
+    }
 
     suspend fun getBuilds(): Result<List<Build>> = getObject(getSemBuildsUrl)
 
@@ -66,9 +80,12 @@ object Loader {
 
     private lateinit var groups: List<Group>
     private lateinit var teachers: List<Teacher>
+    private lateinit var semInfo: SemInfo
 
     private suspend fun loadGroupsList() : Result<List<Group>> = getObject(getSemGroupUrl)
 
     private suspend fun loadTeachersList() : Result<List<Teacher>> = getObject(getSemTeacherUrl)
+
+    suspend fun loadSemInfo(): Result<SemInfo> = getObject(getSemInfoUrl)
 
 }
