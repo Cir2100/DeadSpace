@@ -1,4 +1,4 @@
-package com.example.deadspace.ui.start
+    package com.example.deadspace.ui.start
 
 import android.content.Intent
 import android.os.Bundle
@@ -37,9 +37,9 @@ class StartActivity : AppCompatActivity() {
 
         viewModel.weekType.observe(this) { weekType ->
             weekType?.let {
-                binding.weekTypeTextview.text = if (weekType) "верхняя\nнеделя" else "нижняя\nнеделя"
-                binding.weekImage.setImageDrawable(if (weekType) resources.getDrawable(R.drawable.backround_red_week, theme)
-                else resources.getDrawable(R.drawable.backround_blue_week, theme))
+                binding.weekTypeTextview.text = if (weekType) "верхняя" else "нижняя"
+                binding.startBar.setImageDrawable(if (weekType) resources.getDrawable(R.drawable.background_start_bar_red, theme)
+                else resources.getDrawable(R.drawable.background_start_bar_blue, theme))
             }
         }
 
