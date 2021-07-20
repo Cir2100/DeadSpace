@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.deadspace.DeadSpace
 import com.example.deadspace.R
 import com.example.deadspace.databinding.StartActivityBinding
+import com.example.deadspace.ui.deadlines.main.DeadlineViewModel
 import com.example.deadspace.ui.deadlines.main.DeadlinesActivity
 import com.example.deadspace.ui.exams.ExamActivity
 import com.example.deadspace.ui.schedule.main.ScheduleActivity
@@ -33,12 +34,8 @@ class StartActivity : AppCompatActivity() {
         binding.currentWeekday.text = date.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG_FORMAT, Locale.getDefault())
 
 
-        /*val database = getDatabase(this)
-        viewModel = ViewModelProvider(
-            this,
-            StartViewModel.FACTORY(database.myPairDAO)
-        ).get(StartViewModel::class.java)*/
-
+        val viewModel = ViewModelProvider(this).get(StartViewModel::class.java)
+        viewModel.getHTTP()
 
     }
 
