@@ -220,14 +220,14 @@
             android:id="@+id/is_nothing_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/exo_2_bold"
             android:text="Пар нет"
             android:textColor="@color/suai_dark_blue"
             android:textSize="25sp"
-            android:textStyle="bold|italic"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/week_days_list" />
+            app:layout_constraintBottom_toBottomOf="@id/is_nothing_imageview"
+            app:layout_constraintLeft_toLeftOf="@id/is_nothing_imageview"
+            app:layout_constraintRight_toRightOf="@id/is_nothing_imageview"
+            app:layout_constraintTop_toTopOf="@id/is_nothing_imageview" />
 
         <ProgressBar
             android:id="@+id/load_spinner"
@@ -245,13 +245,12 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/circle_button"
             android:onClick="onClickAddRasp"
-            android:src="@drawable/small_white_plus_bold"
             android:scaleType="fitCenter"
+            android:src="@drawable/small_white_plus_bold"
             android:textSize="30sp"
 
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            />
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -15,6 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:fontFamily="@font/exo_2"
         android:text="@string/enterGroupNumber"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -26,19 +27,20 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:iconifiedByDefault="false"
-        app:layout_constraintBottom_toBottomOf="@id/EnterGroupNumber"
+        app:layout_constraintBaseline_toBaselineOf="@id/EnterGroupNumber"
         app:layout_constraintStart_toEndOf="@id/EnterGroupNumber" />
 
     <TextView
         android:id="@+id/current_date_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/exo_2"
         android:text="Сегодня 30 июня"
         android:textColor="@color/black"
         android:textSize="20sp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/name_group_input" />
 
             <androidx.recyclerview.widget.RecyclerView
