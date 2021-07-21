@@ -21,7 +21,8 @@ To get a copy of this software to run on your computer, install Android Studio a
 
 ## Deployment
 
-To deploy this application, use Android Studio. On your device, enable USB debugging mode in the developer settings. Next, connect your device to your computer, select file transfer and select it in Android Studio. Make sure that you have the necessary drivers installed. Keep the screen of your device constantly turned on. Run the project, the corresponding application should appear on your device.
+* pre-relise apk https://github.com/Cir2100/DeadSpace/releases/tag/0.9
+* To deploy this application, use Android Studio. On your device, enable USB debugging mode in the developer settings. Next, connect your device to your computer, select file transfer and select it in Android Studio. Make sure that you have the necessary drivers installed. Keep the screen of your device constantly turned on. Run the project, the corresponding application should appear on your device.
 
 ## Built With
 
