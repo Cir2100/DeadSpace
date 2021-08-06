@@ -19,7 +19,8 @@ class ScheduleLoaderLocalData(private val myPairDAO: MyPairDAO) {
             pair.isCash = true
             pair.id = pair.group.toInt() * 10000 + pair.week * 1000 + pair.day * 100 + pair.time.toInt() * 10 + 1
         }
-        scheduleSaver.saveCash(schedule)
+        //TODO
+        //scheduleSaver.saveCash(schedule)
         Log.i(this.javaClass.simpleName, "Load schedule from local data successful")
     }
 }

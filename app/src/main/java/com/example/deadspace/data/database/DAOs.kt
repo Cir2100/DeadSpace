@@ -1,6 +1,5 @@
 package com.example.deadspace.data.database
 
-import android.database.Cursor
 import androidx.lifecycle.LiveData
 import androidx.room.*
 
@@ -16,10 +15,6 @@ interface MyPairDAO {
     @Query("SELECT * FROM MyPairData")
     suspend fun getAll(): List<MyPairData>
 
-    //delete old cash
-    @Query("DELETE FROM MyPairData WHERE isCash = 1")
-    suspend fun deleteCash()
-
     //delete user schedule
     @Query("DELETE FROM MyPairData WHERE isCash = 0 AND `group` LIKE :group" +
             " AND (week = :weekType OR week = 2) AND day = :weekDay AND time LIKE :time")
@@ -29,22 +24,34 @@ interface MyPairDAO {
     @Query("SELECT * FROM MyPairData WHERE isCash = 0 AND `group` LIKE :name")
     suspend fun getUserData(name: String): MutableList<MyPairData>
 
+    //clear database
+    /*@Query("DELETE FROM MyPairData")
+    suspend fun deleteAll()*/
+
+}
+
+@Dao
+interface MyPairCashDAO {
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(myPairData: List<PairData>)
+
+    //delete old cash
+    @Query("DELETE FROM PairData")
+    suspend fun deleteCash()
+
     //load current cash
-    @Query("SELECT * FROM MyPairData WHERE isCash = 1")
-    suspend fun getCash(): MutableList<MyPairData>
+    @Query("SELECT * FROM PairData")
+    suspend fun getCash(): MutableList<PairData>
 
     //TODO : delete?
     //load current cash
-    @get:Query("SELECT * FROM MyPairData WHERE isCash = 1")
-    val allCash: LiveData<List<MyPairData>>
-
-    //clear database
-    @Query("DELETE FROM MyPairData")
-    suspend fun deleteAll()
+    @get:Query("SELECT * FROM PairData")
+    val allCash: LiveData<List<PairData>>
 
     //load current day cash
-    @Query("SELECT * FROM MyPairData WHERE isCash = 1 AND (week = :weekType OR week = 2) AND day = :weekDay")
-    suspend fun getDayCash(weekType : Int, weekDay : Int) : List<MyPairData>
+    @Query("SELECT * FROM PairData WHERE (week = :weekType OR week = 2) AND day = :weekDay")
+    suspend fun getDayCash(weekType : Int, weekDay : Int) : List<PairData>
 
 }
 
@@ -85,9 +92,7 @@ interface MyGroupAndTeacherDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(items: List<GroupAndTeacherData>)
 
-
     @Query("SELECT * FROM GroupAndTeacherData")
     suspend fun getAll() : List<GroupAndTeacherData>
-
 
 }

@@ -29,7 +29,7 @@ class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
     }
 
     //TODO: this in constructor
-    private val scheduleLoader = ScheduleLoader(myPairDAO)
+    private val scheduleLoader = ScheduleLoader()
     private val scheduleEditor = ScheduleEditor(myPairDAO)
 
     val myPairList = scheduleLoader.pairs
@@ -106,8 +106,6 @@ class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
 
         viewModelScope.launch {
             _weekType.value = if (SUAIScheduleLoader2.getSemInfo().IsWeekUp) 1 else 0
-
-            //todo in this area?
             updateGroupAndTeacher()
         }
 

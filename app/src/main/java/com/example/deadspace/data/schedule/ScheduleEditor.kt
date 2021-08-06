@@ -7,6 +7,7 @@ import com.example.deadspace.data.database.MyPairData
 //TODO: scheduleSaver @singleton and don't use this constructor
 class ScheduleEditor(private val myPairDAO: MyPairDAO) {
 
+
     private val scheduleSaver = ScheduleSaver()
 
     private suspend fun loadSchedule(group : String) : MutableList<MyPairData> {
@@ -14,7 +15,7 @@ class ScheduleEditor(private val myPairDAO: MyPairDAO) {
         var schedule = myPairDAO.getUserData(group)
         if (schedule.size == 0) {
             Log.i(this.javaClass.simpleName, "User schedule not in database")
-            schedule = myPairDAO.getCash()
+            //schedule = myPairDAO.getCash()
             for (pair in schedule) {
                 pair.isCash = false
                 pair.id = pair.group.toInt() * 10000 + pair.week * 1000 + pair.day * 100 + pair.time.toInt() * 10 + 0
@@ -38,10 +39,11 @@ class ScheduleEditor(private val myPairDAO: MyPairDAO) {
             pair.isCash = true
             pair.id = pair.group.toInt() * 10000 + pair.week * 1000 + pair.day * 100 + pair.time.toInt() * 10 + 1
         }
-        scheduleSaver.saveCash(schedule)
+        //scheduleSaver.saveCash(schedule)
         Log.i(this.javaClass.simpleName, "Delete pair successful")
     }
 
+    //TODO if day = 6, then week = 2
     //change local schedule
     suspend fun addPair(group : String, day : Int, time : String,
                         week : Int, type : String, name : String,
@@ -72,7 +74,7 @@ class ScheduleEditor(private val myPairDAO: MyPairDAO) {
                 pair.isCash = true
                 pair.id = pair.group.toInt() * 10000 + pair.week * 1000 + pair.day * 100 + pair.time.toInt() * 10 + 1
             }
-            scheduleSaver.saveCash(schedule)
+            //scheduleSaver.saveCash(schedule)
 
             Log.i(this.javaClass.simpleName, "Add pair successful")
         }

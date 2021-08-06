@@ -2,10 +2,7 @@ package com.example.deadspace.data.database
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
-import androidx.room.Fts4
 import androidx.room.PrimaryKey
-import kotlinx.serialization.Serializable
-import java.time.LocalDate
 
 @Entity
 data class MyPairData constructor(
@@ -25,6 +22,7 @@ data class MyPairData constructor(
 @Entity
 data class PairData(
     @PrimaryKey val ItemId : Int,
+    val Name: String,
     val Week : Int,
     val Day : Int,
     val Less : Int,

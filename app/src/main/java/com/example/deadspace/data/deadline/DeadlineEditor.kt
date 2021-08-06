@@ -9,7 +9,6 @@ import com.example.deadspace.R
 import com.example.deadspace.data.database.MyDeadlinesDAO
 import com.example.deadspace.data.database.MyDeadlinesData
 import com.example.deadspace.data.database.getDeadlineDatabase
-import com.example.deadspace.data.database.getPairDatabase
 
 class DeadlineEditor(private val myDeadlinesDAO: MyDeadlinesDAO) {
 
@@ -23,9 +22,6 @@ class DeadlineEditor(private val myDeadlinesDAO: MyDeadlinesDAO) {
     var deadlines : LiveData<List<MyDeadlinesData>> = Transformations.map(_deadlines) { list -> list.sortedBy { it.lastDate } }
 
     var countDeadlines : LiveData<Int> = myDeadlinesDAO.countDeadlines
-
-
-
 
     suspend fun addDeadline(title : String, discipline : String, lastDate : String){
         val deadlines = myDeadlinesDAO.getAllDeadlines()

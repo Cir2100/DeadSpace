@@ -8,9 +8,9 @@ abstract class MyPairDatabase : RoomDatabase() {
     abstract val myPairDAO : MyPairDAO
 }
 
-@Database(entities = [MyPairData::class], version = 1)
+@Database(entities = [PairData::class], version = 2)
 abstract class MyPairCashDatabase : RoomDatabase() {
-    abstract val myPairDAO : MyPairDAO
+    abstract val myPairCashDAO : MyPairCashDAO
 }
 
 @Database(entities = [GroupAndTeacherData::class], version = 3)

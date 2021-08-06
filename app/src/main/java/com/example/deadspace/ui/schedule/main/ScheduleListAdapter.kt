@@ -8,12 +8,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.deadspace.R
 import com.example.deadspace.data.database.MyPairData
+import com.example.deadspace.data.database.PairData
 
 //TODO : use paging
 class ScheduleListAdapter(val viewModel: ScheduleViewModel) :
     RecyclerView.Adapter<ScheduleListAdapter.MyViewHolder>() {
 
-    private var items : List<MyPairData> = listOf()
+    private var items : List<PairData> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView =
@@ -24,18 +25,24 @@ class ScheduleListAdapter(val viewModel: ScheduleViewModel) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = items[position]
-        holder.scheduleNameTextView?.text = item.name
-        holder.scheduleTypeTextView?.text = item.type
-        holder.scheduleNumberTextView?.text = item.time
-        holder.scheduleBuildingTextView?.text = item.address.substringBefore(",")
-        holder.scheduleAuditoriumTextView?.text = item.address.substringAfter(",").trim()
+
+        holder.scheduleNameTextView?.text = item.Name
+        holder.scheduleTypeTextView?.text = item.Type
+
+        holder.scheduleNumberTextView?.text =
+            if (item.Less != 0)  item.Less.toString()
+        else
+            "-"
+
+        holder.scheduleBuildingTextView?.text = item.Build
+        holder.scheduleAuditoriumTextView?.text = item.Rooms
 
         holder.deleteButton?.setOnClickListener {
             viewModel.onDeletePair(holder.scheduleNumberTextView?.text.toString())
         }
     }
 
-    fun updateItems(items: List<MyPairData>) {
+    fun updateItems(items: List<PairData>) {
         this.items = items
         notifyDataSetChanged()
     }

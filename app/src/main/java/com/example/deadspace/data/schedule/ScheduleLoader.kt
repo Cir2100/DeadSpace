@@ -4,14 +4,15 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.deadspace.DeadSpace
-import com.example.deadspace.data.database.MyPairDAO
-import com.example.deadspace.data.database.MyPairData
-import com.example.deadspace.data.database.getGroupAndTeacherDatabase
+import com.example.deadspace.data.database.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 //@Singleton
-class ScheduleLoader(private val myPairDAO: MyPairDAO) {
+class ScheduleLoader() {
+
+    private val myPairDAO = getPairDatabase(DeadSpace.appContext).myPairDAO
+    private val myPairCashDAO = getPairCashDatabase(DeadSpace.appContext).myPairCashDAO
 
     private val localLoader = ScheduleLoaderLocalData(myPairDAO)
     private val internetLoader = ScheduleLoaderInternet()
@@ -19,8 +20,8 @@ class ScheduleLoader(private val myPairDAO: MyPairDAO) {
     //private var _weekType = 1
     //private var _weekDay = 0
 
-    private val _pairs = MutableLiveData<List<MyPairData>>()
-    var pairs: LiveData<List<MyPairData>> = _pairs
+    private val _pairs = MutableLiveData<List<PairData>>()
+    var pairs: LiveData<List<PairData>> = _pairs
 
     private val _pairsCount = MutableLiveData<Int>()
     var pairsCount: LiveData<Int> = _pairsCount
@@ -41,7 +42,6 @@ class ScheduleLoader(private val myPairDAO: MyPairDAO) {
     }*/
 
     suspend fun loadSchedule(name: String, isUsers : Boolean) {
-        //TODO : checked cash normal
         if (isUsers) {
             Log.i(this.javaClass.simpleName, "Load from local data")
             localLoader.loadSchedule(name)
@@ -56,7 +56,7 @@ class ScheduleLoader(private val myPairDAO: MyPairDAO) {
         //_weekDay = weekDay
         //_weekType = weekType
         Log.i(this.javaClass.simpleName, "Load from cash")
-        val daySchedule = myPairDAO.getDayCash(weekType , weekDay).sortedBy { it.time }
+        val daySchedule = myPairCashDAO.getDayCash(weekType , weekDay).sortedBy { it.Less }
         _pairs.value = daySchedule
         _pairsCount.value = daySchedule.size
     }
@@ -70,11 +70,11 @@ class ScheduleLoader(private val myPairDAO: MyPairDAO) {
 
     private suspend fun checkCash(name: String) : Boolean {
 
-        val cash = myPairDAO.getCash()
+        val cash = myPairCashDAO.getCash()
         //TODO : add throw
         if (cash.size == 0)
             return false
-        return cash[0].group == name
+        return cash[0].Name == name
     }
 
 }
