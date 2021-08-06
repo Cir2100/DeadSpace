@@ -7,7 +7,7 @@ import com.example.deadspace.data.database.MyPairData
 //TODO: scheduleSaver @singleton and don't use this constructor
 class ScheduleEditor(private val myPairDAO: MyPairDAO) {
 
-    private val scheduleSaver = ScheduleSaver(myPairDAO)
+    private val scheduleSaver = ScheduleSaver()
 
     private suspend fun loadSchedule(group : String) : MutableList<MyPairData> {
         Log.i(this.javaClass.simpleName, "Load user's schedule")

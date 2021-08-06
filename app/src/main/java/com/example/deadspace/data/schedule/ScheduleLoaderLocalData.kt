@@ -5,7 +5,7 @@ import com.example.deadspace.data.database.MyPairDAO
 
 class ScheduleLoaderLocalData(private val myPairDAO: MyPairDAO) {
 
-    private val scheduleSaver = ScheduleSaver(myPairDAO)
+    private val scheduleSaver = ScheduleSaver()
 
     //checked this group in local data
     fun checkedUsersSchedule(name: String) : Boolean {

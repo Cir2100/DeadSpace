@@ -16,7 +16,13 @@ class StartViewModel : ViewModel() {
 
     init {
         viewModelScope.launch {
-            _weekType.value = Loader.getSemInfo().IsWeekUp
+            try {
+            _weekType.value = SUAIScheduleLoader2.getSemInfo().IsWeekUp
+
+            } catch (e : Throwable) {
+                Log.e("dsf", e.toString())
+            }
+
         }
 
     }

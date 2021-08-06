@@ -1,45 +1,62 @@
 package com.example.deadspace.data.schedule
 
 import android.util.Log
-import com.example.deadspace.data.database.MyPairDAO
-import com.example.deadspace.data.database.MyPairData
+import com.example.deadspace.DeadSpace
+import com.example.deadspace.data.database.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.jsoup.Jsoup
 import org.jsoup.select.Elements
 import java.io.IOException
 
-class ScheduleLoaderInternet(private val myPairDAO: MyPairDAO) {
+class ScheduleLoaderInternet() {
 
-    private val scheduleSaver = ScheduleSaver(myPairDAO)
+    private val scheduleSaver = ScheduleSaver()
+
+    private val myGroupAndTeacherDAO = getGroupAndTeacherDatabase(DeadSpace.appContext).myGroupAndTeacherDAO
 
     enum class WeekDays {
         Понедельник, Вторник, Среда, Четверг, Пятница, Суббота, Вне
     }
 
-    private var groups : MutableList<Pair<Int, String>> = mutableListOf()
-    private var teachers : MutableList<Pair<Int, String>> = mutableListOf()
-    //TODO: use strings.xml
-    private val schedule_link : String = "https://rasp.guap.ru/"
+    private val scheduleLink : String = "https://rasp.guap.ru/"
 
-    //parse from rasp.guap.ru teachers and group
-    suspend private fun parseGroupAndTeacher() {
-                val doc  = Jsoup.connect(schedule_link).get()
-                val selecteds: Elements = doc.select("select")
-                for (i in 0..1){
-                    var options = selecteds[i].select("option")
-                    for (option in options) {
-                        if (option.attr("value").toInt() != -1){
-                            if (i == 0)
-                                groups.add(Pair(option.attr("value").toInt(), option.text()))
-                            else if(i == 1)
-                            // TODO: helps in input and dont split teachers
-                                teachers.add(Pair(option.attr("value").toInt(), option.text().substringBefore(" -")))
-                        }
+    suspend fun loadGroupAndTeacher() {
+        withContext(Dispatchers.IO) {
+
+            val items : MutableList<GroupAndTeacherData> = mutableListOf()
+
+            val doc = Jsoup.connect(scheduleLink).get()
+            val selecteds: Elements = doc.select("select")
+            for (i in 0..1) {
+                val options = selecteds[i].select("option")
+                for (option in options) {
+                    if (option.attr("value").toInt() != -1) {
+                        if (i == 0)
+                            items.add(GroupAndTeacherData(
+                                ItemId = option.attr("value").toInt(),
+                                Name = option.text(),
+                                isGroup = true,
+                                isUserHasOwn = false))
+                        else if (i == 1)
+                            items.add(
+                                GroupAndTeacherData(
+                                    ItemId = option.attr("value").toInt(),
+                                    Name = option.text(),
+                                    isGroup = false,
+                                    isUserHasOwn = false)
+                            )
                     }
                 }
-        Log.i(this.javaClass.simpleName, "Load list groups and teachers successful")
+            }
+            Log.i(this.javaClass.simpleName, "Load list groups and teachers successful")
+
+            scheduleSaver.saveGroupList(items)
+        }
     }
+
+    //TODO fun loadWeekType()
+
 
     //TODO : normal parse and refactor
     //find schedule group or teacher on rasp.guap.ru/?..
@@ -53,28 +70,28 @@ class ScheduleLoaderInternet(private val myPairDAO: MyPairDAO) {
 
         withContext(Dispatchers.IO) {
 
+            val items = myGroupAndTeacherDAO.getAll()
+
             //checked name group for valid
             suspend fun isCurrentGroup(name: String): Int {
-                for (group in groups) {
-                    if (group.second == name)
-                        return group.first
+                for (item in items) {
+                    if (item.Name == name && item.isGroup)
+                        return item.ItemId
                 }
                 return -1
             }
 
             //checked name teacher for valid
             suspend fun isCurrentTeacher(name: String): Int {
-                for (teacher in teachers) {
-                    if (teacher.second == name)
-                        return teacher.first
+                for (item in items) {
+                    if (item.Name == name && !item.isGroup)
+                        return item.ItemId
                 }
                 return -1
             }
 
             //load schedule
             try {
-
-                parseGroupAndTeacher()
 
                 var id = isCurrentGroup(name.trim())
                 var letterPost: String = ""
@@ -89,7 +106,7 @@ class ScheduleLoaderInternet(private val myPairDAO: MyPairDAO) {
                     throw Exception("Incorrect input")
                 }
 
-                val doc = Jsoup.connect(schedule_link + letterPost + id.toString()).get()
+                val doc = Jsoup.connect(scheduleLink + letterPost + id.toString()).get()
                 val result = doc.getElementsByAttributeValue("class", "result")
                 var html: String = result.toString().substringAfter("</h2>")
                 while (html.contains("</h3>")) {

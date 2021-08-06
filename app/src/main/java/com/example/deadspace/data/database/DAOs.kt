@@ -1,8 +1,8 @@
 package com.example.deadspace.data.database
 
+import android.database.Cursor
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import java.time.LocalDate
 
 @Dao
 interface MyPairDAO {
@@ -45,6 +45,7 @@ interface MyPairDAO {
     //load current day cash
     @Query("SELECT * FROM MyPairData WHERE isCash = 1 AND (week = :weekType OR week = 2) AND day = :weekDay")
     suspend fun getDayCash(weekType : Int, weekDay : Int) : List<MyPairData>
+
 }
 
 @Dao
@@ -75,5 +76,20 @@ interface MyDeadlinesDAO {
     @Query("DELETE FROM MyDeadlinesData")
     suspend fun deleteAll()
 
+
+}
+
+@Dao
+interface MyGroupAndTeacherDAO {
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(items: List<GroupAndTeacherData>)
+
+
+    @Query("SELECT * FROM GroupAndTeacherData")
+    suspend fun getAll() : List<GroupAndTeacherData>
+
+    @Query("SELECT Name FROM GroupAndTeacherData WHERE Name LIKE :name")
+    suspend fun getQuerySuggestions(name : String): List<String>
 
 }

@@ -1,22 +1,36 @@
 package com.example.deadspace.ui.schedule.main
 
+import android.app.SearchableInfo
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.database.Cursor
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
 import android.widget.SearchView
+import android.widget.SimpleCursorAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.loader.content.CursorLoader
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.RoomMasterTable
 import com.example.deadspace.R
-import com.example.deadspace.data.database.getDatabase
+import com.example.deadspace.data.database.getPairDatabase
 import com.example.deadspace.databinding.ScheduleActivityBinding
 import com.example.deadspace.ui.schedule.add.AddScheduleActivity
 import java.text.SimpleDateFormat
 import java.util.*
+import androidx.room.RoomMasterTable.TABLE_NAME
+import android.app.SearchManager
+import android.database.MatrixCursor
+import android.provider.BaseColumns
+import android.util.Log
+import android.widget.CursorAdapter
+import android.widget.FilterQueryProvider
+import androidx.loader.content.Loader
+import com.example.deadspace.data.database.getGroupAndTeacherDatabase
 
 
 class ScheduleActivity : AppCompatActivity() {
@@ -29,6 +43,8 @@ class ScheduleActivity : AppCompatActivity() {
     private lateinit var viewModel: ScheduleViewModel
     private lateinit var binding : ScheduleActivityBinding
 
+    private lateinit var mAdapter: SimpleCursorAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -40,12 +56,13 @@ class ScheduleActivity : AppCompatActivity() {
         prefs =
             getSharedPreferences("settings", Context.MODE_PRIVATE)
 
-        val database = getDatabase(this)
+        val database = getPairDatabase(this)
         viewModel = ViewModelProvider(
             this,
             ScheduleViewModel.FACTORY(database.myPairDAO)
         ).get(ScheduleViewModel::class.java)
         loadPreferences()
+
 
         binding = DataBindingUtil.setContentView(this, R.layout.schedule_activity)
         binding.viewModel = viewModel
@@ -71,7 +88,34 @@ class ScheduleActivity : AppCompatActivity() {
                 adapter.updateItems(value)
             }
         }
+        mAdapter = SimpleCursorAdapter(
+            this,
+            android.R.layout.simple_list_item_1,
+            null,
+            arrayOf("Name"),
+            intArrayOf(android.R.id.text1),
+            CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER
+        )
 
+        mAdapter.filterQueryProvider =
+            FilterQueryProvider { constraint -> updateCursor(constraint as String) }
+
+        binding.nameGroupInput.suggestionsAdapter = mAdapter
+
+        binding.nameGroupInput.setOnSuggestionListener(
+            object : SearchView.OnSuggestionListener {
+                override fun onSuggestionSelect(position: Int): Boolean {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onSuggestionClick(position: Int): Boolean {
+                    //val c = binding.nameGroupInput.suggestionsAdapter.getItem(position)
+                    //c.
+                    binding.nameGroupInput.setQuery("1945", true)
+                    return true
+                }
+            }
+        )
 
         binding.nameGroupInput.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
@@ -157,6 +201,15 @@ class ScheduleActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
+    }
+
+    private fun updateCursor(text : String) : Cursor {
+        val cursor = MatrixCursor(arrayOf(BaseColumns._ID, "Name"))
+        for (i in viewModel._querySuggestions.indices) {
+            if (viewModel._querySuggestions[i].Name.lowercase().startsWith(text.lowercase()))
+                cursor.addRow(arrayOf<Any>(i, viewModel._querySuggestions[i].Name))
+        }
+        return cursor
     }
 
 }

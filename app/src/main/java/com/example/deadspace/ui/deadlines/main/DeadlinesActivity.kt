@@ -1,19 +1,14 @@
 package com.example.deadspace.ui.deadlines.main
 
-import com.example.deadspace.R
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.deadspace.data.database.getDatabase
 import com.example.deadspace.databinding.DeadlinesActivityBinding
-import com.example.deadspace.databinding.StartActivityBinding
 import com.example.deadspace.ui.deadlines.add.AddDeadlineActivity
-import com.example.deadspace.ui.deadlines.add.AddDeadlineViewModel
 import com.google.android.material.snackbar.Snackbar
 import java.text.SimpleDateFormat
 import java.util.*

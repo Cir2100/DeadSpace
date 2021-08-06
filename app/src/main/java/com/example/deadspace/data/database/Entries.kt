@@ -31,3 +31,11 @@ data class MyDeadlinesData constructor(
     var isDone : Boolean
     //TODO : add push-notification
 )
+
+@Entity
+data class GroupAndTeacherData constructor(
+    val ItemId : Int,
+    @PrimaryKey val Name: String,
+    val isGroup : Boolean,
+    val isUserHasOwn : Boolean
+)
