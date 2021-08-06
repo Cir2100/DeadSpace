@@ -109,9 +109,9 @@ class ScheduleActivity : AppCompatActivity() {
                 }
 
                 override fun onSuggestionClick(position: Int): Boolean {
-                    //val c = binding.nameGroupInput.suggestionsAdapter.getItem(position)
-                    //c.
-                    binding.nameGroupInput.setQuery("1945", true)
+                    val item = binding.nameGroupInput.suggestionsAdapter.getItem(position) as Cursor
+                    val text = item.getString(item.getColumnIndex("Name"))
+                    binding.nameGroupInput.setQuery(text, true)
                     return true
                 }
             }

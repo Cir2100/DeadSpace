@@ -4,9 +4,9 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Fts4
 import androidx.room.PrimaryKey
+import kotlinx.serialization.Serializable
 import java.time.LocalDate
 
-//TODO : use @Fts4
 @Entity
 data class MyPairData constructor(
     @PrimaryKey @ColumnInfo(name = "rowid") var id: Int,
@@ -20,6 +20,20 @@ data class MyPairData constructor(
     val groups : String,
     val address : String,
     var isCash : Boolean //TODO: ??? val
+)
+
+@Entity
+data class PairData(
+    @PrimaryKey val ItemId : Int,
+    val Week : Int,
+    val Day : Int,
+    val Less : Int,
+    val Build: String,
+    val Rooms: String,
+    val Disc: String,
+    val Type: String,
+    val GroupsText: String,
+    val TeachersText: String
 )
 
 @Entity

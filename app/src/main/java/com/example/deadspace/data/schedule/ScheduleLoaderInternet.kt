@@ -20,6 +20,8 @@ class ScheduleLoaderInternet() {
     }
 
     private val scheduleLink : String = "https://rasp.guap.ru/"
+    private val groupSearchLink : String = "?g="
+    private val teacherSearchLink : String = "?p="
 
     suspend fun loadGroupAndTeacher() {
         withContext(Dispatchers.IO) {
@@ -58,6 +60,18 @@ class ScheduleLoaderInternet() {
     //TODO fun loadWeekType()
 
 
+    private suspend fun checkInput(name : String) : Pair<Int, String> {
+        myGroupAndTeacherDAO.getAll().forEach {
+            if (it.Name == name) {
+                if (it.isGroup)
+                    return Pair(it.ItemId, groupSearchLink)
+                else
+                    return Pair(it.ItemId, teacherSearchLink)
+            }
+        }
+        throw Exception("Incorrect input")
+    }
+
     //TODO : normal parse and refactor
     //find schedule group or teacher on rasp.guap.ru/?..
     suspend fun loadSchedule(name : String) {
@@ -70,43 +84,12 @@ class ScheduleLoaderInternet() {
 
         withContext(Dispatchers.IO) {
 
-            val items = myGroupAndTeacherDAO.getAll()
-
-            //checked name group for valid
-            suspend fun isCurrentGroup(name: String): Int {
-                for (item in items) {
-                    if (item.Name == name && item.isGroup)
-                        return item.ItemId
-                }
-                return -1
-            }
-
-            //checked name teacher for valid
-            suspend fun isCurrentTeacher(name: String): Int {
-                for (item in items) {
-                    if (item.Name == name && !item.isGroup)
-                        return item.ItemId
-                }
-                return -1
-            }
-
             //load schedule
             try {
 
-                var id = isCurrentGroup(name.trim())
-                var letterPost: String = ""
-                if (id != -1)
-                    letterPost = "?g="
-                else {
-                    id = isCurrentTeacher(name.trim())
-                    if (id != -1)
-                        letterPost = "?p="
-                }
-                if (id == -1) {
-                    throw Exception("Incorrect input")
-                }
+                val pairSearch = checkInput(name)
 
-                val doc = Jsoup.connect(scheduleLink + letterPost + id.toString()).get()
+                val doc = Jsoup.connect(scheduleLink + pairSearch.second + pairSearch.first.toString()).get()
                 val result = doc.getElementsByAttributeValue("class", "result")
                 var html: String = result.toString().substringAfter("</h2>")
                 while (html.contains("</h3>")) {

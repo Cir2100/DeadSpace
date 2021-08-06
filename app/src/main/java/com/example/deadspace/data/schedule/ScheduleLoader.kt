@@ -62,9 +62,9 @@ class ScheduleLoader(private val myPairDAO: MyPairDAO) {
     }
 
     suspend fun updateGroupAndTeacher() {
-        if (getGroupAndTeacherDatabase(DeadSpace.appContext).myGroupAndTeacherDAO.getAll()
+        /*if (getGroupAndTeacherDatabase(DeadSpace.appContext).myGroupAndTeacherDAO.getAll()
                 .isEmpty()
-        )
+        )*/
             internetLoader.loadGroupAndTeacher()
     }
 

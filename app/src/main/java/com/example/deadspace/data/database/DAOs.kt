@@ -89,7 +89,5 @@ interface MyGroupAndTeacherDAO {
     @Query("SELECT * FROM GroupAndTeacherData")
     suspend fun getAll() : List<GroupAndTeacherData>
 
-    @Query("SELECT Name FROM GroupAndTeacherData WHERE Name LIKE :name")
-    suspend fun getQuerySuggestions(name : String): List<String>
 
 }
