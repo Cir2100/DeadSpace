@@ -13,7 +13,7 @@ class ScheduleLoaderInternet() {
 
     private val scheduleSaver = ScheduleSaver()
 
-    private val myGroupAndTeacherDAO = getGroupAndTeacherDatabase(DeadSpace.appContext).myGroupAndTeacherDAO
+    private val myGroupAndTeacherDAO = getDatabase(DeadSpace.appContext).myGroupAndTeacherDAO
 
     private val scheduleLink : String = "https://rasp.guap.ru/"
     private val groupSearchLink : String = "?g="
@@ -31,18 +31,20 @@ class ScheduleLoaderInternet() {
                 for (option in options) {
                     if (option.attr("value").toInt() != -1) {
                         if (i == 0)
-                            items.add(GroupAndTeacherData(
-                                ItemId = option.attr("value").toInt(),
-                                Name = option.text(),
-                                isGroup = true,
-                                isUserHasOwn = false))
+                            items.add(
+                                GroupAndTeacherData(
+                                    ItemId = option.attr("value").toInt(),
+                                    Name = option.text(),
+                                    isGroup = true
+                                )
+                            )
                         else if (i == 1)
                             items.add(
                                 GroupAndTeacherData(
                                     ItemId = option.attr("value").toInt(),
                                     Name = option.text(),
-                                    isGroup = false,
-                                    isUserHasOwn = false)
+                                    isGroup = false
+                                )
                             )
                     }
                 }

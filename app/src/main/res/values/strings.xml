@@ -37,4 +37,9 @@
 
     //сообщение об ошибке добавления дедлайна
     <string name="deadline_add_error">Такой дедлайн уже есть</string>
+
+    //сообщение об ошибке загрузки своего расписания
+    <string name="load_user_schedule_error">У вас нет своего расисания для этой группы</string>
+    //сообщение об ошибке добовления пары
+    <string name="add_pair_error">Пара в такое время уже есть</string>
 </resources>

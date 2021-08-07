@@ -1,6 +1,5 @@
 package com.example.deadspace.ui.schedule.main
 
-import android.database.Cursor
 import android.graphics.Color
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -8,16 +7,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.deadspace.DeadSpace
-import com.example.deadspace.data.database.GroupAndTeacherData
-import com.example.deadspace.data.database.MyPairDAO
-import com.example.deadspace.data.database.getGroupAndTeacherDatabase
-import com.example.deadspace.data.database.getPairDatabase
+import com.example.deadspace.data.database.*
 import com.example.deadspace.data.schedule.ScheduleEditor
 import com.example.deadspace.data.schedule.ScheduleLoader
 import com.example.deadspace.data.suai.SUAIScheduleLoader2
 import com.example.deadspace.ui.singleArgViewModelFactory
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import java.io.IOException
 import java.util.*
@@ -30,7 +24,7 @@ class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
 
     //TODO: this in constructor
     private val scheduleLoader = ScheduleLoader()
-    private val scheduleEditor = ScheduleEditor(myPairDAO)
+    private val scheduleEditor = ScheduleEditor()
 
     val myPairList = scheduleLoader.pairs
 
@@ -155,9 +149,9 @@ class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
         }
     }
 
-    fun onDeletePair(time : String) {
+    fun onDeletePair(pair: PairData) {
         viewModelScope.launch {
-            scheduleEditor.deletePair(time, weekType.value!!, weekDay, currentGroup)
+            scheduleEditor.deletePair(pair)
             isUsers = true //TODO it's don't working
             loadDaySchedule()
         }
@@ -166,7 +160,7 @@ class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
     fun updateGroupAndTeacher() {
         viewModelScope.launch {
             scheduleLoader.updateGroupAndTeacher()
-            _querySuggestions = getGroupAndTeacherDatabase(DeadSpace.appContext).myGroupAndTeacherDAO.getAll()
+            _querySuggestions = getDatabase(DeadSpace.appContext).myGroupAndTeacherDAO.getAll()
         }
     }
 

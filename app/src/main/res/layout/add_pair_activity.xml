@@ -239,7 +239,6 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/circle_button"
-        android:onClick="onClickAddRasp"
         android:scaleType="fitCenter"
         android:src="@drawable/white_check_bold"
 

@@ -1,6 +1,5 @@
 package com.example.deadspace.ui.schedule.add
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.deadspace.data.database.MyPairDAO
@@ -8,23 +7,23 @@ import com.example.deadspace.data.schedule.ScheduleEditor
 import com.example.deadspace.ui.singleArgViewModelFactory
 import kotlinx.coroutines.launch
 
-class AddScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel()  {
+class AddPairViewModel(private val myPairDAO: MyPairDAO) : ViewModel()  {
 
 
     companion object {
-        val FACTORY = singleArgViewModelFactory(::AddScheduleViewModel)
+        val FACTORY = singleArgViewModelFactory(::AddPairViewModel)
     }
 
     //TODO: this in constructor
-    private val scheduleEditor = ScheduleEditor(myPairDAO)
+    private val scheduleEditor = ScheduleEditor()
 
     fun addPair(
         group : String,
         weekDay : Int,
         typeOfWeek : Int,
-        title : String,
+        disc : String,
         type : String,
-        number : String,
+        less : Int,
         teachers : String,
         building : String,
         auditorium : String,
@@ -32,15 +31,16 @@ class AddScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel()  {
 
         viewModelScope.launch {
             scheduleEditor.addPair(
-                group = group,
-                day =  weekDay,
-                time = number,
+                name = group,
+                weekDay =  weekDay,
+                less = less,
                 week = typeOfWeek,
                 type = (if (type.isNotEmpty()) type else "-"),
-                name = title,
+                disc = disc,
                 teachers = (if (teachers.isNotEmpty()) teachers else "-"),
                 groups = "-",
-                address = (if (building.isNotEmpty()) building else "-") + "," + (if (auditorium.isNotEmpty()) auditorium else "-")
+                build = (if (building.isNotEmpty()) building else "-"),
+                room = (if (auditorium.isNotEmpty()) auditorium else "-")
             )
         }
     }

@@ -1,27 +1,11 @@
 package com.example.deadspace.data.database
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
-data class MyPairData constructor(
-    @PrimaryKey @ColumnInfo(name = "rowid") var id: Int,
-    val group: String,
-    val day : Int,
-    val time : String,
-    val week : Int,
-    val type : String,
-    val name : String,
-    val teachers : String,
-    val groups : String,
-    val address : String,
-    var isCash : Boolean //TODO: ??? val
-)
-
-@Entity
+@Entity(primaryKeys = ["ItemId", "isCash"])
 data class PairData(
-    @PrimaryKey val ItemId : Int,
+    val ItemId : Int,
     val Name: String,
     val Week : Int,
     val Day : Int,
@@ -31,7 +15,8 @@ data class PairData(
     val Disc: String,
     val Type: String,
     val GroupsText: String,
-    val TeachersText: String
+    val TeachersText: String,
+    var isCash: Boolean
 )
 
 @Entity
@@ -48,6 +33,5 @@ data class MyDeadlinesData constructor(
 data class GroupAndTeacherData constructor(
     val ItemId : Int,
     @PrimaryKey val Name: String,
-    val isGroup : Boolean,
-    val isUserHasOwn : Boolean
+    val isGroup : Boolean
 )

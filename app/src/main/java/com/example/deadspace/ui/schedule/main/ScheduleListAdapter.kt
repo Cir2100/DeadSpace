@@ -7,7 +7,6 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.deadspace.R
-import com.example.deadspace.data.database.MyPairData
 import com.example.deadspace.data.database.PairData
 
 //TODO : use paging
@@ -26,7 +25,7 @@ class ScheduleListAdapter(val viewModel: ScheduleViewModel) :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = items[position]
 
-        holder.scheduleNameTextView?.text = item.Name
+        holder.scheduleNameTextView?.text = item.Disc
         holder.scheduleTypeTextView?.text = item.Type
 
         holder.scheduleNumberTextView?.text =
@@ -38,7 +37,7 @@ class ScheduleListAdapter(val viewModel: ScheduleViewModel) :
         holder.scheduleAuditoriumTextView?.text = item.Rooms
 
         holder.deleteButton?.setOnClickListener {
-            viewModel.onDeletePair(holder.scheduleNumberTextView?.text.toString())
+            viewModel.onDeletePair(item)
         }
     }
 

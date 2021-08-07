@@ -8,7 +8,7 @@ import com.example.deadspace.DeadSpace
 import com.example.deadspace.R
 import com.example.deadspace.data.database.MyDeadlinesDAO
 import com.example.deadspace.data.database.MyDeadlinesData
-import com.example.deadspace.data.database.getDeadlineDatabase
+import com.example.deadspace.data.database.getDatabase
 
 class DeadlineEditor(private val myDeadlinesDAO: MyDeadlinesDAO) {
 
@@ -60,7 +60,7 @@ private lateinit var INSTANCE: DeadlineEditor
 fun getDeadlineEditor(): DeadlineEditor {
     synchronized(DeadlineEditor::class) {
         if (!::INSTANCE.isInitialized) {
-            INSTANCE = DeadlineEditor(getDeadlineDatabase(DeadSpace.appContext).myDeadlinesDAO)
+            INSTANCE = DeadlineEditor(getDatabase(DeadSpace.appContext).myDeadlinesDAO)
         }
     }
     return INSTANCE

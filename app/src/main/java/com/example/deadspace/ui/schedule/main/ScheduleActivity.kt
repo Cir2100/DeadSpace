@@ -1,6 +1,5 @@
 package com.example.deadspace.ui.schedule.main
 
-import android.app.SearchableInfo
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -13,24 +12,17 @@ import android.widget.SimpleCursorAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.loader.content.CursorLoader
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.room.RoomMasterTable
 import com.example.deadspace.R
-import com.example.deadspace.data.database.getPairDatabase
+import com.example.deadspace.data.database.getDatabase
 import com.example.deadspace.databinding.ScheduleActivityBinding
-import com.example.deadspace.ui.schedule.add.AddScheduleActivity
+import com.example.deadspace.ui.schedule.add.AddPairActivity
 import java.text.SimpleDateFormat
 import java.util.*
-import androidx.room.RoomMasterTable.TABLE_NAME
-import android.app.SearchManager
 import android.database.MatrixCursor
 import android.provider.BaseColumns
-import android.util.Log
 import android.widget.CursorAdapter
 import android.widget.FilterQueryProvider
-import androidx.loader.content.Loader
-import com.example.deadspace.data.database.getGroupAndTeacherDatabase
 
 
 class ScheduleActivity : AppCompatActivity() {
@@ -56,7 +48,7 @@ class ScheduleActivity : AppCompatActivity() {
         prefs =
             getSharedPreferences("settings", Context.MODE_PRIVATE)
 
-        val database = getPairDatabase(this)
+        val database = getDatabase(this)
         viewModel = ViewModelProvider(
             this,
             ScheduleViewModel.FACTORY(database.myPairDAO)
@@ -191,7 +183,7 @@ class ScheduleActivity : AppCompatActivity() {
 
     fun onClickAddRasp(view: View)
     {
-        val addScheduleIntent = Intent(this, AddScheduleActivity::class.java)
+        val addScheduleIntent = Intent(this, AddPairActivity::class.java)
         addScheduleIntent.putExtra("group", viewModel.currentGroup)
         addScheduleIntent.putExtra("weekDay", viewModel.weekDay)
         addScheduleIntent.putExtra("weekType", viewModel.weekType.value!!)

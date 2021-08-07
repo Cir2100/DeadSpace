@@ -17,7 +17,7 @@
         android:theme="@style/Theme.DeadSpace"
         android:name=".DeadSpace">
         <activity
-            android:name=".ui.schedule.add.AddScheduleActivity" />
+            android:name=".ui.schedule.add.AddPairActivity" />
         <activity
             android:name=".ui.schedule.main.ScheduleActivity"/>
         <activity

@@ -5,16 +5,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.deadspace.DeadSpace
 import com.example.deadspace.data.database.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 //@Singleton
-class ScheduleLoader() {
+class ScheduleLoader {
 
-    private val myPairDAO = getPairDatabase(DeadSpace.appContext).myPairDAO
-    private val myPairCashDAO = getPairCashDatabase(DeadSpace.appContext).myPairCashDAO
+    private val myPairCashDAO = getDatabase(DeadSpace.appContext).myPairCashDAO
 
-    private val localLoader = ScheduleLoaderLocalData(myPairDAO)
+    private val localLoader = ScheduleLoaderLocalData()
     private val internetLoader = ScheduleLoaderInternet()
 
     //private var _weekType = 1
@@ -61,8 +58,9 @@ class ScheduleLoader() {
         _pairsCount.value = daySchedule.size
     }
 
+    //TODO
     suspend fun updateGroupAndTeacher() {
-        /*if (getGroupAndTeacherDatabase(DeadSpace.appContext).myGroupAndTeacherDAO.getAll()
+       /* if (getGroupAndTeacherDatabase(DeadSpace.appContext).myGroupAndTeacherDAO.getAll()
                 .isEmpty()
         )*/
             internetLoader.loadGroupAndTeacher()

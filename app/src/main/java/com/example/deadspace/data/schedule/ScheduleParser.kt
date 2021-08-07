@@ -90,7 +90,7 @@ class ScheduleParser {
 
                 pairs.add(
                     PairData(
-                        ItemId = itemId * 10000 + week * 1000 + weekDay * 100 + less * 10 + 1,
+                        ItemId = itemId * 10000 + week * 1000 + weekDay * 100 + less * 10,
                         Name = searchName,
                         Week = week,
                         Day = weekDay,
@@ -101,6 +101,7 @@ class ScheduleParser {
                         Type = type,
                         GroupsText = groups,
                         TeachersText = teachers,
+                        isCash = true
                     )
                 )
             }
