@@ -19,12 +19,16 @@ class ScheduleRepo {
         _error.value = scheduleLoader.loadSchedule(name, isUsers)
     }
 
+    suspend fun loadWeekType() : Boolean {
+        return scheduleLoader.loadWeekType()
+    }
+
     suspend fun loadDay(weekType : Int, weekDay : Int) {
         scheduleLoader.loadDay(weekType, weekDay)
     }
 
     suspend fun updateGroupAndTeacher() {
-        scheduleLoader.updateGroupAndTeacher()
+        _error.value = scheduleLoader.updateGroupAndTeacher()
     }
 
     suspend fun deletePair(pair : PairData) {

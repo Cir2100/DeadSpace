@@ -10,6 +10,7 @@ import com.example.deadspace.databinding.StartActivityBinding
 import com.example.deadspace.ui.deadlines.main.DeadlinesActivity
 import com.example.deadspace.ui.exams.ExamActivity
 import com.example.deadspace.ui.schedule.main.ScheduleActivity
+import com.google.android.material.snackbar.Snackbar
 import java.util.*
 
 class StartActivity : AppCompatActivity() {
@@ -31,6 +32,14 @@ class StartActivity : AppCompatActivity() {
         binding.currentWeekday.text = date.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG_FORMAT, Locale.getDefault())
 
         val viewModel = ViewModelProvider(this).get(StartViewModel::class.java)
+
+        // Show a snackbar whenever the [ViewModel.snackbar] is updated a non-null value
+        viewModel.snackBar.observe(this) { text ->
+            text?.let {
+                Snackbar.make(binding.startRootLayout, text, Snackbar.LENGTH_SHORT).show()
+                viewModel.onSnackBarShown()
+            }
+        }
 
         viewModel.weekType.observe(this) { weekType ->
             weekType?.let {

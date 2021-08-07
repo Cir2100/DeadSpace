@@ -48,6 +48,10 @@ class ScheduleLoader {
         }
     }
 
+    suspend fun loadWeekType() : Boolean {
+        return internetLoader.getWeekType()
+    }
+
     suspend fun loadDay(weekType : Int, weekDay : Int) {
         //_weekDay = weekDay
         //_weekType = weekType
@@ -58,11 +62,11 @@ class ScheduleLoader {
     }
 
     //TODO
-    suspend fun updateGroupAndTeacher() {
+    suspend fun updateGroupAndTeacher() : String? {
        /* if (getGroupAndTeacherDatabase(DeadSpace.appContext).myGroupAndTeacherDAO.getAll()
                 .isEmpty()
         )*/
-            internetLoader.loadGroupAndTeacher()
+            return internetLoader.loadGroupAndTeacher()
     }
 }
 

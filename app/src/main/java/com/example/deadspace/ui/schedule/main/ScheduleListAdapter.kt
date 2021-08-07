@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.deadspace.R
 import com.example.deadspace.data.database.PairData
 
-//TODO : use paging
 class ScheduleListAdapter(val viewModel: ScheduleViewModel) :
     RecyclerView.Adapter<ScheduleListAdapter.MyViewHolder>() {
 
@@ -48,8 +47,6 @@ class ScheduleListAdapter(val viewModel: ScheduleViewModel) :
 
     //TODO : use binding
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        //binding =
 
         var scheduleNameTextView: TextView? = null
         var scheduleTypeTextView: TextView? = null

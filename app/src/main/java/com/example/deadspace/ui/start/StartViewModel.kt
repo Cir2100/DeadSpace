@@ -2,7 +2,7 @@ package com.example.deadspace.ui.start
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.deadspace.data.suai.*
+import com.example.deadspace.data.schedule.getScheduleRepo
 import kotlinx.coroutines.launch
 
 //TODO: use Hilt
@@ -10,21 +10,30 @@ import kotlinx.coroutines.launch
 //@HiltViewModel
 class StartViewModel : ViewModel() {
 
-    private val _weekType = MutableLiveData<Boolean>()
-    val weekType : LiveData<Boolean>
+    private val scheduleRepo = getScheduleRepo()
+
+    private val _weekType = MutableLiveData<Boolean>(false)
+    val weekType: LiveData<Boolean>
         get() = _weekType
+
+    private val _snackBar : MutableLiveData<String?> = scheduleRepo.error
+    val snackBar: LiveData<String?>
+        get() = _snackBar
 
     init {
         viewModelScope.launch {
             try {
-            _weekType.value = SUAIScheduleLoader2.getSemInfo().IsWeekUp
-
+                _weekType.value = scheduleRepo.loadWeekType()
             } catch (e : Throwable) {
-                Log.e("dsf", e.toString())
+                _snackBar.value = e.message
             }
 
         }
 
+    }
+
+    fun onSnackBarShown() {
+        _snackBar.value = null
     }
 
 }

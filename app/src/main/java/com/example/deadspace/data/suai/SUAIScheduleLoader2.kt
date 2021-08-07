@@ -1,6 +1,6 @@
 package com.example.deadspace.data.suai
 
-object SUAIScheduleLoader2 {
+object UAIScheduleLoader2 {
 
     suspend fun getGroups() : List<Group> {
         return if (::groups.isInitialized) {

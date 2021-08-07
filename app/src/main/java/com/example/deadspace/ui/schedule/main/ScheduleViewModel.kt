@@ -9,7 +9,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.deadspace.DeadSpace
 import com.example.deadspace.data.database.*
 import com.example.deadspace.data.schedule.getScheduleRepo
-import com.example.deadspace.data.suai.SUAIScheduleLoader2
 import kotlinx.coroutines.launch
 import java.io.IOException
 import java.util.*
@@ -22,6 +21,8 @@ class ScheduleViewModel : ViewModel() {
     val myPairList = scheduleRepo.pairs
 
     val pairsCount = scheduleRepo.pairsCount
+
+    //val weekType = scheduleRepo.week
 
 
     //TODO _----------------
@@ -99,10 +100,10 @@ class ScheduleViewModel : ViewModel() {
 
     init {
 
-        viewModelScope.launch {
+        /*viewModelScope.launch {
             _weekType.value = if (SUAIScheduleLoader2.getSemInfo().IsWeekUp) 1 else 0
             updateGroupAndTeacher()
-        }
+        }*/
 
 
         val date = Calendar.getInstance()
