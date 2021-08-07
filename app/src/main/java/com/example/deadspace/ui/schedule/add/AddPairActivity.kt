@@ -10,7 +10,6 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.deadspace.R
-import com.example.deadspace.data.database.getDatabase
 import com.example.deadspace.databinding.AddPairActivityBinding
 
 class AddPairActivity : AppCompatActivity() {
@@ -25,12 +24,7 @@ class AddPairActivity : AppCompatActivity() {
         actionbar!!.title = "Добавление занятия"
         actionbar.setDisplayHomeAsUpEnabled(true)
 
-        val database = getDatabase(this)
-
-        viewModel = ViewModelProvider(
-            this,
-            AddPairViewModel.FACTORY(database.myPairDAO)
-        ).get(AddPairViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(AddPairViewModel::class.java)
 
         binding = AddPairActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)

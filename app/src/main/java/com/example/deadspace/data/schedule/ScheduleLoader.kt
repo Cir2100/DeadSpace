@@ -11,8 +11,8 @@ class ScheduleLoader {
 
     private val myPairCashDAO = getDatabase(DeadSpace.appContext).myPairCashDAO
 
-    private val localLoader = ScheduleLoaderLocalData()
-    private val internetLoader = ScheduleLoaderInternet()
+    private val localLoader = getScheduleLoaderLocalData()
+    private val internetLoader = getScheduleLoaderInternet()
 
     //private var _weekType = 1
     //private var _weekDay = 0
@@ -38,12 +38,11 @@ class ScheduleLoader {
         return daySchedule
     }*/
 
-    suspend fun loadSchedule(name: String, isUsers : Boolean) {
-        if (isUsers) {
+    suspend fun loadSchedule(name: String, isUsers : Boolean) : String? {
+        return if (isUsers) {
             Log.i(this.javaClass.simpleName, "Load from local data")
             localLoader.loadSchedule(name)
-        }
-        else {
+        } else {
             Log.i(this.javaClass.simpleName, "Load from internet")
             internetLoader.loadSchedule(name)
         }
@@ -65,14 +64,15 @@ class ScheduleLoader {
         )*/
             internetLoader.loadGroupAndTeacher()
     }
+}
 
-    private suspend fun checkCash(name: String) : Boolean {
+private lateinit var INSTANCE: ScheduleLoader
 
-        val cash = myPairCashDAO.getCash()
-        //TODO : add throw
-        if (cash.size == 0)
-            return false
-        return cash[0].Name == name
+fun getScheduleLoader(): ScheduleLoader {
+    synchronized(ScheduleLoader::class) {
+        if (!::INSTANCE.isInitialized) {
+            INSTANCE = ScheduleLoader()
+        }
     }
-
+    return INSTANCE
 }

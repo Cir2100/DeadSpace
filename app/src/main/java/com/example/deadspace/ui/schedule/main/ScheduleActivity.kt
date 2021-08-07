@@ -14,7 +14,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.deadspace.R
-import com.example.deadspace.data.database.getDatabase
 import com.example.deadspace.databinding.ScheduleActivityBinding
 import com.example.deadspace.ui.schedule.add.AddPairActivity
 import java.text.SimpleDateFormat
@@ -23,6 +22,7 @@ import android.database.MatrixCursor
 import android.provider.BaseColumns
 import android.widget.CursorAdapter
 import android.widget.FilterQueryProvider
+import com.google.android.material.snackbar.Snackbar
 
 
 class ScheduleActivity : AppCompatActivity() {
@@ -45,24 +45,25 @@ class ScheduleActivity : AppCompatActivity() {
         actionbar.setDisplayHomeAsUpEnabled(true)
 
 
-        prefs =
-            getSharedPreferences("settings", Context.MODE_PRIVATE)
+        prefs = getSharedPreferences("settings", Context.MODE_PRIVATE)
 
-        val database = getDatabase(this)
-        viewModel = ViewModelProvider(
-            this,
-            ScheduleViewModel.FACTORY(database.myPairDAO)
-        ).get(ScheduleViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(ScheduleViewModel::class.java)
         loadPreferences()
-
 
         binding = DataBindingUtil.setContentView(this, R.layout.schedule_activity)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
+        // Show a snackbar whenever the [ViewModel.snackbar] is updated a non-null value
+        viewModel.snackBar.observe(this) { text ->
+            text?.let {
+                Snackbar.make(binding.scheduleRootLayout, text, Snackbar.LENGTH_SHORT).show()
+                viewModel.onSnackBarShown()
+            }
+        }
+
         //current group
         binding.nameGroupInput.setQuery(viewModel.currentGroup, true)
-        binding.nameGroupInput.gravity = Gravity.RIGHT
 
         //Current date
         val date = Calendar.getInstance().time

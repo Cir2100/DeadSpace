@@ -2,39 +2,20 @@ package com.example.deadspace.data.schedule
 
 import android.util.Log
 import com.example.deadspace.DeadSpace
+import com.example.deadspace.R
 import com.example.deadspace.data.database.*
 
 //TODO: scheduleSaver @singleton and don't use this constructor
 class ScheduleEditor {
 
-    private val scheduleSaver = ScheduleSaver()
-    private val myPairDAO = getDatabase(DeadSpace.appContext).myPairDAO
-    private val myPairCashDAO = getDatabase(DeadSpace.appContext).myPairCashDAO
-    private val myGroupAndTeacherDAO = getDatabase(DeadSpace.appContext).myGroupAndTeacherDAO
+    private val scheduleSaver = getScheduleSaver()
 
-    private suspend fun loadSchedule(name : String) : List<PairData> {
-        Log.i(this.javaClass.simpleName, "Load user's schedule")
-        var schedule = myPairDAO.getUserSchedule(name)
-        if (schedule.isEmpty()) {
-            Log.i(this.javaClass.simpleName, "User schedule not in database")
-            schedule = myPairCashDAO.getCash() as List<PairData>
-            scheduleSaver.saveUserSchedule(schedule)
-        }
-        //if (schedule.size == 0)
-            //TODO : throw ты дурачок
-        return schedule
-    }
+    private val res =  DeadSpace.appContext.resources
 
-    private suspend fun initUserSchedule(name : String) {
-        var schedule = myPairDAO.getUserSchedule(name)
-        if (schedule.isEmpty()) {
-
-            schedule = myPairCashDAO.getCash()
-            scheduleSaver.saveUserSchedule(schedule)
-
-            Log.i(this.javaClass.simpleName, "Init user's schedule")
-        }
-    }
+    private val database = getDatabase(DeadSpace.appContext)
+    private val myPairDAO = database.myPairDAO
+    private val myPairCashDAO = database.myPairCashDAO
+    private val myGroupAndTeacherDAO = database.myGroupAndTeacherDAO
 
     suspend fun deletePair(pair : PairData) {
 
@@ -59,7 +40,7 @@ class ScheduleEditor {
                         teachers : String,
                         groups : String,
                         build : String,
-                        room : String) {
+                        room : String)  : String? {
 
         initUserSchedule(name)
 
@@ -86,8 +67,19 @@ class ScheduleEditor {
 
             Log.i(this.javaClass.simpleName, "Add pair successful")
         } else {
-            Log.i(this.javaClass.simpleName, "Pair in database yet")
-            //TODO : throw
+            return res.getString(R.string.add_pair_error)
+        }
+        return null
+    }
+
+    private suspend fun initUserSchedule(name : String) {
+        var schedule = myPairDAO.getUserSchedule(name)
+        if (schedule.isEmpty()) {
+
+            schedule = myPairCashDAO.getCash()
+            scheduleSaver.saveUserSchedule(schedule)
+
+            Log.i(this.javaClass.simpleName, "Init user's schedule")
         }
     }
 
@@ -98,4 +90,15 @@ class ScheduleEditor {
         }
         return -1
     }
+}
+
+private lateinit var INSTANCE: ScheduleEditor
+
+fun getScheduleEditor(): ScheduleEditor {
+    synchronized(ScheduleEditor::class) {
+        if (!::INSTANCE.isInitialized) {
+            INSTANCE = ScheduleEditor()
+        }
+    }
+    return INSTANCE
 }

@@ -5,9 +5,10 @@ import com.example.deadspace.data.database.*
 
 class ScheduleSaver {
 
-    private val myPairDAO = getDatabase(DeadSpace.appContext).myPairDAO
-    private val myPairCashDAO = getDatabase(DeadSpace.appContext).myPairCashDAO
-    private val myGroupAndTeacherDAO = getDatabase(DeadSpace.appContext).myGroupAndTeacherDAO
+    private val database = getDatabase(DeadSpace.appContext)
+    private val myPairDAO = database.myPairDAO
+    private val myPairCashDAO = database.myPairCashDAO
+    private val myGroupAndTeacherDAO = database.myGroupAndTeacherDAO
 
     suspend fun saveCash(saveData : List<PairData>) {
         deleteCash()
@@ -28,4 +29,15 @@ class ScheduleSaver {
         myGroupAndTeacherDAO.insertAll(items)
     }
 
+}
+
+private lateinit var INSTANCE: ScheduleSaver
+
+fun getScheduleSaver(): ScheduleSaver {
+    synchronized(ScheduleSaver::class) {
+        if (!::INSTANCE.isInitialized) {
+            INSTANCE = ScheduleSaver()
+        }
+    }
+    return INSTANCE
 }

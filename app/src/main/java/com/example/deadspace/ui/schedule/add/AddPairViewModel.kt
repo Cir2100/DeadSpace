@@ -2,20 +2,13 @@ package com.example.deadspace.ui.schedule.add
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.deadspace.data.database.MyPairDAO
-import com.example.deadspace.data.schedule.ScheduleEditor
-import com.example.deadspace.ui.singleArgViewModelFactory
+import com.example.deadspace.data.schedule.getScheduleRepo
 import kotlinx.coroutines.launch
 
-class AddPairViewModel(private val myPairDAO: MyPairDAO) : ViewModel()  {
-
-
-    companion object {
-        val FACTORY = singleArgViewModelFactory(::AddPairViewModel)
-    }
+class AddPairViewModel : ViewModel()  {
 
     //TODO: this in constructor
-    private val scheduleEditor = ScheduleEditor()
+    private val scheduleRepo = getScheduleRepo()
 
     fun addPair(
         group : String,
@@ -30,7 +23,7 @@ class AddPairViewModel(private val myPairDAO: MyPairDAO) : ViewModel()  {
     ) {
 
         viewModelScope.launch {
-            scheduleEditor.addPair(
+            scheduleRepo.addPair(
                 name = group,
                 weekDay =  weekDay,
                 less = less,

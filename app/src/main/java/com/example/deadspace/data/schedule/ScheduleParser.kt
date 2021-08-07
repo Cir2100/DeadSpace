@@ -1,6 +1,5 @@
 package com.example.deadspace.data.schedule
 
-import android.util.Log
 import com.example.deadspace.data.database.PairData
 
 class ScheduleParser {
@@ -122,4 +121,16 @@ class ScheduleParser {
         return tmp
     }
 
+}
+
+
+private lateinit var INSTANCE: ScheduleParser
+
+fun getScheduleParser(): ScheduleParser {
+    synchronized(ScheduleParser::class) {
+        if (!::INSTANCE.isInitialized) {
+            INSTANCE = ScheduleParser()
+        }
+    }
+    return INSTANCE
 }

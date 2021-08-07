@@ -4,21 +4,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.deadspace.data.database.MyDeadlinesDAO
-import com.example.deadspace.data.deadline.DeadlineEditor
-import com.example.deadspace.data.deadline.getDeadlineEditor
-import com.example.deadspace.ui.singleArgViewModelFactory
+import com.example.deadspace.data.deadline.getDeadlineRepo
 import kotlinx.coroutines.launch
 
 class DeadlineViewModel : ViewModel() {
 
-    private val deadlineEditor = getDeadlineEditor()
+    //private val deadlineEditor = getDeadlineEditor()
+    private val deadlineRepo = getDeadlineRepo()
 
-    val myDeadlineList = deadlineEditor.deadlines
+    val myDeadlineList = deadlineRepo.deadlines
 
-    val sizeDeadlineList = deadlineEditor.countDeadlines
+    val sizeDeadlineList = deadlineRepo.countDeadlines
 
-    private val _snackBar : MutableLiveData<String?> = deadlineEditor.error
+    private val _snackBar : MutableLiveData<String?> = deadlineRepo.error
     val snackBar: LiveData<String?>
         get() = _snackBar
 
@@ -29,13 +27,13 @@ class DeadlineViewModel : ViewModel() {
 
     fun onDeleteDeadline(id : Int) {
         viewModelScope.launch {
-            deadlineEditor.deleteDeadline(id)
+            deadlineRepo.deleteDeadline(id)
         }
     }
 
     fun onDoneChange (id : Int) {
         viewModelScope.launch {
-            deadlineEditor.changeDeadline(id)
+            deadlineRepo.changeDeadline(id)
         }
     }
 }

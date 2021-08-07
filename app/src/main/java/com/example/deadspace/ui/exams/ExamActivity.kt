@@ -1,12 +1,8 @@
 package com.example.deadspace.ui.exams
 
 import com.example.deadspace.R
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
-
 import androidx.appcompat.app.AppCompatActivity
-import com.example.deadspace.ui.start.StartActivity
 
 class ExamActivity : AppCompatActivity() {
 

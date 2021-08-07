@@ -4,12 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import com.example.deadspace.DeadSpace
 import com.example.deadspace.R
 import com.example.deadspace.databinding.StartActivityBinding
-import com.example.deadspace.ui.deadlines.main.DeadlineViewModel
 import com.example.deadspace.ui.deadlines.main.DeadlinesActivity
 import com.example.deadspace.ui.exams.ExamActivity
 import com.example.deadspace.ui.schedule.main.ScheduleActivity

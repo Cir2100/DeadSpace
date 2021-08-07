@@ -70,6 +70,9 @@ interface MyDeadlinesDAO {
     @get:Query("SELECT count(*) FROM MyDeadlinesData")
     val countDeadlines: LiveData<Int>
 
+    @Query("SELECT count(*) FROM MyDeadlinesData")
+    suspend fun getCountDeadlines(): Int
+
     @Query("SELECT * FROM MyDeadlinesData")
     suspend fun getAllDeadlines(): List<MyDeadlinesData>
 

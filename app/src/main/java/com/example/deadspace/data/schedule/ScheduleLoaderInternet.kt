@@ -9,15 +9,12 @@ import org.jsoup.Jsoup
 import org.jsoup.select.Elements
 import java.io.IOException
 
-class ScheduleLoaderInternet() {
+class ScheduleLoaderInternet {
 
-    private val scheduleSaver = ScheduleSaver()
+    private val scheduleSaver = getScheduleSaver()
+    private val scheduleParser = getScheduleParser()
 
     private val myGroupAndTeacherDAO = getDatabase(DeadSpace.appContext).myGroupAndTeacherDAO
-
-    private val scheduleLink : String = "https://rasp.guap.ru/"
-    private val groupSearchLink : String = "?g="
-    private val teacherSearchLink : String = "?p="
 
     suspend fun loadGroupAndTeacher() {
         withContext(Dispatchers.IO) {
@@ -72,11 +69,9 @@ class ScheduleLoaderInternet() {
 
     //TODO : normal parse and refactor
     //find schedule group or teacher on rasp.guap.ru/?..
-    suspend fun loadSchedule(searchName : String) {
+    suspend fun loadSchedule(searchName : String) : String? {
 
-        val scheduleParser = ScheduleParser()
-
-        withContext(Dispatchers.IO) {
+        return withContext(Dispatchers.IO) {
 
             //load schedule
             try {
@@ -90,17 +85,24 @@ class ScheduleLoaderInternet() {
 
                 Log.i(this.javaClass.simpleName, "Load schedule from internet successful")
             } catch (e: IOException) {
-               /// scheduleSaver.deleteCash()
-                //TODO : delete
-                throw e
+               return@withContext e.message.toString()
             } catch (e: Exception) {
-               // scheduleSaver.deleteCash()
-                //Log.e(ContentValues.TAG, e.message.toString())
-                throw e
+                return@withContext e.message.toString()
             }
-            //TODO: norm throw?
+            return@withContext null
         }
     }
 
 
+}
+
+private lateinit var INSTANCE: ScheduleLoaderInternet
+
+fun getScheduleLoaderInternet(): ScheduleLoaderInternet {
+    synchronized(ScheduleLoaderInternet::class) {
+        if (!::INSTANCE.isInitialized) {
+            INSTANCE = ScheduleLoaderInternet()
+        }
+    }
+    return INSTANCE
 }

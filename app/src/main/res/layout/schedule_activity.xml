@@ -12,7 +12,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/relativeLayout_01"
+        android:id="@+id/schedule_root_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/main_background_grad_and_vector"
