@@ -52,6 +52,10 @@ class ScheduleLoader {
         return internetLoader.getWeekType()
     }
 
+    suspend fun loadCurrentPair(time : Int) : PairData? {
+        return localLoader.loadCurrentPair(time)
+    }
+
     suspend fun loadDay(weekType : Int, weekDay : Int) {
         //_weekDay = weekDay
         //_weekType = weekType

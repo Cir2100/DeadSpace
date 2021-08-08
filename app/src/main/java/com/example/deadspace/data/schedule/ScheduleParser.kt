@@ -40,11 +40,18 @@ class ScheduleParser {
 
         while (daySchedule.length > 10) {
 
-            val less =
-                if (weekDay != 6)
-                    daySchedule.substringAfter("<h4>").substringBefore("</h4>").substringBefore(" ").toInt()
-                else
-                    0
+            var less = 0
+            var startTime = 0
+            var endTime = 1439
+            if (weekDay != 6) {
+                val time = daySchedule.substringAfter("<h4>").substringBefore("</h4>")
+                less = time.substringBefore(" ").toInt()
+                startTime = time.substringAfter("(").substringBefore(":").toInt() * 60 +
+                        time.substringAfter(":").substringBefore("–").toInt()
+                endTime = time.substringAfter("-").substringBefore(":").toInt() * 60  +
+                        time.substringAfter(":").substringBefore(")").toInt()
+            }
+
 
             var pairInTime = daySchedule.substringAfter("</h4>").substringBefore("<h4>")
 
@@ -94,6 +101,8 @@ class ScheduleParser {
                         Week = week,
                         Day = weekDay,
                         Less = less,
+                        StartTime = startTime,
+                        EndTime = endTime,
                         Build = build,
                         Rooms = room,
                         Disc = disc,

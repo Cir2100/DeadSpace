@@ -107,10 +107,10 @@ class ScheduleLoaderInternet {
     private suspend fun checkInput(name : String) : Pair<Int, String> {
         myGroupAndTeacherDAO.getAll().forEach {
             if (it.Name == name) {
-                if (it.isGroup)
-                    return Pair(it.ItemId, groupSearchLink)
+                return if (it.isGroup)
+                    Pair(it.ItemId, groupSearchLink)
                 else
-                    return Pair(it.ItemId, teacherSearchLink)
+                    Pair(it.ItemId, teacherSearchLink)
             }
         }
         throw Exception("Incorrect input")

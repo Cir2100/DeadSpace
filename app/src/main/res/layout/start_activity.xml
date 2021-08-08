@@ -103,7 +103,7 @@
         app:layout_constraintBottom_toBottomOf="@id/start_bar">
 
     <TextView
-        android:id="@+id/Number"
+        android:id="@+id/current_pair_less"
         android:layout_width="wrap_content"
         android:layout_height="90dp"
         android:fontFamily="@font/exo_2_bold"
@@ -123,7 +123,7 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/time_pair_textview"
+        android:id="@+id/current_pair_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/exo_2"

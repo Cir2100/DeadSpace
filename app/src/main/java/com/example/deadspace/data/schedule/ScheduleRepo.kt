@@ -23,6 +23,10 @@ class ScheduleRepo {
         return scheduleLoader.loadWeekType()
     }
 
+    suspend fun loadCurrentPair(time : Int) : PairData? {
+        return scheduleLoader.loadCurrentPair(time)
+    }
+
     suspend fun loadDay(weekType : Int, weekDay : Int) {
         scheduleLoader.loadDay(weekType, weekDay)
     }

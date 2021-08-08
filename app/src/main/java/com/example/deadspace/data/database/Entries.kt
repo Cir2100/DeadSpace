@@ -10,6 +10,8 @@ data class PairData(
     val Week : Int,
     val Day : Int,
     val Less : Int,
+    val StartTime : Int,
+    val EndTime : Int,
     val Build: String,
     val Rooms: String,
     val Disc: String,

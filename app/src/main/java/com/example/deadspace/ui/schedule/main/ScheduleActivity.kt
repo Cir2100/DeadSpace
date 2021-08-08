@@ -181,7 +181,7 @@ class ScheduleActivity : AppCompatActivity() {
             viewModel.isUsers = prefs.getBoolean("APP_PREFERENCES_IS_USER", false)
         }
     }
-
+    //TODO check cash
     fun onClickAddRasp(view: View)
     {
         val addScheduleIntent = Intent(this, AddPairActivity::class.java)

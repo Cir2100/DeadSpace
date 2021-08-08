@@ -9,6 +9,7 @@ import com.example.deadspace.data.database.*
 class ScheduleEditor {
 
     private val scheduleSaver = getScheduleSaver()
+    private val pairTime = getSchedulePairTime()
 
     private val res =  DeadSpace.appContext.resources
 
@@ -29,7 +30,6 @@ class ScheduleEditor {
         Log.i(this.javaClass.simpleName, "Delete pair successful")
     }
 
-    //TODO if day = 6, then week = 2
     //change local schedule
     suspend fun addPair(name : String,
                         weekDay : Int,
@@ -44,12 +44,16 @@ class ScheduleEditor {
 
         initUserSchedule(name)
 
+        val pairTime = pairTime.getPairTime(less)
+
         val addId = myPairDAO.insertOne(PairData(
             ItemId = getItemId(name) * 10000 + week * 1000 + weekDay * 100 + less * 10,
             Name = name,
-            Week = week,
+            Week = if (weekDay != 6) week else 2,
             Day = weekDay,
             Less = less,
+            StartTime = pairTime.first,
+            EndTime = pairTime.second,
             Build = build,
             Rooms = room,
             Disc = disc,
