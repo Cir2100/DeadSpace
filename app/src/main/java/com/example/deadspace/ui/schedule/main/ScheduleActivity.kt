@@ -20,6 +20,7 @@ import android.provider.BaseColumns
 import android.widget.*
 import androidx.core.content.res.ResourcesCompat
 import com.example.deadspace.data.database.PairData
+import kotlinx.serialization.json.Json
 
 class ScheduleActivity : AppCompatActivity() {
 
@@ -155,7 +156,7 @@ class ScheduleActivity : AppCompatActivity() {
         }
 
         binding.deleteUsersScheduleButton.setOnClickListener {
-            createDialogFragment(true)
+            createDeleteDialogFragment(true)
         }
 
     }
@@ -208,11 +209,30 @@ class ScheduleActivity : AppCompatActivity() {
         return cursor
     }
 
-    fun createDialogFragment(type : Boolean) {
-        val myDialogFragment = ScheduleDialogFragment()
+    fun createDeleteDialogFragment(type : Boolean) {
+        val myDialogFragment = ScheduleDeleteDialogFragment()
         val manager = supportFragmentManager
         val args = Bundle()
         args.putBoolean("type", type)
+        myDialogFragment.arguments = args
+        myDialogFragment.show(manager, "myDialog")
+    }
+
+    private fun createPairInfoDialogFragment(
+    item: PairData
+    ) {
+        val myDialogFragment = PairDialogFragment()
+        val manager = supportFragmentManager
+        val args = Bundle()
+        args.putInt("less", item.Less)
+        args.putString("time", resources.getString(R.string.pair_time_counter,
+            item.StartTime,  item.EndTime))
+        args.putString("type", item.Type)
+        args.putString("disc", item.Disc)
+        args.putString("auditorium", item.Rooms)
+        args.putString("build", item.Build)
+        args.putString("groups", item.GroupsText)
+        args.putString("teachers", item.TeachersText)
         myDialogFragment.arguments = args
         myDialogFragment.show(manager, "myDialog")
     }
@@ -229,9 +249,14 @@ class ScheduleActivity : AppCompatActivity() {
 
         private lateinit var item: PairData
 
-        fun onClick(item : PairData) {
+        fun onClickDeletePair(item : PairData) {
             this.item = item
-            createDialogFragment(false)
+            createDeleteDialogFragment(false)
+        }
+
+        fun onClickPairItem(item : PairData) {
+            val format = Json { coerceInputValues = true }
+            createPairInfoDialogFragment(item)
         }
 
         fun getItem() : PairData = item

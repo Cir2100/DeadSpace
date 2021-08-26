@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.deadspace.DeadSpace
 import com.example.deadspace.R
@@ -41,8 +42,17 @@ class ScheduleListAdapter(private val deletePairClickListener: ScheduleActivity.
             item.StartTime,  item.EndTime)
 
         holder.deleteButton?.setOnClickListener {
-            deletePairClickListener.onClick(item)
+            deletePairClickListener.onClickDeletePair(item)
         }
+
+        holder.itemView.setOnClickListener{
+            val pos = holder.adapterPosition
+            if(pos != DiffUtil.DiffResult.NO_POSITION) {
+                //todo itemClickListener
+                deletePairClickListener.onClickPairItem(item)
+            }
+        }
+
     }
 
     fun updateItems(items: List<PairData>) {
