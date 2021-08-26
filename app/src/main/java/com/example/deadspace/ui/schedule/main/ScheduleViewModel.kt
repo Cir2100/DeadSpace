@@ -117,10 +117,13 @@ class ScheduleViewModel : ViewModel() {
             try {
                 _spinner.value = true
                 currentGroup = groupName
-                scheduleRepo.loadSchedule(
+                val errorMes = scheduleRepo.loadSchedule(
                     name = groupName,
                     isUsers = _isUsers.value!!
                 )
+                _toast.value = errorMes
+                if (errorMes != null)
+                    _isUsers.value = false
                 loadDaySchedule()
             } catch (e: IOException) {
                 _spinner.value = false

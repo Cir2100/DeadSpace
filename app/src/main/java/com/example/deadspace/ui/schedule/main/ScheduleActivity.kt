@@ -54,7 +54,7 @@ class ScheduleActivity : AppCompatActivity() {
         viewModel.toast.observe(this) { text ->
             text?.let {
                 Toast.makeText(this@ScheduleActivity, text,
-                    Toast.LENGTH_LONG).show()
+                    Toast.LENGTH_SHORT).show()
                 viewModel.onToastShown()
             }
         }

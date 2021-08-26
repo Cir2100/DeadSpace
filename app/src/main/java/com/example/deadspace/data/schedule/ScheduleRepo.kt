@@ -15,8 +15,8 @@ class ScheduleRepo {
     val error: MutableLiveData<String?>
         get() = _error
 
-    suspend fun loadSchedule(name: String, isUsers : Boolean) {
-        _error.value = scheduleLoader.loadSchedule(name, isUsers)
+    suspend fun loadSchedule(name: String, isUsers : Boolean) : String? {
+       return scheduleLoader.loadSchedule(name, isUsers)
     }
 
     suspend fun loadWeekType() : Boolean {
