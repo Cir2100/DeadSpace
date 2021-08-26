@@ -45,8 +45,8 @@ class StartActivity : AppCompatActivity() {
         viewModel.weekType.observe(this) { weekType ->
             weekType?.let {
                 binding.weekTypeTextview.text = if (weekType) "верхняя" else "нижняя"
-                binding.startBar.setImageDrawable(if (weekType) resources.getDrawable(R.drawable.background_start_bar_red, theme)
-                else resources.getDrawable(R.drawable.background_start_bar_blue, theme))
+                /*binding.startBar.setImageDrawable(if (weekType) resources.getDrawable(R.drawable.background_start_bar_red, theme)
+                else resources.getDrawable(R.drawable.background_start_bar_blue, theme))*/
             }
         }
 
