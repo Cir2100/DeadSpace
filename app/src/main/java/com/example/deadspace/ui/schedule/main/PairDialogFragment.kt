@@ -29,6 +29,10 @@ class PairDialogFragment  : DialogFragment() {
         binding.pairInfoGroups.text = requireArguments().getString("groups")
         binding.pairInfoTeachers.text = requireArguments().getString("teachers")
 
+        binding.closePairInfoFragment.setOnClickListener{
+            requireActivity().supportFragmentManager.beginTransaction().remove(this@PairDialogFragment).commit()
+        }
+
         return binding.root
     }
 }
