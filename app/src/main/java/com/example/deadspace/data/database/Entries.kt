@@ -1,25 +1,24 @@
 package com.example.deadspace.data.database
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
-import androidx.room.Fts4
 import androidx.room.PrimaryKey
-import java.time.LocalDate
 
-//TODO : use @Fts4
-@Entity
-data class MyPairData constructor(
-    @PrimaryKey @ColumnInfo(name = "rowid") var id: Int,
-    val group: String,
-    val day : Int,
-    val time : String,
-    val week : Int,
-    val type : String,
-    val name : String,
-    val teachers : String,
-    val groups : String,
-    val address : String,
-    var isCash : Boolean //TODO: ??? val
+@Entity(primaryKeys = ["ItemId", "isCash"])
+data class PairData(
+    val ItemId : Int,
+    val Name: String,
+    val Week : Int,
+    val Day : Int,
+    val Less : Int,
+    val StartTime : Int,
+    val EndTime : Int,
+    val Build: String,
+    val Rooms: String,
+    val Disc: String,
+    val Type: String,
+    val GroupsText: String,
+    val TeachersText: String,
+    var isCash: Boolean
 )
 
 @Entity
@@ -30,4 +29,11 @@ data class MyDeadlinesData constructor(
     val lastDate : String,
     var isDone : Boolean
     //TODO : add push-notification
+)
+
+@Entity
+data class GroupAndTeacherData constructor(
+    val ItemId : Int,
+    @PrimaryKey val Name: String,
+    val isGroup : Boolean
 )

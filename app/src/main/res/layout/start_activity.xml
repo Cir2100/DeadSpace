@@ -2,7 +2,7 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/start_root_layout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/main_background_grad_and_vector"
@@ -103,7 +103,7 @@
         app:layout_constraintBottom_toBottomOf="@id/start_bar">
 
     <TextView
-        android:id="@+id/Number"
+        android:id="@+id/current_pair_less"
         android:layout_width="wrap_content"
         android:layout_height="90dp"
         android:fontFamily="@font/exo_2_bold"
@@ -123,7 +123,7 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/time_pair_textview"
+        android:id="@+id/current_pair_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/exo_2"

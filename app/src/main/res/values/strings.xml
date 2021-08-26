@@ -33,8 +33,16 @@
     <string name="title_activity_test">TestActivity</string>
     // вкладка расписание
 
-
+    //время текущей пары на главном экране
+    <string name="pair_time_counter">%1$d-%2$d</string>
 
     //сообщение об ошибке добавления дедлайна
     <string name="deadline_add_error">Такой дедлайн уже есть</string>
+
+    //сообщение об ошибке загрузки своего расписания
+    <string name="load_user_schedule_error">У вас нет своего расисания для этой группы</string>
+    //сообщение об ошибке добовления пары
+    <string name="add_pair_error">Пара в такое время уже есть</string>
+    //сообщение об ошибке подключения к интернету
+    <string name="no_internet_connection">Нет подключения к интернету</string>
 </resources>

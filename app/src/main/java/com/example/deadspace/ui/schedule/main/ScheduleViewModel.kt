@@ -6,37 +6,37 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.deadspace.data.database.MyPairDAO
-import com.example.deadspace.data.schedule.ScheduleEditor
-import com.example.deadspace.data.schedule.ScheduleLoader
-import com.example.deadspace.data.suai.Loader
-import com.example.deadspace.data.suai.Result
-import com.example.deadspace.data.suai.SemInfo
-import com.example.deadspace.ui.singleArgViewModelFactory
+import com.example.deadspace.DeadSpace
+import com.example.deadspace.data.database.*
+import com.example.deadspace.data.schedule.getScheduleRepo
 import kotlinx.coroutines.launch
 import java.io.IOException
-import java.lang.Math.abs
 import java.util.*
 
-class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
-
-    companion object {
-        val FACTORY = singleArgViewModelFactory(::ScheduleViewModel)
-    }
+class ScheduleViewModel : ViewModel() {
 
     //TODO: this in constructor
-    private val scheduleLoader = ScheduleLoader(myPairDAO)
-    private val scheduleEditor = ScheduleEditor(myPairDAO)
+    private val scheduleRepo = getScheduleRepo()
 
-    val myPairList = scheduleLoader.pairs
+    val myPairList = scheduleRepo.pairs
 
-    val pairsCount = scheduleLoader.pairsCount
+    val pairsCount = scheduleRepo.pairsCount
+
+    //val weekType = scheduleRepo.week
+
+
+    //TODO _----------------
+    var _querySuggestions : List<GroupAndTeacherData> = listOf()
 
 
 
-    private val _spinner = MutableLiveData<Boolean>(false)
+    private val _spinner = MutableLiveData(false)
     val spinner: LiveData<Boolean>
         get() = _spinner
+
+    private val _snackBar : MutableLiveData<String?> = scheduleRepo.error
+    val snackBar: LiveData<String?>
+        get() = _snackBar
 
     //user input
     //todo: class
@@ -54,7 +54,7 @@ class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
 
 
     //TODO : interface and cash
-    private val _colors = MutableLiveData<List<Int>>(listOf(Color.RED, Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE))
+    private val _colors = MutableLiveData(listOf(Color.RED, Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE))
     var colors : LiveData<List<Int>> = _colors
 //TODO : is false constructor
     var isUsers = false
@@ -63,6 +63,10 @@ class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
 //TODO : cash
     val currentGroupLive = MutableLiveData<String>() //TODO: delete this
     var currentGroup : String = ""
+
+    fun onSnackBarShown() {
+        _snackBar.value = null
+    }
 
     fun onChangeWeekType(){
         _weekTypeBool = !_weekTypeBool
@@ -96,9 +100,10 @@ class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
 
     init {
 
-        viewModelScope.launch {
-            _weekType.value = if (Loader.getSemInfo().IsWeekUp) 1 else 0
-        }
+        /*viewModelScope.launch {
+            _weekType.value = if (SUAIScheduleLoader2.getSemInfo().IsWeekUp) 1 else 0
+            updateGroupAndTeacher()
+        }*/
 
 
         val date = Calendar.getInstance()
@@ -111,7 +116,7 @@ class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
 
     fun loadDaySchedule() {
         viewModelScope.launch {
-            scheduleLoader.loadDay(_weekTypeBool.toInt(), weekDay)
+            scheduleRepo.loadDay(_weekTypeBool.toInt(), weekDay)
         }
     }
 
@@ -122,7 +127,7 @@ class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
                 _spinner.value = true
                 currentGroup = groupName
                 currentGroupLive.postValue(currentGroup)
-                scheduleLoader.loadSchedule(
+                scheduleRepo.loadSchedule(
                     name = groupName,
                     isUsers = isUsers
                 )
@@ -146,12 +151,21 @@ class ScheduleViewModel(private val myPairDAO: MyPairDAO) : ViewModel() {
         }
     }
 
-    fun onDeletePair(time : String) {
+    fun onDeletePair(pair: PairData) {
         viewModelScope.launch {
-            scheduleEditor.deletePair(time, weekType.value!!, weekDay, currentGroup)
+            scheduleRepo.deletePair(pair)
             isUsers = true //TODO it's don't working
             loadDaySchedule()
         }
     }
 
-}
+    fun updateGroupAndTeacher() {
+        viewModelScope.launch {
+            scheduleRepo.updateGroupAndTeacher()
+            _querySuggestions = getDatabase(DeadSpace.appContext).myGroupAndTeacherDAO.getAll()
+        }
+    }
+
+
+    }
+

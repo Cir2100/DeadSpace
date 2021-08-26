@@ -4,15 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
+import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModelProvider
-import com.example.deadspace.DeadSpace
 import com.example.deadspace.R
 import com.example.deadspace.databinding.StartActivityBinding
-import com.example.deadspace.ui.deadlines.main.DeadlineViewModel
 import com.example.deadspace.ui.deadlines.main.DeadlinesActivity
 import com.example.deadspace.ui.exams.ExamActivity
 import com.example.deadspace.ui.schedule.main.ScheduleActivity
+import com.google.android.material.snackbar.Snackbar
 import java.util.*
 
 class StartActivity : AppCompatActivity() {
@@ -35,11 +34,31 @@ class StartActivity : AppCompatActivity() {
 
         val viewModel = ViewModelProvider(this).get(StartViewModel::class.java)
 
+        // Show a snackbar whenever the [ViewModel.snackbar] is updated a non-null value
+        viewModel.snackBar.observe(this) { text ->
+            text?.let {
+                Snackbar.make(binding.startRootLayout, text, Snackbar.LENGTH_SHORT).show()
+                viewModel.onSnackBarShown()
+            }
+        }
+
         viewModel.weekType.observe(this) { weekType ->
             weekType?.let {
                 binding.weekTypeTextview.text = if (weekType) "верхняя" else "нижняя"
                 binding.startBar.setImageDrawable(if (weekType) resources.getDrawable(R.drawable.background_start_bar_red, theme)
                 else resources.getDrawable(R.drawable.background_start_bar_blue, theme))
+            }
+        }
+
+        viewModel.currentPair.observe(this) { currentPair ->
+            currentPair?.let {
+                binding.currentPairLess.text = it.Less.toString()
+                binding.currentPairTime.text = resources.getString(R.string.pair_time_counter,
+                    it.StartTime,  it.EndTime)
+            }
+            if (currentPair == null) {
+                binding.currentPairLess.text = ""
+                binding.currentPairTime.text = "чилл"
             }
         }
 

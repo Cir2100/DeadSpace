@@ -3,26 +3,29 @@ package com.example.deadspace.data.database
 import android.content.Context
 import androidx.room.*
 
-@Database(entities = [MyPairData::class, MyDeadlinesData::class], version = 8)
-abstract class MyPairDatabase : RoomDatabase() {
+@Database(entities = [PairData::class, GroupAndTeacherData::class, MyDeadlinesData::class], version = 14)
+abstract class MyDatabase : RoomDatabase() {
     abstract val myPairDAO : MyPairDAO
-    abstract val myDeadlinesDAO : MyDeadlinesDAO
+    abstract val myPairCashDAO : MyPairCashDAO
+    abstract val myGroupAndTeacherDAO : MyGroupAndTeacherDAO
+    abstract val myDeadlinesDAO: MyDeadlinesDAO
 }
 
-private lateinit var INSTANCE: MyPairDatabase
 
-fun getDatabase(context: Context): MyPairDatabase {
-    synchronized(MyPairDatabase::class) {
-        if (!::INSTANCE.isInitialized) {
-            INSTANCE = Room
+private lateinit var INSTANCEMyDatabase: MyDatabase
+
+fun getDatabase(context: Context): MyDatabase {
+    synchronized(MyDatabase::class) {
+        if (!::INSTANCEMyDatabase.isInitialized) {
+            INSTANCEMyDatabase = Room
                 .databaseBuilder(
                     context.applicationContext,
-                    MyPairDatabase::class.java,
+                    MyDatabase::class.java,
                     "titles_db"
                 )
                 .fallbackToDestructiveMigration()
                 .build()
         }
     }
-    return INSTANCE
+    return INSTANCEMyDatabase
 }

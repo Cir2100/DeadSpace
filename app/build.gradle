@@ -16,12 +16,20 @@ plugins {
 
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('D:\\Projects\\Ad\\keyStore\\firs_keystore_deadspase.jks')
+            storePassword 'a31122001'
+            keyAlias 'DeadSpase'
+            keyPassword 'a31122001'
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.example.deadspace"
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -46,6 +54,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
         }
     }
     compileOptions {

@@ -1,25 +1,16 @@
 package com.example.deadspace.ui.deadlines.add
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.deadspace.R
-import com.example.deadspace.data.database.getDatabase
 import com.example.deadspace.databinding.AddDeadlineActivityBinding
-import com.example.deadspace.databinding.StartActivityBinding
-import com.example.deadspace.ui.deadlines.main.DeadlinesActivity
-import java.lang.Exception
-import java.text.SimpleDateFormat
 import java.util.*
 
 //TODO : use strings in errors and check errors normal 1 and 2

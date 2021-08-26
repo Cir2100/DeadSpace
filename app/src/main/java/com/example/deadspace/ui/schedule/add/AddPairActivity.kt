@@ -1,28 +1,21 @@
 package com.example.deadspace.ui.schedule.add
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.deadspace.R
-import com.example.deadspace.data.database.getDatabase
-import com.example.deadspace.databinding.AddDeadlineActivityBinding
-import com.example.deadspace.databinding.AddScheduleActivityBinding
-import com.example.deadspace.databinding.StartActivityBinding
-import com.example.deadspace.ui.schedule.main.ScheduleActivity
+import com.example.deadspace.databinding.AddPairActivityBinding
 
-class AddScheduleActivity : AppCompatActivity() {
+class AddPairActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: AddScheduleViewModel
-    private lateinit var binding : AddScheduleActivityBinding
+    private lateinit var viewModel: AddPairViewModel
+    private lateinit var binding : AddPairActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,14 +24,9 @@ class AddScheduleActivity : AppCompatActivity() {
         actionbar!!.title = "Добавление занятия"
         actionbar.setDisplayHomeAsUpEnabled(true)
 
-        val database = getDatabase(this)
+        viewModel = ViewModelProvider(this).get(AddPairViewModel::class.java)
 
-        viewModel = ViewModelProvider(
-            this,
-            AddScheduleViewModel.FACTORY(database.myPairDAO)
-        ).get(AddScheduleViewModel::class.java)
-
-        binding = AddScheduleActivityBinding.inflate(layoutInflater)
+        binding = AddPairActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setupListeners()
@@ -49,9 +37,9 @@ class AddScheduleActivity : AppCompatActivity() {
                     group = intent.extras?.getString("group")!!,
                     weekDay = intent.extras?.getInt("weekDay")!!,
                     typeOfWeek = intent.extras?.getInt("weekType")!!,
-                    title = binding.scheduleTitleInput.text.toString(),
+                    disc = binding.scheduleTitleInput.text.toString(),
                     type = binding.scheduleTypeInput.text.toString(),
-                    number = binding.scheduleNumberInput.text.toString(),
+                    less = binding.scheduleNumberInput.text.toString().toInt(),
                     teachers = binding.scheduleTeacherInput.text.toString(),
                     building = binding.scheduleBuildingInput.text.toString(),
                     auditorium = binding.scheduleAuditoriumInput.text.toString(),

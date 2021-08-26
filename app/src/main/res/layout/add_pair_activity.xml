@@ -20,34 +20,34 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/EnterNumberPair"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/exo_2_medium"
-                android:text="Номер занятия:"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="*"
-                android:textColor="@color/suai_red"
-                android:textSize="20sp"
-                app:layout_constraintStart_toEndOf="@id/EnterNumberPair"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/EnterNumberPair"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/exo_2_medium"
+                    android:text="Номер занятия:"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="*"
+                    android:textColor="@color/suai_red"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toEndOf="@id/EnterNumberPair"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/schedule_number_input_layout"
@@ -94,36 +94,36 @@
                     android:singleLine="true"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/EnterPairName"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:fontFamily="@font/exo_2_medium"
-                android:text="Название занятия:"
-                android:paddingTop="15dp"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/input_2" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:paddingTop="10dp"
-                android:text="*"
-                android:textColor="@color/suai_red"
-                android:textSize="20sp"
-                app:layout_constraintStart_toEndOf="@id/EnterPairName"
-                app:layout_constraintTop_toBottomOf="@id/input_2" />
+                <TextView
+                    android:id="@+id/EnterPairName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:fontFamily="@font/exo_2_medium"
+                    android:text="Название занятия:"
+                    android:paddingTop="15dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/input_2" />
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:paddingTop="10dp"
+                    android:text="*"
+                    android:textColor="@color/suai_red"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toEndOf="@id/EnterPairName"
+                    app:layout_constraintTop_toBottomOf="@id/input_2" />
+
+            </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/schedule_title_input_layout"
@@ -239,7 +239,6 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/circle_button"
-        android:onClick="onClickAddRasp"
         android:scaleType="fitCenter"
         android:src="@drawable/white_check_bold"
 

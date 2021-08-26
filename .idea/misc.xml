@@ -3,8 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Projects/Ad/DeadSpace/app/src/main/res/layout/schedule_list_item.xml" value="0.10054347826086957" />
-        <entry key="..\:/Projects/Ad/DeadSpace/app/src/main/res/layout/start_activity.xml" value="0.2" />
+        <entry key="..\:/Projects/Ad/DeadSpace/app/src/main/res/drawable/circle_button.xml" value="0.1328125" />
+        <entry key="..\:/Projects/Ad/DeadSpace/app/src/main/res/layout/add_deadline_activity.xml" value="0.176" />
+        <entry key="..\:/Projects/Ad/DeadSpace/app/src/main/res/layout/add_pair_activity.xml" value="0.1" />
+        <entry key="..\:/Projects/Ad/DeadSpace/app/src/main/res/layout/add_schedule_activity.xml" value="0.11666666666666667" />
+        <entry key="..\:/Projects/Ad/DeadSpace/app/src/main/res/layout/deadline_list_item.xml" value="0.1334853090172239" />
+        <entry key="..\:/Projects/Ad/DeadSpace/app/src/main/res/layout/deadlines_activity.xml" value="0.1334853090172239" />
+        <entry key="..\:/Projects/Ad/DeadSpace/app/src/main/res/layout/exam_activity.xml" value="0.1334853090172239" />
+        <entry key="..\:/Projects/Ad/DeadSpace/app/src/main/res/layout/schedule_activity.xml" value="0.264" />
+        <entry key="..\:/Projects/Ad/DeadSpace/app/src/main/res/layout/schedule_list_item.xml" value="0.11775362318840579" />
+        <entry key="..\:/Projects/Ad/DeadSpace/app/src/main/res/layout/simple_layout.xml" value="0.1453804347826087" />
+        <entry key="..\:/Projects/Ad/DeadSpace/app/src/main/res/layout/start_activity.xml" value="0.11775362318840579" />
       </map>
     </option>
   </component>

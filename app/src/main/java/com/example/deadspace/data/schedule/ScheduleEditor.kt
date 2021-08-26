@@ -1,85 +1,108 @@
 package com.example.deadspace.data.schedule
 
 import android.util.Log
-import com.example.deadspace.data.database.MyPairDAO
-import com.example.deadspace.data.database.MyPairData
+import com.example.deadspace.DeadSpace
+import com.example.deadspace.R
+import com.example.deadspace.data.database.*
 
 //TODO: scheduleSaver @singleton and don't use this constructor
-class ScheduleEditor(private val myPairDAO: MyPairDAO) {
+class ScheduleEditor {
 
-    private val scheduleSaver = ScheduleSaver(myPairDAO)
+    private val scheduleSaver = getScheduleSaver()
+    private val pairTime = getSchedulePairTime()
 
-    private suspend fun loadSchedule(group : String) : MutableList<MyPairData> {
-        Log.i(this.javaClass.simpleName, "Load user's schedule")
-        var schedule = myPairDAO.getUserData(group)
-        if (schedule.size == 0) {
-            Log.i(this.javaClass.simpleName, "User schedule not in database")
-            schedule = myPairDAO.getCash()
-            for (pair in schedule) {
-                pair.isCash = false
-                pair.id = pair.group.toInt() * 10000 + pair.week * 1000 + pair.day * 100 + pair.time.toInt() * 10 + 0
-            }
-            scheduleSaver.saveUserSchedule(schedule)
-        }
-        //if (schedule.size == 0)
-            //TODO : throw ты дурачок
-        return schedule
-    }
+    private val res =  DeadSpace.appContext.resources
 
-    //TODO :use id
+    private val database = getDatabase(DeadSpace.appContext)
+    private val myPairDAO = database.myPairDAO
+    private val myPairCashDAO = database.myPairCashDAO
+    private val myGroupAndTeacherDAO = database.myGroupAndTeacherDAO
 
-    suspend fun deletePair(time : String, week : Int, weekDay : Int, group : String) {
-        var schedule = loadSchedule(group)
+    suspend fun deletePair(pair : PairData) {
 
-        myPairDAO.deleteUserPair(group, week, weekDay, time)
+        initUserSchedule(pair.Name)
 
-        schedule = myPairDAO.getUserData(group)
-        for (pair in schedule) {
-            pair.isCash = true
-            pair.id = pair.group.toInt() * 10000 + pair.week * 1000 + pair.day * 100 + pair.time.toInt() * 10 + 1
-        }
+        pair.isCash = false
+        myPairDAO.deleteUserPair(pair)
+
+        val schedule = myPairDAO.getUserSchedule(pair.Name)
         scheduleSaver.saveCash(schedule)
         Log.i(this.javaClass.simpleName, "Delete pair successful")
     }
 
     //change local schedule
-    suspend fun addPair(group : String, day : Int, time : String,
-                        week : Int, type : String, name : String,
-                        teachers : String, groups : String, address : String) {
-        var schedule = loadSchedule(group)
-        var isEntry = false
-        for (pair in schedule)
-        {
-            if (pair.time == time && (pair.week == week || pair.week == 2) && pair.day == day)
-                isEntry = true
-        }
-        if (!isEntry) {
-            myPairDAO.insertOne(MyPairData(
-                id = group.toInt() * 10000 + week * 1000 + day * 100 + time.toInt() * 10 + 0,
-                group = group,
-                day = day,
-                time = time,
-                week = week,
-                type = type,
-                name = name,
-                teachers = teachers,
-                groups = groups,
-                address = address,
-                isCash = false))
+    suspend fun addPair(name : String,
+                        weekDay : Int,
+                        less : Int,
+                        week : Int,
+                        type : String,
+                        disc : String,
+                        teachers : String,
+                        groups : String,
+                        build : String,
+                        room : String)  : String? {
 
-            schedule = myPairDAO.getUserData(group)
-            for (pair in schedule) {
-                pair.isCash = true
-                pair.id = pair.group.toInt() * 10000 + pair.week * 1000 + pair.day * 100 + pair.time.toInt() * 10 + 1
-            }
-            scheduleSaver.saveCash(schedule)
+        initUserSchedule(name)
+
+        val pairTime = pairTime.getPairTime(less)
+
+        val addId = myPairDAO.insertOne(PairData(
+            ItemId = getItemId(name) * 10000 + week * 1000 + weekDay * 100 + less * 10,
+            Name = name,
+            Week = if (weekDay != 6) week else 2,
+            Day = weekDay,
+            Less = less,
+            StartTime = pairTime.first,
+            EndTime = pairTime.second,
+            Build = build,
+            Rooms = room,
+            Disc = disc,
+            Type = type,
+            GroupsText = groups,
+            TeachersText = teachers,
+            isCash = false)
+        )
+
+        val schedule = myPairDAO.getUserSchedule(name)
+        scheduleSaver.saveCash(schedule)
+
+
+        if (addId != (-1).toLong()) {
 
             Log.i(this.javaClass.simpleName, "Add pair successful")
+        } else {
+            return res.getString(R.string.add_pair_error)
         }
-        else {
-            Log.i(this.javaClass.simpleName, "Pair in database yet")
-            //TODO : throw
-        }
-
+        return null
     }
+
+    private suspend fun initUserSchedule(name : String) {
+        var schedule = myPairDAO.getUserSchedule(name)
+        if (schedule.isEmpty()) {
+
+            schedule = myPairCashDAO.getCash()
+            scheduleSaver.saveUserSchedule(schedule)
+
+            Log.i(this.javaClass.simpleName, "Init user's schedule")
+        }
+    }
+
+    private suspend fun getItemId(name: String) : Int {
+        myGroupAndTeacherDAO.getAll().forEach {
+            if (it.Name == name)
+                return it.ItemId
+        }
+        return -1
+    }
+}
+
+private lateinit var INSTANCE: ScheduleEditor
+
+fun getScheduleEditor(): ScheduleEditor {
+    synchronized(ScheduleEditor::class) {
+        if (!::INSTANCE.isInitialized) {
+            INSTANCE = ScheduleEditor()
+        }
+    }
+    return INSTANCE
 }

@@ -3,20 +3,22 @@ package com.example.deadspace.data.schedule
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.deadspace.data.database.MyPairDAO
-import com.example.deadspace.data.database.MyPairData
+import com.example.deadspace.DeadSpace
+import com.example.deadspace.data.database.*
 
 //@Singleton
-class ScheduleLoader(private val myPairDAO: MyPairDAO) {
+class ScheduleLoader {
 
-    private val localLoader = ScheduleLoaderLocalData(myPairDAO)
-    private val internetLoader = ScheduleLoaderInternet(myPairDAO)
+    private val myPairCashDAO = getDatabase(DeadSpace.appContext).myPairCashDAO
+
+    private val localLoader = getScheduleLoaderLocalData()
+    private val internetLoader = getScheduleLoaderInternet()
 
     //private var _weekType = 1
     //private var _weekDay = 0
 
-    private val _pairs = MutableLiveData<List<MyPairData>>()
-    var pairs: LiveData<List<MyPairData>> = _pairs
+    private val _pairs = MutableLiveData<List<PairData>>()
+    var pairs: LiveData<List<PairData>> = _pairs
 
     private val _pairsCount = MutableLiveData<Int>()
     var pairsCount: LiveData<Int> = _pairsCount
@@ -36,33 +38,49 @@ class ScheduleLoader(private val myPairDAO: MyPairDAO) {
         return daySchedule
     }*/
 
-    suspend fun loadSchedule(name: String, isUsers : Boolean) {
-        //TODO : checked cash normal
-        if (isUsers) {
+    suspend fun loadSchedule(name: String, isUsers : Boolean) : String? {
+        return if (isUsers) {
             Log.i(this.javaClass.simpleName, "Load from local data")
             localLoader.loadSchedule(name)
-        }
-        else {
+        } else {
             Log.i(this.javaClass.simpleName, "Load from internet")
             internetLoader.loadSchedule(name)
         }
+    }
+
+    suspend fun loadWeekType() : Boolean {
+        return internetLoader.getWeekType()
+    }
+
+    suspend fun loadCurrentPair(time : Int) : PairData? {
+        return localLoader.loadCurrentPair(time)
     }
 
     suspend fun loadDay(weekType : Int, weekDay : Int) {
         //_weekDay = weekDay
         //_weekType = weekType
         Log.i(this.javaClass.simpleName, "Load from cash")
-        val daySchedule = myPairDAO.getDayCash(weekType , weekDay).sortedBy { it.time }
+        val daySchedule = myPairCashDAO.getDayCash(weekType , weekDay).sortedBy { it.Less }
         _pairs.value = daySchedule
         _pairsCount.value = daySchedule.size
     }
 
-    private suspend fun checkCash(name: String) : Boolean {
-
-        val cash = myPairDAO.getCash()
-        //TODO : add throw
-        if (cash.size == 0)
-            return false
-        return cash[0].group == name
+    //TODO
+    suspend fun updateGroupAndTeacher() : String? {
+       /* if (getGroupAndTeacherDatabase(DeadSpace.appContext).myGroupAndTeacherDAO.getAll()
+                .isEmpty()
+        )*/
+            return internetLoader.loadGroupAndTeacher()
     }
+}
+
+private lateinit var INSTANCE: ScheduleLoader
+
+fun getScheduleLoader(): ScheduleLoader {
+    synchronized(ScheduleLoader::class) {
+        if (!::INSTANCE.isInitialized) {
+            INSTANCE = ScheduleLoader()
+        }
+    }
+    return INSTANCE
 }
