@@ -12,12 +12,10 @@ class ScheduleParser {
         var schedule = htmlString
 
         var daysData: MutableList<PairData> = mutableListOf()
-
         while (schedule.contains("</h3>")) {
             var weekday = schedule.substringAfter("<h3>").substringBefore("</h3>")
             if (weekday == "Вне сетки расписания")
                 weekday = "Вне"
-
             var pairs = schedule.substringAfter("</h3>").substringBefore("<h3>")
 
             schedule = "<h3>" + schedule.substringAfter("</h3>").substringAfter("<h3>")
@@ -44,20 +42,20 @@ class ScheduleParser {
             var startTime = 0
             var endTime = 1439
             if (weekDay != 6) {
-                val time = daySchedule.substringAfter("<h4>").substringBefore("</h4>")
+                var time = daySchedule.substringAfter("<h4>").substringBefore("</h4>")
                 less = time.substringBefore(" ").toInt()
                 startTime = time.substringAfter("(").substringBefore(":").toInt() * 60 +
                         time.substringAfter(":").substringBefore("–").toInt()
+                time = time.substringAfter("–")
                 endTime = time.substringAfter("-").substringBefore(":").toInt() * 60  +
                         time.substringAfter(":").substringBefore(")").toInt()
             }
 
-
             var pairInTime = daySchedule.substringAfter("</h4>").substringBefore("<h4>")
-
             daySchedule = daySchedule.substringAfter(pairInTime)
 
             while (pairInTime.length > 10) {
+
                 var week = 0
                 if (pairInTime.contains("class=\"up\"") || pairInTime.contains("class=\"dn\"")){
                     if (pairInTime.contains("class=\"up\""))
@@ -70,8 +68,11 @@ class ScheduleParser {
 
                 val type = pairInTime.substringAfter("<b>").substringBefore("</b>").trim()
 
-                val disc = pairInTime.substringAfter("–").substringBefore("<em>").trim()
+                var disc = pairInTime.substringAfter("–").substringBefore("<em>").trim()
 
+                //TODO: use strings
+                if (disc == "Прикладная физическая культура (элективный модуль)")
+                    disc = "Прикладная физическая культура"
                 pairInTime = pairInTime.substringAfter("<em>")
 
                 var build = pairInTime.substringAfter("–").substringBefore(",").trim()
@@ -83,7 +84,7 @@ class ScheduleParser {
                     room = "-"*/
 
                 var teachers : String
-                    if (weekDay != 6) {
+                    if (weekDay != 6 && disc != "Прикладная физическая культура") {
                         teachers = parseGroupOrTeacher(pairInTime.substringAfter("<a href").substringBefore("</span>")).trim()
                         pairInTime = pairInTime.substringAfter("</a></span>")
                     }

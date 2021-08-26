@@ -9,7 +9,6 @@ import kotlinx.coroutines.launch
 
 class DeadlineViewModel : ViewModel() {
 
-    //private val deadlineEditor = getDeadlineEditor()
     private val deadlineRepo = getDeadlineRepo()
 
     val myDeadlineList = deadlineRepo.deadlines

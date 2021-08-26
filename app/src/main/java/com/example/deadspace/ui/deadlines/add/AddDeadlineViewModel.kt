@@ -7,7 +7,6 @@ import kotlinx.coroutines.launch
 
 class AddDeadlineViewModel : ViewModel() {
 
-    //private val deadlineEditor = getDeadlineEditor()
     private val deadlineRepo = getDeadlineRepo()
 
     fun onAddDeadline(title : String, discipline : String, lastDate : String) {

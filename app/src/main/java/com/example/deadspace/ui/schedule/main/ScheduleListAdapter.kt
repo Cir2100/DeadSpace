@@ -45,7 +45,6 @@ class ScheduleListAdapter(val viewModel: ScheduleViewModel) :
         notifyDataSetChanged()
     }
 
-    //TODO : use binding
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         var scheduleNameTextView: TextView? = null

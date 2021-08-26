@@ -29,7 +29,6 @@ class ScheduleActivity : AppCompatActivity() {
 
     //TODO : maybe use savedStateHandle
 
-    //TODO : use this normal viewModel or not?
     private lateinit var prefs: SharedPreferences
 
     private lateinit var viewModel: ScheduleViewModel
@@ -48,6 +47,8 @@ class ScheduleActivity : AppCompatActivity() {
         prefs = getSharedPreferences("settings", Context.MODE_PRIVATE)
 
         viewModel = ViewModelProvider(this).get(ScheduleViewModel::class.java)
+        //TODO
+        viewModel.updateGroupAndTeacher()
         loadPreferences()
 
         binding = DataBindingUtil.setContentView(this, R.layout.schedule_activity)
