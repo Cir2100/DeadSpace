@@ -47,12 +47,12 @@ class PairTime {
             val pair = cash[0]
 
             pairTimeUpInt.forEach {
-                if (pair.StartTime == it.first)
+                if (toTime(pair.StartTime) == it.first)
                     return pairTimeUpInt
             }
 
             pairTimeMidInt.forEach {
-                if (pair.StartTime == it.first)
+                if (toTime(pair.StartTime) == it.first)
                     return pairTimeMidInt
             }
         }
@@ -60,7 +60,7 @@ class PairTime {
         return listOf()
     }
 
-    suspend fun getPairTime(less : Int) : Pair<Int, Int> {
+    /*suspend fun getPairTime(less : Int) : Pair<Int, Int> {
 
         val cash = myPairCashDAO.getCash()
 
@@ -68,21 +68,42 @@ class PairTime {
             val pair = cash[0]
 
             for (i in pairTimeUpInt.indices) {
-                if (pair.StartTime == pairTimeUpInt[i].first && less - 1 == i)
+                if (toTime(pair.StartTime) == pairTimeUpInt[i].first && less - 1 == i)
                     return pairTimeUpInt[i]
             }
 
             for (i in pairTimeMidInt.indices) {
-                if (pair.StartTime == pairTimeMidInt[i].first && less - 1 == i)
+                if (toTime(pair.StartTime) == pairTimeMidInt[i].first && less - 1 == i)
                     return pairTimeMidInt[i]
             }
         }
         //this don't be executed
         return pairTimeUpInt[0]
+    }*/
+
+    suspend fun getPairTime(less : Int) : Pair<String, String> {
+
+        val cash = myPairCashDAO.getCash()
+
+        if (cash.size > 0) {
+            val pair = cash[0]
+
+            for (i in pairTimeUpInt.indices) {
+                if (pair.StartTime == pairTimeUp[i].first && less - 1 == i)
+                    return pairTimeUp[i]
+            }
+
+            for (i in pairTimeMidInt.indices) {
+                if (pair.StartTime == pairTimeMid[i].first && less - 1 == i)
+                    return pairTimeMid[i]
+            }
+        }
+        //this don't be executed
+        return pairTimeUp[0]
     }
 
 
-    private fun toTime(time : String) : Int {
+    fun toTime(time : String) : Int {
         return time.substringBefore(":").toInt() * 60 +
                 time.substringAfter(":").toInt()
     }

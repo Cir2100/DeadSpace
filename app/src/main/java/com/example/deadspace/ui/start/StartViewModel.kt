@@ -2,7 +2,9 @@ package com.example.deadspace.ui.start
 
 import android.util.Log
 import androidx.lifecycle.*
+import com.example.deadspace.DeadSpace
 import com.example.deadspace.data.database.PairData
+import com.example.deadspace.data.database.getDatabase
 import com.example.deadspace.data.schedule.getScheduleRepo
 import kotlinx.coroutines.launch
 import java.util.*
@@ -31,14 +33,22 @@ class StartViewModel : ViewModel() {
             try {
                 _weekType.value = scheduleRepo.loadWeekType()
 
-                val date = Calendar.getInstance()
-                val time = date.get(Calendar.HOUR_OF_DAY) * 60 + date.get(Calendar.MINUTE)
-
-                _currentPair.value = scheduleRepo.loadCurrentPair(time)
+                loadCurrentPair()
             } catch (e : Throwable) {
                 _snackBar.value = e.message
             }
 
+        }
+
+    }
+
+    fun loadCurrentPair() {
+        viewModelScope.launch {
+
+            val date = Calendar.getInstance()
+            val time = date.get(Calendar.HOUR_OF_DAY) * 60 + date.get(Calendar.MINUTE)
+
+            _currentPair.value = scheduleRepo.loadCurrentPair(time)
         }
 
     }

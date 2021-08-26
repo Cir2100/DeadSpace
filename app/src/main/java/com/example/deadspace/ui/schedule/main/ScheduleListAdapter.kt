@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.deadspace.DeadSpace
 import com.example.deadspace.R
 import com.example.deadspace.data.database.PairData
 
@@ -13,6 +14,7 @@ class ScheduleListAdapter(val viewModel: ScheduleViewModel) :
     RecyclerView.Adapter<ScheduleListAdapter.MyViewHolder>() {
 
     private var items : List<PairData> = listOf()
+    private val res = DeadSpace.appContext.resources
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView =
@@ -35,6 +37,9 @@ class ScheduleListAdapter(val viewModel: ScheduleViewModel) :
         holder.scheduleBuildingTextView?.text = item.Build
         holder.scheduleAuditoriumTextView?.text = item.Rooms
 
+        holder.scheduleTimeTextView?.text = res.getString(R.string.pair_time_counter,
+            item.StartTime,  item.EndTime)
+
         holder.deleteButton?.setOnClickListener {
             viewModel.onDeletePair(item)
         }
@@ -52,6 +57,7 @@ class ScheduleListAdapter(val viewModel: ScheduleViewModel) :
         var scheduleNumberTextView: TextView? = null
         var scheduleBuildingTextView: TextView? = null
         var scheduleAuditoriumTextView: TextView? = null
+        var scheduleTimeTextView: TextView? = null
 
         var deleteButton: ImageButton? = null
 
@@ -62,6 +68,7 @@ class ScheduleListAdapter(val viewModel: ScheduleViewModel) :
             scheduleTypeTextView = itemView.findViewById(R.id.schedule_item_type)
             scheduleBuildingTextView = itemView.findViewById(R.id.schedule_item_building)
             scheduleAuditoriumTextView = itemView.findViewById(R.id.schedule_item_auditorium)
+            scheduleTimeTextView = itemView.findViewById(R.id.schedule_item_time)
 
             deleteButton = itemView.findViewById(R.id.schedule_item_delete_button)
         }

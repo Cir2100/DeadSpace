@@ -16,7 +16,7 @@ import java.util.*
 
 class StartActivity : AppCompatActivity() {
 
-    //private lateinit var viewModel: StartViewModel
+    private lateinit var viewModel: StartViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +32,7 @@ class StartActivity : AppCompatActivity() {
         binding.currentDateMonth.text = date.getDisplayName(Calendar.MONTH, Calendar.LONG_FORMAT, Locale.getDefault())
         binding.currentWeekday.text = date.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG_FORMAT, Locale.getDefault())
 
-        val viewModel = ViewModelProvider(this).get(StartViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(StartViewModel::class.java)
 
         // Show a snackbar whenever the [ViewModel.snackbar] is updated a non-null value
         viewModel.snackBar.observe(this) { text ->
@@ -45,8 +45,8 @@ class StartActivity : AppCompatActivity() {
         viewModel.weekType.observe(this) { weekType ->
             weekType?.let {
                 binding.weekTypeTextview.text = if (weekType) "верхняя" else "нижняя"
-                /*binding.startBar.setImageDrawable(if (weekType) resources.getDrawable(R.drawable.background_start_bar_red, theme)
-                else resources.getDrawable(R.drawable.background_start_bar_blue, theme))*/
+                binding.weekColor.background = if (weekType) ResourcesCompat.getDrawable(resources, R.color.suai_red, theme)
+                else ResourcesCompat.getDrawable(resources, R.color.suai_dark_blue, theme)
             }
         }
 
@@ -55,13 +55,25 @@ class StartActivity : AppCompatActivity() {
                 binding.currentPairLess.text = it.Less.toString()
                 binding.currentPairTime.text = resources.getString(R.string.pair_time_counter,
                     it.StartTime,  it.EndTime)
+                binding.currentPairName.text = it.Disc
+                binding.currentPairBuild.text = it.Build
+                binding.currentPairAuditorium.text = it.Rooms
             }
             if (currentPair == null) {
                 binding.currentPairLess.text = ""
+                binding.currentPairTextView.text = ""
+                binding.currentPairName.text = ""
+                binding.currentPairBuild.text = ""
+                binding.currentPairAuditorium.text = ""
                 binding.currentPairTime.text = "чилл"
             }
         }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.loadCurrentPair()
     }
 
     fun onClickListDeadlines(view: View) {

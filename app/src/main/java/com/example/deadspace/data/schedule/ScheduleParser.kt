@@ -39,16 +39,14 @@ class ScheduleParser {
         while (daySchedule.length > 10) {
 
             var less = 0
-            var startTime = 0
-            var endTime = 1439
+            var startTime = "00:00"
+            var endTime = "00:00"
             if (weekDay != 6) {
                 var time = daySchedule.substringAfter("<h4>").substringBefore("</h4>")
                 less = time.substringBefore(" ").toInt()
-                startTime = time.substringAfter("(").substringBefore(":").toInt() * 60 +
-                        time.substringAfter(":").substringBefore("–").toInt()
+                startTime = time.substringAfter("(").substringBefore("–")
                 time = time.substringAfter("–")
-                endTime = time.substringAfter("-").substringBefore(":").toInt() * 60  +
-                        time.substringAfter(":").substringBefore(")").toInt()
+                endTime = time.substringBefore(")")
             }
 
             var pairInTime = daySchedule.substringAfter("</h4>").substringBefore("<h4>")

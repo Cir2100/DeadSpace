@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="190dp"
         android:scaleType="fitStart"
-        app:srcCompat="@drawable/fon_ellips_2"
+        app:srcCompat="@drawable/fon_ellipse_2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,138 +28,125 @@
         app:layout_constraintTop_toTopOf="@id/start_bar"
         app:layout_constraintBottom_toBottomOf="@id/start_bar">
 
-    <TextView
-        android:id="@+id/current_date_day"
-        android:layout_width="wrap_content"
-        android:layout_height="85dp"
-        android:fontFamily="@font/exo_2_black"
-        android:text="30"
-        android:textColor="@color/white"
-        android:textSize="80sp"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:id="@+id/current_date_month"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/exo_2_black"
-        android:text="июня"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/current_weekday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/exo_2_light"
-        android:text="@string/currentDayOfWeek"
-        android:textColor="@color/white"
-        android:textSize="18sp" />
-</LinearLayout>
-
-    <TextView
-        android:id="@+id/time_pair_textview_1"
-        android:layout_width="158dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/exo_2"
-        android:text="11:10 - 12:40"
-        android:textColor="@color/suai_purple"
-        android:textSize="20sp"
-        android:textAlignment="textEnd"
-        app:layout_constraintTop_toTopOf="@id/right_box"
-        app:layout_constraintEnd_toEndOf="@id/right_box"/>
-
-    <LinearLayout
-        android:id="@+id/right_box"
-        android:layout_width="210dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="start"
-        android:layout_marginEnd="20dp"
-        android:layout_marginVertical="10dp"
-        app:layout_constraintEnd_toEndOf="@id/start_bar"
-        app:layout_constraintStart_toStartOf="@id/start_bar"
-        app:layout_constraintTop_toTopOf="@id/start_bar"
-        app:layout_constraintBottom_toBottomOf="@id/start_bar">
-
-        <LinearLayout
-            android:layout_width="210dp"
-            android:layout_height="80dp"
-            android:orientation="horizontal"
-            android:gravity="bottom">
-
-            <TextView
-                android:id="@+id/current_pair_less"
-                android:layout_width="wrap_content"
-                android:layout_height="95dp"
-                android:fontFamily="@font/exo_2_bold"
-                android:text="@string/number"
-                android:textAlignment="center"
-                android:textColor="@color/suai_purple"
-                android:textSize="90sp" />
-
-            <TextView
-                android:id="@+id/Lesson"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/exo_2"
-                android:text="@string/lesson"
-                android:layout_marginStart="10dp"
-                android:textColor="@color/suai_purple"
-                android:textSize="40sp" />
-
-        </LinearLayout>
+        <TextView
+            android:id="@+id/current_date_day"
+            android:layout_width="wrap_content"
+            android:layout_height="85dp"
+            android:fontFamily="@font/exo_2_black"
+            android:text="30"
+            android:textColor="@color/white"
+            android:textSize="80sp"
+            android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/pair_name_textview"
+            android:id="@+id/current_date_month"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/exo_2_bold"
-            android:text="pair_name"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/black"
-            android:textSize="22sp" />
+            android:fontFamily="@font/exo_2_black"
+            android:text="июня"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="210dp"
+        <TextView
+            android:id="@+id/current_weekday"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="end">
-
-            <TextView
-                android:id="@+id/building"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/exo_2"
-                android:text="BLD"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/current_pair_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/exo_2"
-        android:text="11:10 - 12:40"
-        android:textColor="@color/suai_purple"
-        android:textSize="10sp"/>
-            <TextView
-                android:id="@+id/auditorium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/exo_2"
-                android:layout_marginStart="10dp"
-                android:text="XX-XX"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-        </LinearLayout>
-
+            android:fontFamily="@font/exo_2_light"
+            android:text="@string/currentDayOfWeek"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
     </LinearLayout>
 
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/right_box"
+        android:layout_width="180dp"
+        android:layout_height="0dp"
+        android:layout_marginVertical="10dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/start_bar"
+        app:layout_constraintEnd_toEndOf="@id/start_bar"
+        app:layout_constraintTop_toTopOf="@id/start_bar">
+
+        <TextView
+            android:id="@+id/current_pair_less"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:fontFamily="@font/exo_2_bold"
+            android:text="@string/number"
+            android:textAlignment="center"
+            android:textColor="@color/suai_purple"
+            android:textSize="75sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/current_pair_textView"/>
+
+        <TextView
+            android:id="@+id/current_pair_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/exo_2"
+            android:text="11:10 - 12:40"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/suai_purple"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@id/current_pair_less"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/current_pair_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/exo_2"
+            android:text="@string/lesson"
+            android:textColor="@color/suai_purple"
+            android:textSize="40sp"
+            app:layout_constraintStart_toStartOf="@id/current_pair_time"
+            app:layout_constraintTop_toBottomOf="@id/current_pair_time"/>
+
+        <TextView
+            android:id="@+id/current_pair_name"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/exo_2_bold"
+            android:maxLines="2"
+            android:text="pair_name"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/current_pair_less"
+            app:layout_constraintTop_toBottomOf="@id/current_pair_less" />
+
+        <TextView
+            android:id="@+id/current_pair_build"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/exo_2"
+            android:text="BLD"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@id/current_pair_less"
+            app:layout_constraintTop_toBottomOf="@id/current_pair_name"/>
+
+        <TextView
+            android:id="@+id/current_pair_auditorium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/exo_2"
+            android:text="XX-XX"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintStart_toEndOf="@id/current_pair_build"
+            app:layout_constraintTop_toTopOf="@id/current_pair_build" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <LinearLayout
-        android:id="@+id/week"
+        android:id="@+id/week_color"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -200,38 +187,38 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/week"
+        app:layout_constraintTop_toBottomOf="@id/week_color"
         app:layout_constraintBottom_toBottomOf="parent">
 
-    <ImageButton
-        android:id="@+id/ListDeadlines"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:layout_marginVertical="10dp"
-        android:background="@color/white"
-        android:onClick="onClickListDeadlines"
-        android:scaleType="centerInside"
-        android:src="@drawable/background_list_deadlines" />
+        <ImageButton
+            android:id="@+id/ListDeadlines"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_marginVertical="10dp"
+            android:background="@color/white"
+            android:onClick="onClickListDeadlines"
+            android:scaleType="centerInside"
+            android:src="@drawable/background_list_deadlines" />
 
-    <ImageButton
-        android:id="@+id/schedule_image"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:layout_marginVertical="10dp"
-        android:background="@color/white"
-        android:onClick="onClickPairs"
-        android:scaleType="centerInside"
-        app:srcCompat="@drawable/image_schedule_button_big" />
+        <ImageButton
+            android:id="@+id/schedule_image"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_marginVertical="10dp"
+            android:background="@color/white"
+            android:onClick="onClickPairs"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/image_schedule_button_big" />
 
-    <ImageButton
-        android:id="@+id/exams_image"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:layout_marginVertical="10dp"
-        android:background="@color/suai_light_blue"
-        android:onClick="onClickTest"
-        android:scaleType="centerInside"
-        app:srcCompat="@drawable/image_exams_button_big" />
+        <ImageButton
+            android:id="@+id/exams_image"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_marginVertical="10dp"
+            android:background="@color/suai_light_blue"
+            android:onClick="onClickTest"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/image_exams_button_big" />
 
 
     </LinearLayout>
@@ -244,7 +231,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/week">
+        app:layout_constraintTop_toBottomOf="@id/week_color">
 
         <TextView
             android:id="@+id/textView"

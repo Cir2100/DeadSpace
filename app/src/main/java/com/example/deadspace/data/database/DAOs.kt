@@ -24,8 +24,8 @@ interface MyPairDAO {
     suspend fun getUserSchedule(name: String): List<PairData>
 
     //clear database
-    /*@Query("DELETE FROM MyPairData")
-    suspend fun deleteAll()*/
+    @Query("DELETE FROM PairData")
+    suspend fun deleteAll()
 
 }
 
