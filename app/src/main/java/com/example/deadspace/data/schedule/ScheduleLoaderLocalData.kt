@@ -32,9 +32,12 @@ class ScheduleLoaderLocalData {
 
     suspend fun loadCurrentPair(time : Int) : PairData? {
         val cash = myPairCashDAO.getCash()
+
         cash.forEach {
-            if (pairTime.toTime(it.StartTime)  > time && time < pairTime.toTime(it.EndTime))
+            if (pairTime.toTime(it.StartTime) < time && time < pairTime.toTime(it.EndTime)) {
                 return it
+            }
+
         }
         return null
     }

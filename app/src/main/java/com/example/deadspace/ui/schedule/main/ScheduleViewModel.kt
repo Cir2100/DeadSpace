@@ -9,26 +9,19 @@ import androidx.lifecycle.viewModelScope
 import com.example.deadspace.DeadSpace
 import com.example.deadspace.data.database.*
 import com.example.deadspace.data.schedule.getScheduleRepo
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.io.IOException
 import java.util.*
 
 class ScheduleViewModel : ViewModel() {
 
-    //TODO: this in constructor
     private val scheduleRepo = getScheduleRepo()
 
     val myPairList = scheduleRepo.pairs
-
     val pairsCount = scheduleRepo.pairsCount
 
-    //val weekType = scheduleRepo.week
-
-
-    //TODO _----------------
-    var _querySuggestions : List<GroupAndTeacherData> = listOf()
-
-
+    var querySuggestions : List<GroupAndTeacherData> = listOf()
 
     private val _spinner = MutableLiveData(false)
     val spinner: LiveData<Boolean>
@@ -38,46 +31,41 @@ class ScheduleViewModel : ViewModel() {
     val toast: LiveData<String?>
         get() = _toast
 
-    //user input
-    //todo: class
-
-    private fun Boolean.toInt() = if (this) 1 else 0
-
-
-    private var _weekTypeBool : Boolean = true //TODO : costil
-
-    private val _weekType = MutableLiveData<Int>(1)
-    val weekType : LiveData<Int> = _weekType
-
-    private val _weekText = MutableLiveData<String>()
-    val weekText : LiveData<String> = _weekText
-
+    private val _weekType = MutableLiveData(true)
+    val weekType : LiveData<Boolean> = _weekType
 
     //TODO : interface and cash
     private val _colors = MutableLiveData(listOf(Color.RED, Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE))
     var colors : LiveData<List<Int>> = _colors
-//TODO : is false constructor
-    var isUsers = false
+
+    private val _isUsers = MutableLiveData<Boolean>(true)
+    val isUsers : LiveData<Boolean> = _isUsers
 
     var weekDay = 0
-//TODO : cash
-    val currentGroupLive = MutableLiveData<String>() //TODO: delete this
+
     var currentGroup : String = ""
+
+    fun getWeekType() : Int {
+        _weekType.value.let { return@let if (it == true) 1 else 0 }
+        return 0
+    }
+
+    fun setIsUsers(isUser : Boolean) {
+        _isUsers.value = isUser
+    }
 
     fun onToastShown() {
         _toast.value = null
     }
 
     fun onChangeWeekType(){
-        _weekTypeBool = !_weekTypeBool
-        _weekType.postValue(kotlin.math.abs(_weekType.value!! - 1))
+        _weekType.value = !_weekType.value!!
         loadDaySchedule()
     }
 
-    //TODO : use anti
+
     fun onChangeIsUser(isChange : Boolean) {
-        isUsers = isChange
-        //TODO : repair reload schedule
+        _isUsers.value = isChange
         onSearch(currentGroup)
         loadDaySchedule()
     }
@@ -96,65 +84,62 @@ class ScheduleViewModel : ViewModel() {
         loadDaySchedule()
     }
 
-    //TODO: init user cash
-
     init {
-
-        /*viewModelScope.launch {
-            _weekType.value = if (SUAIScheduleLoader2.getSemInfo().IsWeekUp) 1 else 0
+        viewModelScope.launch {
             updateGroupAndTeacher()
-        }*/
 
+            _weekType.value = scheduleRepo.loadWeekType()
 
-        val date = Calendar.getInstance()
-        val day = if (date.get(Calendar.DAY_OF_WEEK) - 2 >= 0) date.get(Calendar.DAY_OF_WEEK) - 2 else 6
-        onClickWeekDay(day) // TODO : refact this
-        loadDaySchedule()
+            val date = Calendar.getInstance()
+            val day = if (date.get(Calendar.DAY_OF_WEEK) - 2 >= 0) date.get(Calendar.DAY_OF_WEEK) - 2 else 6
+            onClickWeekDay(day)
+
+            loadDaySchedule()
+        }
     }
 
-    //TODO : load day after add and date
-
-    fun loadDaySchedule() {
+    private fun loadDaySchedule() {
         viewModelScope.launch {
-            scheduleRepo.loadDay(_weekTypeBool.toInt(), weekDay)
+            scheduleRepo.loadDay(_weekType.value!!.toInt(), weekDay)
+        }
+    }
+
+    fun loadDaySchedule(time : Long) {
+        viewModelScope.launch {
+            delay(500)
+            scheduleRepo.loadDay(_weekType.value!!.toInt(), weekDay)
         }
     }
 
     fun onSearch(groupName : String) {
-        // TODO: users input
+
         viewModelScope.launch {
             try {
                 _spinner.value = true
                 currentGroup = groupName
-                currentGroupLive.postValue(currentGroup)
                 scheduleRepo.loadSchedule(
                     name = groupName,
-                    isUsers = isUsers
+                    isUsers = _isUsers.value!!
                 )
                 loadDaySchedule()
             } catch (e: IOException) {
                 _spinner.value = false
                 Log.e(this.javaClass.simpleName, e.message.toString())
-                //TODO: print err message in activity
-                //_data.value = e.message
+                _toast.value = e.message.toString()
             } catch (e: Exception) {
                 _spinner.value = false
                 Log.e(this.javaClass.simpleName, e.message.toString())
-                //TODO: print err message in activity
-                //_data.value = e.message
+                _toast.value = e.message.toString()
             } finally {
                 _spinner.value = false
-                //TODO:
             }
-            //myPairDao.insertAll(result)
-            //TODO : use interface
         }
     }
 
     fun deleteUserSchedule() {
         viewModelScope.launch {
             scheduleRepo.deleteUserSchedule(currentGroup)
-            isUsers = false //TODO it's don't working
+            _isUsers.value = false
             loadDaySchedule()
         }
     }
@@ -162,18 +147,19 @@ class ScheduleViewModel : ViewModel() {
     fun onDeletePair(pair: PairData) {
         viewModelScope.launch {
             scheduleRepo.deletePair(pair)
-            isUsers = true //TODO it's don't working
+            _isUsers.value = true
             loadDaySchedule()
         }
     }
 
-    fun updateGroupAndTeacher() {
+    private fun updateGroupAndTeacher() {
         viewModelScope.launch {
             scheduleRepo.updateGroupAndTeacher()
-            _querySuggestions = getDatabase(DeadSpace.appContext).myGroupAndTeacherDAO.getAll()
+            querySuggestions = getDatabase(DeadSpace.appContext).myGroupAndTeacherDAO.getAll()
         }
     }
 
+    private fun Boolean.toInt() = if (this) 1 else 0
 
-    }
+}
 

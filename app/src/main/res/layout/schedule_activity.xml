@@ -83,7 +83,6 @@
             android:layout_height="32dp"
             android:background="@drawable/oval_button_blue"
             android:onClick="@{() -> viewModel.onChangeWeekType()}"
-            android:text="@{viewModel.weekText}"
             android:fontFamily="@font/exo_2_bold"
             android:textColor="@color/white"
             android:textStyle="bold"

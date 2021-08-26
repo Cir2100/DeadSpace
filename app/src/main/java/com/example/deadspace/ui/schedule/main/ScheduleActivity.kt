@@ -19,11 +19,11 @@ import android.database.MatrixCursor
 import android.provider.BaseColumns
 import android.widget.*
 import androidx.core.content.res.ResourcesCompat
-
+import com.example.deadspace.data.database.PairData
 
 class ScheduleActivity : AppCompatActivity() {
 
-    //TODO : maybe use savedStateHandle
+    private val deletePairClickListener = DeletePairClickListener()
 
     private lateinit var prefs: SharedPreferences
 
@@ -39,12 +39,10 @@ class ScheduleActivity : AppCompatActivity() {
         actionbar!!.title = "Расписание занятий"
         actionbar.setDisplayHomeAsUpEnabled(true)
 
-
         prefs = getSharedPreferences("settings", Context.MODE_PRIVATE)
 
         viewModel = ViewModelProvider(this).get(ScheduleViewModel::class.java)
-        //TODO
-        viewModel.updateGroupAndTeacher()
+
         loadPreferences()
 
         binding = DataBindingUtil.setContentView(this, R.layout.schedule_activity)
@@ -70,7 +68,7 @@ class ScheduleActivity : AppCompatActivity() {
         binding.currentDateTextview.text = formattedDate
 
         //List
-        val adapter = ScheduleListAdapter(viewModel)
+        val adapter = ScheduleListAdapter(deletePairClickListener)
         binding.pairList.adapter = adapter
         binding.pairList.layoutManager = LinearLayoutManager(this)
 
@@ -96,7 +94,7 @@ class ScheduleActivity : AppCompatActivity() {
         binding.nameGroupInput.setOnSuggestionListener(
             object : SearchView.OnSuggestionListener {
                 override fun onSuggestionSelect(position: Int): Boolean {
-                    TODO("Not yet implemented")
+                    return false
                 }
 
                 override fun onSuggestionClick(position: Int): Boolean {
@@ -139,9 +137,9 @@ class ScheduleActivity : AppCompatActivity() {
 
         viewModel.weekType.observe(this) { value ->
             value.let { type ->
-                binding.typeOfWeek.text = if (type == 1) resources.getString(R.string.upperWeek)
+                binding.typeOfWeek.text = if (type) resources.getString(R.string.upperWeek)
                 else resources.getString(R.string.lowerWeek)
-                binding.typeOfWeek.background = if (type == 1) ResourcesCompat.getDrawable(resources, R.drawable.oval_button_red, theme)
+                binding.typeOfWeek.background = if (type) ResourcesCompat.getDrawable(resources, R.drawable.oval_button_red, theme)
                 else ResourcesCompat.getDrawable(resources, R.drawable.oval_button_blue, theme)
             }
         }
@@ -150,7 +148,11 @@ class ScheduleActivity : AppCompatActivity() {
             viewModel.onChangeIsUser(isChecked)
         }
 
-        binding.isUsersSwitcher.isChecked = viewModel.isUsers
+        viewModel.isUsers.observe(this) { value ->
+            value.let { value ->
+                binding.isUsersSwitcher.isChecked = value
+            }
+        }
 
         binding.deleteUsersScheduleButton.setOnClickListener {
             createDialogFragment(true)
@@ -164,32 +166,31 @@ class ScheduleActivity : AppCompatActivity() {
         // Запоминаем данные
         val editor = prefs.edit()
         editor.putString("APP_PREFERENCES_GROUP", viewModel.currentGroup)
-        editor.putBoolean("APP_PREFERENCES_IS_USER", viewModel.isUsers)
+        editor.putBoolean("APP_PREFERENCES_IS_USER", viewModel.isUsers.value!!)
         editor.apply()
     }
 
     override fun onResume() {
         super.onResume()
         loadPreferences()
-        viewModel.loadDaySchedule()  //TODO don't use this
+        viewModel.loadDaySchedule(500)
     }
 
     private fun loadPreferences() {
         if(prefs.contains("APP_PREFERENCES_GROUP")){
             viewModel.currentGroup = prefs.getString("APP_PREFERENCES_GROUP", "").toString()
-            viewModel.currentGroupLive.postValue(viewModel.currentGroup)
         }
         if(prefs.contains("APP_PREFERENCES_IS_USER")){
-            viewModel.isUsers = prefs.getBoolean("APP_PREFERENCES_IS_USER", false)
+            viewModel.setIsUsers(prefs.getBoolean("APP_PREFERENCES_IS_USER", false))
         }
     }
-    //TODO check cash
+
     fun onClickAddRasp(view: View)
     {
         val addScheduleIntent = Intent(this, AddPairActivity::class.java)
         addScheduleIntent.putExtra("group", viewModel.currentGroup)
         addScheduleIntent.putExtra("weekDay", viewModel.weekDay)
-        addScheduleIntent.putExtra("weekType", viewModel.weekType.value!!)
+        addScheduleIntent.putExtra("weekType", viewModel.getWeekType())
         startActivity(addScheduleIntent)
     }
 
@@ -200,9 +201,9 @@ class ScheduleActivity : AppCompatActivity() {
 
     private fun updateCursor(text : String) : Cursor {
         val cursor = MatrixCursor(arrayOf(BaseColumns._ID, "Name"))
-        for (i in viewModel._querySuggestions.indices) {
-            if (viewModel._querySuggestions[i].Name.lowercase().startsWith(text.lowercase()))
-                cursor.addRow(arrayOf<Any>(i, viewModel._querySuggestions[i].Name))
+        for (i in viewModel.querySuggestions.indices) {
+            if (viewModel.querySuggestions[i].Name.lowercase().startsWith(text.lowercase()))
+                cursor.addRow(arrayOf<Any>(i, viewModel.querySuggestions[i].Name))
         }
         return cursor
     }
@@ -221,7 +222,19 @@ class ScheduleActivity : AppCompatActivity() {
     }
 
     fun okClickedDeletePair() {
-        //viewModel.onDeletePair(item)
+        viewModel.onDeletePair(deletePairClickListener.getItem())
+    }
+
+    inner class DeletePairClickListener {
+
+        private lateinit var item: PairData
+
+        fun onClick(item : PairData) {
+            this.item = item
+            createDialogFragment(false)
+        }
+
+        fun getItem() : PairData = item
     }
 
 }

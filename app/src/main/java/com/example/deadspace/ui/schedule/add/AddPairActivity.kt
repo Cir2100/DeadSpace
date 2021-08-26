@@ -11,18 +11,23 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.deadspace.R
 import com.example.deadspace.databinding.AddPairActivityBinding
+import android.content.Intent
+import android.content.SharedPreferences
 
 class AddPairActivity : AppCompatActivity() {
+
+    private lateinit var prefs: SharedPreferences
 
     private lateinit var viewModel: AddPairViewModel
     private lateinit var binding : AddPairActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         val actionbar = supportActionBar
         actionbar!!.title = "Добавление занятия"
         actionbar.setDisplayHomeAsUpEnabled(true)
+
+        prefs = getSharedPreferences("settings", Context.MODE_PRIVATE)
 
         viewModel = ViewModelProvider(this).get(AddPairViewModel::class.java)
 
@@ -44,7 +49,8 @@ class AddPairActivity : AppCompatActivity() {
                     building = binding.scheduleBuildingInput.text.toString(),
                     auditorium = binding.scheduleAuditoriumInput.text.toString(),
                 )
-            onBackPressed()
+
+                finish()
             }
         }
 
@@ -68,6 +74,15 @@ class AddPairActivity : AppCompatActivity() {
             }
         })
 
+    }
+
+    override fun finish() {
+
+        val editor = prefs.edit()
+        editor.putBoolean("APP_PREFERENCES_IS_USER", true)
+        editor.apply()
+
+        super.finish()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -131,5 +146,4 @@ class AddPairActivity : AppCompatActivity() {
         }
     }
 
-    //TODO : use onSavedInstanceState or savedStateHandle
 }
