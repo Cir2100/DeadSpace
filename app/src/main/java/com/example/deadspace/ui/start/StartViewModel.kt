@@ -47,8 +47,9 @@ class StartViewModel : ViewModel() {
 
             val date = Calendar.getInstance()
             val time = date.get(Calendar.HOUR_OF_DAY) * 60 + date.get(Calendar.MINUTE)
+            val weekDay = date.get(Calendar.DAY_OF_WEEK) - 2
 
-            _currentPair.value = scheduleRepo.loadCurrentPair(time)
+            _currentPair.value = scheduleRepo.loadCurrentPair(time, _weekType.value!!.toInt(), weekDay)
         }
 
     }
@@ -56,5 +57,7 @@ class StartViewModel : ViewModel() {
     fun onToastShown() {
         _toast.value = null
     }
+
+    private fun Boolean.toInt() = if (this) 1 else 0
 
 }
