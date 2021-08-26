@@ -18,6 +18,10 @@ class ScheduleEditor {
     private val myPairCashDAO = database.myPairCashDAO
     private val myGroupAndTeacherDAO = database.myGroupAndTeacherDAO
 
+    suspend fun deleteUserSchedule(name : String) {
+        myPairDAO.deleteUserSchedule(name)
+    }
+
     suspend fun deletePair(pair : PairData) {
 
         initUserSchedule(pair.Name)

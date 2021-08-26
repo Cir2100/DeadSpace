@@ -20,9 +20,9 @@ class StartViewModel : ViewModel() {
     val weekType: LiveData<Boolean>
         get() = _weekType
 
-    private val _snackBar : MutableLiveData<String?> = scheduleRepo.error
-    val snackBar: LiveData<String?>
-        get() = _snackBar
+    private val _toast : MutableLiveData<String?> = scheduleRepo.error
+    val toast: LiveData<String?>
+        get() = _toast
 
     private val _currentPair = MutableLiveData<PairData?>()
     val currentPair: LiveData<PairData?>
@@ -35,7 +35,7 @@ class StartViewModel : ViewModel() {
 
                 loadCurrentPair()
             } catch (e : Throwable) {
-                _snackBar.value = e.message
+                _toast.value = e.message
             }
 
         }
@@ -53,8 +53,8 @@ class StartViewModel : ViewModel() {
 
     }
 
-    fun onSnackBarShown() {
-        _snackBar.value = null
+    fun onToastShown() {
+        _toast.value = null
     }
 
 }

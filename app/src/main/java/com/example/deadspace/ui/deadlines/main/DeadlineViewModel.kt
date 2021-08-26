@@ -15,12 +15,12 @@ class DeadlineViewModel : ViewModel() {
 
     val sizeDeadlineList = deadlineRepo.countDeadlines
 
-    private val _snackBar : MutableLiveData<String?> = deadlineRepo.error
-    val snackBar: LiveData<String?>
-        get() = _snackBar
+    private val _toast : MutableLiveData<String?> = deadlineRepo.error
+    val toast: LiveData<String?>
+        get() = _toast
 
-    fun onSnackBarShown() {
-        _snackBar.value = null
+    fun onToastBarShown() {
+        _toast.value = null
     }
 
 

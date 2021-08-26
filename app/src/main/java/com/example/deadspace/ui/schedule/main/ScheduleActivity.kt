@@ -5,10 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.database.Cursor
 import android.os.Bundle
-import android.view.Gravity
 import android.view.View
-import android.widget.SearchView
-import android.widget.SimpleCursorAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -20,9 +17,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 import android.database.MatrixCursor
 import android.provider.BaseColumns
-import android.widget.CursorAdapter
-import android.widget.FilterQueryProvider
-import com.google.android.material.snackbar.Snackbar
+import android.widget.*
+import androidx.core.content.res.ResourcesCompat
 
 
 class ScheduleActivity : AppCompatActivity() {
@@ -56,10 +52,11 @@ class ScheduleActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
 
         // Show a snackbar whenever the [ViewModel.snackbar] is updated a non-null value
-        viewModel.snackBar.observe(this) { text ->
+        viewModel.toast.observe(this) { text ->
             text?.let {
-                Snackbar.make(binding.scheduleRootLayout, text, Snackbar.LENGTH_SHORT).show()
-                viewModel.onSnackBarShown()
+                Toast.makeText(this@ScheduleActivity, text,
+                    Toast.LENGTH_LONG).show()
+                viewModel.onToastShown()
             }
         }
 
@@ -144,8 +141,8 @@ class ScheduleActivity : AppCompatActivity() {
             value.let { type ->
                 binding.typeOfWeek.text = if (type == 1) resources.getString(R.string.upperWeek)
                 else resources.getString(R.string.lowerWeek)
-                binding.typeOfWeek.background = if (type == 1) resources.getDrawable(R.drawable.oval_button_red, theme)
-                else resources.getDrawable(R.drawable.oval_button_blue, theme)
+                binding.typeOfWeek.background = if (type == 1) ResourcesCompat.getDrawable(resources, R.drawable.oval_button_red, theme)
+                else ResourcesCompat.getDrawable(resources, R.drawable.oval_button_blue, theme)
             }
         }
 
@@ -154,6 +151,10 @@ class ScheduleActivity : AppCompatActivity() {
         }
 
         binding.isUsersSwitcher.isChecked = viewModel.isUsers
+
+        binding.deleteUsersScheduleButton.setOnClickListener {
+            createDialogFragment(true)
+        }
 
     }
 
@@ -204,6 +205,23 @@ class ScheduleActivity : AppCompatActivity() {
                 cursor.addRow(arrayOf<Any>(i, viewModel._querySuggestions[i].Name))
         }
         return cursor
+    }
+
+    fun createDialogFragment(type : Boolean) {
+        val myDialogFragment = ScheduleDialogFragment()
+        val manager = supportFragmentManager
+        val args = Bundle()
+        args.putBoolean("type", type)
+        myDialogFragment.arguments = args
+        myDialogFragment.show(manager, "myDialog")
+    }
+
+    fun okClickedDeleteUsersSchedule() {
+        viewModel.deleteUserSchedule()
+    }
+
+    fun okClickedDeletePair() {
+        //viewModel.onDeletePair(item)
     }
 
 }

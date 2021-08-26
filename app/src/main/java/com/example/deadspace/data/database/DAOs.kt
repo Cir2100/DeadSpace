@@ -15,6 +15,10 @@ interface MyPairDAO {
     @Query("SELECT * FROM PairData")
     suspend fun getAll(): List<PairData>
 
+    //delete user shcedule
+    @Query("DELETE FROM PairData WHERE `Name` LIKE :name AND isCash = 0")
+    suspend fun deleteUserSchedule(name : String) : Int
+
     //delete pair
     @Delete
     suspend fun deleteUserPair(pair: PairData)

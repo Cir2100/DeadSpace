@@ -3,6 +3,7 @@ package com.example.deadspace.ui.deadlines.main
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -51,10 +52,11 @@ class DeadlinesActivity : AppCompatActivity() {
         }
 
         // Show a snackbar whenever the [ViewModel.snackbar] is updated a non-null value
-        viewModel.snackBar.observe(this) { text ->
+        viewModel.toast.observe(this) { text ->
             text?.let {
-                Snackbar.make(binding.deadlineRootLayout, text, Snackbar.LENGTH_SHORT).show()
-                viewModel.onSnackBarShown()
+                Toast.makeText(this@DeadlinesActivity, text,
+                    Toast.LENGTH_LONG).show()
+                viewModel.onToastBarShown()
             }
         }
 

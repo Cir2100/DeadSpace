@@ -35,6 +35,10 @@ class ScheduleRepo {
         _error.value = scheduleLoader.updateGroupAndTeacher()
     }
 
+    suspend fun deleteUserSchedule(name : String) {
+        scheduleEditor.deleteUserSchedule(name)
+    }
+
     suspend fun deletePair(pair : PairData) {
         scheduleEditor.deletePair(pair)
     }

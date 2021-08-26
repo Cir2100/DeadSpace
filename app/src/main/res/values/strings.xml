@@ -45,4 +45,8 @@
     <string name="add_pair_error">Пара в такое время уже есть</string>
     //сообщение об ошибке подключения к интернету
     <string name="no_internet_connection">Нет подключения к интернету</string>
+    //удаление пары
+    <string name="delete_pair">Удалить пару?</string>
+    //удаление пользовательского расписания
+    <string name="delete_users_schedule">Удалить расписание для текущей группы?</string>
 </resources>

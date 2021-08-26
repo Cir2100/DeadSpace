@@ -3,6 +3,7 @@
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModelProvider
@@ -11,7 +12,6 @@ import com.example.deadspace.databinding.StartActivityBinding
 import com.example.deadspace.ui.deadlines.main.DeadlinesActivity
 import com.example.deadspace.ui.exams.ExamActivity
 import com.example.deadspace.ui.schedule.main.ScheduleActivity
-import com.google.android.material.snackbar.Snackbar
 import java.util.*
 
 class StartActivity : AppCompatActivity() {
@@ -35,10 +35,11 @@ class StartActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(StartViewModel::class.java)
 
         // Show a snackbar whenever the [ViewModel.snackbar] is updated a non-null value
-        viewModel.snackBar.observe(this) { text ->
+        viewModel.toast.observe(this) { text ->
             text?.let {
-                Snackbar.make(binding.startRootLayout, text, Snackbar.LENGTH_SHORT).show()
-                viewModel.onSnackBarShown()
+                Toast.makeText(this@StartActivity, text,
+                    Toast.LENGTH_LONG).show()
+                viewModel.onToastShown()
             }
         }
 

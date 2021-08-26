@@ -34,9 +34,9 @@ class ScheduleViewModel : ViewModel() {
     val spinner: LiveData<Boolean>
         get() = _spinner
 
-    private val _snackBar : MutableLiveData<String?> = scheduleRepo.error
-    val snackBar: LiveData<String?>
-        get() = _snackBar
+    private val _toast : MutableLiveData<String?> = scheduleRepo.error
+    val toast: LiveData<String?>
+        get() = _toast
 
     //user input
     //todo: class
@@ -64,8 +64,8 @@ class ScheduleViewModel : ViewModel() {
     val currentGroupLive = MutableLiveData<String>() //TODO: delete this
     var currentGroup : String = ""
 
-    fun onSnackBarShown() {
-        _snackBar.value = null
+    fun onToastShown() {
+        _toast.value = null
     }
 
     fun onChangeWeekType(){
@@ -148,6 +148,14 @@ class ScheduleViewModel : ViewModel() {
             }
             //myPairDao.insertAll(result)
             //TODO : use interface
+        }
+    }
+
+    fun deleteUserSchedule() {
+        viewModelScope.launch {
+            scheduleRepo.deleteUserSchedule(currentGroup)
+            isUsers = false //TODO it's don't working
+            loadDaySchedule()
         }
     }
 
