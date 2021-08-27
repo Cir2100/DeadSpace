@@ -4,13 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.deadspace.R
 import com.example.deadspace.databinding.DeadlinesActivityBinding
 import com.example.deadspace.ui.deadlines.add.AddDeadlineActivity
-import com.google.android.material.snackbar.Snackbar
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -61,10 +60,11 @@ class DeadlinesActivity : AppCompatActivity() {
         }
 
         //Current date
-        val date = Calendar.getInstance().time
-        val formatter = SimpleDateFormat("dd MMMM")
-        val formattedDate = formatter.format(date)
-        binding.currentDateTextview.text = "Сегодня $formattedDate"
+        val date = Calendar.getInstance()
+        val formattedDate = date.get(Calendar.DAY_OF_MONTH).toString() + " " +
+                date.getDisplayName(Calendar.MONTH, Calendar.LONG_FORMAT, Locale.getDefault())
+        binding.currentDateTextview.text = resources.getString(
+            R.string.current_date_text, formattedDate )
 
     }
 

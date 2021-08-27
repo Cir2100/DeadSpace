@@ -9,26 +9,14 @@
     android:orientation="vertical"
     android:padding="@dimen/all_padding">
 
-
-    <TextView
-        android:id="@+id/EnterGroupNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/exo_2"
-        android:text="@string/enterGroupNumber"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <SearchView
         android:id="@+id/name_group_input"
-        android:layout_width="300dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:iconifiedByDefault="false"
-        app:layout_constraintBaseline_toBaselineOf="@id/EnterGroupNumber"
-        app:layout_constraintStart_toEndOf="@id/EnterGroupNumber" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/current_date_textview"
@@ -43,14 +31,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/name_group_input" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/exam_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/current_date_textview"
-                tools:listitem="@layout/exams_list_item" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/exam_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/current_date_textview"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/exam_list_item" />
+
+    <ProgressBar
+        android:id="@+id/load_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/exam_list" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

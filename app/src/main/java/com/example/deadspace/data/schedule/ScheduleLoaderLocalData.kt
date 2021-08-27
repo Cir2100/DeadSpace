@@ -32,8 +32,6 @@ class ScheduleLoaderLocalData {
 
     suspend fun loadCurrentPair(time : Int, weekType: Int , weekDay: Int) : PairData? {
         val cash = myPairCashDAO.getCash()
-        Log.e("fdgfg", weekType.toString())
-        Log.e("fdgfg", weekDay.toString())
         cash.forEach {
             if ((pairTime.toTime(it.StartTime) <= time && time <= pairTime.toTime(it.EndTime))
                         && (it.Week == 2 || it.Week == weekType)

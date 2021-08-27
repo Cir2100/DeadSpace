@@ -1,4 +1,4 @@
-package com.example.deadspace.data.schedule
+package com.example.deadspace.data.exam
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -6,7 +6,8 @@ import android.net.NetworkCapabilities
 import android.util.Log
 import com.example.deadspace.DeadSpace
 import com.example.deadspace.R
-import com.example.deadspace.data.database.*
+import com.example.deadspace.data.database.GroupAndTeacherData
+import com.example.deadspace.data.database.getDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.jsoup.Jsoup
@@ -14,19 +15,18 @@ import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
 import java.io.IOException
 
-class ScheduleLoaderInternet {
+class ExamLoaderInternet {
 
-    private val scheduleSaver = getScheduleSaver()
-    private val scheduleParser = getScheduleParser()
+    private val examSaver = getExamSaver()
+    private val examParser = getExamParser()
 
     private val myGroupAndTeacherDAO = getDatabase(DeadSpace.appContext).myGroupAndTeacherDAO
 
     private val res =  DeadSpace.appContext.resources
 
     private lateinit var html : Document
-    private var week : Boolean? = null
 
-    suspend fun loadGroupAndTeacher() : String? {
+    suspend fun updateGroupAndTeacher() : String? {
         return withContext(Dispatchers.IO) {
 
             if (!isOnline())
@@ -46,7 +46,7 @@ class ScheduleLoaderInternet {
                                         ItemId = option.attr("value").toInt(),
                                         Name = option.text(),
                                         isGroup = true,
-                                        isSchedule = true
+                                        isSchedule = false
                                     )
                                 )
                             else if (i == 1)
@@ -55,7 +55,7 @@ class ScheduleLoaderInternet {
                                         ItemId = option.attr("value").toInt(),
                                         Name = option.text(),
                                         isGroup = false,
-                                        isSchedule = true
+                                        isSchedule = false
                                     )
                                 )
                         }
@@ -63,7 +63,7 @@ class ScheduleLoaderInternet {
                 }
                 Log.i(this.javaClass.simpleName, "Load list groups and teachers successful")
 
-                scheduleSaver.saveGroupList(items)
+                examSaver.saveGroupList(items)
 
                 return@withContext null
             } catch (e: IOException) {
@@ -75,49 +75,20 @@ class ScheduleLoaderInternet {
         }
     }
 
-    suspend fun getWeekType() : Boolean {
-        if (week == null)
-            week = loadWeekType()
-        return week!!
-    }
-
-    private suspend fun loadWeekType() : Boolean {
-        return withContext(Dispatchers.IO) {
-
-            if (!isOnline())
-                throw Exception(res.getString(R.string.no_internet_connection))
-            try {
-
-                val doc = getHTML()
-                val semInfo = doc.select("div[class*=rasp]").select("em")[0].toString()
-
-                Log.i(this.javaClass.simpleName,"Load weekType successful")
-
-                return@withContext semInfo.contains("up")
-            }catch (e: IOException) {
-                throw e
-            } catch (e: Exception) {
-                throw e
-            }
-        }
-
-    }
-
-
     private suspend fun checkInput(name : String) : Pair<Int, String> {
-        myGroupAndTeacherDAO.getAllSchedule().forEach {
+        myGroupAndTeacherDAO.getAllExams().forEach {
             if (it.Name == name) {
                 return if (it.isGroup)
-                    Pair(it.ItemId, scheduleGroupSearchLink)
+                    Pair(it.ItemId, examGroupSearchLink)
                 else
-                    Pair(it.ItemId, scheduleTeacherSearchLink)
+                    Pair(it.ItemId, examTeacherSearchLink)
             }
         }
         throw Exception(res.getString(R.string.incorrect_input))
     }
 
     //find schedule group or teacher on rasp.guap.ru/?..
-    suspend fun loadSchedule(searchName : String) : String? {
+    suspend fun loadExams(searchName : String) : String? {
 
         return withContext(Dispatchers.IO) {
 
@@ -129,15 +100,15 @@ class ScheduleLoaderInternet {
 
                 val pairSearch = checkInput(searchName)
 
-                val doc = Jsoup.connect(scheduleLink + pairSearch.second + pairSearch.first.toString()).get()
+                val doc = Jsoup.connect(examLink + pairSearch.second + pairSearch.first.toString()).get()
                 val result = doc.getElementsByAttributeValue("class", "result")
 
-                scheduleSaver.saveCash(scheduleParser.parseSchedule(result.toString().substringAfter("</h2>"), pairSearch.first, searchName))
+                examSaver.saveCash(examParser.parseExams(result.toString().substringAfter("</h2>"), searchName))
 
-                Log.i(this.javaClass.simpleName, "Load schedule from internet successful")
+                Log.i(this.javaClass.simpleName, "Load exams from internet successful")
                 return@withContext null
             } catch (e: IOException) {
-               return@withContext e.message.toString()
+                return@withContext e.message.toString()
             } catch (e: Exception) {
                 return@withContext e.message.toString()
             }
@@ -173,18 +144,18 @@ class ScheduleLoaderInternet {
             return@withContext if (::html.isInitialized)
                 html
             else
-                Jsoup.connect(scheduleLink).get()
+                Jsoup.connect(examLink).get()
         }
     }
 
 }
 
-private lateinit var INSTANCE: ScheduleLoaderInternet
+private lateinit var INSTANCE: ExamLoaderInternet
 
-fun getScheduleLoaderInternet(): ScheduleLoaderInternet {
-    synchronized(ScheduleLoaderInternet::class) {
+fun getExamLoaderInternet(): ExamLoaderInternet {
+    synchronized(ExamLoaderInternet::class) {
         if (!::INSTANCE.isInitialized) {
-            INSTANCE = ScheduleLoaderInternet()
+            INSTANCE = ExamLoaderInternet()
         }
     }
     return INSTANCE

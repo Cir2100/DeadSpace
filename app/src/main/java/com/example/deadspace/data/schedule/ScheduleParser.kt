@@ -30,7 +30,6 @@ class ScheduleParser {
         return daysData
     }
 
-    //TODO refact
     //parse schedule one day for pairs
     suspend private fun parsePairs(dayScheduleInput: String, weekDay : Int, itemId : Int, searchName : String) : MutableList<PairData>{
         var daySchedule = dayScheduleInput.substringBeforeLast("</div>")
@@ -67,10 +66,10 @@ class ScheduleParser {
                 val type = pairInTime.substringAfter("<b>").substringBefore("</b>").trim()
 
                 var disc = pairInTime.substringAfter("–").substringBefore("<em>").trim()
-
                 //TODO: use strings
                 if (disc == "Прикладная физическая культура (элективный модуль)")
                     disc = "Прикладная физическая культура"
+
                 pairInTime = pairInTime.substringAfter("<em>")
 
                 var build = pairInTime.substringAfter("–").substringBefore(",").trim()
@@ -82,7 +81,7 @@ class ScheduleParser {
                     room = "-"*/
 
                 var teachers : String
-                    if (weekDay != 6 && disc != "Прикладная физическая культура") {
+                    if (pairInTime.contains("class=\"preps\"")) {
                         teachers = parseGroupOrTeacher(pairInTime.substringAfter("<a href").substringBefore("</span>")).trim()
                         pairInTime = pairInTime.substringAfter("</a></span>")
                     }

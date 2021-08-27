@@ -92,7 +92,7 @@ class ScheduleEditor {
     }
 
     private suspend fun getItemId(name: String) : Int {
-        myGroupAndTeacherDAO.getAll().forEach {
+        myGroupAndTeacherDAO.getAllSchedule().forEach {
             if (it.Name == name)
                 return it.ItemId
         }

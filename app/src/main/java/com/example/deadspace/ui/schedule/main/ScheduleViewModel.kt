@@ -158,7 +158,7 @@ class ScheduleViewModel : ViewModel() {
     private fun updateGroupAndTeacher() {
         viewModelScope.launch {
             scheduleRepo.updateGroupAndTeacher()
-            querySuggestions = getDatabase(DeadSpace.appContext).myGroupAndTeacherDAO.getAll()
+            querySuggestions = getDatabase(DeadSpace.appContext).myGroupAndTeacherDAO.getAllSchedule()
         }
     }
 

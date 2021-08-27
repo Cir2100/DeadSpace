@@ -22,6 +22,17 @@ data class PairData(
 )
 
 @Entity
+data class ExamData(
+    val Date : String,
+    val Change : String,
+    @PrimaryKey val Disc: String,
+    val Build: String,
+    val Rooms: String,
+    val GroupsText: String,
+    val TeachersText: String,
+)
+
+@Entity
 data class MyDeadlinesData constructor(
     @PrimaryKey val id: Int,
     val title : String,
@@ -31,9 +42,10 @@ data class MyDeadlinesData constructor(
     //TODO : add push-notification
 )
 
-@Entity
+@Entity(primaryKeys = ["Name", "isSchedule"])
 data class GroupAndTeacherData constructor(
     val ItemId : Int,
-    @PrimaryKey val Name: String,
-    val isGroup : Boolean
+    val Name: String,
+    val isGroup : Boolean,
+    val isSchedule : Boolean
 )

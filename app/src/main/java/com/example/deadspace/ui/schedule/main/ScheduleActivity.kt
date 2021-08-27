@@ -24,7 +24,7 @@ import kotlinx.serialization.json.Json
 
 class ScheduleActivity : AppCompatActivity() {
 
-    private val deletePairClickListener = DeletePairClickListener()
+    private val deletePairClickListener = PairClickListener()
 
     private lateinit var prefs: SharedPreferences
 
@@ -166,7 +166,7 @@ class ScheduleActivity : AppCompatActivity() {
 
         // Запоминаем данные
         val editor = prefs.edit()
-        editor.putString("APP_PREFERENCES_GROUP", viewModel.currentGroup)
+        editor.putString("APP_PREFERENCES_GROUP_SCHEDULE", viewModel.currentGroup)
         editor.putBoolean("APP_PREFERENCES_IS_USER", viewModel.isUsers.value!!)
         editor.apply()
     }
@@ -178,8 +178,8 @@ class ScheduleActivity : AppCompatActivity() {
     }
 
     private fun loadPreferences() {
-        if(prefs.contains("APP_PREFERENCES_GROUP")){
-            viewModel.currentGroup = prefs.getString("APP_PREFERENCES_GROUP", "").toString()
+        if(prefs.contains("APP_PREFERENCES_GROUP_SCHEDULE")){
+            viewModel.currentGroup = prefs.getString("APP_PREFERENCES_GROUP_SCHEDULE", "").toString()
         }
         if(prefs.contains("APP_PREFERENCES_IS_USER")){
             viewModel.setIsUsers(prefs.getBoolean("APP_PREFERENCES_IS_USER", false))
@@ -245,7 +245,7 @@ class ScheduleActivity : AppCompatActivity() {
         viewModel.onDeletePair(deletePairClickListener.getItem())
     }
 
-    inner class DeletePairClickListener {
+    inner class PairClickListener {
 
         private lateinit var item: PairData
 

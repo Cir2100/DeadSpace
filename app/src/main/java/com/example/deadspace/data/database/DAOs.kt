@@ -99,13 +99,31 @@ interface MyGroupAndTeacherDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(items: List<GroupAndTeacherData>)
 
-    @Query("SELECT * FROM GroupAndTeacherData")
-    suspend fun getAll() : List<GroupAndTeacherData>
+    @Query("SELECT * FROM GroupAndTeacherData WHERE isSchedule == 1")
+    suspend fun getAllSchedule() : List<GroupAndTeacherData>
+
+    @Query("SELECT * FROM GroupAndTeacherData WHERE isSchedule == 0")
+    suspend fun getAllExams() : List<GroupAndTeacherData>
 
     @Query("SELECT * FROM GroupAndTeacherData WHERE Name = :name")
     suspend fun getOne(name : String) : GroupAndTeacherData
 
     @Update
     suspend fun updateOne(groupAndTeacherData: GroupAndTeacherData)
+
+}
+
+@Dao
+interface MyExamDAO {
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(items: List<ExamData>)
+
+    //delete old cash
+    @Query("DELETE FROM ExamData")
+    suspend fun deleteCash()
+
+    @get:Query("SELECT * FROM ExamData")
+    val allExams: LiveData<List<ExamData>>
 
 }

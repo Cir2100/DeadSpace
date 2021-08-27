@@ -11,7 +11,7 @@ import com.example.deadspace.DeadSpace
 import com.example.deadspace.R
 import com.example.deadspace.data.database.PairData
 
-class ScheduleListAdapter(private val deletePairClickListener: ScheduleActivity.DeletePairClickListener) :
+class ScheduleListAdapter(private val pairClickListener: ScheduleActivity.PairClickListener) :
     RecyclerView.Adapter<ScheduleListAdapter.MyViewHolder>() {
 
     private var items : List<PairData> = listOf()
@@ -42,14 +42,14 @@ class ScheduleListAdapter(private val deletePairClickListener: ScheduleActivity.
             item.StartTime,  item.EndTime)
 
         holder.deleteButton?.setOnClickListener {
-            deletePairClickListener.onClickDeletePair(item)
+            pairClickListener.onClickDeletePair(item)
         }
 
         holder.itemView.setOnClickListener{
             val pos = holder.adapterPosition
             if(pos != DiffUtil.DiffResult.NO_POSITION) {
                 //todo itemClickListener
-                deletePairClickListener.onClickPairItem(item)
+                pairClickListener.onClickPairItem(item)
             }
         }
 

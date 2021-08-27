@@ -3,12 +3,13 @@ package com.example.deadspace.data.database
 import android.content.Context
 import androidx.room.*
 
-@Database(entities = [PairData::class, GroupAndTeacherData::class, MyDeadlinesData::class], version = 15)
+@Database(entities = [PairData::class, GroupAndTeacherData::class, MyDeadlinesData::class, ExamData::class], version = 18)
 abstract class MyDatabase : RoomDatabase() {
     abstract val myPairDAO : MyPairDAO
     abstract val myPairCashDAO : MyPairCashDAO
     abstract val myGroupAndTeacherDAO : MyGroupAndTeacherDAO
     abstract val myDeadlinesDAO: MyDeadlinesDAO
+    abstract val myExamDAO: MyExamDAO
 }
 
 
