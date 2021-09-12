@@ -14,6 +14,7 @@ import com.example.deadspace.ui.exams.ExamActivity
 import com.example.deadspace.ui.schedule.main.ScheduleActivity
 import java.util.*
 
+
 class StartActivity : AppCompatActivity() {
 
     private lateinit var viewModel: StartViewModel
