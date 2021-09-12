@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
-    package="com.example.deadspace">
+    package="com.suaideadspace">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -15,19 +15,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DeadSpace"
-        android:name=".DeadSpace">
+        android:name="com.suaideadspace.DeadSpace">
         <activity
-            android:name=".ui.schedule.add.AddPairActivity" />
+            android:name="com.suaideadspace.ui.schedule.add.AddPairActivity" />
         <activity
-            android:name=".ui.schedule.main.ScheduleActivity"/>
+            android:name="com.suaideadspace.ui.schedule.main.ScheduleActivity"/>
         <activity
-            android:name=".ui.deadlines.add.AddDeadlineActivity" />
+            android:name="com.suaideadspace.ui.deadlines.add.AddDeadlineActivity" />
         <activity
-            android:name=".ui.exams.ExamActivity" />
+            android:name="com.suaideadspace.ui.exams.ExamActivity" />
         <activity
-            android:name=".ui.deadlines.main.DeadlinesActivity" />
+            android:name="com.suaideadspace.ui.deadlines.main.DeadlinesActivity" />
         <activity
-            android:name=".ui.start.StartActivity">
+            android:name="com.suaideadspace.ui.start.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

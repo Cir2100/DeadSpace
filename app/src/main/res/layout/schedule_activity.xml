@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.deadspace.ui.schedule.main.ScheduleViewModel" />
+            type="com.suaideadspace.ui.schedule.main.ScheduleViewModel" />
     </data>
 
 

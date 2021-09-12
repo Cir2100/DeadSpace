@@ -50,6 +50,8 @@
     <string name="no_internet_connection">Нет подключения к интернету</string>
     //сообщение о некорректном вводе
     <string name="incorrect_input">Некорректный ввод</string>
+    //ошибка при добавлении к пустому расписанию
+    <string name="add_pair_to_nothing_error_mes">А куда ты добавлять собрался?</string>
 
     //предупреждения
     //удаление пары
