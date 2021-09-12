@@ -174,12 +174,7 @@ class ScheduleActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-
-        // Запоминаем данные
-        val editor = prefs.edit()
-        editor.putString("APP_PREFERENCES_GROUP_SCHEDULE", viewModel.currentGroup)
-        editor.putBoolean("APP_PREFERENCES_IS_USER", viewModel.isUsers.value!!)
-        editor.apply()
+        savePreferences()
     }
 
     override fun onResume() {
@@ -188,12 +183,24 @@ class ScheduleActivity : AppCompatActivity() {
         viewModel.loadDaySchedule(500)
     }
 
+    private fun savePreferences() {
+        // Запоминаем данные
+        val editor = prefs.edit()
+        editor.putString("APP_PREFERENCES_GROUP_SCHEDULE", viewModel.currentGroup)
+        editor.putBoolean("APP_PREFERENCES_IS_USER", viewModel.isUsers.value!!)
+        editor.putBoolean("APP_PREFERENCES_IS_IGNORE_LECTURES", viewModel.isIgnoreLectures.value!!)
+        editor.apply()
+    }
+
     private fun loadPreferences() {
         if(prefs.contains("APP_PREFERENCES_GROUP_SCHEDULE")){
             viewModel.currentGroup = prefs.getString("APP_PREFERENCES_GROUP_SCHEDULE", "").toString()
         }
         if(prefs.contains("APP_PREFERENCES_IS_USER")){
             viewModel.setIsUsers(prefs.getBoolean("APP_PREFERENCES_IS_USER", false))
+        }
+        if(prefs.contains("APP_PREFERENCES_IS_IGNORE_LECTURES")){
+            viewModel.setIsIgnoreLectures(prefs.getBoolean("APP_PREFERENCES_IS_IGNORE_LECTURES", false))
         }
     }
 

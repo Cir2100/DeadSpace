@@ -59,6 +59,10 @@ class ScheduleViewModel : ViewModel() {
         _isUsers.value = isUser
     }
 
+    fun setIsIgnoreLectures(isIgnore : Boolean) {
+        _isIgnoreLectures.value = isIgnore
+    }
+
     fun onToastShown() {
         _toast.value = null
     }
