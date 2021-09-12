@@ -28,7 +28,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.suaideadspace"
+        applicationId "com.example.deadspace"
         minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
@@ -109,7 +109,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     //хз что
-    implementation 'com.android.support:multidex:2.0.1'
+   // implementation 'com.android.support:multidex:2.0.1'
 
     /*//hilt
     implementation 'com.google.dagger:hilt-android:2.37'
