@@ -27,8 +27,8 @@ class ScheduleRepo {
         return scheduleLoader.loadCurrentPair(time, weekType , weekDay)
     }
 
-    suspend fun loadDay(weekType : Int, weekDay : Int) {
-        scheduleLoader.loadDay(weekType, weekDay)
+    suspend fun loadDay(weekType : Int, weekDay : Int, isIgnoreLectures : Boolean) {
+        scheduleLoader.loadDay(weekType, weekDay, isIgnoreLectures)
     }
 
     suspend fun updateGroupAndTeacher() {

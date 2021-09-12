@@ -56,13 +56,24 @@ class ScheduleLoader {
         return localLoader.loadCurrentPair(time, weekType, weekDay)
     }
 
-    suspend fun loadDay(weekType : Int, weekDay : Int) {
+    suspend fun loadDay(weekType : Int, weekDay : Int, isIgnoreLectures : Boolean) {
         //_weekDay = weekDay
         //_weekType = weekType
         Log.i(this.javaClass.simpleName, "Load from cash")
         val daySchedule = myPairCashDAO.getDayCash(weekType , weekDay).sortedBy { it.Less }
-        _pairs.value = daySchedule
-        _pairsCount.value = daySchedule.size
+        if (isIgnoreLectures) {
+            val dayScheduleWithoutLectures = mutableListOf<PairData>()
+            daySchedule.forEach {
+                if (it.Type != "Л")
+                    dayScheduleWithoutLectures.add(it)
+            }
+            _pairs.value = dayScheduleWithoutLectures
+            _pairsCount.value = dayScheduleWithoutLectures.size
+        }
+        else {
+            _pairs.value = daySchedule
+            _pairsCount.value = daySchedule.size
+        }
     }
 
     //TODO

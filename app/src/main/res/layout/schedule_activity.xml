@@ -41,6 +41,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/ignore_lectures_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Л"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/is_users_switcher" />
+
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/is_users_switcher"
             android:layout_width="wrap_content"
@@ -52,6 +62,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/name_group_input" />
+
+        <ImageView
+            android:id="@+id/delete_users_schedule_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:srcCompat="@drawable/delete_schdl"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/is_users_switcher"
+            app:layout_constraintBottom_toBottomOf="@id/is_users_switcher"/>
 
         <LinearLayout
             android:id="@+id/date"
@@ -261,17 +282,6 @@
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
-
-        <ImageView
-            android:id="@+id/delete_users_schedule_button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            app:srcCompat="@drawable/delete_schdl"
-            android:background="@android:color/transparent"
-            android:scaleType="centerInside"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/is_users_switcher"
-            app:layout_constraintBottom_toBottomOf="@id/is_users_switcher"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

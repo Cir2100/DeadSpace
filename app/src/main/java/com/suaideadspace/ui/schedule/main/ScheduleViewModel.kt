@@ -44,6 +44,9 @@ class ScheduleViewModel : ViewModel() {
     private val _isUsers = MutableLiveData(false)
     val isUsers : LiveData<Boolean> = _isUsers
 
+    private val _isIgnoreLectures = MutableLiveData(false)
+    val isIgnoreLectures : LiveData<Boolean> = _isIgnoreLectures
+
     var weekDay = 0
 
     var currentGroup : String = ""
@@ -58,6 +61,11 @@ class ScheduleViewModel : ViewModel() {
 
     fun onToastShown() {
         _toast.value = null
+    }
+
+    fun onChangeIsIgnoreLectures() {
+        _isIgnoreLectures.value = !_isIgnoreLectures.value!!
+        loadDaySchedule()
     }
 
     fun onChangeWeekType(){
@@ -101,14 +109,17 @@ class ScheduleViewModel : ViewModel() {
 
     private fun loadDaySchedule() {
         viewModelScope.launch {
-            scheduleRepo.loadDay(_weekType.value!!.toInt(), weekDay)
+            scheduleRepo.loadDay(
+                _weekType.value!!.toInt(),
+                weekDay,
+                _isIgnoreLectures.value!!)
         }
     }
 
     fun loadDaySchedule(time : Long) {
         viewModelScope.launch {
             delay(time)
-            scheduleRepo.loadDay(_weekType.value!!.toInt(), weekDay)
+            loadDaySchedule()
         }
     }
 

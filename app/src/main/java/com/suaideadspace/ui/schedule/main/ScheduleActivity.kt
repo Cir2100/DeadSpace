@@ -149,6 +149,17 @@ class ScheduleActivity : AppCompatActivity() {
             viewModel.onChangeIsUser(isChecked)
         }
 
+        viewModel.isIgnoreLectures.observe(this) { value ->
+            value.let { type ->
+                binding.ignoreLecturesTextView.setTextColor( if (type) ResourcesCompat.getColor(resources, R.color.suai_red, theme)
+                else ResourcesCompat.getColor(resources, R.color.black, theme))
+            }
+        }
+
+        binding.ignoreLecturesTextView.setOnClickListener {
+            viewModel.onChangeIsIgnoreLectures()
+        }
+
         viewModel.isUsers.observe(this) { value ->
             value.let { value ->
                 binding.isUsersSwitcher.isChecked = value
